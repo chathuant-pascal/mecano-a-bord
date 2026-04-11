@@ -1,0 +1,186 @@
+---
+description: Contexte complet du projet Mécano à Bord — qui est Pascal, état de l'app, règles intouchables, priorités, roadmap
+alwaysApply: true
+---
+
+# Mécano à Bord — Contexte projet pour Cursor
+
+## Qui est le développeur
+
+- **Pascal Chathuant** — Électromécanicien 25 ans d'expérience, porteur du projet
+- Localisation : Guadeloupe (-5h Paris)
+- **Niveau programmation : débutant complet**
+- → Toujours expliquer en langage simple, sans jargon, étape par étape
+- → Toujours faire un **diagnostic AVANT toute modification** de code
+- → Livrer un fichier à la fois
+- **Inès** : développeuse freelance en charge des corrections complexes
+- Téléphone de test : Samsung SM-A137F — Android 14 (référence terrain : `docs-projet/NOTES_INTENTION_TECHNIQUES.md` §5b)
+- Workspace : `c:\Users\karuc\OneDrive\Bureau\Mecano A Bord\`
+
+---
+
+## Le projet — deux piliers
+
+- **Pilier 1** : Application mobile Flutter **Mécano à Bord** → V1.0.0+1 fonctionnelle ✅
+- **Pilier 2** : Formation **La Méthode Sans Stress Auto** → plan structuré complet ✅
+- La formation convainc → l'app accompagne au quotidien
+
+---
+
+## Environnement technique
+
+- Flutter SDK : >=3.0.0 <4.0.0
+- Architecture : MVVM / SQLite chiffrée v3
+- Android Studio installé / iOS laissé de côté pour l'instant
+- GitHub configuré avec tout le projet
+
+---
+
+## Règles INTOUCHABLES — ne jamais modifier sans accord explicite
+
+> ⚠️ Ces éléments sont figés. Ne pas y toucher, même si une amélioration semble évidente.
+
+- **Voix féminine TTS** : pitch 1.2 / speechRate 0.5 — **FIGÉE, NE JAMAIS TOUCHER**
+- **Mots interdits** dans tous les textes et messages vocaux : `panne` / `danger` / `défaillance`
+- **Couleurs officielles** : toujours utiliser `MabColors.xxx` — jamais de valeurs hex en dur dans les écrans
+  - Rouge : #CC0000 / Noir : #1A1A1A / Gris doré : #C8B89A
+  - Diagnostic → Vert : #2E7D32 / Orange : #E65100 / Rouge : #B71C1C
+- **Zones tactiles** : minimum 48dp (norme EAA 2025)
+- **Max 2 profils véhicule** : le 3e insert doit être refusé (StateError)
+
+---
+
+## Statut de l'application V1.0.0+1
+
+✅ Fonctionnel et stable :
+- Boîte à gants / Mode démo / Politique confidentialité / Aide & Contact
+- Coach vocal TTS féminin et masculin
+- 2 profils véhicule (max)
+- 10 logos IA officiels intégrés
+- Clés API individuelles par fournisseur IA
+- Menu accordéon IA dans Réglages
+- Filigranes paramétrables sur tous les écrans
+
+---
+
+## Coach vocal TTS
+
+- **Voix féminine** (défaut) : pitch 1.2 / speechRate 0.5 — ⚠️ FIGÉE
+- **Voix masculine** :
+  - name: `fr-fr-x-frb-network` (tirets, pas underscores)
+  - locale: `fr-FR` / pitch: 0.1 / speechRate: 0.35
+  - Nécessite connexion internet — afficher avertissement
+- Préférence sauvegardée : SharedPreferences `mab_voice_gender` (défaut: `female`)
+
+---
+
+## Assistant IA — 10 fournisseurs
+
+Clés dans `flutter_secure_storage` :
+`api_key_chatgpt` / `api_key_claude` / `api_key_gemini` / `api_key_mistral` / `api_key_qwen` / `api_key_perplexity` / `api_key_grok` / `api_key_copilot` / `api_key_meta_ai` / `api_key_deepseek`
+
+- Mode personnel = fournisseur sélectionné + clé enregistrée
+- Mode gratuit = 5 questions/jour si pas de clé pour l'IA active
+- Logos dans `assets/images/ia/` : claude.png / chatgpt.png / gemini.png / mistral.png / qwen.png / perplexity.png / grok.png / copilot.png / meta_ai.png / deepseek.png
+
+---
+
+## Inventaire des fichiers Dart
+
+**Source de vérité** : liste à jour (chemins + rôles) dans **`docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`** §5.4 — **35** fichiers sous `mecano_a_bord/lib/` + `test/widget_test.dart` (ex. écrans : `diagnostic_guide_screen`, `legal_mentions_screen` ; services : `app_reset_service`, `live_monitoring_service`, `obd_session_coordinator`, `update_check_service` ; widgets : `mab_obd_session_dialogs`, `mab_legal_mentions_body`, etc.).
+
+---
+
+## Dépendances Flutter (pubspec.yaml)
+
+```
+shared_preferences ^2.2.2 / sqflite ^2.3.0 / path ^1.8.3 /
+intl ^0.19.0 / flutter_secure_storage ^9.0.0 / http ^1.2.0 /
+url_launcher ^6.2.0 / path_provider ^2.1.1 / open_file ^3.3.2 /
+image_picker ^1.0.7 / file_picker ^8.0.0 /
+flutter_reactive_ble ^5.2.3 / permission_handler ^11.3.0 /
+flutter_tts ^4.2.0 / speech_to_text ^7.0.0
+dev: flutter_lints ^3.0.0 / flutter_native_splash ^2.4.7 /
+flutter_launcher_icons ^0.14.4
+```
+
+---
+
+## Dettes techniques connues (ne pas corriger sans demande explicite)
+
+- 2 instances `BluetoothObdService` → acceptable en V1
+- Bandeau véhicule ≤ 56dp → vigilance EAA petit écran
+- Warning `_protocolDetectionDeviceName` non utilisé → inoffensif
+- Logique prefs dupliquée dans `surveillance_only_screen` → volontaire
+
+---
+
+## Priorités en cours
+
+🔴 1 — OBD lecture incomplète → confier à Inès + Logcat Android Studio
+🔴 2 — Overflow bandes jaunes/noires accueil (home_screen.dart) → Inès
+🔴 3 — Vérifier `iamecanoabord.png` bien déclaré dans pubspec.yaml
+⏳ 4 — Brancher URL formation : https://mecanoabord.systeme.io/formation
+⏳ 5 — Historique diagnostics (Boîte à gants)
+⏳ 6 — Finaliser Flutter avec Inès
+⏳ 7 — iOS via Codemagic + dongles BLE/WiFi
+⏳ 8 — Bouton "Où est ma prise OBD ?" dans obd_scan_screen.dart
+       → Envoie automatiquement la question à l'IA intégrée
+       → L'IA utilise le profil véhicule (marque/modèle/année) déjà renseigné
+       → À implémenter ensemble dans Cursor
+
+---
+
+## Roadmap V2 / V3 / V4 — DOCUMENTATION FUTURE UNIQUEMENT
+
+> ⛔ RÈGLE ABSOLUE : Les modules V2, V3 et V4 décrits ci-dessous sont des évolutions **prévues pour le futur**.
+> **NE PAS coder, intégrer, préparer ou modifier quoi que ce soit en lien avec ces modules**
+> sans que Pascal en fasse la demande explicite et claire dans la conversation.
+> Ces prompts sont conservés ici uniquement pour mémoire.
+> Cursor doit **demander confirmation à Pascal** avant d'entreprendre le moindre travail sur ces fonctionnalités.
+
+
+
+### V2-1 — Boîte Noire du Conducteur
+> Lecture OBD en arrière-plan, journal intelligent, notes vocales, rapport préventif hebdomadaire, alertes prédictives.
+
+**Prompt Cursor :**
+> "Ajoute un module 'Boîte Noire du Conducteur' dans Mécano à Bord. Ce module se connecte à l'OBD en arrière-plan et : 1) Enregistre toutes les lectures OBD dans un journal intelligent avec date, heure et codes détectés. 2) Traduit les données en langage simple via l'IA. 3) Permet d'ajouter des notes vocales classées automatiquement par l'IA. 4) Génère un rapport préventif hebdomadaire. 5) Envoie une notification si une tendance anormale est détectée. 6) Affiche un historique complet dans la Boîte à gants. Toutes les données sont chiffrées et stockées localement. Explique chaque étape en langage simple."
+
+---
+
+### V2-2 — Miroir Garage
+> Décodeur de devis automobile. OCR photo ou texte collé → explication simple + niveau urgence + score de clarté 0-100.
+
+**Prompt Cursor :**
+> "Ajoute un module 'Miroir Garage' dans Mécano à Bord accessible depuis la Boîte à gants. Ce module permet de décoder un devis automobile : 1) Écran d'accueil avec bouton 'Décoder un devis' et message rassurant. 2) Upload par photo (OCR) ou texte collé. 3) Analyse avec une base JSON de mots-clés mécaniques → explication simple + niveau urgence (vert/jaune/rouge) + 2 questions à poser au garagiste. 4) Score de clarté 0-100 avec message encourageant. 5) Sauvegarde dans l'historique ou export PDF. Utilise le ton rassurant de Mécano à Bord. Explique chaque étape en langage simple."
+
+---
+
+### V3 — Garage des IA
+> Serveur sécurisé MAB avec routeur multi-IA. L'utilisateur n'a plus besoin de sa propre clé API.
+
+**Routage :**
+- Diagnostic/OBD → ChatGPT
+- Expliquer/comprendre → Claude
+- Photo moteur → Gemini
+- Recherche/actualité → Perplexity
+- Questions courtes → Grok
+
+**Prompt Cursor :**
+> "Nous passons en V2 avec le Garage des IA. Crée un serveur Node.js/Express sur Railway.app avec un endpoint POST /ask qui reçoit : question (texte), contexte_vehicule (JSON), et retourne la réponse de la meilleure IA selon le tableau de routage MAB. Le serveur stocke les clés API en variables d'environnement (jamais dans le code). Crée aussi l'écran Garage des IA dans Flutter avec les logos de chaque IA et un indicateur qui montre quelle IA a répondu. Explique chaque étape en langage simple."
+
+---
+
+### V4 — Système Multi-IA Collaboratif
+> Plusieurs IA travaillent ensemble sur la même question et fusionnent leurs réponses.
+> Condition de démarrage : revenus V1 stables + serveur V3 en place.
+
+---
+
+## Liens à ne pas oublier
+
+- Formation : https://mecanoabord.systeme.io/formation
+- YouTube : https://youtube.com/mecanoabord
+- Email : contact@mecanoabord.fr (à créer)
+- Site : https://mecanoabord.systeme.io

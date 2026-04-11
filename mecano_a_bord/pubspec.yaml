@@ -1,0 +1,64 @@
+name: mecano_a_bord
+description: Mécano à Bord — application mobile d'assistance auto sans stress.
+publish_to: 'none'
+version: 1.0.0+13
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  intl: ^0.19.0
+  flutter_secure_storage: ^9.0.0
+  http: ^1.2.0
+  package_info_plus: ^8.0.0
+  url_launcher: ^6.2.0
+  path_provider: ^2.1.1
+  open_file: ^3.3.2
+  image_picker: ^1.0.7
+  file_picker: ^8.0.0
+  flutter_reactive_ble: ^5.2.3
+  permission_handler: ^11.3.0
+  flutter_tts: ^4.2.0
+  speech_to_text: ^7.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_native_splash: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/moteur_symptomes.json
+    - assets/images/
+    - assets/images/ia/
+    - assets/images/logo.png
+    - assets/images/obd.png
+    - assets/images/boite_a_gant.png
+    - assets/images/suv_images.png
+    - assets/images/modeconduite.png
+    - assets/images/systeme_io.png
+
+flutter_native_splash:
+  color: "#111111" # MabColors.noir (noir profond)
+  image: assets/images/logo.png
+  fullscreen: true
+  android_12:
+    color: "#111111"
+    image: assets/images/logo_mark.png
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo_mark.png"
+  adaptive_icon_background: "#111111"
+  adaptive_icon_foreground: "assets/images/logo_mark.png"

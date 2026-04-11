@@ -1,0 +1,15 @@
+# Mécano à Bord — règles pour l’assistant
+
+## Développeur (Inès / charte produit)
+- Toujours utiliser la charte `mecano_a_bord/lib/theme/mab_theme.dart` : `MabColors`, `MabTextStyles`, `MabDimensions`, `MabTheme`.
+- Accessibilité EAA 2025 : zones tactiles ≥ 48×48 dp pour les actions principales ; corps de texte ≥ 16 sp.
+- Interface simple et rassurante : pas de design « technique », pas de jargon inutile, ton calme.
+- Voir aussi `docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`.
+
+## BMAD (méthode projet)
+- BMAD = méthodologie et agents dans `bmad_mecano_a_bord/_bmad/` (config : langue français, sorties `_bmad-output`).
+- Ce n’est pas un validateur de code : la « conformité BMAD » = suivre les workflows / docs produit, pas un remplacement de `flutter analyze`.
+- Après une étape importante, tenir à jour la doc projet (`docs-projet/`, contexte) si demandé.
+
+## Flutter
+- App dans `mecano_a_bord/`. Commandes : `flutter pub get`, `flutter analyze`, `flutter run` (Android : appareil autorisé ou émulateur).

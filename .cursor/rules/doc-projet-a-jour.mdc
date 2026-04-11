@@ -1,0 +1,26 @@
+---
+description: Tenir à jour la documentation projet (EVOLUTION, BACKLOG) après chaque étape importante
+alwaysApply: true
+---
+
+# Documentation projet — priorité
+
+La **documentation du projet doit rester à jour** au fur et à mesure de l’avancement. C’est une demande explicite du développeur : **ne pas oublier de mettre en place et maintenir un système de gestion de la documentation** pour que quiconque retrouve des informations **datées** sur l’évolution du projet (affiner la réflexion, améliorer l’architecture).
+
+## Où documenter
+
+- **docs-projet/README.md** — Index : où trouver PRD, BACKLOG, notes techniques, évolution.
+- **docs-projet/PRD.md** — Cahier des charges produit (périmètre, objectifs).
+- **docs-projet/BACKLOG.md** — Tâches et fonctionnalités avec statut (À faire / En cours / Fait / Reporté) et dates.
+- **docs-projet/NOTES_INTENTION_TECHNIQUES.md** — Décisions d’architecture et choix techniques.
+- **docs-projet/EVOLUTION.md** — **Journal daté** : une entrée par étape importante (date AAAA-MM-JJ + résumé).
+
+## Règle
+
+**Après chaque étape importante** (livraison d’une feature, correction majeure, refonte, mise en place d’un module, décision technique) :
+
+1. Ajouter une entrée **datée** dans **docs-projet/EVOLUTION.md** (quoi, quand, impact éventuel).
+2. Mettre à jour **docs-projet/BACKLOG.md** si une tâche change de statut ou est ajoutée.
+3. Si une **décision technique** est prise, la documenter dans **docs-projet/NOTES_INTENTION_TECHNIQUES.md** (et éventuellement une ligne dans EVOLUTION.md).
+
+Cela garantit que l’évolution du projet reste traçable et utilisable pour la réflexion et l’architecture.

@@ -1,0 +1,7 @@
+{
+    "name" : "projet-bmad",
+    "version" : "1.0.0",
+    "dependencies" : {
+        "bmad-method" : "latest"
+    }
+}

@@ -1,0 +1,94 @@
+---
+description: Design system Mécano à Bord — Figma et Flutter (couleurs, typo, espacements, composants)
+alwaysApply: true
+---
+
+# Design system Mécano à Bord (Figma → Flutter)
+
+Toute l’UI de l’app **Mécano à Bord** doit respecter la charte définie dans `mecano_a_bord/lib/theme/mab_theme.dart`. Lors de l’implémentation à partir de Figma, utiliser **uniquement** les tokens ci‑dessous ; ne jamais hardcoder des couleurs ou tailles en hex / pixels.
+
+## Source de vérité
+
+- **Thème Flutter** : `mecano_a_bord/lib/theme/mab_theme.dart`
+- **Import** : `import 'package:mecano_a_bord/theme/mab_theme.dart';`
+- **Contexte** : thème sombre (dark), Material 3, accessibilité EAA 2025.
+
+---
+
+## Couleurs (Figma → code)
+
+| Usage Figma | Code Flutter |
+|-------------|--------------|
+| Primaire / CTA / liens principaux | `MabColors.rouge` (#CC0000) |
+| Primaire hover / pressed | `MabColors.rougeSombre` (#990000) |
+| Accent / secondaire (doré) | `MabColors.grisDore` (#C8B89A) |
+| Fond principal | `MabColors.noir` (#1A1A1A) |
+| Fond cartes / surfaces | `MabColors.noirMoyen` (#2C2C2C) |
+| Fond inputs / surfaces claires | `MabColors.noirClair` (#3D3D3D) |
+| Texte principal | `MabColors.blanc` (#FFFFFF) |
+| Texte secondaire / labels | `MabColors.grisTexte` (#9E9E9E) |
+| Bordures / dividers | `MabColors.grisContour` (#5A5A5A) |
+| Succès / OK | `MabColors.diagnosticVert` |
+| Avertissement | `MabColors.diagnosticOrange` |
+| Erreur / danger | `MabColors.diagnosticRouge` |
+| Fonds d’état (succès/erreur légers) | `diagnosticVertClair`, `diagnosticRougeClair`, `diagnosticOrangeClair` |
+
+**Règle** : pas de `Color(0xFF...)` dans les écrans ; toujours `MabColors.xxx`.
+
+---
+
+## Typographie (Figma → code)
+
+| Rôle Figma | Code Flutter | Taille | Poids |
+|------------|--------------|--------|--------|
+| Titre app / hero | `MabTextStyles.titreApp` | 32 | w800 |
+| Titre page / section | `MabTextStyles.titrePrincipal` ou `titreSection` | 28 / 22 | w800 / w700 |
+| Titre carte / bloc | `MabTextStyles.titreCard` | 18 | w600 |
+| Corps | `MabTextStyles.corpsNormal` | 16 | w400 |
+| Corps secondaire | `MabTextStyles.corpsSecondaire` | 16 | w400 |
+| Corps medium | `MabTextStyles.corpsMedium` | 16 | w500 |
+| Bouton principal | `MabTextStyles.boutonPrincipal` | 18 | w700 |
+| Bouton secondaire | `MabTextStyles.boutonSecondaire` | 16 | w600 |
+| Label / caption | `MabTextStyles.label` | 14 | w500 |
+| Badge / chip | `MabTextStyles.badge` | 13 | w700 |
+| Message vocal | `MabTextStyles.messageVocal` | 20 | w500 |
+
+**Règle** : pas de `TextStyle(fontSize: ..., color: ...)` ad hoc ; utiliser `MabTextStyles.xxx` ou `Theme.of(context).textTheme.xxx`.
+
+---
+
+## Espacements et rayons (Figma → code)
+
+- **Espacements** : `MabDimensions.espacementXS` (4) → `espacementS` (8) → `espacementM` (16) → `espacementL` (24) → `espacementXL` (32) → `espacementXXL` (48).
+- **Rayons** : `MabDimensions.rayonPetit` (8), `rayonMoyen` (12), `rayonGrand` (20), `rayonBouton` / `rayonCard` (16).
+- **Padding écran** : `MabDimensions.paddingEcran` (horizontal 20, vertical 16).
+- **Padding carte** : `MabDimensions.paddingCard` (16).
+- **Boutons** : hauteur `MabDimensions.boutonHauteur` (56) ou `boutonHauteurGrand` (64).
+- **Zone tactile min** : `MabDimensions.zoneTactileMin` (48).
+- **Icônes** : `iconeS` (20), `iconeM` (24), `iconeL` (32), `iconeXL` (48).
+
+**Règle** : pas de `EdgeInsets.all(12)` ou `BorderRadius.circular(10)` en dur ; utiliser `MabDimensions.xxx`.
+
+---
+
+## Composants réutilisables
+
+- **Scaffold** : `backgroundColor: MabColors.noir` (ou laisser `MabTheme.theme`).
+- **AppBar** : thème déjà dans `MabTheme` (fond noir, titre `titreSection`, icônes `iconeM`).
+- **Bouton principal** : `ElevatedButton` sans override, ou avec `MabColors.rouge` + `MabDimensions.boutonHauteur` / `rayonBouton` si style custom.
+- **Bouton secondaire** : `OutlinedButton` avec `side: BorderSide(color: MabColors.rouge, width: 2)`.
+- **Cartes** : `Card` (thème) ou `Container` avec `MabColors.noirMoyen`, `BorderRadius.circular(MabDimensions.rayonCard)`.
+- **Champs** : `InputDecorationTheme` déjà dans le thème (fond noirMoyen, bordure grisContour, focus rouge).
+- **Switch** : thème (rouge quand sélectionné).
+- **Dialogs** : `BorderRadius.circular(MabDimensions.rayonGrand)`, fond `MabColors.noirMoyen`.
+
+---
+
+## Implémentation depuis Figma
+
+1. **Identifier** dans la maquette : couleurs → `MabColors.*`, textes → `MabTextStyles.*`, espacements → `MabDimensions.*`.
+2. **Écrans** : importer `mab_theme.dart` et utiliser `MabTheme.theme` (ou `theme: MabTheme.theme` dans `MaterialApp`).
+3. **Cohérence** : si un écran (ex. réglages) utilise encore des couleurs en dur, les remplacer par les tokens MAB pour harmoniser toute l’app.
+4. **Nouveaux écrans** : partir de `Scaffold` + `MabDimensions.paddingEcran`, puis composer avec les composants et tokens ci‑dessus.
+
+En résumé : **Figma et code partagent la même nomenclature** (primaire = rouge, fond = noir, etc.) ; le code référence toujours `MabColors`, `MabTextStyles` et `MabDimensions`.

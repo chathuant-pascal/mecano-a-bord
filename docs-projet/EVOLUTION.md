@@ -6,6 +6,30 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-11 — Build 1.0.0+14 + formation / liens externes (Android 11+) — SM-A137F
+
+- **Cause** : `canLaunchUrl` renvoyait souvent **false** sur Android 11+ sans déclaration de visibilité ; `formation_web_launch_screen` n’appelait alors jamais `launchUrl` et revenait à l’accueil sans ouvrir le navigateur.
+- **`AndroidManifest.xml`** : `<queries>` pour intents **VIEW** `https` / `http` et **VIEW** `mailto`.
+- **`formation_web_launch_screen.dart`** : appel direct à `launchUrl` ; SnackBar si échec ; `pubspec` **1.0.0+14**.
+- **`help_contact_screen.dart`** / **`update_check_service.dart`** : même logique (plus de blocage sur `canLaunchUrl` seul).
+- **`flutter build apk --release`** + **`flutter install -d R58T92HCDAX`** : Samsung **SM-A137F** (Android 14).
+
+---
+
+## 2026-04-11 — Règle développeur : inventaire § 5.4 exhaustif + alignement Cursor
+
+- **`VERIFICATION_REGLES_DEVELOPPEUR.md`** : tableau § 5.4 complété (`formation_url.dart`, `formation_web_launch_screen.dart`, `vehicle_reference_service.dart`, `glovebox_vehicle_health_tab.dart`) ; **42** fichiers `lib/` ; dernière revue **2026-04-11**.
+- **`.cursor/rules/contexte-pascal-mab.mdc`** : inventaire **42** fichiers (au lieu de 35) pour coller à la source de vérité.
+
+---
+
+## 2026-04-11 — Mise à jour téléphone terrain SM-A137F (APK release + lien formation GitHub Pages)
+
+- **`formation_url.dart`** : URL formation → hébergement **GitHub Pages** (`chathuant-pascal.github.io/mecano-a-bord/formation-web/index.html`) — incluse dans l’APK déployé.
+- **`flutter build apk --release`** + **`flutter install -d R58T92HCDAX`** : Samsung **SM-A137F** (Android 14) — **1.0.0+13** installée (référence terrain `docs-projet/NOTES_INTENTION_TECHNIQUES.md` §5b).
+
+---
+
 ## 2026-04-09 — Build 1.0.0+13 + TTS surveillance / OBD réel + sondage 4 s + écran OBD connexion seule (SM-A137F)
 
 - **`surveillance_auto_coordinator.dart`** : avant de démarrer la surveillance ou de parler, **ping PID 010C** (`success`) — pas de TTS « Je suis connecté… » si le calculateur ne répond pas.

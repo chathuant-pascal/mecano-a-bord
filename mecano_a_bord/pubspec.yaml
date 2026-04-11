@@ -1,7 +1,7 @@
 name: mecano_a_bord
 description: Mécano à Bord — application mobile d'assistance auto sans stress.
 publish_to: 'none'
-version: 1.0.0+13
+version: 1.0.0+14
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

@@ -2,7 +2,7 @@
 
 Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2025** (zones tactiles ≥ 48 dp), interface rassurante, stockage et assets documentés.
 
-**Dernière mise à jour (vérification projet) : 9 avril 2026**
+**Dernière mise à jour (vérification projet) : 11 avril 2026**
 
 ---
 
@@ -82,7 +82,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | Champ | Valeur |
 |-------|--------|
 | **name** | `mecano_a_bord` |
-| **version** | **1.0.0+13** |
+| **version** | **1.0.0+14** |
 | **SDK** | `>=3.0.0 <4.0.0` |
 
 ### 5.2 Dépendances (`dependencies`)
@@ -128,6 +128,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | Fichier | Rôle |
 |---------|------|
 | `lib/main.dart` | Entrée app, `TtsService.init`, routes, splash → onboarding ou accueil. |
+| `lib/formation_url.dart` | Constante **`kFormationUrl`** — URL formation web (GitHub Pages ; test local possible). |
 | `lib/data/chat_message.dart` | Modèle message chat (user / IA). |
 | `lib/data/demo_data.dart` | Données factices mode démo. |
 | `lib/data/mab_database.dart` | SQLite : véhicules, entretiens, documents, diagnostics ; chemins fichiers reset ; `closeAndDeleteDatabaseFile`. |
@@ -136,6 +137,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | `lib/screens/add_maintenance_screen.dart` | Ajout / édition ligne carnet d’entretien. |
 | `lib/screens/ai_chat_screen.dart` | Chat IA : messages flottants + ombres, filigrane, quota / clés, lien guide diagnostic. |
 | `lib/screens/diagnostic_guide_screen.dart` | Arbre décisionnel guidé → fiches `moteur_symptomes.json` (sans AppBar classique). |
+| `lib/screens/formation_web_launch_screen.dart` | Ouverture formation dans le navigateur (`kFormationUrl`, `url_launcher`) puis retour arrière. |
 | `lib/screens/glovebox_profile_screen.dart` | Création / édition profil véhicule. |
 | `lib/screens/glovebox_screen.dart` | Boîte à gants : documents & entretien. |
 | `lib/screens/help_contact_screen.dart` | Aide (guide étapes, clés API) + contact. |
@@ -155,10 +157,12 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | `lib/services/surveillance_auto_coordinator.dart` | Mode AUTO : démarrage / arrêt surveillance selon connexion OBD + ping ECU avant TTS. |
 | `lib/services/surveillance_auto_gate.dart` | Mode AUTO : évite reprise surveillance après arrêt manuel sans déconnexion physique. |
 | `lib/services/vehicle_health_service.dart` | Coach santé véhicule (références, apprentissage, bilan 2 h, alertes graduées). |
+| `lib/services/vehicle_reference_service.dart` | Valeurs constructeur / communautaires (`vehicle_reference_values`) après profil complet. |
 | `lib/services/tts_service.dart` | TTS féminin / masculin, alertes, message après effacement DTC. |
 | `lib/services/update_check_service.dart` | Vérification mise à jour (si branchée). |
 | `lib/theme/mab_theme.dart` | Charte MAB + thème Material. |
 | `lib/widgets/mab_legal_mentions_body.dart` | Section Réglages : mentions légales & CGU (9 blocs), charte MAB. |
+| `lib/widgets/glovebox_vehicle_health_tab.dart` | Onglet **Santé de ma voiture** (Boîte à gants) : alertes coach, détails repliables. |
 | `lib/widgets/mab_demo_banner.dart` | Bandeau mode démo. |
 | `lib/widgets/mab_logo.dart` | Logo MAB. |
 | `lib/widgets/mab_obd_not_responding_dialog.dart` | Dialogue OBD sans réponse. |
@@ -171,6 +175,6 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 
 ---
 
-**Total** : **42** fichiers Dart sous `mecano_a_bord/lib/` (hors `test/`) — le tableau ci-dessus couvre les modules principaux ; fichiers complémentaires : `formation_url.dart`, `formation_web_launch_screen.dart`, `vehicle_reference_service.dart`, `glovebox_vehicle_health_tab.dart`, etc.
+**Total** : **42** fichiers Dart sous `mecano_a_bord/lib/` (hors `test/`) — inventaire **exhaustif** dans le tableau § 5.4 ci-dessus.
 
-*Document de référence **règle développeur** MAB / EAA — à actualiser lors de changements majeurs d’UI ou de persistance. Dernière revue : **2026-04-09** — surveillance OBD (sondage 4 s, TTS si ECU répond), écran **Connecte ton OBD**, build terrain **1.0.0+13** (Samsung **SM-A137F**).*
+*Document de référence **règle développeur** MAB / EAA — à actualiser lors de changements majeurs d’UI ou de persistance. Dernière revue : **2026-04-11** — inventaire § 5.4 complété (formation web, `vehicle_reference_service`, onglet Santé) ; URL formation **GitHub Pages** (`formation_url.dart`) ; build terrain **1.0.0+13** (Samsung **SM-A137F**, mise à jour **2026-04-11**).*

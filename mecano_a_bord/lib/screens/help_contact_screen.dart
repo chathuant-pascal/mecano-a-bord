@@ -46,7 +46,11 @@ class _HelpContactScreenState extends State<HelpContactScreen>
   Future<void> _openUrl(String url) async {
     if (url.startsWith('LIEN_') || url.startsWith('EMAIL_')) return;
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) await launchUrl(uri, mode: LaunchMode.externalApplication);
+    try {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (e, st) {
+      debugPrint('help_contact _openUrl: $e\n$st');
+    }
   }
 
   Future<void> _openEmail({String? subject, String? body}) async {
@@ -59,7 +63,11 @@ class _HelpContactScreenState extends State<HelpContactScreen>
         if (body != null && body.isNotEmpty) 'body': body,
       },
     );
-    if (await canLaunchUrl(uri)) await launchUrl(uri);
+    try {
+      await launchUrl(uri);
+    } catch (e, st) {
+      debugPrint('help_contact _openEmail: $e\n$st');
+    }
   }
 
   @override

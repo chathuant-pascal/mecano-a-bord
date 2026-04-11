@@ -27,8 +27,24 @@ class _FormationWebLaunchScreenState extends State<FormationWebLaunchScreen> {
     if (_opened) return;
     _opened = true;
     final uri = Uri.parse(kFormationUrl);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    var launched = false;
+    try {
+      // Ne pas se fier seul à canLaunchUrl (souvent false sur Android 11+ sans <queries>).
+      launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (e, st) {
+      debugPrint('Formation launchUrl: $e\n$st');
+    }
+    if (!launched && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Ouverture du navigateur impossible. Réessaie ou vérifie ta connexion.',
+          ),
+        ),
+      );
     }
     if (mounted) Navigator.of(context).pop();
   }

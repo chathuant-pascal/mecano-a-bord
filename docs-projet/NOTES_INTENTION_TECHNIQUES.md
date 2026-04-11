@@ -83,7 +83,7 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 | **Appareil** | **Samsung Galaxy A13** — modèle **SM-A137F**, **Android 14**. |
 | **Usage** | Builds terrain (`flutter build apk` / `flutter install`), tests OBD (dongle, permissions), UI petit écran (zones tactiles EAA), Assistant IA, coach vocal. |
 | **Mise à jour (installer une nouvelle version)** | Depuis le dossier **`mecano_a_bord/`** : `flutter build apk --release` → APK : **`build/app/outputs/flutter-apk/app-release.apk`**. Transfert sur le téléphone (USB, cloud) puis installation, **ou** avec USB et débogage : `flutter install`. À chaque livraison significative, installer sur le **SM-A137F** et consigner le résultat dans **EVOLUTION.md** (règle doc projet). |
-| **Dernière note terrain** | **2026-04-09** — Build **1.0.0+13** — Surveillance : TTS seulement si **ECU répond** (ping PID) ; sondage **4 s** ; bilan 2 h / chauffe si **moteur tournant** ; écran **« Connecte ton OBD »** sans bouton diagnostic (lecture auto depuis l’accueil uniquement). `flutter build apk --release` → APK `mecano_a_bord/build/app/outputs/flutter-apk/app-release.apk` ; installation USB : **`flutter install -d R58T92HCDAX`** (Samsung **SM-A137F**, Android 14) quand le téléphone est branché en débogage. |
+| **Dernière note terrain** | **2026-04-11** — Build **1.0.0+14** — Ouverture liens **https** / formation : `<queries>` Android 11+ + `launchUrl` sans blocage sur `canLaunchUrl` (`formation_web_launch_screen`, `help_contact_screen`, `update_check_service`). `flutter build apk --release` → `mecano_a_bord/build/app/outputs/flutter-apk/app-release.apk` ; **`flutter install -d R58T92HCDAX`** (Samsung **SM-A137F**, Android 14). |
 
 ---
 
@@ -99,4 +99,4 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 
 *Ces notes reflètent les intentions techniques actuelles. Toute évolution importante doit être ajoutée ici et datée dans EVOLUTION.md.*
 
-*Dernière mise à jour : 2026-04-09 — §5b build **1.0.0+13** (terrain SM-A137F), surveillance OBD + écran connexion OBD*
+*Dernière mise à jour : 2026-04-11 — §5b terrain SM-A137F (build **1.0.0+14**), `url_launcher` + manifest Android*

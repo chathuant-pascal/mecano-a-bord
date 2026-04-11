@@ -135,8 +135,13 @@ class UpdateCheckService {
               onPressed: () async {
                 Navigator.of(ctx).pop();
                 final uri = Uri.tryParse(info.downloadUrl);
-                if (uri != null && await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                if (uri != null) {
+                  try {
+                    await launchUrl(
+                      uri,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  } catch (_) {}
                 }
               },
               style: FilledButton.styleFrom(

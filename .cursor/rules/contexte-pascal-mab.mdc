@@ -87,7 +87,7 @@ Clés dans `flutter_secure_storage` :
 
 ## Inventaire des fichiers Dart
 
-**Source de vérité** : liste à jour (chemins + rôles) dans **`docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`** §5.4 — **35** fichiers sous `mecano_a_bord/lib/` + `test/widget_test.dart` (ex. écrans : `diagnostic_guide_screen`, `legal_mentions_screen` ; services : `app_reset_service`, `live_monitoring_service`, `obd_session_coordinator`, `update_check_service` ; widgets : `mab_obd_session_dialogs`, `mab_legal_mentions_body`, etc.).
+**Source de vérité** : liste à jour (chemins + rôles) dans **`docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`** §5.4 — **42** fichiers sous `mecano_a_bord/lib/` + `test/widget_test.dart` (ex. écrans : `diagnostic_guide_screen`, `formation_web_launch_screen`, `legal_mentions_screen` ; services : `app_reset_service`, `vehicle_reference_service`, `live_monitoring_service`, `obd_session_coordinator`, `update_check_service` ; widgets : `glovebox_vehicle_health_tab`, `mab_obd_session_dialogs`, `mab_legal_mentions_body`, etc.).
 
 ---
 

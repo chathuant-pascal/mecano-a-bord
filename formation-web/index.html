@@ -5508,100 +5508,6 @@
     var bonusData = [
       {
         num: 1,
-        emoji: '🎧',
-        titre: 'Audio "Panne, pas de panique"',
-        prerequis: 'etape2',
-        contenu: function() {
-          var c = '';
-
-          // Encadré rouge d'accroche
-          c += '<div style="background:#1a0000;border:2px solid var(--rouge-principal);border-radius:12px;padding:20px 24px;margin-bottom:24px;text-align:center">';
-          c += '<div style="font-size:26px;margin-bottom:10px">⚠️</div>';
-          c += '<p style="color:#ffffff;font-size:17px;font-weight:700;margin:0 0 8px 0">"Respire. Allume tes warnings. Tu n\'es pas seul(e)."</p>';
-          c += '<p style="color:var(--texte-secondaire);font-size:13px;margin:0">La panique coûte de l\'argent — le calme économise des vies. Ce guide est là pour ça.</p>';
-          c += '</div>';
-
-          // Placeholder audio
-          c += '<div style="background:var(--fond-cartes);border:1px solid var(--bordures);border-radius:10px;padding:18px 20px;margin-bottom:22px;display:flex;align-items:center;gap:16px">';
-          c += '<div style="width:56px;height:56px;background:var(--rouge-principal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;cursor:pointer" onclick="alert(\'Audio bientôt disponible ! En attendant, lis le guide ci-dessous.\')">▶</div>';
-          c += '<div>';
-          c += '<div style="color:#fff;font-weight:700;font-size:15px">🎧 Guide Audio — Panne, pas de panique</div>';
-          c += '<div style="color:var(--texte-secondaire);font-size:13px;margin-top:4px">Pascal te guide étape par étape, de la panne au dépannage</div>';
-          c += '<div style="color:var(--rouge-principal);font-size:12px;margin-top:4px">⏱ 8 à 10 minutes · Bientôt disponible</div>';
-          c += '</div>';
-          c += '</div>';
-
-          // Les 4 parties
-          c += '<h3 style="color:var(--rouge-principal);margin:20px 0 14px">Les 4 étapes quand tu es en panne</h3>';
-
-          // Étape 1 — Respire
-          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--rouge-principal);border-radius:8px;padding:16px 18px;margin-bottom:12px">';
-          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
-          c += '<div style="background:var(--rouge-principal);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">1</div>';
-          c += '<strong style="color:#fff;font-size:15px">RESPIRE — Les 10 premières secondes</strong></div>';
-          c += '<ul style="margin:0;padding-left:0;list-style:none">';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Allume tes warnings <strong>immédiatement</strong></li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Serre le frein à main doucement si la voiture ralentit</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Dis-toi : "je gère ça"</li>';
-          c += '<li style="color:var(--rouge-principal);font-size:13px;font-weight:600;padding:6px 0 2px">⛔ Ne pas freiner brutalement. Ne pas couper le moteur en roulant.</li>';
-          c += '</ul>';
-          c += '</div>';
-
-          // Étape 2 — Observe
-          c += '<div style="background:var(--fond-cartes);border-left:4px solid #f0a500;border-radius:8px;padding:16px 18px;margin-bottom:12px">';
-          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
-          c += '<div style="background:#f0a500;color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">2</div>';
-          c += '<strong style="color:#fff;font-size:15px">OBSERVE — Gare-toi en sécurité</strong></div>';
-          c += '<ul style="margin:0;padding-left:0;list-style:none">';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Dirige-toi vers le bord droit de la route ou une sortie</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Sur autoroute : bande d\'arrêt d\'urgence uniquement si urgence réelle</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Coupe le moteur une fois gêné(e), serre le frein à main</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0">✅ Mets les roues braquées vers le trottoir (évite le départ)</li>';
-          c += '</ul>';
-          c += '</div>';
-
-          // Étape 3 — Agis
-          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--succes);border-radius:8px;padding:16px 18px;margin-bottom:12px">';
-          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
-          c += '<div style="background:var(--succes);color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">3</div>';
-          c += '<strong style="color:#fff;font-size:15px">AGIS — Sécurise la zone</strong></div>';
-          c += '<ul style="margin:0;padding-left:0;list-style:none">';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Sors du véhicule <strong>par la droite</strong>, loin de la circulation</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Enfile ton <strong>gilet jaune fluo</strong> (toujours dans l\'habitacle, pas dans le coffre)</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Pose le triangle <strong>30 m derrière</strong> (150 m sur autoroute)</li>';
-          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0">✅ Éloigne-toi de la voiture si odeur suspecte (essence, brûlé fort)</li>';
-          c += '</ul>';
-          c += '</div>';
-
-          // Étape 4 — Numéros
-          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--texte-secondaire);border-radius:8px;padding:16px 18px;margin-bottom:20px">';
-          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
-          c += '<div style="background:var(--texte-secondaire);color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">4</div>';
-          c += '<strong style="color:#fff;font-size:15px">NUMÉROS — Appelle les bons secours</strong></div>';
-          c += '<table style="width:100%;border-collapse:collapse;font-size:14px">';
-          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 17</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Police (danger immédiat)</td></tr>';
-          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 15</td><td style="padding:6px 8px;color:var(--texte-secondaire)">SAMU (urgence médicale)</td></tr>';
-          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 18</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Pompiers (incendie ou accident)</td></tr>';
-          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 3115</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Dépannage autoroute obligatoire (sociétés agréées)</td></tr>';
-          c += '<tr><td style="padding:6px 8px;color:var(--rouge-principal);font-weight:600">📞 Ton assistance</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Enregistre ce numéro <strong>maintenant</strong>, pas pendant la panne</td></tr>';
-          c += '</table>';
-          c += '</div>';
-
-          // Kit minimal
-          c += '<div class="bc-etape"><span class="methode">📦 Kit minimal à avoir dans ta voiture</span>';
-          c += '<strong>Ces 4 objets peuvent sauver une situation :</strong></div>';
-          c += '<ul>';
-          c += '<li><span class="bc-puce">▶</span> <span><strong>Gilet jaune fluo</strong> — dans l\'habitacle, PAS dans le coffre (tu ne peux pas ouvrir le coffre sous la pluie face au trafic)</span></li>';
-          c += '<li><span class="bc-puce">▶</span> <span><strong>Triangle de signalisation</strong> — obligatoire en France, amende 135€ si absent</span></li>';
-          c += '<li><span class="bc-puce">▶</span> <span><strong>Chargeur téléphone</strong> — panne de batterie téléphone = panne totale</span></li>';
-          c += '<li><span class="bc-puce">▶</span> <span><strong>Numéro d\'assistance écrit sur papier</strong> — au cas où le téléphone est à plat</span></li>';
-          c += '</ul>';
-
-          return c;
-        }
-      },
-      {
-        num: 2,
         emoji: '📅',
         titre: 'PDF Entretien 12 mois',
         prerequis: 'etape4',
@@ -5687,7 +5593,7 @@
         }
       },
       {
-        num: 3,
+        num: 2,
         emoji: '💬',
         titre: 'Groupe privé WhatsApp',
         prerequis: 'etape3',
@@ -5703,7 +5609,7 @@
         ); }
       },
       {
-        num: 4,
+        num: 3,
         emoji: '✅',
         titre: 'Checklist Entretien Simple',
         prerequis: null,
@@ -5807,7 +5713,7 @@
         }
       },
       {
-        num: 5,
+        num: 4,
         emoji: '📖',
         titre: 'Dictionnaire du Garagiste',
         prerequis: null,
@@ -6287,7 +6193,7 @@
         }
       },
       {
-        num: 6,
+        num: 5,
         emoji: '🧰',
         titre: 'Kit de Survie Voiture',
         prerequis: 'etape3',
@@ -6446,7 +6352,7 @@
         }
       },
       {
-        num: 7,
+        num: 6,
         emoji: '🔗',
         titre: 'Remorquage & Crochet de Remorquage',
         prerequis: 'etape4',
@@ -6591,13 +6497,85 @@
         }
       },
       {
-        num: 8,
+        num: 7,
         emoji: '🧘',
-        titre: 'Drive Zen — Sécurité & Réflexes',
-        prerequis: 'etape4',
+        titre: 'Drive Zen — Sécurité & Réflexes, Pas de Panique',
+        prerequis: 'etape2',
         contenu: function() {
           var sep2 = '<div style="border-top:2px solid var(--rouge-principal);margin:28px 0 16px 0"></div>';
           var c = '';
+
+          // ---- Section "Panne, pas de panique" ----
+          c += '<h3 style="color:var(--rouge-principal);margin:0 0 16px">🔊 Panne, pas de panique</h3>';
+          c += '<div style="background:#1a0000;border:2px solid var(--rouge-principal);border-radius:12px;padding:20px 24px;margin-bottom:24px;text-align:center">';
+          c += '<div style="font-size:26px;margin-bottom:10px">⚠️</div>';
+          c += '<p style="color:#ffffff;font-size:17px;font-weight:700;margin:0 0 8px 0">"Respire. Allume tes warnings. Tu n\'es pas seul(e)."</p>';
+          c += '<p style="color:var(--texte-secondaire);font-size:13px;margin:0">La panique coûte de l\'argent — le calme économise des vies. Ce guide est là pour ça.</p>';
+          c += '</div>';
+          c += '<div style="background:var(--fond-cartes);border:1px solid var(--bordures);border-radius:10px;padding:18px 20px;margin-bottom:22px;display:flex;align-items:center;gap:16px">';
+          c += '<div style="width:56px;height:56px;background:var(--rouge-principal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;cursor:pointer" onclick="alert(\'Audio bientôt disponible ! En attendant, lis le guide ci-dessous.\')">▶</div>';
+          c += '<div>';
+          c += '<div style="color:#fff;font-weight:700;font-size:15px">🎧 Guide Audio — Panne, pas de panique</div>';
+          c += '<div style="color:var(--texte-secondaire);font-size:13px;margin-top:4px">Pascal te guide étape par étape, de la panne au dépannage</div>';
+          c += '<div style="color:var(--rouge-principal);font-size:12px;margin-top:4px">⏱ 8 à 10 minutes · Bientôt disponible</div>';
+          c += '</div>';
+          c += '</div>';
+          c += '<h3 style="color:var(--rouge-principal);margin:20px 0 14px">Les 4 étapes quand tu es en panne</h3>';
+          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--rouge-principal);border-radius:8px;padding:16px 18px;margin-bottom:12px">';
+          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
+          c += '<div style="background:var(--rouge-principal);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">1</div>';
+          c += '<strong style="color:#fff;font-size:15px">RESPIRE — Les 10 premières secondes</strong></div>';
+          c += '<ul style="margin:0;padding-left:0;list-style:none">';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Allume tes warnings <strong>immédiatement</strong></li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Serre le frein à main doucement si la voiture ralentit</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Dis-toi : "je gère ça"</li>';
+          c += '<li style="color:var(--rouge-principal);font-size:13px;font-weight:600;padding:6px 0 2px">⛔ Ne pas freiner brutalement. Ne pas couper le moteur en roulant.</li>';
+          c += '</ul>';
+          c += '</div>';
+          c += '<div style="background:var(--fond-cartes);border-left:4px solid #f0a500;border-radius:8px;padding:16px 18px;margin-bottom:12px">';
+          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
+          c += '<div style="background:#f0a500;color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">2</div>';
+          c += '<strong style="color:#fff;font-size:15px">OBSERVE — Gare-toi en sécurité</strong></div>';
+          c += '<ul style="margin:0;padding-left:0;list-style:none">';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Dirige-toi vers le bord droit de la route ou une sortie</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Sur autoroute : bande d\'arrêt d\'urgence uniquement si urgence réelle</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Coupe le moteur une fois gêné(e), serre le frein à main</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0">✅ Mets les roues braquées vers le trottoir (évite le départ)</li>';
+          c += '</ul>';
+          c += '</div>';
+          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--succes);border-radius:8px;padding:16px 18px;margin-bottom:12px">';
+          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
+          c += '<div style="background:var(--succes);color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">3</div>';
+          c += '<strong style="color:#fff;font-size:15px">AGIS — Sécurise la zone</strong></div>';
+          c += '<ul style="margin:0;padding-left:0;list-style:none">';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Sors du véhicule <strong>par la droite</strong>, loin de la circulation</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Enfile ton <strong>gilet jaune fluo</strong> (toujours dans l\'habitacle, pas dans le coffre)</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0;border-bottom:1px solid var(--bordures)">✅ Pose le triangle <strong>30 m derrière</strong> (150 m sur autoroute)</li>';
+          c += '<li style="color:var(--texte-secondaire);font-size:14px;padding:4px 0">✅ Éloigne-toi de la voiture si odeur suspecte (essence, brûlé fort)</li>';
+          c += '</ul>';
+          c += '</div>';
+          c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--texte-secondaire);border-radius:8px;padding:16px 18px;margin-bottom:20px">';
+          c += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
+          c += '<div style="background:var(--texte-secondaire);color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0">4</div>';
+          c += '<strong style="color:#fff;font-size:15px">NUMÉROS — Appelle les bons secours</strong></div>';
+          c += '<table style="width:100%;border-collapse:collapse;font-size:14px">';
+          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 17</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Police (danger immédiat)</td></tr>';
+          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 15</td><td style="padding:6px 8px;color:var(--texte-secondaire)">SAMU (urgence médicale)</td></tr>';
+          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 18</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Pompiers (incendie ou accident)</td></tr>';
+          c += '<tr style="border-bottom:1px solid var(--bordures)"><td style="padding:6px 8px;color:#fff;font-weight:600">📞 3115</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Dépannage autoroute obligatoire (sociétés agréées)</td></tr>';
+          c += '<tr><td style="padding:6px 8px;color:var(--rouge-principal);font-weight:600">📞 Ton assistance</td><td style="padding:6px 8px;color:var(--texte-secondaire)">Enregistre ce numéro <strong>maintenant</strong>, pas pendant la panne</td></tr>';
+          c += '</table>';
+          c += '</div>';
+          c += '<div class="bc-etape"><span class="methode">📦 Kit minimal à avoir dans ta voiture</span>';
+          c += '<strong>Ces 4 objets peuvent sauver une situation :</strong></div>';
+          c += '<ul>';
+          c += '<li><span class="bc-puce">▶</span> <span><strong>Gilet jaune fluo</strong> — dans l\'habitacle, PAS dans le coffre (tu ne peux pas ouvrir le coffre sous la pluie face au trafic)</span></li>';
+          c += '<li><span class="bc-puce">▶</span> <span><strong>Triangle de signalisation</strong> — obligatoire en France, amende 135€ si absent</span></li>';
+          c += '<li><span class="bc-puce">▶</span> <span><strong>Chargeur téléphone</strong> — panne de batterie téléphone = panne totale</span></li>';
+          c += '<li><span class="bc-puce">▶</span> <span><strong>Numéro d\'assistance écrit sur papier</strong> — au cas où le téléphone est à plat</span></li>';
+          c += '</ul>';
+          c += sep2;
+          // ---- Fin section "Panne, pas de panique" ----
 
           function situation(num, emoji, titre, texte) {
             var h = '<div style="background:var(--fond-cartes);border:1px solid var(--bordures);border-radius:10px;padding:16px;margin-bottom:10px">';
@@ -6665,7 +6643,7 @@
         }
       },
       {
-        num: 9,
+        num: 8,
         emoji: '🌿',
         titre: 'Rouler Malin — Éco-conduite',
         prerequis: 'etape2',
@@ -6762,7 +6740,7 @@
         }
       },
       {
-        num: 10,
+        num: 9,
         emoji: '⚙️',
         titre: 'Bien Utiliser sa Boîte Automatique (BVA)',
         prerequis: null,
@@ -7120,16 +7098,16 @@
     function getProgressionTotal() {
       var completes = getModulesCompletes();
       var bonusVus  = getBonusVisites();
-      var n = completes.length + bonusVus.length; // max 16
-      if (tousLesBonusVus()) n += 1;   // félicitations débloquée = 17e
-      if (formationComplete()) n += 1; // formation 100% complète  = 18e
-      return Math.min(n, 18);
+      var n = completes.length + bonusVus.length; // max 15
+      if (tousLesBonusVus()) n += 1;   // félicitations débloquée = 16e
+      if (formationComplete()) n += 1; // formation 100% complète  = 17e
+      return Math.min(n, 17);
     }
 
-    // Tous les 10 bonus ont été ouverts au moins une fois
+    // Tous les 9 bonus ont été ouverts au moins une fois
     function tousLesBonusVus() {
       var completes = getModulesCompletes();
-      return completes.indexOf('etape5') !== -1 && getBonusVisites().length >= 10;
+      return completes.indexOf('etape5') !== -1 && getBonusVisites().length >= 9;
     }
 
     // Formation 100% complète = l'élève a visité la page de félicitations
@@ -7157,7 +7135,7 @@
       var progression = getProgressionTotal();
       var toutFini   = formationComplete();
       var bonusOk    = tousLesBonusVus();
-      var pct        = Math.round(progression / 18 * 100);
+      var pct        = Math.round(progression / 17 * 100);
 
       var c = '';
 
@@ -7197,7 +7175,7 @@
       // ── BARRE DE PROGRESSION ────────────────────────────────────
       c += '<div class="sommaire-progress-wrap">';
       c += '<div class="sommaire-progress-label">';
-      c += '<span>' + progression + ' / 18 étapes complétées</span>';
+      c += '<span>' + progression + ' / 17 étapes complétées</span>';
       if (toutFini) c += '<span style="color:var(--succes);font-weight:700">🎉 Formation terminée !</span>';
       c += '</div>';
       c += '<div class="sommaire-progress-track"><div class="sommaire-progress-fill" style="width:' + pct + '%"></div></div>';
@@ -7263,16 +7241,15 @@
       c += '</div>';
       if (bonusDebloque) {
         var bonusTitres = [
-          '🎧 #1 Audio "Panne, pas de panique"',
-          '📅 #2 PDF Entretien 12 mois',
-          '💬 #3 Groupe privé WhatsApp',
-          '✅ #4 Checklist Entretien Simple',
-          '📖 #5 Dictionnaire du Garagiste',
-          '🧰 #6 Kit de Survie Voiture',
-          '🚗 #7 Fiche Remorquage & Crochet',
-          '🧘 #8 Drive Zen — Sécurité &amp; Réflexes',
-          '🌿 #9 Rouler Malin — Éco-conduite',
-          '⚙️ #10 Boîte Automatique BVA'
+          '📅 #1 PDF Entretien 12 mois',
+          '💬 #2 Groupe privé WhatsApp',
+          '✅ #3 Checklist Entretien Simple',
+          '📖 #4 Dictionnaire du Garagiste',
+          '🧰 #5 Kit de Survie Voiture',
+          '🚗 #6 Fiche Remorquage & Crochet',
+          '🧘 #7 Drive Zen — Sécurité &amp; Réflexes, Pas de Panique',
+          '🌿 #8 Rouler Malin — Éco-conduite',
+          '⚙️ #9 Boîte Automatique BVA'
         ];
         c += '<div class="sommaire-bonus-detail">';
         bonusTitres.forEach(function(titre, idx) {

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche Contrôle Technique — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 11px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-radius: 4px; }
+  .logo { width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 16px; font-weight: 900; }
+  .header-text p { font-size: 10px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 12px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 14px 0 8px; text-transform: uppercase; }
+  .regles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .regle-card { background: #fff5f5; border: 1.5px solid #CC0000; border-radius: 6px; padding: 10px 12px; text-align: center; }
+  .regle-card .ico { font-size: 20px; margin-bottom: 5px; }
+  .regle-card .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 4px; }
+  .regle-card .val { font-size: 12px; font-weight: 700; color: #111; }
+  .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .point { background: #f9f9f9; border-left: 3px solid #CC0000; border-radius: 4px; padding: 7px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .cb { width: 16px; height: 16px; border: 1.5px solid #CC0000; border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
+  .point-text { font-size: 10px; color: #111; }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-bottom: 12px; }
+  th { background: #CC0000; color: #fff; padding: 6px 10px; text-align: left; }
+  td { padding: 5px 10px; border-bottom: 1px solid #e0e0e0; }
+  td.cout { color: #CC0000; font-weight: 700; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .astuce { background: #e8f5e9; border: 1px solid #4CAF50; border-radius: 5px; padding: 9px 14px; margin-top: 10px; }
+  .astuce .titre { font-weight: 700; font-size: 11px; color: #2e7d32; margin-bottom: 4px; }
+  footer { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 16px; text-align: center; font-size: 9px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Fiche Contrôle Technique — Préparer pour réussir</h1>
+    <p>Étape 5 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Les 3 règles à connaître</h2>
+<div class="regles">
+  <div class="regle-card">
+    <div class="ico">🚗</div>
+    <div class="titre">Premier contrôle</div>
+    <div class="val">Après 4 ans</div>
+    <div style="font-size:9px;color:#555;margin-top:4px">Pour un véhicule neuf</div>
+  </div>
+  <div class="regle-card">
+    <div class="ico">📅</div>
+    <div class="titre">Contrôles suivants</div>
+    <div class="val">Tous les 2 ans</div>
+    <div style="font-size:9px;color:#555;margin-top:4px">Sans exception</div>
+  </div>
+  <div class="regle-card">
+    <div class="ico">💸</div>
+    <div class="titre">Amende si non fait</div>
+    <div class="val" style="color:#CC0000">135 €</div>
+    <div style="font-size:9px;color:#555;margin-top:4px">+ immobilisation possible</div>
+  </div>
+</div>
+
+<h2>Les 10 points à vérifier AVANT de se présenter</h2>
+<div class="checklist">
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Éclairages avant et arrière</strong><br><span style="font-size:9px;color:#555">Phares, feux stop, clignotants, feux de recul</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Essuie-glaces en bon état</strong><br><span style="font-size:9px;color:#555">Balais qui essuient proprement, sans tracer</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Pare-brise sans fissure</strong><br><span style="font-size:9px;color:#555">Aucune fissure dans le champ de vision conducteur</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Pression et usure des pneus</strong><br><span style="font-size:9px;color:#555">Minimum 1,6 mm de sculpture, bien gonflés</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Plaques d'immatriculation</strong><br><span style="font-size:9px;color:#555">Lisibles, fixées, éclairées la nuit</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Ceintures de sécurité</strong><br><span style="font-size:9px;color:#555">Toutes fonctionnelles, pas effilochées</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Frein à main efficace</strong><br><span style="font-size:9px;color:#555">Maintient le véhicule sur pente</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Klaxon fonctionnel</strong><br><span style="font-size:9px;color:#555">Sonner une fois pour vérifier</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Niveaux de fluides OK</strong><br><span style="font-size:9px;color:#555">Huile, liquide de refroidissement</span></div></div>
+  <div class="point"><div class="cb"></div><div class="point-text"><strong>Intérieur et coffre propres</strong><br><span style="font-size:9px;color:#555">Rien qui obstrue la visibilité ou les pédales</span></div></div>
+</div>
+
+<h2>Ce que le contrôleur vérifie (points principaux)</h2>
+<table>
+  <thead><tr><th>Poste de contrôle</th><th>Ce qui est vérifié</th></tr></thead>
+  <tbody>
+    <tr><td>Freinage</td><td>Efficacité freins AV/AR, frein à main, ABS si présent</td></tr>
+    <tr><td>Direction</td><td>Jeu au volant, rotules, coupelles, roulement de direction</td></tr>
+    <tr><td>Visibilité</td><td>Vitres, rétroviseurs, essuie-glaces, lave-glaces</td></tr>
+    <tr><td>Éclairage</td><td>Portée et alignement des phares, feux réglementaires</td></tr>
+    <tr><td>Pneumatiques</td><td>Usure, gonflage, absence de dommages</td></tr>
+    <tr><td>Structure et liaison</td><td>Carrosserie, trains roulants, suspension, amortisseurs</td></tr>
+    <tr><td>Pollution</td><td>Émissions CO2 (essence) ou opacité fumée (diesel)</td></tr>
+    <tr><td>Identification</td><td>Plaque, VIN, date de mise en circulation</td></tr>
+  </tbody>
+</table>
+
+<div class="astuce">
+  <div class="titre">💡 Astuce Pascal</div>
+  Passe un rapide contrôle chez un professionnel de confiance 2-3 semaines AVANT ton CT. Il te signalera les points à corriger sans pression, et tu reviendras au CT avec une voiture prête.
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 5</footer>
+</body>
+</html>

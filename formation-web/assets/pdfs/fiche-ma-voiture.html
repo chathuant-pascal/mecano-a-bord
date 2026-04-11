@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche Ma Voiture — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 11px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-radius: 4px; }
+  .logo { width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 16px; font-weight: 900; }
+  .header-text p { font-size: 10px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 12px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 14px 0 8px; text-transform: uppercase; letter-spacing: .5px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+  .champ { display: flex; flex-direction: column; gap: 3px; }
+  .champ label { font-size: 9.5px; color: #555; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+  .champ .ligne { border: none; border-bottom: 1.5px solid #ccc; padding: 5px 2px; font-size: 11px; color: #111; background: transparent; min-height: 22px; }
+  .champ .hint { font-size: 8.5px; color: #999; font-style: italic; }
+  .champ.full { grid-column: 1 / -1; }
+  table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 10px; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; font-size: 10px; }
+  td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  .zone { font-weight: 700; color: #CC0000; white-space: nowrap; width: 40px; }
+  .fill { border-bottom: 1px solid #bbb; min-width: 120px; display: inline-block; font-size: 10px; padding: 1px 2px; }
+  .quote { background: #fff0f0; border-left: 3px solid #CC0000; padding: 8px 12px; margin: 12px 0; font-size: 10.5px; font-style: italic; color: #333; }
+  footer { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 16px; text-align: center; font-size: 9px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Fiche Ma Voiture — À remplir une fois, garder toujours</h1>
+    <p>Étape 1 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Section 1 — Informations générales</h2>
+<div class="grid2">
+  <div class="champ"><label>Marque</label><div class="ligne"></div></div>
+  <div class="champ"><label>Modèle</label><div class="ligne"></div></div>
+  <div class="champ"><label>Année</label><div class="ligne"></div></div>
+  <div class="champ"><label>Carburant</label><div class="ligne"></div></div>
+  <div class="champ"><label>Boîte de vitesses</label><div class="ligne"></div></div>
+  <div class="champ"><label>Couleur</label><div class="ligne"></div></div>
+  <div class="champ full"><label>Immatriculation</label><div class="ligne"></div></div>
+</div>
+
+<h2>Section 2 — Données carte grise</h2>
+<table>
+  <thead><tr><th>Zone</th><th>Ce que ça contient</th><th>Ma valeur</th></tr></thead>
+  <tbody>
+    <tr><td class="zone">D.1</td><td>Marque du véhicule</td><td><span class="fill">&nbsp;</span></td></tr>
+    <tr><td class="zone">D.2</td><td>Type, variante, version du modèle</td><td><span class="fill">&nbsp;</span></td></tr>
+    <tr><td class="zone">E</td><td>Numéro VIN (17 caractères)</td><td><span class="fill">&nbsp;</span></td></tr>
+    <tr><td class="zone">P.3</td><td>Type de carburant (ES / GO / EH…)</td><td><span class="fill">&nbsp;</span></td></tr>
+    <tr><td class="zone">J.1</td><td>Catégorie du véhicule (M1 = VP)</td><td><span class="fill">&nbsp;</span></td></tr>
+    <tr><td class="zone">F.2</td><td>Masse max. autorisée — PTAC (kg)</td><td><span class="fill">&nbsp;</span></td></tr>
+  </tbody>
+</table>
+
+<h2>Section 3 — Informations pratiques</h2>
+<div class="grid2">
+  <div class="champ">
+    <label>Pression des pneus</label>
+    <div class="ligne"></div>
+    <div class="hint">Étiquette montant porte conducteur</div>
+  </div>
+  <div class="champ">
+    <label>Type d'huile moteur</label>
+    <div class="ligne"></div>
+    <div class="hint">Carnet constructeur ou sous capot</div>
+  </div>
+  <div class="champ">
+    <label>Liquide de refroidissement</label>
+    <div class="ligne"></div>
+    <div class="hint">Réservoir avant moteur</div>
+  </div>
+  <div class="champ">
+    <label>Batterie (capacité + emplacement)</label>
+    <div class="ligne"></div>
+    <div class="hint">Sous capot ou dans le coffre</div>
+  </div>
+  <div class="champ full">
+    <label>Nom du moteur</label>
+    <div class="ligne"></div>
+    <div class="hint">Ex : 1.2 PureTech / 1.5 dCi / 1.6 HDi / 1.3 TCe…</div>
+  </div>
+</div>
+
+<h2>Section 4 — Informations complémentaires</h2>
+<div class="grid2">
+  <div class="champ full"><label>Numéro de série (VIN)</label><div class="ligne"></div></div>
+  <div class="champ"><label>Kilométrage actuel</label><div class="ligne"></div></div>
+  <div class="champ"><label>Dernière vidange (km)</label><div class="ligne"></div></div>
+  <div class="champ"><label>Numéro d'assistance</label><div class="ligne"></div></div>
+  <div class="champ"><label>Nom du garagiste habituel</label><div class="ligne"></div></div>
+  <div class="champ full"><label>Prochain entretien prévu (km / date)</label><div class="ligne"></div></div>
+</div>
+
+<div class="quote">"Avant de me parler de ton problème, dis-moi quelle voiture tu conduis." — Pascal Chathuant</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 1</footer>
+</body>
+</html>

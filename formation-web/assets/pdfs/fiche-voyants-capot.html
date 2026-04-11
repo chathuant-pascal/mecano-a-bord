@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche Voyants ↔ Capot — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 10.5px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; border-radius: 4px; }
+  .logo { width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 15px; font-weight: 900; }
+  .header-text p { font-size: 10px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 11.5px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 12px 0 7px; text-transform: uppercase; }
+  .codes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .code { border-radius: 5px; padding: 7px 10px; text-align: center; }
+  .code.rouge { background: #fff0f0; border: 1.5px solid #CC0000; }
+  .code.orange { background: #fff8e0; border: 1.5px solid #f0a500; }
+  .code.vert { background: #e8f5e9; border: 1.5px solid #4CAF50; }
+  .code .icone { font-size: 18px; margin-bottom: 4px; }
+  .code .titre { font-weight: 700; font-size: 10px; margin-bottom: 3px; }
+  .code.rouge .titre { color: #CC0000; }
+  .code.orange .titre { color: #b07000; }
+  .code.vert .titre { color: #2e7d32; }
+  .code ul { font-size: 9px; list-style: none; padding: 0; text-align: left; }
+  .code ul li { padding: 1.5px 0; color: #555; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 10px; }
+  .group-header td { background: #2a0a0a; color: #CC0000; font-weight: 700; font-size: 9px; letter-spacing: .5px; padding: 5px 8px; }
+  .group-header.orange td { background: #2a1800; color: #f0a500; }
+  .group-header.vert td { background: #0a1a0a; color: #4CAF50; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; }
+  td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  .vname { font-weight: 700; font-size: 9.5px; }
+  .vzone { font-size: 9px; color: #555; }
+  .vaction { font-size: 9px; }
+  .regle { background: #fff0f0; border: 1.5px solid #CC0000; border-radius: 5px; padding: 8px 12px; margin: 10px 0; }
+  .regle .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 3px; }
+  .zones { background: #f9f9f9; border-left: 3px solid #CC0000; border-radius: 4px; padding: 8px 12px; margin: 10px 0; }
+  .zones ul { list-style: none; padding: 0; }
+  .zones ul li { padding: 3px 0; font-size: 10px; border-bottom: 1px solid #e5e5e5; display: flex; gap: 6px; }
+  .zones ul li span { font-weight: 700; color: #CC0000; min-width: 14px; }
+  footer { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 14px; text-align: center; font-size: 9px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Fiche Voyants ↔ Capot — Ce que ta voiture te dit</h1>
+    <p>Étape 3 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Code couleur universel</h2>
+<div class="codes">
+  <div class="code rouge">
+    <div class="icone">🔴</div>
+    <div class="titre">ROUGE = DANGER IMMÉDIAT</div>
+    <ul><li>→ Arrêter dès que possible</li><li>→ Ne pas continuer à rouler</li><li>→ Risque de casse irréversible</li></ul>
+  </div>
+  <div class="code orange">
+    <div class="icone">🟠</div>
+    <div class="titre">ORANGE = ALERTE</div>
+    <ul><li>→ Pas d'urgence immédiate</li><li>→ RDV garage dans les jours suivants</li><li>→ Ne pas ignorer</li></ul>
+  </div>
+  <div class="code vert">
+    <div class="icone">🟢</div>
+    <div class="titre">VERT / BLEU = INFO</div>
+    <ul><li>→ Aucun danger</li><li>→ Une fonction est active</li><li>→ Clignotants, feux de route…</li></ul>
+  </div>
+</div>
+
+<h2>Les voyants à connaître ↔ zone sous le capot ↔ action</h2>
+<table>
+  <thead><tr><th>Voyant</th><th>Zone à vérifier</th><th>Action à faire</th></tr></thead>
+  <tbody>
+    <tr class="group-header"><td colspan="3">🔴 DANGER IMMÉDIAT — ARRÊT REQUIS</td></tr>
+    <tr><td><div class="vname">🔴 Huile moteur</div><div class="vzone">(burette)</div></td><td>Jauge d'huile sous le capot</td><td class="vaction"><strong style="color:#CC0000">ARRÊT IMMÉDIAT</strong> — vérifier à froid. Si bas : ajouter l'huile. Si OK : garage (pression).</td></tr>
+    <tr><td><div class="vname">🔴 Température moteur</div><div class="vzone">(thermomètre)</div></td><td>Réservoir refroidissement</td><td class="vaction"><strong style="color:#CC0000">STOP IMMÉDIAT</strong> — ne jamais ouvrir à chaud. Laisser refroidir 30 min min.</td></tr>
+    <tr><td><div class="vname">🔴 Batterie</div><div class="vzone">(batterie)</div></td><td>Câbles de batterie</td><td class="vaction">Finir le trajet doucement. Garage même jour — alternateur ou batterie hors service.</td></tr>
+    <tr><td><div class="vname">🔴 Pression huile</div><div class="vzone">(burette + !)</div></td><td>Jauge d'huile</td><td class="vaction"><strong style="color:#CC0000">ARRÊT IMMÉDIAT</strong> — plus grave que voyant huile. Dépanneuse si niveau ok.</td></tr>
+    <tr class="group-header orange"><td colspan="3">🟠 ALERTE — RDV GARAGE CETTE SEMAINE</td></tr>
+    <tr><td><div class="vname">🟠 Frein / ABS</div></td><td>Réservoir liquide de frein</td><td class="vaction">Si niveau bas → garage immédiatement. Si ABS seul → rouler, RDV garage.</td></tr>
+    <tr><td><div class="vname">🟠 Check Engine ⚠️</div><div class="vzone">(moteur)</div></td><td>Capteurs électroniques</td><td class="vaction">Fixe : diagnostic urgent. Clignotant : <strong>STOP</strong> — catalyseur en danger.</td></tr>
+    <tr><td><div class="vname">🟠 TPMS — Pneus</div><div class="vzone">(pneu + !)</div></td><td>Pression des 4 pneus</td><td class="vaction">Gonfler le pneu suspect. Vérifier les 4 à froid (valeur étiquette porte).</td></tr>
+    <tr><td><div class="vname">🟠 Direction assistée</div><div class="vzone">(volant + !)</div></td><td>Réservoir DA hydraulique</td><td class="vaction">Si DAH : vérifier niveau. Si EPAS : diagnostic électronique.</td></tr>
+    <tr class="group-header vert"><td colspan="3">🟢 INFORMATION — FONCTIONS ACTIVES</td></tr>
+    <tr><td><div class="vname">🔵 Feux de route</div></td><td>—</td><td class="vaction">Feux de route allumés. Éteindre si véhicule en face.</td></tr>
+    <tr><td><div class="vname">🟢 ESP clignotant</div></td><td>—</td><td class="vaction">Intervention ESP (dérapage corrigé) — normal. Fixe = ESP désactivé.</td></tr>
+  </tbody>
+</table>
+
+<h2>Les 6 zones sous le capot</h2>
+<div class="zones">
+  <ul>
+    <li><span>1</span> Bouchon d'huile moteur + jauge — vérifier à FROID</li>
+    <li><span>2</span> Réservoir liquide de refroidissement — ne JAMAIS ouvrir à chaud</li>
+    <li><span>3</span> Réservoir liquide de frein — si bas → garage immédiatement</li>
+    <li><span>4</span> Réservoir lave-glace — peut être rempli à tout moment</li>
+    <li><span>5</span> Filtre à air (boîtier plastique) — à vérifier tous les 2 ans</li>
+    <li><span>6</span> Batterie — vérifier que les cosses sont propres et serrées</li>
+  </ul>
+</div>
+
+<div class="regle">
+  <div class="titre">⚠️ Règle d'or absolue</div>
+  À chaud → je regarde, je n'ouvre rien. &nbsp;|&nbsp; Seul le lave-glace peut être ouvert à toute température.
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 3</footer>
+</body>
+</html>

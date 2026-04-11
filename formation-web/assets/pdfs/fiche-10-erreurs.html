@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 10 Erreurs Idiotes — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 10px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 9px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; border-radius: 4px; }
+  .logo { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 14px; font-weight: 900; }
+  .header-text p { font-size: 9.5px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 11px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 11px 0 7px; text-transform: uppercase; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px; }
+  .erreur { background: #fff5f5; border-left: 3px solid #CC0000; border-radius: 4px; padding: 6px 9px; display: flex; gap: 7px; align-items: flex-start; }
+  .erreur .num { background: #CC0000; color: #fff; min-width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 9.5px; flex-shrink: 0; }
+  .erreur .titre { font-weight: 700; font-size: 10px; color: #111; }
+  .erreur .desc { font-size: 9px; color: #555; margin-top: 1px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 10px; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; }
+  td { padding: 4px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  td.cout { color: #CC0000; font-weight: 700; text-align: right; white-space: nowrap; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .regle { background: #fff0f0; border: 1.5px solid #CC0000; border-radius: 5px; padding: 7px 12px; margin: 8px 0; }
+  .regle .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 3px; }
+  footer { border-top: 1px solid #ccc; padding-top: 5px; margin-top: 10px; text-align: center; font-size: 8.5px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Les Erreurs qui Coûtent Cher — Et comment les éviter</h1>
+    <p>Étape 4 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Les 12 erreurs idiotes à ne plus commettre</h2>
+<div class="grid">
+  <div class="erreur"><div class="num">1</div><div><div class="titre">Pneus sous-gonflés</div><div class="desc">Risque d'éclatement, surconsommation, usure irrégulière</div></div></div>
+  <div class="erreur"><div class="num">2</div><div><div class="titre">Volant en butée</div><div class="desc">Use la pompe de direction assistée — coûteux à réparer</div></div></div>
+  <div class="erreur"><div class="num">3</div><div><div class="titre">Accélérer fort moteur froid</div><div class="desc">Endommage pistons, segments et turbo — attendre 3 min</div></div></div>
+  <div class="erreur"><div class="num">4</div><div><div class="titre">Couper le moteur trop vite</div><div class="desc">Après long trajet : laisser tourner 30 sec — brûle le turbo</div></div></div>
+  <div class="erreur"><div class="num">5</div><div><div class="titre">Ne jamais vidanger la boîte auto</div><div class="desc">Coûte 3 000 à 8 000 € si la boîte cède à 150 000 km</div></div></div>
+  <div class="erreur"><div class="num">6</div><div><div class="titre">Micro-trajets uniquement</div><div class="desc">Batterie et FAP/DPF se dégradent — faire un long trajet de temps en temps</div></div></div>
+  <div class="erreur"><div class="num">7</div><div><div class="titre">Côte pied au plancher longtemps</div><div class="desc">Surchauffe moteur — rétrograder plutôt qu'écraser l'accélérateur</div></div></div>
+  <div class="erreur"><div class="num">8</div><div><div class="titre">Trop d'huile dans le moteur</div><div class="desc">Aussi grave qu'un niveau bas — mousse dans le circuit et casse</div></div></div>
+  <div class="erreur"><div class="num">9</div><div><div class="titre">Ignorer un voyant moteur clignotant</div><div class="desc">Clignotant = urgent. Catalyseur en danger — 800 à 2 000 €</div></div></div>
+  <div class="erreur"><div class="num">10</div><div><div class="titre">Trottoirs violemment</div><div class="desc">Use amortisseurs, jantes et géométrie — frais réels à chaque impact</div></div></div>
+  <div class="erreur"><div class="num">11</div><div><div class="titre">Freiner en continu en descente</div><div class="desc">Surchauffe des freins — utiliser le frein moteur en rétrogradant</div></div></div>
+  <div class="erreur"><div class="num">12</div><div><div class="titre">Clim inutile en permanence</div><div class="desc">Surconsommation + usure compresseur — éteindre 2 min avant d'arriver</div></div></div>
+</div>
+
+<h2>Tableau : si tu négliges… → ce que ça coûte</h2>
+<table>
+  <thead><tr><th>Si tu négliges…</th><th>Conséquence</th><th>Coût réparation</th></tr></thead>
+  <tbody>
+    <tr><td>Huile moteur</td><td>Casse moteur / turbo</td><td class="cout">1 500 à 5 000 €</td></tr>
+    <tr><td>Liquide de refroidissement</td><td>Joint de culasse claqué</td><td class="cout">800 à 3 000 €</td></tr>
+    <tr><td>Courroie de distribution</td><td>Casse moteur totale</td><td class="cout">1 000 à 4 000 €</td></tr>
+    <tr><td>Filtre à air</td><td>Surconsommation carburant</td><td class="cout">100 à 300 €</td></tr>
+    <tr><td>Batterie</td><td>Démarrage impossible</td><td class="cout">150 à 500 €</td></tr>
+    <tr><td>Pression pneus</td><td>Risque d'éclatement</td><td class="cout">200 à 800 €</td></tr>
+    <tr><td>Liquide de frein</td><td>Perte de freinage</td><td class="cout">300 à 1 000 €</td></tr>
+    <tr><td>Erreur de carburant</td><td>Moteur hors service</td><td class="cout">1 000 à 6 000 €</td></tr>
+  </tbody>
+</table>
+
+<div class="regle">
+  <div class="titre">💬 Pascal Chathuant — Électromécanicien 25 ans</div>
+  "Un contrôle, c'est 2 minutes. Une casse, c'est 2 000 euros. Chaque pièce oubliée te rappelle son existence… mais toujours trop tard."
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 4</footer>
+</body>
+</html>

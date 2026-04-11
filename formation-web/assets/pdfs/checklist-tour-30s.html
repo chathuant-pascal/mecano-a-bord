@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Check-list Tour de 30 Secondes — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 11px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-radius: 4px; }
+  .logo { width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 16px; font-weight: 900; }
+  .header-text p { font-size: 10px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 12px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 14px 0 8px; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 10.5px; }
+  th { background: #CC0000; color: #fff; padding: 6px 10px; text-align: left; }
+  td { padding: 6px 10px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
+  .point { background: #f5f5f5; border-left: 3px solid #CC0000; border-radius: 4px; padding: 8px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .point .ico { font-size: 18px; flex-shrink: 0; }
+  .point .titre { font-weight: 700; font-size: 10.5px; color: #111; margin-bottom: 2px; }
+  .point .desc { font-size: 9.5px; color: #555; }
+  .check-box { width: 16px; height: 16px; border: 1.5px solid #CC0000; border-radius: 3px; display: inline-block; flex-shrink: 0; margin-top: 1px; }
+  .ok-block { background: #e8f5e9; border: 1px solid #4CAF50; border-radius: 5px; padding: 8px 12px; margin-top: 10px; }
+  .ok-block .titre { font-weight: 700; font-size: 11px; color: #2e7d32; }
+  .ok-block .sous { font-size: 9.5px; color: #444; margin-top: 3px; }
+  .quote { background: #fff0f0; border-left: 3px solid #CC0000; padding: 8px 12px; margin: 10px 0; font-size: 10px; font-style: italic; color: #333; }
+  .ligne-signature { display: flex; gap: 20px; margin-top: 14px; }
+  .sig { flex: 1; border-bottom: 1px solid #bbb; padding-bottom: 2px; font-size: 9.5px; color: #888; }
+  footer { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 16px; text-align: center; font-size: 9px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Check-list — Le Tour de 30 Secondes</h1>
+    <p>Étape 2 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<div class="quote">"Fais comme les pilotes de Formule 1 avant de décoller. Ils n'attendent pas que quelque chose casse pour vérifier." — Pascal Chathuant</div>
+
+<h2>Les 5 sens du Tour de 30 Secondes</h2>
+<table>
+  <thead><tr><th>Sens</th><th>Ce qu'on observe</th></tr></thead>
+  <tbody>
+    <tr><td><strong>👁️ Vue</strong></td><td>Pneus, phares, vitres, traces de fuite sous la voiture</td></tr>
+    <tr><td><strong>👂 Ouïe</strong></td><td>Bruits inhabituels au démarrage (claquement, sifflement)</td></tr>
+    <tr><td><strong>👃 Odorat</strong></td><td>Odeur d'essence, de brûlé, de plastique chaud</td></tr>
+    <tr><td><strong>✋ Toucher</strong></td><td>Pression des pneus au toucher (mous ou pas)</td></tr>
+    <tr><td><strong>💭 Intuition</strong></td><td>"Quelque chose me semble bizarre" — fais confiance à ton ressenti</td></tr>
+  </tbody>
+</table>
+
+<h2>Les 8 points à cocher chaque matin</h2>
+<div class="grid">
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">💡</div>
+    <div>
+      <div class="titre">Phares &amp; feux</div>
+      <div class="desc">Avant, arrière, clignotants — tous allumés ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">🪟</div>
+    <div>
+      <div class="titre">Vitres &amp; rétros</div>
+      <div class="desc">Propres, dégagées, bien réglés ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">🔵</div>
+    <div>
+      <div class="titre">Pneus</div>
+      <div class="desc">Visuellement gonflés ? Aucun objet planté ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">💧</div>
+    <div>
+      <div class="titre">Sol sous la voiture</div>
+      <div class="desc">Aucune trace de fuite (huile, liquide) ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">🔖</div>
+    <div>
+      <div class="titre">Plaque d'immatriculation</div>
+      <div class="desc">Lisible, fixée, éclairée la nuit ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">🔩</div>
+    <div>
+      <div class="titre">Capot &amp; coffre</div>
+      <div class="desc">Bien fermés, aucun signe inhabituel ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">👂</div>
+    <div>
+      <div class="titre">Bruits au démarrage</div>
+      <div class="desc">Claquement, sifflement, frottement ?</div>
+    </div>
+  </div>
+  <div class="point">
+    <div class="check-box"></div>
+    <div class="ico">👃</div>
+    <div>
+      <div class="titre">Odeurs</div>
+      <div class="desc">Brûlé, essence, plastique chaud ?</div>
+    </div>
+  </div>
+</div>
+
+<div class="ok-block">
+  <div class="titre">✅ Si tout est OK en 30 secondes → tu pars serein(e).</div>
+  <div class="sous">Un seul point douteux → note-le. &nbsp; Deux points douteux → vérifier avant de partir.</div>
+</div>
+
+<h2>Les 10 réflexes essentiels avant de partir</h2>
+<table>
+  <tbody>
+    <tr><td width="20"><div class="check-box"></div></td><td>Vérifier la pression des pneus (1 fois par mois)</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Vérifier les niveaux : huile, refroidissement, lave-glace</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Vérifier le niveau de liquide de frein</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Vérifier le carburant avant un long trajet</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Tester les phares et les feux de stop</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Avoir ses papiers à jour (assurance, permis, CT)</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Garder ses clés accessibles et en bon état</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Écouter le démarrage (bruit inhabituel ?)</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Regarder le tableau de bord avant de rouler</td></tr>
+    <tr><td><div class="check-box"></div></td><td>Faire son Tour de 30 Secondes ✔</td></tr>
+  </tbody>
+</table>
+
+<div class="ligne-signature">
+  <div class="sig">Date : ___________</div>
+  <div class="sig">Kilométrage : ___________</div>
+  <div class="sig">Note : ___________________________</div>
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 2</footer>
+</body>
+</html>

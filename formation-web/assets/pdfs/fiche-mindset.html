@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche Mindset — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 11px; color: #111; background: #fff; }
+
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+
+  header { background: #CC0000; color: #fff; padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-radius: 4px; }
+  .logo { width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 16px; font-weight: 900; }
+  .header-text p { font-size: 10px; opacity: .85; margin-top: 2px; }
+
+  h2 { font-size: 12px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 14px 0 8px; text-transform: uppercase; letter-spacing: .5px; }
+  h3 { font-size: 11px; color: #333; margin: 10px 0 6px; font-weight: 700; }
+
+  ol { padding-left: 0; list-style: none; }
+  ol li { display: flex; gap: 8px; align-items: flex-start; padding: 4px 6px; border-bottom: 1px solid #eee; font-size: 10.5px; }
+  ol li .n { background: #CC0000; color: #fff; min-width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 10px; flex-shrink: 0; }
+
+  .regle-or { background: #fff8f0; border: 2px solid #CC0000; border-radius: 6px; padding: 10px 14px; margin: 12px 0; }
+  .regle-or .titre { color: #CC0000; font-weight: 700; font-size: 11px; margin-bottom: 4px; }
+  .regle-or .texte { font-size: 11px; font-weight: 700; }
+  .regle-or .detail { font-size: 10px; color: #555; margin-top: 3px; }
+
+  .grid-attitudes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; }
+  .attitude { background: #f9f9f9; border-left: 3px solid #CC0000; border-radius: 4px; padding: 7px 9px; }
+  .attitude .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 3px; }
+  .attitude .desc { font-size: 9.5px; color: #444; line-height: 1.4; }
+  .attitude .conseil { font-size: 9px; color: #2e7d32; margin-top: 3px; font-style: italic; }
+  .attitude.full { grid-column: 1 / -1; }
+
+  .citation { background: #fff0f0; border: 1px solid #CC0000; border-radius: 6px; padding: 9px 14px; margin: 12px 0; text-align: center; }
+  .citation p { font-size: 11px; font-weight: 700; font-style: italic; color: #CC0000; }
+  .citation small { font-size: 9px; color: #666; }
+
+  footer { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 16px; text-align: center; font-size: 9px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Fiche Mindset — Le bon état d'esprit</h1>
+    <p>Module 0 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Les 10 principes du conducteur autonome</h2>
+<ol>
+  <li><span class="n">1</span> Je suis propriétaire, décideur, gardien de ma voiture.</li>
+  <li><span class="n">2</span> Comprendre n'est pas réparer — c'est décider calmement.</li>
+  <li><span class="n">3</span> Je n'ai pas besoin d'outils pour observer.</li>
+  <li><span class="n">4</span> Un voyant n'est pas une catastrophe, c'est un message.</li>
+  <li><span class="n">5</span> Mon garagiste est un partenaire, pas un juge.</li>
+  <li><span class="n">6</span> La régularité vaut mieux qu'une grosse réparation.</li>
+  <li><span class="n">7</span> Ce que je note, je maîtrise.</li>
+  <li><span class="n">8</span> Chaque petit geste évite une grosse galère.</li>
+  <li><span class="n">9</span> La panique coûte de l'argent — le calme en économise.</li>
+  <li><span class="n">10</span> Je rouille ma peur, pas ma voiture.</li>
+</ol>
+
+<div class="regle-or">
+  <div class="titre">⚠️ Règle d'or absolue</div>
+  <div class="texte">Moteur FROID pour toutes les vérifications.</div>
+  <div class="detail">À chaud → j'observe sans toucher. &nbsp;|&nbsp; À froid → je peux vérifier les niveaux en toute sécurité.</div>
+</div>
+
+<h2>⭐ Les 7 attitudes clés du conducteur Mécano à Bord</h2>
+<div class="grid-attitudes">
+  <div class="attitude">
+    <div class="titre">1 — Observer avant d'agir</div>
+    <div class="desc">Avant de toucher quoi que ce soit, regarde. Écoute. Sens. L'observation est ton premier outil — et il est gratuit.</div>
+    <div class="conseil">💡 "Je vois d'abord, je touche ensuite."</div>
+  </div>
+  <div class="attitude">
+    <div class="titre">2 — Rester calme face à l'imprévu</div>
+    <div class="desc">La panique te fait prendre de mauvaises décisions. Un voyant allumé n'est pas une urgence — c'est une information.</div>
+    <div class="conseil">💡 "Je respire. Je lis. J'agis."</div>
+  </div>
+  <div class="attitude">
+    <div class="titre">3 — Être régulier plutôt que parfait</div>
+    <div class="desc">Une vérification rapide chaque mois vaut mieux qu'une révision complète tous les 2 ans.</div>
+    <div class="conseil">💡 "5 minutes par mois = 0 mauvaise surprise."</div>
+  </div>
+  <div class="attitude">
+    <div class="titre">4 — Faire confiance à son ressenti</div>
+    <div class="desc">Si quelque chose semble différent — bruit, vibration, odeur — c'est que quelque chose a changé.</div>
+    <div class="conseil">💡 "Ma voiture me parle. J'apprends à l'écouter."</div>
+  </div>
+  <div class="attitude">
+    <div class="titre">5 — Poser des questions sans honte</div>
+    <div class="desc">Un garagiste honnête apprécie un client curieux. Poser une question n'est pas une faiblesse.</div>
+    <div class="conseil">💡 "Je ne comprends pas tout. Et c'est normal."</div>
+  </div>
+  <div class="attitude">
+    <div class="titre">6 — Prendre des notes et photographier</div>
+    <div class="desc">Un voyant allumé ? Prends une photo. Un bruit bizarre ? Note quand il apparaît.</div>
+    <div class="conseil">💡 "Ce que je note, je maîtrise."</div>
+  </div>
+  <div class="attitude full">
+    <div class="titre">7 — Décider, pas subir</div>
+    <div class="desc">Tu es propriétaire de ta voiture. Tu choisis quand, où et comment elle est entretenue. Comprendre, c'est reprendre le contrôle.</div>
+    <div class="conseil">💡 "Comprendre ≠ réparer soi-même. Comprendre = décider calmement."</div>
+  </div>
+</div>
+
+<div class="citation">
+  <p>"Dans 30 jours, tu ne verras plus ta voiture comme avant."</p>
+  <small>— Pascal Chathuant, Électromécanicien 25 ans · Mécano à Bord · Guadeloupe</small>
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Module 0</footer>
+
+</body>
+</html>

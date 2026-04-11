@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calendrier Entretien 12 Mois — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 10px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 9px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; border-radius: 4px; }
+  .logo { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 14px; font-weight: 900; }
+  .header-text p { font-size: 9.5px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 11px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 10px 0 6px; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 10px; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; }
+  td { padding: 4px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .mois { font-weight: 700; color: #CC0000; white-space: nowrap; }
+  .cb { width: 14px; height: 14px; border: 1.5px solid #bbb; border-radius: 2px; display: inline-block; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .recur { background: #f9f9f9; border-left: 3px solid #CC0000; border-radius: 4px; padding: 7px 9px; }
+  .recur.orange { border-left-color: #f0a500; }
+  .recur.green { border-left-color: #4CAF50; }
+  .recur.gray { border-left-color: #888; }
+  .recur .freq { font-weight: 700; font-size: 9px; margin-bottom: 5px; }
+  .recur ul { padding-left: 0; list-style: none; }
+  .recur ul li { display: flex; gap: 4px; align-items: center; padding: 2px 0; font-size: 9px; border-bottom: 1px solid #eee; }
+  .regle { background: #fff0f0; border: 1.5px solid #CC0000; border-radius: 5px; padding: 7px 12px; margin: 8px 0; text-align: center; }
+  .regle strong { font-size: 11px; color: #CC0000; }
+  footer { border-top: 1px solid #ccc; padding-top: 5px; margin-top: 10px; text-align: center; font-size: 8.5px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Calendrier Entretien 12 Mois — Planifie, ne subis pas</h1>
+    <p>Bonus #1 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<div class="regle">
+  <strong>"Ce que tu planifies, tu ne le subis pas."</strong>
+  <p style="font-size:9px;color:#555;margin-top:2px">Imprime et colle dans ta boîte à gants. Coche chaque case au fur et à mesure.</p>
+</div>
+
+<h2>Calendrier complet — 12 mois d'entretien</h2>
+<table>
+  <thead><tr><th>Mois</th><th>Ce que tu vérifies</th><th>✓ Fait</th></tr></thead>
+  <tbody>
+    <tr><td class="mois">Janvier 🌡️</td><td>Antigel niveau + concentration · Pression pneus (froid = dégonflage) · Batterie · Balais essuie-glace · Lave-glace hiver</td><td width="30"><div class="cb"></div></td></tr>
+    <tr><td class="mois">Février ❄️</td><td>Niveau huile moteur · Niveau lave-glace (consommation ↑ en hiver) · Éclairage (jours courts)</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Mars 🌱</td><td>Démontage pneus hiver (si équipé) · Pression pneus été · Filtre habitacle · Contrôle jantes</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Avril 🌸</td><td>Révision de printemps : vidange huile + filtre à huile · Niveaux complets · Courroie d'accessoires</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Mai ☀️</td><td>Climatisation (gaz + filtre) · Freins avant longues distances · Amortisseurs (rebonds)</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Juin 🌡️</td><td>Liquide de refroidissement · Pression pneus (chaleur = surgonflage) · Lave-glace été</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Juillet 🏖️</td><td>Bilan avant vacances : pneus + niveaux + éclairage + trousse de secours + triangle</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Août 🌞</td><td>Liquide de frein (à froid) · Durites refroidissement (craquelures) · Filtre à air</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Septembre 🍂</td><td>Balais essuie-glace · Éclairage (jours qui raccourcissent) · Batterie (fin été = charge basse)</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Octobre 🍁</td><td>Pneus hiver (commande anticipée) · Antigel · Pression pneus · Chaînes si région froide</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Novembre 🌧️</td><td>Batterie (test de charge) · Lave-glace hiver · Courroie d'accessoires · Éclairage complet</td><td><div class="cb"></div></td></tr>
+    <tr><td class="mois">Décembre 🎄</td><td>Bilan annuel : liste tout ce qui n'a pas été fait · Programmer les rendez-vous de janvier</td><td><div class="cb"></div></td></tr>
+  </tbody>
+</table>
+
+<h2>Vérifications récurrentes</h2>
+<div class="grid4">
+  <div class="recur">
+    <div class="freq" style="color:#CC0000">🗓️ Chaque mois</div>
+    <ul>
+      <li><div class="cb"></div> Niveau huile moteur</li>
+      <li><div class="cb"></div> Niveau lave-glace</li>
+      <li><div class="cb"></div> Pression pneus</li>
+      <li><div class="cb"></div> Éclairage AV/AR</li>
+    </ul>
+  </div>
+  <div class="recur orange">
+    <div class="freq" style="color:#b07000">📆 Trimestre</div>
+    <ul>
+      <li><div class="cb"></div> Refroidissement</li>
+      <li><div class="cb"></div> Liquide de frein</li>
+      <li><div class="cb"></div> Balais essuie-glace</li>
+      <li><div class="cb"></div> Filtre habitacle</li>
+    </ul>
+  </div>
+  <div class="recur green">
+    <div class="freq" style="color:#2e7d32">🔧 Chaque année</div>
+    <ul>
+      <li><div class="cb"></div> Vidange + filtre</li>
+      <li><div class="cb"></div> Filtre à air</li>
+      <li><div class="cb"></div> Courroie accessoires</li>
+      <li><div class="cb"></div> Freins complets</li>
+    </ul>
+  </div>
+  <div class="recur gray">
+    <div class="freq" style="color:#555">⚙️ Kilométrage</div>
+    <ul>
+      <li><div class="cb"></div> Distribution (60-120k)</li>
+      <li><div class="cb"></div> Pneus (40k ou usure)</li>
+      <li><div class="cb"></div> Bougies (30-60k)</li>
+      <li><div class="cb"></div> Frein (2 ans)</div></li>
+    </ul>
+  </div>
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Bonus #1</footer>
+</body>
+</html>

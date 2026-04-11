@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>15 Gestes de Conduite Intelligente — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 10px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 9px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; border-radius: 4px; }
+  .logo { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 14px; font-weight: 900; }
+  .header-text p { font-size: 9.5px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 10.5px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 10px 0 6px; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 9px; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; }
+  td { padding: 4px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  td strong { color: #111; }
+  td span.alerte { color: #CC0000; font-size: 9px; font-weight: 700; }
+  td span.conseil { color: #2e7d32; font-size: 9px; }
+  td span.info { color: #555; font-size: 9px; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .section-label { background: #f0f0f0; padding: 3px 8px; font-size: 9px; font-weight: 700; color: #CC0000; letter-spacing: .5px; }
+  .regle { background: #fff0f0; border: 1.5px solid #CC0000; border-radius: 5px; padding: 7px 12px; margin: 8px 0; }
+  .regle .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 3px; }
+  footer { border-top: 1px solid #ccc; padding-top: 5px; margin-top: 10px; text-align: center; font-size: 8.5px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Les Gestes qui Rallongent la Vie de ta Voiture</h1>
+    <p>Étape 2 &amp; 4 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Section 1 — Avant de démarrer</h2>
+<table>
+  <thead><tr><th>Geste</th><th>Pourquoi c'est important</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Tourne la clé sans démarrer tout de suite</strong></td><td>Laisse la pompe à essence s'amorcer (2-3 secondes) — initialise les voyants</td></tr>
+    <tr><td><strong>Regarde le tableau de bord avant de partir</strong></td><td>Si un voyant reste allumé, tu le repères avant la panne</td></tr>
+    <tr><td><strong>Ne démarre pas en accélérant</strong></td><td>Évite un choc thermique à froid — rouler doucement les 3 premières minutes<br><span class="alerte">⚠️ Démarrage brutal = +30-50% de consommation sur les premiers km</span></td></tr>
+    <tr><td><strong>Vérifie sous la voiture avant de partir</strong></td><td>Flaque = fuite à surveiller<br><span class="info">Huile (noire/brune) · Frein (transparent) · Refroidissement (vert/rose)</span><br><span class="alerte">→ Fuite visible = aller au garage</span></td></tr>
+  </tbody>
+</table>
+
+<h2>Section 2 — Pendant la conduite</h2>
+<table>
+  <thead><tr><th>Geste</th><th>Pourquoi c'est important</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Anticipe et freine en douceur</strong></td><td>Moins de contraintes sur freins et amortisseurs<br><span class="alerte">⚠️ Conduite agressive = freins usés 2× plus vite</span></td></tr>
+    <tr><td><strong>Ne roule pas toujours en sous-régime</strong></td><td>Le moteur s'encrasse à bas régime — monter parfois le régime nettoie les injecteurs</td></tr>
+    <tr><td><strong>Évite les surcharges inutiles</strong></td><td>Coffre trop plein = pneus, amortisseurs et embrayage fatigués<br><span class="alerte">⚠️ +100 kg = +5% consommation et usure accrue</span></td></tr>
+    <tr><td><strong>Évite les micro-trajets répétés à froid</strong></td><td>Moteur jamais à température = huile épaisse, mauvaise lubrification<br><span class="conseil">💡 Si inévitables : faire un long trajet de temps en temps</span></td></tr>
+    <tr><td><strong>Gare-toi à l'ombre quand possible</strong></td><td>La chaleur dégrade peinture, plastiques et connexions<br><span class="conseil">💡 Encore plus important en Guadeloupe et climat tropical</span></td></tr>
+  </tbody>
+</table>
+
+<h2>Section 3 — Après tes trajets</h2>
+<table>
+  <thead><tr><th>Geste</th><th>Pourquoi c'est important</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Laisse tourner 30 sec avant de couper</strong></td><td>Turbo et huile se stabilisent<br><span class="alerte">⚠️ Obligatoire après autoroute ou trajet soutenu</span></td></tr>
+    <tr><td><strong>Ne coupe pas après un long trajet</strong></td><td>Évite un coup de chaleur dans le turbo — circuit de refroidissement doit finir son cycle</td></tr>
+    <tr><td><strong>Regarde ton niveau de carburant</strong></td><td>Évite de rouler sur la réserve — les impuretés du fond du réservoir bouchent les injecteurs</td></tr>
+  </tbody>
+</table>
+
+<h2>Section 4 — Une fois par semaine (5 minutes)</h2>
+<table>
+  <thead><tr><th>Geste</th><th>Pourquoi c'est important</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Pression des pneus à froid</strong></td><td>Préserve la durée de vie des pneus et réduit la consommation<br><span class="conseil">💡 À vérifier tous les mois minimum</span></td></tr>
+    <tr><td><strong>Niveau d'huile (jauge)</strong></td><td>Niveau bas = risque de casse moteur<br><span class="info">Vérifier moteur froid, voiture à plat</span></td></tr>
+    <tr><td><strong>Nettoie le pare-brise</strong></td><td>Meilleure visibilité = sécurité + confort<br><span class="alerte">⚠️ Pare-brise encrassé intérieur = reflets dangereux la nuit</span></td></tr>
+    <tr><td><strong>Tour visuel rapide</strong></td><td>Repère : pneu moins gonflé ? Fuite sous la voiture ? Voyant qu'on n'avait pas remarqué ?</td></tr>
+  </tbody>
+</table>
+
+<div class="regle">
+  <div class="titre">💬 Pascal Chathuant</div>
+  "Prendre soin de sa voiture, ce n'est pas être maniaque — c'est être malin. Ces petits gestes te font économiser de l'argent, rallongent la durée de vie de ton moteur et t'évitent de stresser à chaque bruit."
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étapes 2 &amp; 4</footer>
+</body>
+</html>

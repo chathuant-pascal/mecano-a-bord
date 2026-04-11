@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche 10 Questions au Garagiste — Mécano à Bord</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 10px; color: #111; background: #fff; }
+  .btn-print { display: block; margin: 10px auto; padding: 10px 28px; background: #CC0000; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: Arial, sans-serif; }
+  @media print { .btn-print { display: none; } }
+  header { background: #CC0000; color: #fff; padding: 9px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; border-radius: 4px; }
+  .logo { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; color: #CC0000; flex-shrink: 0; }
+  .header-text h1 { font-size: 14px; font-weight: 900; }
+  .header-text p { font-size: 9.5px; opacity: .85; margin-top: 2px; }
+  h2 { font-size: 11px; color: #CC0000; border-bottom: 1.5px solid #CC0000; padding-bottom: 3px; margin: 10px 0 6px; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 9px; }
+  th { background: #CC0000; color: #fff; padding: 5px 8px; text-align: left; }
+  td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  td.num { color: #CC0000; font-weight: 700; text-align: center; width: 20px; }
+  tr:nth-child(even) td { background: #fafafa; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .phrase { background: #fff5f5; border-left: 3px solid #CC0000; border-radius: 4px; padding: 6px 9px; }
+  .phrase .situation { font-size: 9px; color: #888; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .phrase .texte { font-size: 9.5px; color: #111; font-style: italic; }
+  .controles { columns: 2; gap: 12px; }
+  .controles ul { list-style: none; padding: 0; break-inside: avoid; }
+  .controles ul li { padding: 3px 0; font-size: 9.5px; border-bottom: 1px solid #eee; display: flex; gap: 5px; }
+  .controles ul li::before { content: "•"; color: #CC0000; font-weight: 700; flex-shrink: 0; }
+  .alerte { background: #fff0f0; border: 1.5px solid #CC0000; border-radius: 5px; padding: 7px 12px; margin: 8px 0; }
+  .alerte .titre { font-weight: 700; font-size: 10.5px; color: #CC0000; margin-bottom: 3px; }
+  footer { border-top: 1px solid #ccc; padding-top: 5px; margin-top: 10px; text-align: center; font-size: 8.5px; color: #888; }
+</style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimer / Télécharger en PDF</button>
+
+<header>
+  <div class="logo">M</div>
+  <div class="header-text">
+    <h1>Fiche 10 Questions au Garagiste — Sans se faire avoir</h1>
+    <p>Étape 5 · Ta Voiture Sans Galère · Mécano à Bord</p>
+  </div>
+</header>
+
+<h2>Les 10 questions à poser à chaque passage en garage</h2>
+<table>
+  <thead><tr><th>#</th><th>Situation</th><th>La phrase exacte</th><th>Pourquoi ça marche</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1</td><td>Avant toute réparation</td><td>"Pouvez-vous me faire un <strong>devis écrit détaillé</strong> avant de commencer ?"</td><td>Te protège contre les mauvaises surprises à la facturation</td></tr>
+    <tr><td class="num">2</td><td>Face à une pièce inconnue</td><td>"Quelles sont les <strong>pièces concernées</strong> et leur référence constructeur ?"</td><td>Tu peux vérifier les prix en ligne — décourage les marges abusives</td></tr>
+    <tr><td class="num">3</td><td>Avant de signer</td><td>"Est-ce que ce remplacement est <strong>urgent</strong> ou peut-il attendre quelques semaines ?"</td><td>Différencie l'urgence réelle de la vente opportuniste</td></tr>
+    <tr><td class="num">4</td><td>Après devis accepté</td><td>"Quelle est la <strong>garantie</strong> sur les pièces et la main-d'œuvre ?"</td><td>Tout professionnel sérieux garantit son travail — minimum 6 mois</td></tr>
+    <tr><td class="num">5</td><td>Pièce à remplacer</td><td>"Pouvez-vous me <strong>montrer la pièce usée</strong> avant de la remplacer ?"</td><td>Preuve visuelle que le remplacement est justifié</td></tr>
+    <tr><td class="num">6</td><td>Devis élevé</td><td>"Y a-t-il des <strong>alternatives moins coûteuses</strong> — pièces d'occasion certifiées, reconditionné ?"</td><td>Ouvre la discussion sans être agressif(ve)</td></tr>
+    <tr><td class="num">7</td><td>Avant de laisser le véhicule</td><td>"<strong>Combien de temps</strong> durera l'intervention et quand puis-je récupérer la voiture ?"</td><td>Évite les surprises d'organisation et les délais non annoncés</td></tr>
+    <tr><td class="num">8</td><td>Pression pour signer vite</td><td>"Que se passera-t-il <strong>si je ne fais pas cette réparation maintenant</strong> ?"</td><td>Force le garagiste à justifier l'urgence réelle</td></tr>
+    <tr><td class="num">9</td><td>Lors du passage</td><td>"Pouvez-vous faire un <strong>contrôle des points invisibles</strong> pendant l'intervention ?"</td><td>Diagnostic complet sans surcoût — souvent inclus dans la main-d'œuvre</td></tr>
+    <tr><td class="num">10</td><td>À la récupération</td><td>"Puis-je <strong>récupérer les pièces remplacées</strong> et avoir la liste complète ?"</td><td>Trace écrite pour le carnet + preuve en cas de litige</td></tr>
+  </tbody>
+</table>
+
+<h2>Phrases qui fonctionnent par situation</h2>
+<div class="grid2">
+  <div class="phrase"><div class="situation">Au diagnostic</div><div class="texte">"Avant tout, pouvez-vous me faire un devis écrit avec le détail des pièces ?"</div></div>
+  <div class="phrase"><div class="situation">Pièce inconnue</div><div class="texte">"Pouvez-vous m'expliquer à quoi sert cette pièce et pourquoi elle est à changer ?"</div></div>
+  <div class="phrase"><div class="situation">Devis flou</div><div class="texte">"Je voudrais que le devis détaille : pièces, main-d'œuvre et taxes séparément."</div></div>
+  <div class="phrase"><div class="situation">Pression pour signer</div><div class="texte">"Je comprends l'urgence, mais j'ai besoin de 24h pour valider ce devis."</div></div>
+  <div class="phrase"><div class="situation">À la récupération</div><div class="texte">"Puis-je avoir la liste de tout ce qui a été fait et les pièces remplacées ?"</div></div>
+  <div class="phrase"><div class="situation">Signal d'alarme</div><div class="texte">Si le garagiste s'énerve ou refuse de répondre → professionnel peu fiable.</div></div>
+</div>
+
+<h2>Les 12 contrôles invisibles à demander</h2>
+<div class="controles">
+  <ul>
+    <li>Plaquettes et disques de frein</li>
+    <li>Amortisseurs (rebonds anormaux)</li>
+    <li>Durites refroidissement / servodirection</li>
+    <li>Cardans et soufflets de cardan</li>
+    <li>Rotules de direction</li>
+    <li>Roulements de roues</li>
+    <li>Courroie de distribution (si non récente)</li>
+    <li>Courroie d'accessoires</li>
+    <li>Filtre habitacle</li>
+    <li>Filtre à carburant</li>
+    <li>Balais d'essuie-glace</li>
+    <li>Pneus (profondeur des sculptures)</li>
+  </ul>
+</div>
+
+<div class="alerte">
+  <div class="titre">⭐ Conseil Pascal</div>
+  "Un garagiste honnête aime les clients curieux. Quand tu poses ces questions, tu ne l'agaces pas — tu lui montres que tu es informé(e). Et les gens informés, ça se respecte."
+</div>
+
+<footer>© Mécano à Bord — Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; Ta Voiture Sans Galère — Étape 5</footer>
+</body>
+</html>

@@ -6880,6 +6880,118 @@
 
           return c;
         }
+      },
+      {
+        num: 10,
+        emoji: '📋',
+        titre: 'Documents Officiels — Vente & Carte Grise',
+        prerequis: null,
+        contenu: function() {
+          var c = '';
+
+          // ----------------------------------------------------------------
+          // SECTION 1 — Vente d'un véhicule
+          // ----------------------------------------------------------------
+          c += '<h3 style="color:var(--rouge-principal);margin:0 0 16px">🚗 Vendre son véhicule — Liste complète des documents</h3>';
+          c += '<table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:22px">';
+          c += '<thead><tr style="background:var(--rouge-principal)">';
+          c += '<th style="padding:10px 12px;text-align:left;color:#fff">Document</th>';
+          c += '<th style="padding:10px 12px;text-align:left;color:#fff">Détails importants</th>';
+          c += '</tr></thead><tbody>';
+          var vente = [
+            ['✅ Carte grise du véhicule', 'Barrée avec mention "Vendu le JJ/MM/AAAA" + signature'],
+            ['✅ Contrôle technique', 'Valable 2 ans / moins de 6 mois avant la vente'],
+            ['✅ Situation administrative', 'Certificat de non-gage / moins de 15 jours'],
+            ['✅ Certificat de cession', 'Formulaire Cerfa 15776*01 (en 2 exemplaires)'],
+            ['✅ Pièce d\'identité vendeur', 'Carte nationale ou passeport'],
+            ['✅ Justificatif de domicile', 'Moins de 3 mois']
+          ];
+          vente.forEach(function(row, i) {
+            var bg = (i % 2 === 0) ? 'background:var(--fond-cartes)' : 'background:#1e1e1e';
+            c += '<tr style="' + bg + ';border-bottom:1px solid var(--bordures)">';
+            c += '<td style="padding:10px 12px;color:#fff;font-weight:600">' + row[0] + '</td>';
+            c += '<td style="padding:10px 12px;color:var(--texte-secondaire)">' + row[1] + '</td>';
+            c += '</tr>';
+          });
+          c += '</tbody></table>';
+
+          c += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px">';
+          c += '<a href="https://www.service-public.fr/particuliers/vosdroits/R11903" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--rouge-principal);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600">📄 Obtenir le certificat de cession (Cerfa)</a>';
+          c += '<a href="https://histovec.interieur.gouv.fr" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--fond-cartes);border:1px solid var(--rouge-principal);color:var(--rouge-principal);text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600">📄 Vérifier situation administrative (non-gage)</a>';
+          c += '</div>';
+
+          c += '<div style="background:#1a0000;border:2px solid var(--rouge-principal);border-radius:10px;padding:16px 20px;margin-bottom:28px">';
+          c += '<p style="color:var(--rouge-principal);font-weight:700;margin:0 0 6px">💬 Pascal :</p>';
+          c += '<p style="color:#fff;font-size:14px;line-height:1.7;margin:0">"Un acheteur sérieux vérifie toujours le certificat de non-gage <strong>AVANT de signer</strong>. C\'est gratuit et ça prend 2 minutes."</p>';
+          c += '</div>';
+
+          // ----------------------------------------------------------------
+          // SECTION 2 — Changement de carte grise
+          // ----------------------------------------------------------------
+          c += '<div style="border-top:2px solid var(--rouge-principal);margin:0 0 24px 0"></div>';
+          c += '<h3 style="color:var(--rouge-principal);margin:0 0 16px">📝 Changer sa carte grise — Liste complète des documents</h3>';
+          c += '<table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:22px">';
+          c += '<thead><tr style="background:var(--rouge-principal)">';
+          c += '<th style="padding:10px 12px;text-align:left;color:#fff">Document</th>';
+          c += '<th style="padding:10px 12px;text-align:left;color:#fff">Détails importants</th>';
+          c += '</tr></thead><tbody>';
+          var cg = [
+            ['✅ Certificat de cession', 'Signé par l\'ancien propriétaire'],
+            ['✅ Ancien certificat d\'immatriculation', 'La carte grise du vendeur barrée'],
+            ['✅ Contrôle technique', 'Valable si véhicule de plus de 4 ans'],
+            ['✅ Pièce d\'identité', 'Carte nationale ou passeport en cours de validité'],
+            ['✅ Justificatif de domicile', 'Moins de 3 mois'],
+            ['✅ Permis de conduire', 'En cours de validité'],
+            ['✅ Attestation d\'assurance', 'Obligatoire avant toute démarche'],
+            ['✅ Formulaire de demande', 'Cerfa 13750*07']
+          ];
+          cg.forEach(function(row, i) {
+            var bg = (i % 2 === 0) ? 'background:var(--fond-cartes)' : 'background:#1e1e1e';
+            c += '<tr style="' + bg + ';border-bottom:1px solid var(--bordures)">';
+            c += '<td style="padding:10px 12px;color:#fff;font-weight:600">' + row[0] + '</td>';
+            c += '<td style="padding:10px 12px;color:var(--texte-secondaire)">' + row[1] + '</td>';
+            c += '</tr>';
+          });
+          c += '</tbody></table>';
+
+          c += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px">';
+          c += '<a href="https://immatriculation.ants.gouv.fr" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--rouge-principal);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600">📄 Faire sa carte grise en ligne (ANTS)</a>';
+          c += '<a href="https://www.service-public.fr/particuliers/vosdroits/R11595" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--fond-cartes);border:1px solid var(--rouge-principal);color:var(--rouge-principal);text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600">📄 Télécharger le formulaire Cerfa 13750</a>';
+          c += '</div>';
+
+          c += '<div style="background:#1a0000;border:2px solid var(--rouge-principal);border-radius:10px;padding:16px 20px;margin-bottom:28px">';
+          c += '<p style="color:var(--rouge-principal);font-weight:700;margin:0 0 6px">💬 Pascal :</p>';
+          c += '<p style="color:#fff;font-size:14px;line-height:1.7;margin:0">"Depuis 2017, la carte grise se fait uniquement en ligne sur le site de l\'ANTS ou chez un professionnel agréé. <strong>Plus besoin d\'aller en préfecture !</strong>"</p>';
+          c += '</div>';
+
+          // ----------------------------------------------------------------
+          // SECTION 3 — Liens utiles
+          // ----------------------------------------------------------------
+          c += '<div style="border-top:2px solid var(--rouge-principal);margin:0 0 24px 0"></div>';
+          c += '<h3 style="color:var(--rouge-principal);margin:0 0 16px">🔗 Sites officiels à connaître</h3>';
+          c += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:22px">';
+          var liens = [
+            ['📋', 'Service-Public.fr', 'https://www.service-public.fr', 'Toutes les démarches administratives officielles'],
+            ['🚗', 'HistoVec', 'https://histovec.interieur.gouv.fr', 'Vérifier l\'historique d\'un véhicule avant achat'],
+            ['🔵', 'ANTS', 'https://immatriculation.ants.gouv.fr', 'Carte grise, permis, toutes démarches véhicule'],
+            ['🔍', 'SIV', 'https://siv.interieur.gouv.fr', 'Vérifier la situation administrative d\'un véhicule']
+          ];
+          liens.forEach(function(l) {
+            c += '<a href="' + l[2] + '" target="_blank" style="display:block;background:var(--fond-cartes);border:1px solid var(--bordures);border-radius:10px;padding:16px;text-decoration:none;transition:border-color 0.2s" onmouseover="this.style.borderColor=\'var(--rouge-principal)\'" onmouseout="this.style.borderColor=\'var(--bordures)\'">';
+            c += '<div style="font-size:22px;margin-bottom:8px">' + l[0] + '</div>';
+            c += '<div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:6px">' + l[1] + '</div>';
+            c += '<div style="color:var(--texte-secondaire);font-size:12px;line-height:1.5">' + l[3] + '</div>';
+            c += '</a>';
+          });
+          c += '</div>';
+
+          c += '<div style="background:var(--fond-succes);border:1px solid var(--succes);border-radius:10px;padding:16px 20px">';
+          c += '<p style="color:var(--succes);font-weight:700;margin:0 0 6px">💡 Astuce Pascal :</p>';
+          c += '<p style="color:#fff;font-size:14px;line-height:1.7;margin:0">"Avant d\'acheter un véhicule d\'occasion, vérifie toujours sur HistoVec. <strong>C\'est gratuit et officiel.</strong>"</p>';
+          c += '</div>';
+
+          return c;
+        }
       }
     ];
 
@@ -7098,16 +7210,16 @@
     function getProgressionTotal() {
       var completes = getModulesCompletes();
       var bonusVus  = getBonusVisites();
-      var n = completes.length + bonusVus.length; // max 15
-      if (tousLesBonusVus()) n += 1;   // félicitations débloquée = 16e
-      if (formationComplete()) n += 1; // formation 100% complète  = 17e
-      return Math.min(n, 17);
+      var n = completes.length + bonusVus.length; // max 16
+      if (tousLesBonusVus()) n += 1;   // félicitations débloquée = 17e
+      if (formationComplete()) n += 1; // formation 100% complète  = 18e
+      return Math.min(n, 18);
     }
 
-    // Tous les 9 bonus ont été ouverts au moins une fois
+    // Tous les 10 bonus ont été ouverts au moins une fois
     function tousLesBonusVus() {
       var completes = getModulesCompletes();
-      return completes.indexOf('etape5') !== -1 && getBonusVisites().length >= 9;
+      return completes.indexOf('etape5') !== -1 && getBonusVisites().length >= 10;
     }
 
     // Formation 100% complète = l'élève a visité la page de félicitations
@@ -7135,7 +7247,7 @@
       var progression = getProgressionTotal();
       var toutFini   = formationComplete();
       var bonusOk    = tousLesBonusVus();
-      var pct        = Math.round(progression / 17 * 100);
+      var pct        = Math.round(progression / 18 * 100);
 
       var c = '';
 
@@ -7175,7 +7287,7 @@
       // ── BARRE DE PROGRESSION ────────────────────────────────────
       c += '<div class="sommaire-progress-wrap">';
       c += '<div class="sommaire-progress-label">';
-      c += '<span>' + progression + ' / 17 étapes complétées</span>';
+      c += '<span>' + progression + ' / 18 étapes complétées</span>';
       if (toutFini) c += '<span style="color:var(--succes);font-weight:700">🎉 Formation terminée !</span>';
       c += '</div>';
       c += '<div class="sommaire-progress-track"><div class="sommaire-progress-fill" style="width:' + pct + '%"></div></div>';
@@ -7249,7 +7361,8 @@
           '🚗 #6 Fiche Remorquage & Crochet',
           '🧘 #7 Drive Zen — Sécurité &amp; Réflexes, Pas de Panique',
           '🌿 #8 Rouler Malin — Éco-conduite',
-          '⚙️ #9 Boîte Automatique BVA'
+          '⚙️ #9 Boîte Automatique BVA',
+          '📋 #10 Documents Officiels — Vente &amp; Carte Grise'
         ];
         c += '<div class="sommaire-bonus-detail">';
         bonusTitres.forEach(function(titre, idx) {

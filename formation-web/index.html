@@ -206,6 +206,21 @@
       margin: 0 auto;
     }
 
+    /* ── FILIGRANE GLOBAL ───────────────────────────────────────── */
+    .filigrane-global {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      height: auto;
+      opacity: 0.25;
+      pointer-events: none;   /* non cliquable — les clics passent à travers */
+      user-select: none;       /* non sélectionnable */
+      z-index: 2;              /* au-dessus du contenu, sous la nav (z-index:999) */
+      display: block;
+    }
+
     .section-page.active {
       display: block;
     }
@@ -1895,6 +1910,12 @@
   </style>
 </head>
 <body>
+
+  <!-- FILIGRANE GLOBAL — visible sur toutes les sections -->
+  <img class="filigrane-global"
+       src="assets/images/methodesansstress.png"
+       alt=""
+       draggable="false">
 
   <!-- ============================================================
        BARRE DE NAVIGATION FIXE

@@ -83,28 +83,21 @@
       text-decoration: none;
     }
 
-    .logo-cercle {
-      width: 38px;
+    /* Logo image — barre de navigation */
+    .nav-logo-img {
       height: 38px;
-      background-color: var(--rouge-principal);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 800;
-      color: #FFFFFF;
+      width: auto;
+      display: block;
       flex-shrink: 0;
     }
 
-    .logo-texte {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.2;
+    /* Logo image — en-tête sommaire */
+    .sommaire-logo-img {
+      height: 70px;
+      width: auto;
+      display: block;
+      margin: 0 auto 14px;
     }
-
-    .logo-texte .blanc  { color: var(--texte-principal); }
-    .logo-texte .rouge  { color: var(--rouge-principal); }
 
     /* Liens de navigation */
     .nav-liens {
@@ -324,8 +317,8 @@
       #nav-principale {
         padding: 0 16px;
       }
-      .logo-texte {
-        font-size: 16px;
+      .nav-logo-img {
+        height: 32px;
       }
     }
 
@@ -1567,15 +1560,7 @@
       margin-bottom: 32px;
       padding-top: 8px;
     }
-    .sommaire-logo-cercle {
-      width: 56px; height: 56px;
-      background: var(--rouge-principal);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px; font-weight: 800; color: #fff;
-      margin: 0 auto 10px;
-    }
-    .sommaire-nom { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+    /* .sommaire-logo-cercle et .sommaire-nom remplacés par .sommaire-logo-img */
     .sommaire-titre {
       font-size: 28px; font-weight: 800;
       color: var(--texte-principal); letter-spacing: 0.04em; margin-bottom: 6px;
@@ -1924,10 +1909,7 @@
 
     <!-- Logo cliquable → retour à l'accueil -->
     <a class="nav-logo" onclick="afficherSection('accueil')" href="#accueil">
-      <div class="logo-cercle">M</div>
-      <div class="logo-texte">
-        <span class="blanc">Mécano</span> <span class="rouge">à Bord</span>
-      </div>
+      <img class="nav-logo-img" src="assets/images/logo.png" alt="Mécano à Bord">
     </a>
 
     <!-- Liens navigation desktop -->
@@ -7364,8 +7346,7 @@
 
       // ── HEADER ──────────────────────────────────────────────────
       c += '<div class="sommaire-header">';
-      c += '<div class="sommaire-logo-cercle">M</div>';
-      c += '<div class="sommaire-nom"><span style="color:var(--texte-principal)">Mécano</span><span style="color:var(--rouge-principal)"> à Bord</span></div>';
+      c += '<img class="sommaire-logo-img" src="assets/images/logo.png" alt="Mécano à Bord">';
       c += '<h1 class="sommaire-titre">TA VOITURE SANS GALÈRE</h1>';
       c += '<p class="sommaire-sous-titre">La Méthode Sans Stress Auto — par Pascal Chathuant</p>';
       c += '</div>';

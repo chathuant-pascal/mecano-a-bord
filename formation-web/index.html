@@ -216,6 +216,19 @@
 
     .section-page.active {
       display: block;
+      position: relative;
+      z-index: 3; /* au-dessus du filigrane (z-index:2) */
+    }
+
+    /* ── FOND SEMI-TRANSPARENT DERRIÈRE LE TEXTE (lisibilité sur filigrane) ── */
+    .module-wrapper {
+      background: rgba(17, 17, 17, 0.60);
+      border-radius: 6px;
+    }
+
+    .contenu-module {
+      background: rgba(17, 17, 17, 0.60);
+      border-radius: 6px;
     }
 
     /* Titre de section (placeholder visuel) */

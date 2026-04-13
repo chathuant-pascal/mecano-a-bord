@@ -214,6 +214,154 @@
       display: block;
     }
 
+    /* ── ZONES CAPOT DÉTAILLÉES ────────────────────────────────── */
+    .zone-detail-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-left: 4px solid #CC0000;
+      border-radius: 0 10px 10px 0;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .zone-detail-card h3 {
+      color: #CC0000;
+      font-size: 17px;
+      margin: 0 0 10px;
+    }
+    .zone-detail-explication {
+      font-size: 14px;
+      color: #AAAAAA;
+      margin: 0 0 14px;
+    }
+    .zone-detail-etapes {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px;
+    }
+    .zone-detail-etapes li {
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .zone-detail-etapes li:last-child { border-bottom: none; }
+    .zone-detail-num {
+      background: #CC0000;
+      color: #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .zone-photo-cadre {
+      border: 2px dashed #CC0000;
+      background: #111;
+      border-radius: 10px;
+      padding: 22px 16px;
+      text-align: center;
+      margin: 14px 0 16px;
+    }
+    .zone-photo-cadre .zph-emoji { font-size: 34px; display: block; margin-bottom: 8px; }
+    .zone-photo-cadre .zph-titre { color: #fff; font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px; }
+    .zone-photo-cadre .zph-label { color: #CC0000; font-size: 11px; }
+    .zone-ok-bloc {
+      background: #1a3a1a;
+      border-left: 3px solid #4CAF50;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #4CAF50;
+    }
+    .zone-ok-bloc strong { color: #4CAF50; }
+    .zone-alert-bloc {
+      background: #2a1505;
+      border-left: 3px solid #E65100;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #E65100;
+    }
+    .zone-alert-bloc strong { color: #E65100; }
+    .zone-section-titre {
+      font-size: 18px;
+      font-weight: 700;
+      color: #CC0000;
+      border-bottom: 2px solid #CC0000;
+      padding-bottom: 8px;
+      margin: 32px 0 16px;
+    }
+    .zone-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+    .zone-table th { background: #CC0000; color: #fff; padding: 10px 12px; text-align: left; }
+    .zone-table td { padding: 10px 12px; border-bottom: 1px solid #2a2a2a; color: #AAAAAA; vertical-align: top; }
+    .zone-table tr:nth-child(even) td { background: #1f1f1f; }
+    .zone-table td:first-child { color: #fff; font-weight: 600; }
+    .zone-precision {
+      background: #242424;
+      border-left: 3px solid #f0a500;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #f0a500;
+      margin: 10px 0 14px;
+    }
+    .zone-danger-bloc {
+      background: #2a0a0a;
+      border-left: 3px solid #CC0000;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #ff6b6b;
+    }
+    .zone-danger-bloc strong { color: #CC0000; }
+    .zone-liquide-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+    .zone-liquide-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #333;
+    }
+    .zone-liquide-emoji { font-size: 30px; flex-shrink: 0; }
+    .zone-liquide-titre { font-size: 17px; font-weight: 700; color: #fff; margin: 0; }
+    .zone-liquide-role  { font-size: 12px; color: #AAAAAA; margin: 2px 0 0; }
+    .zone-liquide-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .zone-liquide-badge {
+      background: #242424;
+      border: 1px solid #444;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #AAAAAA;
+    }
+    .zone-liquide-badge span { color: #fff; font-weight: 600; }
+    .zone-confusions-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+    .zone-confusions-table th { background: #CC0000; color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; }
+    .zone-confusions-table td { padding: 10px 12px; border-bottom: 1px solid #3a1515; color: #AAAAAA; vertical-align: top; }
+    .zone-confusions-table tr:nth-child(even) td { background: #1f0a0a; }
+    .zone-confusions-table td:first-child { color: #ff6b6b; }
+    .zone-confusions-table td:last-child { color: #4CAF50; }
+
     /* ── IMAGE D'IDENTIFICATION PAR MODULE ─────────────────────── */
     .module-hero-img {
       display: block;
@@ -3244,14 +3392,484 @@
         <span class="ph-icone">🖼️</span><span class="ph-nom">IMAGE_ETAPE3_02</span>
         <span class="ph-desc">Schéma simplifié du compartiment moteur avec les 6 zones numérotées</span>
       </div>
-      <ul class="liste-simple">
-        <li><span class="puce">1</span>Bouchon d'huile moteur + jauge (vérifier à froid)</li>
-        <li><span class="puce">2</span>Réservoir de liquide de refroidissement (ne jamais ouvrir à chaud)</li>
-        <li><span class="puce">3</span>Réservoir de liquide de frein (si bas → garage)</li>
-        <li><span class="puce">4</span>Réservoir de lave-glace (remplir librement)</li>
-        <li><span class="puce">5</span>Filtre à air (boîtier plastique, vérifier tous les 2 ans)</li>
-        <li><span class="puce">6</span>Batterie (vérifier que les cosses sont propres et serrées)</li>
-      </ul>
+      <!-- Zone 1 — Huile moteur -->
+      <div class="zone-detail-card">
+        <h3>🛢️ Zone 1 — Huile moteur · Jauge de niveau</h3>
+        <p class="zone-detail-explication">L'huile lubrifie toutes les pièces mobiles du moteur. Sans huile, le moteur s'use très vite — ou casse. La jauge te permet de vérifier le niveau sans aucun outil.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Moteur froid obligatoire — attends au moins 10 minutes après l'arrêt</li>
+          <li><span class="zone-detail-num">2</span>Sors la jauge de son logement (tige fine avec anneau de couleur)</li>
+          <li><span class="zone-detail-num">3</span>Essuie la jauge avec un chiffon propre</li>
+          <li><span class="zone-detail-num">4</span>Remets-la jusqu'au fond, puis ressors-la</li>
+          <li><span class="zone-detail-num">5</span>Le niveau d'huile doit être entre les deux repères MIN et MAX</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-1-huile.jpg" alt="Jauge huile moteur"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🛢️</span>
+          <span class="zph-titre">Jauge d'huile moteur — MIN / MAX</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — huile propre et légèrement dorée.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN, si l'huile est noire et épaisse, ou si le voyant huile rouge s'allume. → Rajouter de l'huile ou consulter un professionnel.</div>
+      </div>
+
+      <!-- Zone 2 — Liquide de refroidissement -->
+      <div class="zone-detail-card">
+        <h3>🌡️ Zone 2 — Liquide de refroidissement · Réservoir transparent</h3>
+        <p class="zone-detail-explication">Ce liquide régule la température du moteur. Il l'empêche de surchauffer en été et de geler en hiver. Le réservoir est en plastique transparent — tu vois le niveau sans rien ouvrir.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Moteur froid obligatoire — ne jamais ouvrir à chaud (risque de brûlure)</li>
+          <li><span class="zone-detail-num">2</span>Repère le réservoir transparent (souvent vert, rose ou bleu)</li>
+          <li><span class="zone-detail-num">3</span>Lis le niveau à travers la paroi — repères MIN et MAX marqués sur le côté</li>
+          <li><span class="zone-detail-num">4</span>Si niveau bas : ouvre le bouchon uniquement à froid, rajoute du liquide adapté</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-2-refroidissement.jpg" alt="Réservoir liquide refroidissement"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🌡️</span>
+          <span class="zph-titre">Réservoir liquide de refroidissement</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — liquide clair, coloré (vert/rose/bleu).</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau baisse régulièrement (fuite), le liquide est marron ou noirâtre, le voyant température rouge s'allume. → Garage immédiatement.</div>
+      </div>
+
+      <!-- Zone 3 — Liquide de frein -->
+      <div class="zone-detail-card">
+        <h3>🛑 Zone 3 — Liquide de frein · Réservoir transparent</h3>
+        <p class="zone-detail-explication">Le liquide de frein transmet la pression de ta pédale jusqu'aux freins. C'est la sécurité directe. Un réservoir bas peut signifier une fuite ou des plaquettes usées.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le petit réservoir transparent (généralement marqué d'un symbole de disque de frein)</li>
+          <li><span class="zone-detail-num">2</span>Lis le niveau à travers la paroi — repères MIN et MAX visibles</li>
+          <li><span class="zone-detail-num">3</span>Ne pas ouvrir le bouchon inutilement — le liquide absorbe l'humidité de l'air</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-3-frein.jpg" alt="Réservoir liquide de frein"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🛑</span>
+          <span class="zph-titre">Réservoir liquide de frein</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — liquide transparent ou légèrement jaune.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN. → Garage immédiatement — ne pas rouler avec un niveau de frein insuffisant.</div>
+      </div>
+
+      <!-- Zone 4 — Lave-glace -->
+      <div class="zone-detail-card">
+        <h3>💧 Zone 4 — Liquide lave-glace · Réservoir avec symbole jet d'eau</h3>
+        <p class="zone-detail-explication">Ce réservoir alimente les gicleurs du pare-brise et les buses de lavage de phares. C'est le seul réservoir que tu peux remplir à n'importe quelle température, moteur chaud ou froid.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le réservoir avec le symbole jet d'eau ou pare-brise</li>
+          <li><span class="zone-detail-num">2</span>Ouvre le bouchon et verse le liquide lave-glace dilué ou prêt à l'emploi</li>
+          <li><span class="zone-detail-num">3</span>En hiver : utilise un produit antigel pour éviter que les buses gèlent</li>
+          <li><span class="zone-detail-num">4</span>Ne pas utiliser d'eau pure — développe des bactéries et gèle en hiver</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-4-laveglace.jpg" alt="Réservoir lave-glace"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">💧</span>
+          <span class="zph-titre">Réservoir lave-glace</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le réservoir est visible et contient du liquide bleu ou coloré.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> les gicleurs ne fonctionnent plus — vérifier le niveau avant d'appeler un technicien.</div>
+      </div>
+
+      <!-- Zone 5 — Direction assistée -->
+      <div class="zone-detail-card">
+        <h3>🔧 Zone 5 — Réservoir de direction assistée</h3>
+        <div class="zone-precision">⚠️ <strong>Valable uniquement pour certaines voitures.</strong> Les véhicules récents sont équipés d'une direction assistée électrique (EPAS) — ils n'ont pas de réservoir de liquide. Si tu ne trouves pas ce réservoir, c'est normal : ta voiture est probablement électrique.</div>
+        <p class="zone-detail-explication">Sur les voitures avec direction hydraulique, un réservoir contient le liquide de direction. Il est reconnaissable à son bouchon sur lequel est dessiné un volant.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le petit réservoir avec le bouchon "volant" (hydraulique seulement)</li>
+          <li><span class="zone-detail-num">2</span>Vérifie le niveau à travers la paroi ou avec le repère sur le bouchon</li>
+          <li><span class="zone-detail-num">3</span>Vérifier tous les 6 mois — ce liquide ne se consomme pas vite normalement</li>
+          <li><span class="zone-detail-num">4</span>Si le niveau baisse → probable fuite → consulter un professionnel</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-5-direction.jpg" alt="Réservoir direction assistée"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🔧</span>
+          <span class="zph-titre">Réservoir de direction assistée hydraulique</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est stable et dans les repères — liquide clair ou légèrement rosé.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le volant devient lourd à tourner, tu entends un sifflement, ou des traces de liquide sous la voiture. → Garage rapidement.</div>
+      </div>
+
+      <!-- Zone 6 — Batterie -->
+      <div class="zone-detail-card">
+        <h3>🔋 Zone 6 — Batterie · Bornes et état visuel</h3>
+        <p class="zone-detail-explication">La batterie alimente tous les systèmes électriques au démarrage. Tu ne peux pas vérifier le niveau d'électrolyte (c'est fermé sur les batteries modernes), mais tu peux contrôler visuellement l'état des bornes.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère la batterie — souvent sous le capot ou parfois dans le coffre</li>
+          <li><span class="zone-detail-num">2</span>Observe les bornes (+ rouge et − noir) : elles doivent être propres et serrées</li>
+          <li><span class="zone-detail-num">3</span>Si tu vois une poudre blanche ou bleue autour des bornes → c'est de l'oxydation</li>
+          <li><span class="zone-detail-num">4</span>Pour nettoyer : eau chaude + bicarbonate de soude — jamais de métal ou d'outil conducteur</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-6-batterie.jpg" alt="Batterie et bornes"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🔋</span>
+          <span class="zph-titre">Batterie — bornes + et −</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> les bornes sont propres, sans poudre blanche, câbles bien fixés.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> la batterie est bombée ou gonflée, les bornes très oxydées, ou le démarrage est lent et hésitant. → Faire tester la batterie chez un professionnel.</div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- AJOUT 1 — LES LIQUIDES ET HUILES                           -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 class="lecon-titre">🧪 3.2b — Les liquides et huiles — Ce que tu dois savoir</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">Ta voiture contient plusieurs liquides essentiels. Les connaître te permet de comprendre ce que tu lis sur les étiquettes, et de ne jamais acheter le mauvais produit.</p>
+
+      <div class="zone-section-titre">Les indices d'huile moteur — Lire l'étiquette du bidon</div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">Exemple : que signifie 5W40 ?</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">5</span><strong style="color:#fff">5</strong> = viscosité à froid — plus ce chiffre est bas, mieux le moteur démarre par temps froid</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">W</span><strong style="color:#fff">W</strong> = Winter = Hiver — confirme que c'est l'indice à froid</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">40</span><strong style="color:#fff">40</strong> = viscosité à chaud — l'huile reste efficace quand le moteur est chaud</li>
+        </ul>
+        <p style="font-size:13px;color:#AAAAAA;margin:10px 0 4px">👉 <strong style="color:#fff">Plus le premier chiffre est bas → meilleur démarrage par temps froid.</strong> En climat tropical (Guadeloupe), ce point est moins critique — l'huile ne gèle jamais.</p>
+      </div>
+
+      <table class="zone-table">
+        <thead><tr><th>Indice</th><th>Type de moteur</th><th>Utilisation recommandée</th><th>Climat adapté</th></tr></thead>
+        <tbody>
+          <tr><td>0W30</td><td>Moteurs récents, hybrides, faible cyl.</td><td>Économie de carburant, démarrage très froid</td><td>Froid extrême / tous pays</td></tr>
+          <tr><td>5W30</td><td>Moteurs modernes essence &amp; diesel</td><td>Usage courant, économique</td><td>Tous climats dont tropical</td></tr>
+          <tr><td>5W40</td><td>Moteurs diesel et essence polyvalents</td><td>Usage intensif, grosses cylindrées</td><td>Tous climats</td></tr>
+          <tr><td>10W40</td><td>Moteurs anciens ou kilométrage élevé</td><td>Moteurs qui consomment un peu d'huile</td><td>Climat tempéré / chaud</td></tr>
+        </tbody>
+      </table>
+      <!-- Future image : <img src="assets/images/etape3/bidons-huile.jpg" alt="Exemples bidons d'huile"> -->
+      <div class="zone-photo-cadre">
+        <span class="zph-emoji">🛢️</span>
+        <span class="zph-titre">Exemples de bidons d'huile moteur (indices visibles)</span>
+        <span class="zph-label">📷 Photo à venir</span>
+      </div>
+      <div class="bloc-regle-or" style="margin-top:0">
+        <p class="regle-titre">💬 Conseil Pascal</p>
+        <p class="regle-texte">"Consultez toujours le carnet constructeur pour connaître l'huile exacte de votre véhicule. L'indice est aussi souvent indiqué sur un autocollant sous le capot."</p>
+      </div>
+
+      <div class="zone-section-titre">Les 6 liquides du véhicule — Fiches détaillées</div>
+
+      <!-- ── Liquide 1 : Huile moteur ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">🛢️</span>
+          <div>
+            <p class="zone-liquide-titre">Huile moteur</p>
+            <p class="zone-liquide-role">Lubrifie et protège toutes les pièces mobiles du moteur</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Couleur : <span>Jaune dorée (neuve) → noire (usée)</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Symbole casserole avec gouttes 🛢️</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>1 fois par mois</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-1-huile.jpg" alt="Bouchon huile moteur et jauge"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🛢️</span>
+          <span class="zph-titre">Bouchon huile moteur + jauge de niveau</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Moteur froid — attendre au moins 10 minutes après l'arrêt</li>
+          <li><span class="zone-detail-num">2</span>Voiture à plat (pas en pente) pour une lecture précise</li>
+          <li><span class="zone-detail-num">3</span>Retirer la jauge, essuyer avec un chiffon propre, remettre jusqu'au fond</li>
+          <li><span class="zone-detail-num">4</span>Ressortir la jauge : le niveau doit être entre MIN et MAX</li>
+          <li><span class="zone-detail-num">5</span>Produit : respecter impérativement l'indice constructeur (ex : 5W40) — voir carnet d'entretien ou autocollant sous le capot</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX sur la jauge, huile propre de couleur dorée.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN, huile noire et épaisse, odeur de brûlé. → Rajouter de l'huile ou consulter un professionnel.</div>
+        <div class="zone-danger-bloc"><strong>🚨 NE JAMAIS</strong> mettre de l'huile moteur dans un autre réservoir.</div>
+        <div class="zone-danger-bloc"><strong>🚨 NE JAMAIS</strong> mélanger deux huiles de références différentes sans consulter un professionnel.</div>
+      </div>
+
+      <!-- ── Liquide 2 : Liquide de refroidissement ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">🌡️</span>
+          <div>
+            <p class="zone-liquide-titre">Liquide de refroidissement</p>
+            <p class="zone-liquide-role">Empêche le moteur de surchauffer en été et de geler en hiver</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Couleur : <span>Vert, rose ou bleu selon les marques</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Symbole thermomètre ou radiateur</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>1 fois par mois — lecture visuelle</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-2-refroidissement.jpg" alt="Réservoir refroidissement et bouchon"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🌡️</span>
+          <span class="zph-titre">Réservoir liquide de refroidissement + bouchon</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Moteur FROID OBLIGATOIREMENT — ne jamais ouvrir à chaud (risque de brûlure grave)</li>
+          <li><span class="zone-detail-num">2</span>Repérer le réservoir transparent coloré (vert, rose, bleu)</li>
+          <li><span class="zone-detail-num">3</span>Lire le niveau à travers la paroi — repères MIN et MAX sur le côté</li>
+          <li><span class="zone-detail-num">4</span>Produit : liquide de refroidissement dilué 50/50 avec eau distillée OU prêt à l'emploi — jamais d'eau du robinet seule</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> liquide coloré visible entre MIN et MAX, bouchon propre sans dépôts blancs.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> réservoir vide, liquide marron/rouille, dépôts blancs autour du bouchon. → Garage rapidement.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> ouvrir le bouchon moteur chaud — risque de brûlure grave par vapeur sous pression.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> remplacer par de l'eau du robinet seule — calcaire + risque de gel en hiver.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le lave-glace — le lave-glace détruirait le circuit de refroidissement.</div>
+      </div>
+
+      <!-- ── Liquide 3 : Liquide de frein ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">🛑</span>
+          <div>
+            <p class="zone-liquide-titre">Liquide de frein</p>
+            <p class="zone-liquide-role">Transmet la pression de ta pédale jusqu'aux freins — SÉCURITÉ ABSOLUE</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Couleur : <span>Transparent à légèrement jaune</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Cercle avec ! à l'intérieur</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>1 fois par mois — lecture visuelle</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-3-frein.jpg" alt="Réservoir liquide de frein"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🛑</span>
+          <span class="zph-titre">Réservoir liquide de frein + bouchon (symbole ⚠️)</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repérer le petit réservoir transparent sur le bord du compartiment moteur</li>
+          <li><span class="zone-detail-num">2</span>Lire le niveau à travers la paroi — repères MIN et MAX visibles</li>
+          <li><span class="zone-detail-num">3</span>Produit : DOT 4 pour la majorité des véhicules — vérifier impérativement le carnet constructeur</li>
+          <li><span class="zone-detail-num">4</span>Ne pas ouvrir le bouchon inutilement — le liquide absorbe l'humidité de l'air et se dégrade</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> niveau entre MIN et MAX, liquide clair ou légèrement jaune pâle.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> niveau bas (signe d'usure des plaquettes ou fuite), liquide foncé/marron. → Garage immédiatement.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> ajouter soi-même si le niveau est très bas sans comprendre pourquoi — un niveau bas indique souvent une fuite ou des plaquettes épuisées.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de direction assistée — tous deux transparents mais totalement incompatibles.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre du DOT 5 à la place du DOT 4 sans vérification — ces deux liquides sont incompatibles.</div>
+      </div>
+
+      <!-- ── Liquide 4 : Lave-glace ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">🫧</span>
+          <div>
+            <p class="zone-liquide-titre">Liquide lave-glace</p>
+            <p class="zone-liquide-role">Nettoie le pare-brise et la lunette arrière</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Couleur : <span>Bleu ou vert en général</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Symbole jet d'eau sur pare-brise 💧</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>1 fois par semaine si usage fréquent</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-4-laveglace.jpg" alt="Réservoir lave-glace et bouchon"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🫧</span>
+          <span class="zph-titre">Réservoir lave-glace + bouchon (symbole jet d'eau)</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repérer le réservoir plastique (souvent non transparent) avec le symbole jet d'eau</li>
+          <li><span class="zone-detail-num">2</span>Ouvrir le bouchon et verser le liquide lave-glace concentré dilué selon la saison OU prêt à l'emploi</li>
+          <li><span class="zone-detail-num">3</span>Ce réservoir peut être rempli à n'importe quelle température, moteur chaud ou froid</li>
+          <li><span class="zone-detail-num">4</span>En hiver : utiliser un produit antigel pour éviter que les buses gèlent</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> réservoir suffisamment rempli, gicleurs fonctionnent correctement.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> réservoir vide, jets bouchés ou gicleurs qui ne fonctionnent plus.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre de l'eau du robinet seule — le calcaire bouche les gicleurs et gèle en hiver.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de refroidissement — couleurs similaires mais usages totalement différents.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre du liquide vaisselle — mousse excessive et détériore les joints des gicleurs.</div>
+      </div>
+
+      <!-- ── Liquide 5 : Direction assistée ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">🔧</span>
+          <div>
+            <p class="zone-liquide-titre">Liquide de direction assistée</p>
+            <p class="zone-liquide-role">Aide à tourner le volant sans effort — uniquement sur voitures à direction hydraulique</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Couleur : <span>Transparent ou légèrement rouge/rose</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Symbole volant avec flèches</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>Tous les 6 mois</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-5-direction.jpg" alt="Réservoir direction assistée"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🔧</span>
+          <span class="zph-titre">Réservoir direction assistée hydraulique + bouchon</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repérer le petit réservoir transparent avec le bouchon "volant" (uniquement sur voitures hydrauliques)</li>
+          <li><span class="zone-detail-num">2</span>Vérifier le niveau à travers la paroi ou avec le repère sur le bouchon</li>
+          <li><span class="zone-detail-num">3</span>Produit : liquide de direction assistée spécifique — vérifier le carnet constructeur</li>
+          <li><span class="zone-detail-num">4</span>Ce liquide ne se consomme pas normalement — si le niveau baisse c'est signe d'une fuite</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> niveau stable entre MIN et MAX, liquide clair ou légèrement rosé.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> niveau qui baisse régulièrement (fuite probable), bruit de pompe au braquage, volant lourd. → Garage.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de frein — tous deux transparents mais totalement incompatibles.</div>
+        <div class="zone-danger-bloc"><strong>🚨 Sur les voitures récentes avec direction électrique :</strong> ce réservoir n'existe pas — ne pas chercher à en ajouter.</div>
+      </div>
+
+      <!-- ── Liquide 6 : Eau distillée ── -->
+      <div class="zone-liquide-card">
+        <div class="zone-liquide-header">
+          <span class="zone-liquide-emoji">💦</span>
+          <div>
+            <p class="zone-liquide-titre">Eau distillée — l'appoint d'urgence</p>
+            <p class="zone-liquide-role">Utilisée en appoint uniquement — jamais comme liquide de remplacement</p>
+          </div>
+        </div>
+        <div class="zone-liquide-meta">
+          <span class="zone-liquide-badge">Usage : <span>Appoint refroidissement ou lave-glace uniquement</span></span>
+          <span class="zone-liquide-badge">Se trouve : <span>Pharmacie, supermarché, station-service</span></span>
+        </div>
+        <!-- Future image : <img src="assets/images/etape3/liquide-6-eau-distillee.jpg" alt="Bidon eau distillée"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">💦</span>
+          <span class="zph-titre">Bidon d'eau distillée</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-precision">⚠️ <strong>L'eau distillée n'est PAS un liquide de remplacement.</strong> C'est un appoint temporaire uniquement en cas d'urgence. Dès que tu peux, fais vérifier par un professionnel et remets le liquide approprié.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> utiliser l'eau du robinet à la place de l'eau distillée — le calcaire détériore les circuits et les joints.</div>
+        <div class="zone-danger-bloc" style="margin-top:6px"><strong>🚨 JAMAIS</strong> ajouter de l'eau pure dans le circuit de refroidissement en hiver — risque de gel et de casse moteur.</div>
+        <div class="bloc-regle-or" style="margin-top:14px;margin-bottom:0">
+          <p class="regle-titre">💬 Conseil Pascal</p>
+          <p class="regle-texte">"L'eau distillée c'est le dépannage d'urgence. Dès que tu peux, tu fais vérifier par un professionnel."</p>
+        </div>
+      </div>
+
+      <!-- ── Encadré récapitulatif anti-erreurs ── -->
+      <div style="background:#1a0000;border:2px solid #CC0000;border-radius:10px;padding:20px;margin:24px 0">
+        <h3 style="color:#CC0000;font-size:16px;margin:0 0 14px;text-align:center">🚨 LES CONFUSIONS DANGEREUSES À NE JAMAIS FAIRE</h3>
+        <table class="zone-confusions-table">
+          <thead>
+            <tr>
+              <th>❌ Ce que certains font par erreur</th>
+              <th>💀 La conséquence</th>
+              <th>✅ Ce qu'il faut faire à la place</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mettre du lave-glace dans le refroidissement</td>
+              <td>Destruction du circuit de refroidissement — moteur hors service</td>
+              <td>Utiliser uniquement du liquide de refroidissement</td>
+            </tr>
+            <tr>
+              <td>Mettre de l'huile de direction dans les freins</td>
+              <td>Destruction des joints de frein — freins défaillants</td>
+              <td>Utiliser uniquement du DOT 4 (vérifier le carnet)</td>
+            </tr>
+            <tr>
+              <td>Ouvrir le bouchon de refroidissement moteur chaud</td>
+              <td>Brûlures graves par vapeur sous pression</td>
+              <td>Attendre que le moteur soit complètement froid (30 min min.)</td>
+            </tr>
+            <tr>
+              <td>Mettre de l'eau du robinet dans le refroidissement</td>
+              <td>Calcaire + gel en hiver + corrosion interne</td>
+              <td>Eau distillée en dépannage d'urgence uniquement</td>
+            </tr>
+            <tr>
+              <td>Mélanger des huiles moteur de références différentes</td>
+              <td>Perte de performance + risque moteur</td>
+              <td>Toujours utiliser la même référence constructeur</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- AJOUT 2 — COMPRENDRE SES PNEUS                             -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 class="lecon-titre">🔵 3.2c — Comprendre ses pneus — Les bases indispensables</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">Tes pneus sont le seul contact entre ta voiture et la route. Quatre surfaces de la taille d'une carte postale portent toute la voiture. Les connaître, c'est rouler en sécurité.</p>
+
+      <div class="zone-section-titre">Lire les dimensions d'un pneu</div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">Exemple : que signifie 205/55 R16 91V ?</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#4CAF50">205</span><strong style="color:#fff">205</strong> = largeur du pneu en millimètres (de flanc à flanc)</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">55</span><strong style="color:#fff">55</strong> = hauteur du flanc en % de la largeur — ici 55% de 205mm = ~113mm de hauteur</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">R</span><strong style="color:#fff">R</strong> = structure Radiale — tous les pneus modernes sont radiaux</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">16</span><strong style="color:#fff">16</strong> = diamètre de la jante en pouces (taille du cercle central)</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">91</span><strong style="color:#fff">91</strong> = indice de charge = 615 kg maximum supporté par ce pneu</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">V</span><strong style="color:#fff">V</strong> = indice de vitesse = 240 km/h maximum</li>
+        </ul>
+      </div>
+      <!-- Future image : <img src="assets/images/etape3/pneu-dimensions.jpg" alt="Schéma annoté dimensions pneu"> -->
+      <div class="zone-photo-cadre">
+        <span class="zph-emoji">🔵</span>
+        <span class="zph-titre">Schéma annoté d'un pneu — dimensions 205/55 R16 91V</span>
+        <span class="zph-label">📷 Photo à venir</span>
+      </div>
+
+      <div class="zone-section-titre">Les indices de vitesse — Ce qu'ils signifient</div>
+
+      <table class="zone-table">
+        <thead><tr><th>Indice</th><th>Vitesse maximum</th><th>Usage typique</th></tr></thead>
+        <tbody>
+          <tr><td>Q</td><td>160 km/h</td><td>Pneus neige, utilitaires légers</td></tr>
+          <tr><td>T</td><td>190 km/h</td><td>Voitures familiales économiques</td></tr>
+          <tr><td>H</td><td>210 km/h</td><td>Berlines et break courants</td></tr>
+          <tr><td>V</td><td>240 km/h</td><td>Voitures sportives et berlines rapides</td></tr>
+          <tr><td>W</td><td>270 km/h</td><td>Voitures haute performance</td></tr>
+          <tr><td>Y</td><td>300 km/h</td><td>Supercars et sportives extrêmes</td></tr>
+        </tbody>
+      </table>
+      <div class="zone-alert-bloc" style="margin-bottom:24px"><strong>⚠️ Règle absolue :</strong> Ne jamais monter des pneus avec un indice de vitesse inférieur à celui préconisé par le constructeur. C'est une question de sécurité et d'assurance.</div>
+
+      <div class="zone-section-titre">Les témoins d'usure — Savoir quand changer ses pneus</div>
+
+      <div class="zone-detail-card">
+        <h3>📏 Indicateurs d'usure légaux</h3>
+        <p class="zone-detail-explication">En France, la profondeur minimale légale des rainures est de <strong style="color:#CC0000">1,6 mm</strong>. En dessous, le pneu est illégal et dangereux — risque d'aquaplaning et de perte d'adhérence.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le petit triangle (▲) gravé sur le flanc du pneu — il indique l'emplacement du témoin</li>
+          <li><span class="zone-detail-num">2</span>Dans la rainure principale, il y a un petit plot de caoutchouc en relief (le témoin)</li>
+          <li><span class="zone-detail-num">3</span>Si la surface du pneu est au même niveau que ce plot → pneu à changer immédiatement</li>
+        </ul>
+        <p class="zone-detail-explication" style="color:#f0a500;margin-top:8px">💡 <strong style="color:#fff">Astuce Pascal — la pièce de 2 euros :</strong> Place le chiffre "2" dans la rainure. Si tu ne vois plus le "2", les rainures sont encore bonnes. Si tu vois entièrement le "2" et le bord doré de la pièce, il est temps de changer.</p>
+        <!-- Future image : <img src="assets/images/etape3/pneu-temoin-usure.jpg" alt="Témoin d'usure pneu"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">📏</span>
+          <span class="zph-titre">Témoin d'usure sur un pneu + astuce pièce 2€</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le plot du témoin est encore nettement en dessous de la surface du pneu.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> la surface du pneu affleurer le témoin, ou si tu vois des craquelures sur les flancs. → Changer les pneus.</div>
+      </div>
+
+      <div class="zone-section-titre">La date de fabrication — Le code DOT</div>
+
+      <div class="zone-detail-card">
+        <h3>🗓️ Lire le code DOT</h3>
+        <p class="zone-detail-explication">Chaque pneu porte un code DOT sur son flanc extérieur. Les 4 derniers chiffres indiquent la semaine et l'année de fabrication.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Cherche l'inscription <strong style="color:#fff">DOT</strong> sur le flanc extérieur du pneu</li>
+          <li><span class="zone-detail-num">2</span>Lis les 4 derniers chiffres : exemple <strong style="color:#CC0000">2319</strong></li>
+          <li><span class="zone-detail-num">3</span><strong style="color:#fff">23</strong> = semaine 23 de l'année</li>
+          <li><span class="zone-detail-num">4</span><strong style="color:#fff">19</strong> = année 2019</li>
+          <li><span class="zone-detail-num">5</span>Ce pneu a donc été fabriqué en juin 2019</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/pneu-code-dot.jpg" alt="Code DOT sur le flanc d'un pneu"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🗓️</span>
+          <span class="zph-titre">Code DOT sur le flanc d'un pneu</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-alert-bloc"><strong>⚠️ Recommandation :</strong> Changer les pneus après 5 à 7 ans même s'ils semblent en bon état. Le caoutchouc vieillit et se craquelle à l'intérieur, même sans usure visible. Vérifier la date à l'achat de pneus d'occasion.</div>
+      </div>
 
       <!-- 3.3 — Tableau voyants -->
       <h2 class="lecon-titre">3.3 — Tableau voyants ↔ élément physique ↔ action</h2>

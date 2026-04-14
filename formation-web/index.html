@@ -423,48 +423,6 @@
     }
 
     /* ============================================================
-       BANNIÈRE PERMANENTE EN BAS — Lien vers l'app
-    ============================================================ */
-    #banniere-app {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: var(--banniere-hauteur);
-      background-color: var(--rouge-principal);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
-
-    #banniere-app:hover {
-      background-color: #aa0000;
-    }
-
-    .banniere-icone {
-      font-size: 20px;
-    }
-
-    .banniere-texte {
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .banniere-texte span {
-      font-weight: 800;
-    }
-
-    .banniere-fleche {
-      color: rgba(255,255,255,0.8);
-      font-size: 16px;
-    }
-
-    /* ============================================================
        RESPONSIVE — Tablette et Mobile
     ============================================================ */
     @media (max-width: 768px) {
@@ -479,9 +437,6 @@
       }
       .section-titre-placeholder h1 {
         font-size: 22px;
-      }
-      .banniere-texte {
-        font-size: 13px;
       }
     }
 
@@ -5231,17 +5186,6 @@
   </section>
 
 
-  <!-- ============================================================
-       BANNIÈRE PERMANENTE EN BAS — Lien vers l'app Mécano à Bord
-  ============================================================ -->
-  <a id="banniere-app" href="https://mecanoabord.fr/formation" target="_blank" rel="noopener">
-    <img src="assets/images/bonus/image_app_banner_01.png"
-         alt="Application Mécano à Bord — mockup smartphone"
-         style="display:block;width:100%;border-radius:10px;margin:0 0 10px">
-    <span class="banniere-icone">📱</span>
-    <span class="banniere-texte">Télécharge l'app <span>Mécano à Bord</span> — ton coach auto dans ta poche</span>
-    <span class="banniere-fleche">→</span>
-  </a>
 
 
   <!-- ============================================================

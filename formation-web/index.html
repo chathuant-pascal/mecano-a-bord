@@ -200,6 +200,18 @@
     }
 
     /* ── FILIGRANE GLOBAL ───────────────────────────────────────── */
+    /* Masqué sur les pages de contenu — visible uniquement sur accueil, dashboard, sommaire */
+    body:has(#module0.active) .filigrane-global,
+    body:has(#module1.active) .filigrane-global,
+    body:has(#module2.active) .filigrane-global,
+    body:has(#module3.active) .filigrane-global,
+    body:has(#module4.active) .filigrane-global,
+    body:has(#module5.active) .filigrane-global,
+    body:has(#module6.active) .filigrane-global,
+    body:has(#bonus.active) .filigrane-global {
+      display: none;
+    }
+
     .filigrane-global {
       position: fixed;
       top: 50%;
@@ -207,7 +219,7 @@
       transform: translate(-50%, -50%);
       width: 60vw;
       height: auto;
-      opacity: 0.35;
+      opacity: 0.15;
       pointer-events: none;   /* non cliquable — les clics passent à travers */
       user-select: none;       /* non sélectionnable */
       z-index: 2;              /* au-dessus du contenu, sous la nav (z-index:999) */

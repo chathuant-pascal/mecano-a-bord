@@ -99,6 +99,23 @@ class _Agg {
   }
 }
 
+/// Canal ayant fourni le message d’alerte retenu (priorité huile > RPM > tension > liquide).
+enum _LiveAlertSource {
+  none,
+  coolant,
+  voltage,
+  rpm,
+  oil,
+}
+
+/// Sous-type d’alerte tension pour l’hystérésis vocale.
+enum _VoltageAlertArmKind {
+  none,
+  absCritical,
+  absModerate,
+  bandDeviation,
+}
+
 /// Service principal : enregistrement apprentissage + alertes graduées + bilan positif.
 class VehicleHealthService {
   VehicleHealthService._();
@@ -114,6 +131,19 @@ class VehicleHealthService {
   static const Duration _surveillanceSessionGapReset = Duration(minutes: 2);
   static const Duration _warmupPhaseMaxDuration = Duration(minutes: 10);
 
+  static const double _oilPressureAlertMaxKpa = 100;
+  static const double _oilPressureHysteresisRearmKpa = 150;
+  static const String _oilPressureLowUserMessage =
+      'La pression d’huile moteur est très basse. Arrête-toi dans un endroit sûr et coupe le moteur. '
+      'Ne reprends pas la route avant qu’un professionnel ait vérifié le niveau et la pression d’huile.';
+
+  /// Réarmement vocal température : ≤ 95 °C après alerte « chaud », ou retour bande sans palier ≥ 100 °C.
+  static const double _coolantTempRearmMaxC = 95;
+  static const double _coolantBandRearmHighC = 100;
+
+  static const double _voltageAbsCriticalRearmMinV = 12.5;
+  static const double _voltageAbsModerateRearmMinV = 12.8;
+
   final Map<String, DateTime> _lastSpoken = {};
   DateTime? _lastPositiveBilanLocal;
 
@@ -122,13 +152,53 @@ class VehicleHealthService {
   bool _warmupStartAnnounced = false;
   bool _warmupEndAnnounced = false;
 
+  /// Après [>_oilPressureHysteresisRearmKpa] : une nouvelle annonce huile peut être faite si repasse sous [_oilPressureAlertMaxKpa].
+  bool _oilPressureVoiceArmed = true;
+
+  /// Réarmement vocal alertes liquide de refroidissement (hystérésis).
+  bool _coolantVoiceArmed = true;
+
+  bool _voltageAbsCriticalArmed = true;
+  bool _voltageAbsModerateArmed = true;
+  bool _voltageBandArmed = true;
+
+  /// Réarmement vocal alertes régime ralenti (hystérésis : retour dans [rpmMin, rpmMax]).
+  bool _rpmVoiceArmed = true;
+
   /// À appeler à l’arrêt du mode conduite : badge chauffe + état interne.
   void resetLiveMonitoringWarmupState() {
+    _lastSpoken.clear();
+    _oilPressureVoiceArmed = true;
+    _coolantVoiceArmed = true;
+    _voltageAbsCriticalArmed = true;
+    _voltageAbsModerateArmed = true;
+    _voltageBandArmed = true;
+    _rpmVoiceArmed = true;
     _lastSampleAt = null;
     _surveillanceSessionStart = null;
     _warmupStartAnnounced = false;
     _warmupEndAnnounced = false;
     vehicleWarmupPhaseActiveNotifier.value = false;
+  }
+
+  /// Aligné sur les premiers chemins de [_evalVoltage] : critique, modéré, puis écart hors bande.
+  _VoltageAlertArmKind _voltageArmKindForAlert(double v) {
+    if (v <= 11.5) return _VoltageAlertArmKind.absCritical;
+    if (v > 11.5 && v < 12.5) return _VoltageAlertArmKind.absModerate;
+    return _VoltageAlertArmKind.bandDeviation;
+  }
+
+  bool _voltageVoiceArmedForKind(_VoltageAlertArmKind kind) {
+    switch (kind) {
+      case _VoltageAlertArmKind.absCritical:
+        return _voltageAbsCriticalArmed;
+      case _VoltageAlertArmKind.absModerate:
+        return _voltageAbsModerateArmed;
+      case _VoltageAlertArmKind.bandDeviation:
+        return _voltageBandArmed;
+      case _VoltageAlertArmKind.none:
+        return true;
+    }
   }
 
   /// Traite une lecture temps réel (depuis [LiveMonitoringService]).
@@ -210,12 +280,45 @@ class VehicleHealthService {
       learningComplete: learningDone || learned.sampleCount > 200,
     );
 
+    if (coolantSupported && coolantC != null) {
+      if (coolantC <= _coolantTempRearmMaxC) {
+        _coolantVoiceArmed = true;
+      } else if (coolantC >= bands.coolantMin &&
+          coolantC <= bands.coolantMax &&
+          coolantC < _coolantBandRearmHighC) {
+        _coolantVoiceArmed = true;
+      }
+    }
+
+    if (voltSupported && volt != null) {
+      if (volt >= _voltageAbsModerateRearmMinV) {
+        _voltageAbsCriticalArmed = true;
+        _voltageAbsModerateArmed = true;
+      } else if (volt >= _voltageAbsCriticalRearmMinV) {
+        _voltageAbsCriticalArmed = true;
+      }
+      if (volt >= bands.voltMin && volt <= bands.voltMax) {
+        _voltageBandArmed = true;
+      }
+    }
+
+    if (rpmSupported &&
+        rpm != null &&
+        rpm > 400 &&
+        rpm < 1400 &&
+        rpm >= bands.rpmMin &&
+        rpm <= bands.rpmMax) {
+      _rpmVoiceArmed = true;
+    }
+
     int worst = 0;
     String? message;
     String? technical;
     bool critical = false;
     var inWarmupSuppress = false;
     var emergencyWarmupOverheat = false;
+    var dominantSource = _LiveAlertSource.none;
+    var voltageArmKind = _VoltageAlertArmKind.none;
 
     if (coolantSupported && coolantC != null) {
       final elapsed = now.difference(_surveillanceSessionStart!);
@@ -230,6 +333,7 @@ class VehicleHealthService {
         technical =
             'Température liquide de refroidissement : ${coolantC.toStringAsFixed(0)} °C';
         critical = true;
+        dominantSource = _LiveAlertSource.coolant;
       } else if (inFirstTenMin && coolantC < 70) {
         inWarmupSuppress = true;
         vehicleWarmupPhaseActiveNotifier.value = true;
@@ -244,6 +348,7 @@ class VehicleHealthService {
           message = r.message;
           technical = r.technical;
           critical = r.critical;
+          dominantSource = _LiveAlertSource.coolant;
         }
       }
     } else {
@@ -270,6 +375,8 @@ class VehicleHealthService {
         message = r.message;
         technical = r.technical;
         critical = r.critical;
+        dominantSource = _LiveAlertSource.voltage;
+        voltageArmKind = _voltageArmKindForAlert(volt);
       }
     }
 
@@ -280,37 +387,85 @@ class VehicleHealthService {
         message = r.message;
         technical = r.technical;
         critical = r.critical;
+        dominantSource = _LiveAlertSource.rpm;
       }
     }
 
-    if (oilPressureSupported &&
-        oilPressureKpa != null &&
-        oilPressureKpa < 100) {
-      worst = 2;
-      message =
-          'La pression d’huile moteur est très basse. Arrête-toi dans un endroit sûr et coupe le moteur. '
-          'Ne reprends pas la route avant qu’un professionnel ait vérifié le niveau et la pression d’huile.';
-      technical =
-          'Pression huile (OBD) : ${oilPressureKpa.toStringAsFixed(0)} kPa';
-      critical = true;
+    if (oilPressureSupported && oilPressureKpa != null) {
+      if (oilPressureKpa > _oilPressureHysteresisRearmKpa) {
+        _oilPressureVoiceArmed = true;
+      }
+      if (oilPressureKpa < _oilPressureAlertMaxKpa) {
+        worst = 2;
+        message = _oilPressureLowUserMessage;
+        technical =
+            'Pression huile (OBD) : ${oilPressureKpa.toStringAsFixed(0)} kPa';
+        critical = true;
+        dominantSource = _LiveAlertSource.oil;
+      }
     }
 
     if (worst > 0 && message != null && engineRunning) {
-      final key = 'L$worst-${message.hashCode}';
-      final last = _lastSpoken[key];
-      if (last == null || DateTime.now().difference(last) > _alertCooldown) {
-        _lastSpoken[key] = DateTime.now();
+      final isOilPressureAlert = message == _oilPressureLowUserMessage;
+      final blockOilVoiceOnly = isOilPressureAlert && !_oilPressureVoiceArmed;
+      final blockCoolantVoiceOnly =
+          dominantSource == _LiveAlertSource.coolant && !_coolantVoiceArmed;
+      final blockVoltageVoiceOnly =
+          dominantSource == _LiveAlertSource.voltage &&
+              voltageArmKind != _VoltageAlertArmKind.none &&
+              !_voltageVoiceArmedForKind(voltageArmKind);
+      final blockRpmVoiceOnly =
+          dominantSource == _LiveAlertSource.rpm && !_rpmVoiceArmed;
+
+      if (blockOilVoiceOnly ||
+          blockCoolantVoiceOnly ||
+          blockVoltageVoiceOnly ||
+          blockRpmVoiceOnly) {
         liveMonitoringBannerNotifier.value = LiveMonitoringBanner(
           message: message,
           isCritical: critical,
         );
-        await TtsService.instance.speakLiveMonitoringAlert(message);
-        await _repo.appendVehicleHealthAlert(
-          vehicleProfileId: vid,
-          level: worst,
-          message: message,
-          technicalDetail: technical,
-        );
+      } else {
+        final key = 'L$worst-${message.hashCode}';
+        final last = _lastSpoken[key];
+        if (last == null || DateTime.now().difference(last) > _alertCooldown) {
+          _lastSpoken[key] = DateTime.now();
+          liveMonitoringBannerNotifier.value = LiveMonitoringBanner(
+            message: message,
+            isCritical: critical,
+          );
+          await TtsService.instance.speakLiveMonitoringAlert(message);
+          await _repo.appendVehicleHealthAlert(
+            vehicleProfileId: vid,
+            level: worst,
+            message: message,
+            technicalDetail: technical,
+          );
+          if (isOilPressureAlert) {
+            _oilPressureVoiceArmed = false;
+          }
+          if (dominantSource == _LiveAlertSource.coolant) {
+            _coolantVoiceArmed = false;
+          }
+          if (dominantSource == _LiveAlertSource.voltage) {
+            switch (voltageArmKind) {
+              case _VoltageAlertArmKind.absCritical:
+                _voltageAbsCriticalArmed = false;
+                break;
+              case _VoltageAlertArmKind.absModerate:
+                _voltageAbsModerateArmed = false;
+                break;
+              case _VoltageAlertArmKind.bandDeviation:
+                _voltageBandArmed = false;
+                break;
+              case _VoltageAlertArmKind.none:
+                break;
+            }
+          }
+          if (dominantSource == _LiveAlertSource.rpm) {
+            _rpmVoiceArmed = false;
+          }
+        }
       }
     } else {
       liveMonitoringBannerNotifier.value = null;

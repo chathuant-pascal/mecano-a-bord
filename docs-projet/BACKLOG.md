@@ -106,4 +106,13 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 
 ---
 
-*Dernière mise à jour backlog : 2026-03-23 — B15 suivi installation APK terrain. Mettre à jour statuts et dates à chaque avancement.*
+## 9. Plan modules (CLAUDE.md — priorité livraison)
+
+| Module | Élément | Statut | Date / note |
+|--------|---------|--------|-------------|
+| **MODULE 4** | WebView formation sécurisée (`formation_webview_screen.dart`) — NavigationDelegate, allowlist, validation JS, erreurs, timer cycle de vie, spinner | **Fait** | **2026-04-19** — 6 correctifs (OWASP + UX) ; fiche `fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md` |
+| **MODULE 5** | Nettoyer `debugPrint` + `mab_logger.dart` (logger conditionnel) | **À faire** | **Suivant** — réf. CLAUDE.md MODULE 5 |
+
+---
+
+*Dernière mise à jour backlog : 2026-04-19 — MODULE 4 WebView terminé ; MODULE 5 suivant. Mettre à jour statuts et dates à chaque avancement.*

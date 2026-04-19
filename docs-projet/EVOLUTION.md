@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 4 terminé : WebView formation sécurisée (OWASP + UX)
+
+- **MODULE 4** : **terminé le 2026-04-19** — `mecano_a_bord/lib/screens/formation_webview_screen.dart` (formation « Ta Voiture Sans Galère »).
+- **6 correctifs** : **sécurité OWASP** — `NavigationDelegate` + allowlist (`mecanoabord.fr`, `chathuant-pascal.github.io`), liens externes hors WebView ; validation de l’URL courante avant traitement du message JS `MABFormation` (`done`) ; `try/catch` sur `loadRequest`. **UX** — erreur réseau / ressource avec message rassurant + bouton « Réessayer » ; minuteur `formation_done` suspendu en arrière-plan (`inactive` / `paused` / `hidden` / `detached`), relance au `resumed` ; indicateur de chargement (`onPageStarted` / `onPageFinished`).
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md` ; journal **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 1 terminé et solide : hystérésis surveillance sur 4 canaux
 
 - **MODULE 1** considéré **bouclé côté produit** : diagnostic OBD validé + comportement **surveillance** sans annonces vocales en boucle après retour à la normale (terrain Inès / logique hystérésis).

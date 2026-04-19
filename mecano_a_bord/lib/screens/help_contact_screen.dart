@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mecano_a_bord/formation_url.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 
 // Liens et contact (modifiables)
@@ -49,7 +50,7 @@ class _HelpContactScreenState extends State<HelpContactScreen>
     try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e, st) {
-      debugPrint('help_contact _openUrl: $e\n$st');
+      mabLog('help_contact _openUrl: $e\n$st');
     }
   }
 
@@ -66,7 +67,7 @@ class _HelpContactScreenState extends State<HelpContactScreen>
     try {
       await launchUrl(uri);
     } catch (e, st) {
-      debugPrint('help_contact _openEmail: $e\n$st');
+      mabLog('help_contact _openEmail: $e\n$st');
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mecano_a_bord/formation_url.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 
 class FormationWebLaunchScreen extends StatefulWidget {
   const FormationWebLaunchScreen({super.key});
@@ -34,7 +35,7 @@ class _FormationWebLaunchScreenState extends State<FormationWebLaunchScreen> {
         mode: LaunchMode.externalApplication,
       );
     } catch (e, st) {
-      debugPrint('Formation launchUrl: $e\n$st');
+      mabLog('Formation launchUrl: $e\n$st');
     }
     if (!launched && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(

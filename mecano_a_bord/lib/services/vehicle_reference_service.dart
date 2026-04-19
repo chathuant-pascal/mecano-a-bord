@@ -2,9 +2,9 @@
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/services/ai_conversation_service.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 
 /// Après enregistrement / mise à jour d’un profil véhicule complet : remplit [vehicle_reference_values].
 class VehicleReferenceService {
@@ -71,11 +71,11 @@ class VehicleReferenceService {
       }
     } else if (response is AiError) {
       if (response.message == 'assistant_ia_non_configuré') {
-        debugPrint(
+        mabLog(
           'VehicleReferenceService: pas de clé IA — valeurs constructeur non chargées.',
         );
       } else {
-        debugPrint('VehicleReferenceService IA: ${response.message}');
+        mabLog('VehicleReferenceService IA: ${response.message}');
       }
     }
   }

@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/services/bluetooth_obd_service.dart';
 import 'package:mecano_a_bord/services/update_check_service.dart';
@@ -575,7 +576,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'assets/images/obd.png',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
-                    debugPrint('[MAB] Image non chargée: obd.png — $error');
+                    mabLog('Image non chargée: obd.png — $error');
                     return Container(
                       color: MabColors.noirClair,
                       child: Icon(
@@ -673,7 +674,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'assets/images/boite_a_gant.png',
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          debugPrint('[MAB] Image non chargée: boite_a_gant.png — $error');
+          mabLog('Image non chargée: boite_a_gant.png — $error');
           return Container(
             color: MabColors.rouge.withOpacity(0.2),
             child: const Icon(
@@ -699,7 +700,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'assets/images/systeme_io.png',
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          debugPrint('[MAB] Image non chargée: systeme_io.png — $error');
+          mabLog('Image non chargée: systeme_io.png — $error');
           return Container(
             color: MabColors.noirClair,
             child: Icon(
@@ -732,7 +733,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _kSuvImagesAsset,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                debugPrint('[MAB] Image non chargée: suv_images.png — $error');
+                mabLog('Image non chargée: suv_images.png — $error');
                 return Container(
                   color: MabColors.noirClair,
                   child: const Icon(
@@ -768,8 +769,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _kModeConduiteAsset,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                debugPrint(
-                    '[MAB] Image non chargée: modeconduite.png — $error');
+                mabLog('Image non chargée: modeconduite.png — $error');
                 return Container(
                   color: MabColors.noirClair,
                   child: const Icon(
@@ -822,8 +822,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _kIaMecanoAbordAsset,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                debugPrint(
-                    '[MAB] Image non chargée: iamecanoabord.png — $error');
+                mabLog('Image non chargée: iamecanoabord.png — $error');
                 return Container(
                   color: MabColors.noirClair,
                   child: const Icon(

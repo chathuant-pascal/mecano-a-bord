@@ -8,10 +8,10 @@
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:mecano_a_bord/data/moteur_symptomes_knowledge.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:http/http.dart' as http;
 
 // ─────────────────────────────────────────────
@@ -686,7 +686,7 @@ Règles absolues :
         return const AiError('Une erreur est survenue avec ChatGPT. Réessayez dans quelques instants.');
       }
     } catch (e) {
-      debugPrint('CHATGPT ERROR: $e');
+      mabLog('CHATGPT ERROR: $e');
       return AiError('Connexion impossible à ChatGPT. Erreur : $e');
     }
   }

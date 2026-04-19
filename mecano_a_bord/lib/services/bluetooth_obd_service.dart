@@ -5,10 +5,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'package:mecano_a_bord/services/obd_session_coordinator.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 
 /// États de connexion OBD (compatibles avec l'écran d'accueil).
 abstract class ObdConnectionState {
@@ -310,7 +310,7 @@ class BluetoothObdService {
             'protocolIndex': i,
           });
           final rawResponse = result?['rawResponse']?.toString() ?? '';
-          debugPrint('OBD protocole $i: réponse brute = $rawResponse');
+          mabLog('OBD protocole $i: réponse brute = $rawResponse');
           final success = result?['success'] == true;
           if (success) return true;
         } on PlatformException catch (_) {}

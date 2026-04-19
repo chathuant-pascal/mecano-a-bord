@@ -1,12 +1,45 @@
 MECANO A BORD --- Fichier de contexte pour Claude
-Version 16.12 --- Mise à jour --- 14/04/2026
+Version 16.15 --- Mise à jour --- 19/04/2026
 
-⚠️ CE FICHIER REMPLACE LE V16.11
-En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.12.
+⚠️ CE FICHIER REMPLACE LE V16.12 (pas de fichier V16.14 dans le depot --- cette version 16.15 est la reference a jour)
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.15.
 
 REGLE DE SESSION
 A intervalles reguliers, Claude met a jour ce fichier et le propose en telechargement.
-En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.12.
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.15.
+
+================================================================
+ACCOMPLISSEMENTS --- SESSION 19/04/2026 (POINT DE REPERE)
+================================================================
+
+MODULE 1 --- TERMINE ✅
+- Diagnostic OBD : valide terrain Samsung SM-A137F (connexion sans blocage, diagnostic aboutissant).
+- Surveillance mode conduite : hysteresis complete sur 4 canaux (temperature, tension batterie, RPM, pression huile) ;
+  reset des drapeaux vocaux ; pas d'annonces en boucle apres retour a la normale.
+- Fiche projet : docs-projet/fiches-fonctionnalites/FICHE_MODULE_01_DIAGNOSTIC_OBD.md
+- Journal : docs-projet/EVOLUTION.md (entree 2026-04-19 MODULE 1)
+
+MODULE 4 --- TERMINE ✅ (WebView formation « Ta Voiture Sans Galere »)
+- Fichier principal : mecano_a_bord/lib/screens/formation_webview_screen.dart
+- 6 correctifs livres :
+  (1) NavigationDelegate + allowlist stricte : mecanoabord.fr + chathuant-pascal.github.io ; liens externes → navigateur systeme
+  (2) Validation URL courante avant acceptation du message JS MABFormation (done / 1 / true)
+  (3) try/catch sur Uri.parse + loadRequest ; etat _loadError
+  (4) onWebResourceError (cadre principal) + message utilisateur + bouton Reessayer
+  (5) Timer formation_done : suspendu en arriere-plan (inactive / paused / hidden / detached) ; relance au resumed
+  (6) Indicateur de chargement (onPageStarted / onPageFinished) + voile semi-transparent
+- Fiche projet : docs-projet/fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md
+
+CODE FLUTTER --- SUR GITHUB ✅ (19/04/2026)
+- Repo : https://github.com/chathuant-pascal/mecano-a-bord (branche main)
+- Exemples de commits session :
+  - MODULE 4 : securisation WebView (code + fiche MODULE 04)
+  - Docs : MODULE 4 WebView valide + journal evolution (EVOLUTION.md + BACKLOG.md)
+
+PROCHAINE ETAPE PRIORITAIRE --- MODULE 5 (CLAUDE.md)
+- Nettoyer les debugPrint ; creer lib/utils/mab_logger.dart (logs uniquement en mode debug)
+- Remplacer les impressions console selon la liste CLAUDE.md MODULE 5
+- Voir aussi docs-projet/BACKLOG.md section 9 (MODULE 4 Fait → MODULE 5 A faire)
 
 ================================================================
 QUI EST L'UTILISATEUR
@@ -52,8 +85,12 @@ PILIER 1 --- APPLICATION MOBILE MECANO A BORD
 Version actuelle : 1.0.0+14
 SDK Flutter : >=3.0.0 <4.0.0
 
-STATUT AU 14/04/2026 :
-   APPLICATION CONSIDEREE PRETE PAR PASCAL
+STATUT AU 19/04/2026 :
+   MODULE 1 (OBD + surveillance) : TERMINE ✅ --- terrain SM-A137F
+   MODULE 4 (WebView formation) : TERMINE ✅ --- code + doc sur GitHub
+   Code Flutter synchronise sur GitHub (main) --- session 19/04/2026
+   PROCHAINE ETAPE CODE : MODULE 5 (mab_logger / debugPrint) --- voir CLAUDE.md
+   APPLICATION CONSIDEREE PRETE PAR PASCAL (evolutions qualite en cours)
    RDV avec Ines : MARDI 8H30 HEURE GUADELOUPE (13h30 Paris) ← AVANCE
 
 ----------------------------------------------------------------
@@ -112,6 +149,14 @@ MODIFICATIONS APP EFFECTUEES --- SESSION 14/04/2026
    Cela declenche le deblocage et navigation vers HomeScreen()
    ⚠️ A ajouter dans index.html quand formation hebergee sur mecanoabord.fr
 
+----------------------------------------------------------------
+MODIFICATIONS APP --- SESSION 19/04/2026 (MODULE 1 + MODULE 4) ✅
+----------------------------------------------------------------
+✅ MODULE 1 : hysteresis surveillance + stabilite diagnostic OBD (fiche MODULE 01 a jour)
+✅ MODULE 4 : WebView formation securisee (NavigationDelegate, allowlist, validation JS,
+   erreurs reseau + Reessayer, timer lifecycle, spinner) --- voir section ACCOMPLISSEMENTS ci-dessus
+✅ Push GitHub : commits sur main (code + documentation projet)
+
 ================================================================
 PILIER 2 --- FORMATION WEB "TA VOITURE SANS GALERE"
 ================================================================
@@ -154,8 +199,9 @@ STATUT FORMATION --- SESSION 14/04/2026
 ⏳ Section pneus → nouvelle section a creer (DEMAIN)
 
 ----------------------------------------------------------------
-DERNIERS COMMITS GITHUB
+DERNIERS COMMITS GITHUB (EXTRAITS --- voir repo pour historique complet)
 ----------------------------------------------------------------
+19/04/2026 --- MODULE 4 WebView + fiche + docs EVOLUTION/BACKLOG (session Cursor)
 b63f89e — Suppression banniere app (56 lignes)
 f117a0f — Section 1.11 : 10 cadres placeholders 80x80
 c72cd1f — Section 1.11 : integration 10 images symboles options vehicule
@@ -195,14 +241,15 @@ RESTE A FAIRE --- FORMATION WEB
 ================================================================
 RESTE A FAIRE --- APPLICATION MOBILE
 ================================================================
-⏳ RDV Ines MARDI 8H30 heure Guadeloupe ← DEMAIN MATIN
+⏳ MODULE 5 : mab_logger + suppression debugPrint (CLAUDE.md) ← PROCHAINE ETAPE CODE
+⏳ RDV Ines MARDI 8H30 heure Guadeloupe ← AVANCE
 ⏳ Cle de signature Release (Mission 1 Ines)
 ⏳ Systeme de licence Firebase (Mission 2 Ines)
 ⏳ Verrouillage app jusqu'a fin formation (Cursor) ← apres hebergement
 ⏳ Completer SIRET dans mentions legales
 ⏳ Confirmer contact@mecanoabord.fr actif
 ⏳ Tester nouveau splash screen sur Samsung SM-A137F
-⏳ Tester nouveau flux onboarding → formation WebView → accueil
+⏳ Tests terrain finaux flux onboarding → formation WebView → accueil (MODULE 4 code pret ; validation utilisateur a planifier)
 
 ================================================================
 COMPTES ET INFRASTRUCTURE
@@ -252,11 +299,12 @@ REGLES DE TRAVAIL
 ================================================================
 FICHIERS A CONSERVER
 ================================================================
-CE FICHIER : CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt ← REFERENCE
+CE FICHIER : CONTEXTE_CLAUDE_MECANO_A_BORD_V16_15.txt ← REFERENCE (remplace V16.12)
 + PROMPT_RAPPEL_SESSION_13_04_2026.txt (contient Prompt C encore utile)
 + Brief_Ines_Licence_Signature_MAB_V2.docx ← VERSION A JOUR
 
-FICHIERS A SUPPRIMER :
+FICHIERS A SUPPRIMER / OBSOLETES :
+❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt (remplace par V16.15)
 ❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_11.txt
 ❌ PROMPT_RAPPEL_SESSION_12_04_2026.txt
 ❌ Brief_Ines_Licence_Signature_MAB.docx (ancienne version)
@@ -264,13 +312,13 @@ FICHIERS A SUPPRIMER :
 ================================================================
 PROMPT DE RAPPEL --- PROCHAINE SESSION
 ================================================================
-1. Charger CE FICHIER en premier (V16.12)
-2. Charger PROMPT_RAPPEL_SESSION_13_04_2026.txt (pour Prompt C)
-3. Claude Code → Prompt C (section 3.2 + liquides + pneus)
-4. Apres RDV Ines → tester splash + flux onboarding sur Samsung
+1. Charger CE FICHIER en premier (V16.15)
+2. MODULE 5 (priorite) : mab_logger.dart + remplacer debugPrint (liste CLAUDE.md MODULE 5)
+3. Formation web : PROMPT_RAPPEL_SESSION_13_04_2026.txt → Prompt C (section 3.2 + liquides + pneus)
+4. RDV Ines / tests terrain : splash + flux onboarding → formation WebView → accueil sur Samsung SM-A137F
 
 ================================================================
-Fin du fichier --- Version 16.12 --- 14/04/2026
-⚠️ REMPLACE LE V16.11 --- Supprimer tous les precedents
+Fin du fichier --- Version 16.15 --- 19/04/2026
+⚠️ REMPLACE LE V16.12 --- Supprimer les versions contexte obsoletes
 © Mecano a Bord --- Pascal Chathuant --- Guadeloupe
 ================================================================

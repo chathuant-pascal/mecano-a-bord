@@ -56,7 +56,7 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 - **Correction** : le téléphone terrain **Samsung SM-A137F (A13, Android 14)** est celui de **Pascal** (et non celui d’Inès).
 - **Ajout** : téléphone d’Inès (développeuse) documenté comme **Samsung A36**.
-- Fichiers harmonisés : **`.cursor/rules/contexte-pascal-mab.mdc`**, **`CLAUDE.md`**, **`docs-projet/NOTES_INTENTION_TECHNIQUES.md`** (§5b), **`docs-projet/CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt`**.
+- Fichiers harmonisés : **`.cursor/rules/contexte-pascal-mab.mdc`**, **`CLAUDE.md`**, **`docs-projet/NOTES_INTENTION_TECHNIQUES.md`** (§5b), **`docs-projet/CONTEXTE_CLAUDE_MECANO_A_BORD_V16_15.txt`**.
 - **Impact** : clarification des appareils de test et des responsabilités terrain, sans changement de code applicatif.
 
 ---

@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 6 terminé : feature flags `mab_features.dart`
+
+- **MODULE 6** : **terminé le 2026-04-19** — création de **`mecano_a_bord/lib/config/mab_features.dart`** avec **12** constantes **`kFeature*`** (documentation / futurs `if (kFeatureXxx)`).
+- **`kFeatureLicence = false`** (licence Firebase — Mission 2 Inès) ; **toutes les autres à `true`**.
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_06_FEATURE_FLAGS.md` ; **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 5 terminé : logger conditionnel `mabLog` (remplacement des `debugPrint`)
 
 - **MODULE 5** : **terminé le 2026-04-19** — création de **`mecano_a_bord/lib/utils/mab_logger.dart`** (`mabLog`, actif uniquement en `kDebugMode`).

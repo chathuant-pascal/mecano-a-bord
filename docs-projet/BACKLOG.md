@@ -112,8 +112,9 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 |--------|---------|--------|-------------|
 | **MODULE 4** | WebView formation sécurisée (`formation_webview_screen.dart`) — NavigationDelegate, allowlist, validation JS, erreurs, timer cycle de vie, spinner | **Fait** | **2026-04-19** — 6 correctifs (OWASP + UX) ; fiche `fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md` |
 | **MODULE 5** | Logger conditionnel `mab_logger.dart` + remplacement **13** `debugPrint` dans **7** fichiers | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_05_LOGGER.md` |
-| **MODULE 6** | Feature flags `lib/config/mab_features.dart` | **À faire** | **Suivant** — réf. CLAUDE.md MODULE 6 |
+| **MODULE 6** | Feature flags `lib/config/mab_features.dart` — **12** `kFeature*` (`kFeatureLicence=false`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_06_FEATURE_FLAGS.md` |
+| **MODULE 7** | Ajouter `try/catch` manquants (`main.dart`, `onboarding_screen`, `add_maintenance_screen`, `glovebox_screen` — voir CLAUDE.md) | **À faire** | **Suivant** |
 
 ---
 
-*Dernière mise à jour backlog : 2026-04-19 — MODULE 5 logger terminé ; MODULE 6 suivant. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-04-19 — MODULE 6 feature flags terminé ; MODULE 7 suivant. Mettre à jour statuts et dates à chaque avancement.*

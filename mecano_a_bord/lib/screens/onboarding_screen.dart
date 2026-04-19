@@ -2,11 +2,12 @@
 // ONBOARDING — Premier écran à l'installation (une seule fois)
 // 1) Page d'acceptation des conditions (hors carrousel)
 // 2) Carrousel : 5 pages (logo bienvenue, OBD, Boîte à gants, SUV, Système IO)
-// À la fin → écran création profil véhicule (/glovebox-profile)
+// À la fin → formation WebView interne (kFormationUrl) puis accueil
 // Charte graphique MAB (thème sombre).
 // ============================================================
 
 import 'package:flutter/material.dart';
+import 'package:mecano_a_bord/screens/formation_webview_screen.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/widgets/mab_logo.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
@@ -118,7 +119,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_done', true);
     if (!mounted) return;
-    Navigator.of(context).pushReplacementNamed('/glovebox-profile');
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(
+        builder: (_) => const FormationWebViewScreen(),
+      ),
+    );
   }
 
   void _onAcceptAndContinue() {
@@ -131,71 +136,80 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       label:
           'Bienvenue. En utilisant Mécano à Bord, vous acceptez les conditions '
           'd\'utilisation. Bouton : J\'accepte et je commence.',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: MabDimensions.paddingEcran,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const MabLogo(size: 160, withText: true),
-                  const SizedBox(height: MabDimensions.espacementXL),
-                  const Text(
-                    'Bienvenue dans Mécano à Bord !',
-                    textAlign: TextAlign.center,
-                    style: MabTextStyles.titrePrincipal,
-                  ),
-                  const SizedBox(height: MabDimensions.espacementL),
-                  const Text(
-                    'En utilisant Mécano à Bord, vous acceptez les '
-                    'conditions d\'utilisation applicables.',
-                    textAlign: TextAlign.center,
-                    style: MabTextStyles.titreSection,
-                  ),
-                  const SizedBox(height: MabDimensions.espacementL),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/legal-mentions');
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: MabColors.blanc,
-                      minimumSize: const Size(
-                        MabDimensions.zoneTactileMin,
-                        MabDimensions.zoneTactileMin,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: MabDimensions.espacementM,
-                        vertical: MabDimensions.espacementS,
+      child: Container(
+        color: MabColors.noir,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: MabDimensions.paddingEcran,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        'assets/images/onboarding_page1.png',
+                        height: 200,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                    child: Text(
-                      'Voir les mentions légales complètes →',
+                    const SizedBox(height: MabDimensions.espacementXL),
+                    const Text(
+                      'Bienvenue',
                       textAlign: TextAlign.center,
-                      style: MabTextStyles.corpsNormal.copyWith(
-                        color: MabColors.blanc,
-                        decoration: TextDecoration.underline,
-                        decorationColor: MabColors.blanc,
+                      style: MabTextStyles.titrePrincipal,
+                    ),
+                    const SizedBox(height: MabDimensions.espacementL),
+                    const Text(
+                      'En utilisant Mécano à Bord, vous acceptez les '
+                      'conditions d\'utilisation applicables.',
+                      textAlign: TextAlign.center,
+                      style: MabTextStyles.titreSection,
+                    ),
+                    const SizedBox(height: MabDimensions.espacementL),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/legal-mentions');
+                      },
+                      style: TextButton.styleFrom(
+                        foregroundColor: MabColors.blanc,
+                        minimumSize: const Size(
+                          MabDimensions.zoneTactileMin,
+                          MabDimensions.zoneTactileMin,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: MabDimensions.espacementM,
+                          vertical: MabDimensions.espacementS,
+                        ),
+                      ),
+                      child: Text(
+                        'Voir les mentions légales complètes →',
+                        textAlign: TextAlign.center,
+                        style: MabTextStyles.corpsNormal.copyWith(
+                          color: MabColors.blanc,
+                          decoration: TextDecoration.underline,
+                          decorationColor: MabColors.blanc,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: MabDimensions.paddingEcran,
-            child: SizedBox(
-              width: double.infinity,
-              height: MabDimensions.boutonHauteur,
-              child: ElevatedButton(
-                onPressed: _onAcceptAndContinue,
-                child: const Text('J\'accepte et je commence'),
+            Padding(
+              padding: MabDimensions.paddingEcran,
+              child: SizedBox(
+                width: double.infinity,
+                height: MabDimensions.boutonHauteur,
+                child: ElevatedButton(
+                  onPressed: _onAcceptAndContinue,
+                  child: const Text('J\'accepte et je commence'),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -272,6 +286,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       backgroundColor: MabColors.noir,
       body: MabWatermarkBackground(
+        watermarkOpacity: 0.15,
         child: SafeArea(
           child: _acceptanceCompleted
               ? _buildOnboardingCarousel()

@@ -1,14 +1,16 @@
 // Création / édition du profil véhicule (après onboarding).
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:mecano_a_bord/theme/mab_theme.dart';
-import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/screens/home_screen.dart';
 import 'package:mecano_a_bord/services/vehicle_reference_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Arguments de route : `null` = profil actif (comportement historique), `'NEW_PROFILE'` = formulaire vierge,
 /// [int] ou [String] numérique = édition de ce profil.
@@ -22,13 +24,24 @@ class GloveboxProfileScreen extends StatefulWidget {
 }
 
 class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
+  static const _kVehicleMarque = 'vehicle_marque';
+  static const _kVehicleModele = 'vehicle_modele';
+  static const _kVehicleEnergie = 'vehicle_energie';
+  static const _kVehicleAnnee = 'vehicle_annee';
+  static const _kVehicleCouleur = 'vehicle_couleur';
+  static const _kVehicleImmat = 'vehicle_immat';
+  static const _kVehiclePortes = 'vehicle_portes';
+  static const _kVehicleDataFetched = 'vehicle_data_fetched';
+
   final _repository = MabRepository.instance;
   final _formKey = GlobalKey<FormState>();
+  final _plateLookupCtrl = TextEditingController();
   final _brandCtrl = TextEditingController();
   final _modelCtrl = TextEditingController();
   final _motorisationCtrl = TextEditingController();
   final _yearCtrl = TextEditingController();
   final _plateCtrl = TextEditingController();
+  final _colorCtrl = TextEditingController();
   final _vinCtrl = TextEditingController();
   final _mileageCtrl = TextEditingController();
   final _notesCtrl = TextEditingController();
@@ -37,6 +50,12 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
   String? _selectedFuel;
   bool _isSaving = false;
   bool _isEditMode = false;
+  bool _isFetchingVehicle = false;
+  bool _showManualVehicleForm = false;
+  bool _showVehicleSummary = false;
+  bool _vehicleDataFetched = false;
+  String? _vehicleApiMessage;
+  int? _selectedDoors;
   String _existingProfileId = '';
 
   final _gearboxOptions = [
@@ -56,11 +75,15 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     'GPL',
     'E85 (Superéthanol)',
   ];
+  final _manualFuelOptions = const ['Essence', 'Diesel', 'Hybride', 'Électrique'];
+  final _doorOptions = const [2, 3, 4, 5];
 
   @override
   void initState() {
     super.initState();
     _loadExistingProfile();
+    _loadVehicleIdentityFromPrefs();
+    _plateLookupCtrl.addListener(_syncPlateLookup);
     _brandCtrl.addListener(_refresh);
     _modelCtrl.addListener(_refresh);
     _motorisationCtrl.addListener(_refresh);
@@ -71,6 +94,197 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
   }
 
   void _refresh() => setState(() {});
+  void _syncPlateLookup() {
+    final up = _plateLookupCtrl.text.toUpperCase();
+    if (up != _plateLookupCtrl.text) {
+      _plateLookupCtrl.value = _plateLookupCtrl.value.copyWith(
+        text: up,
+        selection: TextSelection.collapsed(offset: up.length),
+      );
+    }
+  }
+
+  String _normalizePlate(String raw) =>
+      raw.trim().toUpperCase().replaceAll(RegExp(r'\s+'), '-');
+
+  Future<void> _loadVehicleIdentityFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final fetched = prefs.getBool(_kVehicleDataFetched) ?? false;
+    if (!mounted) return;
+    if (!fetched) {
+      setState(() => _vehicleDataFetched = false);
+      return;
+    }
+    _applyIdentityToForm(
+      marque: prefs.getString(_kVehicleMarque) ?? '',
+      modele: prefs.getString(_kVehicleModele) ?? '',
+      energie: prefs.getString(_kVehicleEnergie) ?? '',
+      annee: prefs.getString(_kVehicleAnnee) ?? '',
+      couleur: prefs.getString(_kVehicleCouleur) ?? '',
+      immat: prefs.getString(_kVehicleImmat) ?? '',
+      portes: prefs.getInt(_kVehiclePortes),
+    );
+    setState(() {
+      _vehicleDataFetched = true;
+      _showVehicleSummary = true;
+    });
+  }
+
+  void _applyIdentityToForm({
+    required String marque,
+    required String modele,
+    required String energie,
+    required String annee,
+    required String couleur,
+    required String immat,
+    required int? portes,
+  }) {
+    if (marque.isNotEmpty) _brandCtrl.text = marque;
+    if (modele.isNotEmpty) _modelCtrl.text = modele;
+    if (annee.isNotEmpty) _yearCtrl.text = annee;
+    if (immat.isNotEmpty) {
+      _plateCtrl.text = immat;
+      _plateLookupCtrl.text = immat;
+    }
+    _colorCtrl.text = couleur;
+    _selectedDoors = portes;
+    if (energie.isNotEmpty) {
+      _selectedFuel = _mapApiFuelToAppFuel(energie);
+    }
+  }
+
+  String _mapApiFuelToAppFuel(String raw) {
+    final r = raw.toLowerCase();
+    if (r.contains('diesel') || r.contains('gazole')) return 'Diesel (Gazole)';
+    if (r.contains('hybride')) return 'Hybride essence';
+    if (r.contains('elect') || r.contains('élect')) return 'Électrique';
+    return 'Essence (SP95, SP98)';
+  }
+
+  String _firstNonEmpty(Map<String, dynamic> map, List<String> keys) {
+    for (final k in keys) {
+      final v = map[k];
+      if (v != null && v.toString().trim().isNotEmpty) return v.toString().trim();
+    }
+    return '';
+  }
+
+  Future<void> _saveIdentityPrefs({
+    required String marque,
+    required String modele,
+    required String energie,
+    required String annee,
+    required String couleur,
+    required String immat,
+    required int? portes,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_kVehicleMarque, marque);
+    await prefs.setString(_kVehicleModele, modele);
+    await prefs.setString(_kVehicleEnergie, energie);
+    await prefs.setString(_kVehicleAnnee, annee);
+    await prefs.setString(_kVehicleCouleur, couleur);
+    await prefs.setString(_kVehicleImmat, immat);
+    if (portes != null) {
+      await prefs.setInt(_kVehiclePortes, portes);
+    } else {
+      await prefs.remove(_kVehiclePortes);
+    }
+    await prefs.setBool(_kVehicleDataFetched, true);
+  }
+
+  Future<void> _lookupVehicle() async {
+    if (_vehicleDataFetched) return;
+    final plate = _normalizePlate(_plateLookupCtrl.text);
+    if (plate.isEmpty) {
+      setState(() => _vehicleApiMessage = 'Entre une plaque pour continuer.');
+      return;
+    }
+    setState(() {
+      _isFetchingVehicle = true;
+      _vehicleApiMessage = null;
+    });
+    try {
+      final uri = Uri.parse(
+        'https://particulier.api.gouv.fr/api/v2/immatriculation?immatriculation=$plate',
+      );
+      final response = await http.get(uri).timeout(const Duration(seconds: 10));
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        throw Exception('Réponse serveur ${response.statusCode}');
+      }
+      final decoded = jsonDecode(response.body);
+      final Map<String, dynamic> data = decoded is Map<String, dynamic>
+          ? (decoded['data'] is Map<String, dynamic>
+              ? Map<String, dynamic>.from(decoded['data'] as Map)
+              : decoded)
+          : <String, dynamic>{};
+      final marque = _firstNonEmpty(data, ['marque', 'brand']);
+      final modele = _firstNonEmpty(data, ['modele', 'model']);
+      final energie = _firstNonEmpty(data, ['energie', 'carburant', 'fuel']);
+      final annee = _firstNonEmpty(
+        data,
+        ['annee', 'annee_premiere_mise_en_circulation', 'date_premiere_mise_en_circulation'],
+      ).replaceAll(RegExp(r'[^0-9]'), '').padLeft(4, '0').substring(0, 4);
+      final couleur = _firstNonEmpty(data, ['couleur']);
+      await _saveIdentityPrefs(
+        marque: marque,
+        modele: modele,
+        energie: energie,
+        annee: annee,
+        couleur: couleur,
+        immat: plate,
+        portes: null,
+      );
+      _applyIdentityToForm(
+        marque: marque,
+        modele: modele,
+        energie: energie,
+        annee: annee,
+        couleur: couleur,
+        immat: plate,
+        portes: null,
+      );
+      if (!mounted) return;
+      setState(() {
+        _vehicleDataFetched = true;
+        _showVehicleSummary = true;
+        _showManualVehicleForm = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _vehicleApiMessage =
+            'Pas de souci ! Tu peux remplir les infos de ta voiture toi-même. Tu trouveras tout sur ta carte grise.';
+        _showManualVehicleForm = true;
+      });
+    } finally {
+      if (mounted) setState(() => _isFetchingVehicle = false);
+    }
+  }
+
+  Future<void> _saveManualIdentity() async {
+    final year = _yearCtrl.text.trim();
+    if (_brandCtrl.text.trim().isEmpty || _modelCtrl.text.trim().isEmpty || year.isEmpty || _selectedFuel == null) {
+      setState(() => _vehicleApiMessage = 'Complète les champs obligatoires pour continuer.');
+      return;
+    }
+    await _saveIdentityPrefs(
+      marque: _brandCtrl.text.trim(),
+      modele: _modelCtrl.text.trim(),
+      energie: _selectedFuel ?? '',
+      annee: year,
+      couleur: _colorCtrl.text.trim(),
+      immat: _normalizePlate(_plateLookupCtrl.text.isNotEmpty ? _plateLookupCtrl.text : _plateCtrl.text),
+      portes: _selectedDoors,
+    );
+    if (!mounted) return;
+    setState(() {
+      _vehicleDataFetched = true;
+      _showVehicleSummary = true;
+      _showManualVehicleForm = false;
+      _vehicleApiMessage = null;
+    });
+  }
 
   Future<void> _loadExistingProfile() async {
     final args = widget.routeArguments;
@@ -209,14 +423,15 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
                   : 'Mon véhicule'),
         ),
       ),
-      body: MabWatermarkBackground(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           padding: MabDimensions.paddingEcran,
           child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildVehicleIdentitySection(),
+              const SizedBox(height: 24),
               _buildInfoBanner(),
               const SizedBox(height: 24),
               Text('Informations du véhicule', style: MabTextStyles.titreCard),
@@ -349,7 +564,211 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
           ),
         ),
       ),
-    ),
+    );
+  }
+
+  Widget _buildVehicleIdentitySection() {
+    if (_showVehicleSummary) {
+      return Container(
+        padding: MabDimensions.paddingCard,
+        decoration: BoxDecoration(
+          color: MabColors.noirMoyen,
+          borderRadius: BorderRadius.circular(MabDimensions.rayonCard),
+          border: Border.all(color: MabColors.grisContour),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Quelle est ta voiture ?', style: MabTextStyles.titreCard),
+            const SizedBox(height: MabDimensions.espacementS),
+            Text('Marque : ${_brandCtrl.text}', style: MabTextStyles.corpsSecondaire),
+            Text('Modèle : ${_modelCtrl.text}', style: MabTextStyles.corpsSecondaire),
+            Text('Année : ${_yearCtrl.text}', style: MabTextStyles.corpsSecondaire),
+            Text('Carburant : ${_selectedFuel ?? '-'}', style: MabTextStyles.corpsSecondaire),
+            Text('Plaque : ${_plateCtrl.text}', style: MabTextStyles.corpsSecondaire),
+            if (_colorCtrl.text.isNotEmpty) Text('Couleur : ${_colorCtrl.text}', style: MabTextStyles.corpsSecondaire),
+            const SizedBox(height: MabDimensions.espacementM),
+            SizedBox(
+              width: double.infinity,
+              height: MabDimensions.boutonHauteur,
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() => _showVehicleSummary = false);
+                },
+                child: const Text("C'est bien ma voiture !"),
+              ),
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    _showManualVehicleForm = true;
+                    _showVehicleSummary = false;
+                  });
+                },
+                child: const Text('Modifier les informations'),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (_showManualVehicleForm) {
+      return Container(
+        padding: MabDimensions.paddingCard,
+        decoration: BoxDecoration(
+          color: MabColors.noirMoyen,
+          borderRadius: BorderRadius.circular(MabDimensions.rayonCard),
+          border: Border.all(color: MabColors.grisContour),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Remplis les infos de ta voiture', style: MabTextStyles.titreCard),
+            const SizedBox(height: MabDimensions.espacementM),
+            _buildTextField(
+              controller: _brandCtrl,
+              label: 'Marque',
+              hint: 'Ex : Renault',
+              icon: Icons.directions_car,
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            _buildTextField(
+              controller: _modelCtrl,
+              label: 'Modèle',
+              hint: 'Ex : Clio',
+              icon: Icons.time_to_leave,
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            DropdownButtonFormField<String>(
+              value: _yearCtrl.text.isEmpty ? null : _yearCtrl.text,
+              decoration: const InputDecoration(
+                labelText: 'Année',
+                prefixIcon: Icon(Icons.calendar_today, color: MabColors.rouge),
+              ),
+              items: List.generate(
+                2026 - 1980 + 1,
+                (i) => (2026 - i).toString(),
+              )
+                  .map((y) => DropdownMenuItem(value: y, child: Text(y)))
+                  .toList(),
+              onChanged: (v) => setState(() => _yearCtrl.text = v ?? ''),
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            DropdownButtonFormField<String>(
+              value: _selectedFuel != null ? _mapApiFuelToAppFuel(_selectedFuel!) : null,
+              decoration: const InputDecoration(
+                labelText: 'Carburant',
+                prefixIcon: Icon(Icons.local_gas_station, color: MabColors.rouge),
+              ),
+              items: _manualFuelOptions
+                  .map((f) => DropdownMenuItem(value: f, child: Text(f)))
+                  .toList(),
+              onChanged: (v) => setState(() => _selectedFuel = v == null ? null : _mapApiFuelToAppFuel(v)),
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            _buildTextField(
+              controller: _colorCtrl,
+              label: 'Couleur',
+              hint: 'Ex : gris',
+              icon: Icons.palette_outlined,
+            ),
+            const SizedBox(height: MabDimensions.espacementS),
+            DropdownButtonFormField<int>(
+              value: _selectedDoors,
+              decoration: const InputDecoration(
+                labelText: 'Nombre de portes',
+                prefixIcon: Icon(Icons.door_front_door_outlined, color: MabColors.rouge),
+              ),
+              items: _doorOptions
+                  .map((d) => DropdownMenuItem<int>(value: d, child: Text('$d')))
+                  .toList(),
+              onChanged: (v) => setState(() => _selectedDoors = v),
+            ),
+            const SizedBox(height: MabDimensions.espacementM),
+            SizedBox(
+              width: double.infinity,
+              height: MabDimensions.boutonHauteur,
+              child: ElevatedButton(
+                onPressed: _saveManualIdentity,
+                child: const Text('Enregistrer les modifications'),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Container(
+      padding: MabDimensions.paddingCard,
+      decoration: BoxDecoration(
+        color: MabColors.noirMoyen,
+        borderRadius: BorderRadius.circular(MabDimensions.rayonCard),
+        border: Border.all(color: MabColors.grisContour),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Quelle est ta voiture ?', style: MabTextStyles.titreCard),
+          const SizedBox(height: MabDimensions.espacementS),
+          Text(
+            "Entre ta plaque d'immatriculation, on s'occupe du reste.",
+            style: MabTextStyles.corpsSecondaire,
+          ),
+          const SizedBox(height: MabDimensions.espacementM),
+          TextFormField(
+            controller: _plateLookupCtrl,
+            textCapitalization: TextCapitalization.characters,
+            decoration: const InputDecoration(
+              labelText: 'Immatriculation',
+              hintText: 'AA-123-BC ou 123 ABC 12',
+              prefixIcon: Icon(Icons.credit_card, color: MabColors.rouge),
+            ),
+          ),
+          const SizedBox(height: MabDimensions.espacementM),
+          SizedBox(
+            width: double.infinity,
+            height: MabDimensions.boutonHauteur,
+            child: ElevatedButton(
+              onPressed: _isFetchingVehicle ? null : _lookupVehicle,
+              child: _isFetchingVehicle
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: MabColors.blanc,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : const Text('Trouver ma voiture'),
+            ),
+          ),
+          const SizedBox(height: MabDimensions.espacementS),
+          Text(
+            "Ta plaque est utilisée uniquement pour identifier ton véhicule. Aucune donnée personnelle n'est partagée.",
+            style: MabTextStyles.label.copyWith(color: MabColors.grisTexte),
+          ),
+          const SizedBox(height: MabDimensions.espacementS),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton(
+              onPressed: () => setState(() => _showManualVehicleForm = true),
+              child: const Text('Je préfère remplir moi-même ->'),
+            ),
+          ),
+          if (_vehicleApiMessage != null) ...[
+            const SizedBox(height: MabDimensions.espacementS),
+            Text(
+              _vehicleApiMessage!,
+              style: MabTextStyles.corpsSecondaire.copyWith(
+                color: MabColors.diagnosticOrange,
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 
@@ -493,11 +912,13 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
 
   @override
   void dispose() {
+    _plateLookupCtrl.dispose();
     _brandCtrl.dispose();
     _modelCtrl.dispose();
     _motorisationCtrl.dispose();
     _yearCtrl.dispose();
     _plateCtrl.dispose();
+    _colorCtrl.dispose();
     _vinCtrl.dispose();
     _mileageCtrl.dispose();
     _notesCtrl.dispose();

@@ -1,6 +1,8 @@
 // home_screen.dart — Mécano à Bord
 // Accueil : bandeaux harmonisés (même hauteur / style), ordre défini produit.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
@@ -46,11 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedNavIndex = 0;
 
+  StreamSubscription<ObdConnectionState>? _obdConnSub;
+
   @override
   void initState() {
     super.initState();
     _loadData();
-    _obdService.connectionState.listen((state) {
+    _obdConnSub = _obdService.connectionState.listen((state) {
       if (mounted) setState(() => _obdState = state);
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -401,6 +405,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: MabWatermarkBackground(
+              watermarkOpacity: 0.15,
               child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -879,6 +884,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
+    _obdConnSub?.cancel();
     _obdService.dispose();
     super.dispose();
   }

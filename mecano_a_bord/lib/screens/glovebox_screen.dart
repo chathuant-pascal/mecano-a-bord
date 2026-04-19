@@ -7,7 +7,6 @@ import 'package:open_file/open_file.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/widgets/mab_demo_banner.dart';
-import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/widgets/glovebox_vehicle_health_tab.dart';
 
 /// Boîte à gants — version MAB (thème sombre)
@@ -112,20 +111,18 @@ class _GloveboxScreenState extends State<GloveboxScreen>
         children: [
           if (_isDemoMode) const MabDemoBanner(),
           Expanded(
-            child: MabWatermarkBackground(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _ProfileTab(repository: _repository),
-                  _DocumentsTab(repository: _repository),
-                  _MaintenanceTab(repository: _repository),
-                  _DiagnosticHistoryTab(
-                    key: _diagnosticHistoryKey,
-                    repository: _repository,
-                  ),
-                  GloveboxVehicleHealthTab(repository: _repository),
-                ],
-              ),
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _ProfileTab(repository: _repository),
+                _DocumentsTab(repository: _repository),
+                _MaintenanceTab(repository: _repository),
+                _DiagnosticHistoryTab(
+                  key: _diagnosticHistoryKey,
+                  repository: _repository,
+                ),
+                GloveboxVehicleHealthTab(repository: _repository),
+              ],
             ),
           ),
         ],

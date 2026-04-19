@@ -6,10 +6,6 @@ import 'package:flutter/services.dart';
 
 import 'package:mecano_a_bord/data/moteur_symptomes_knowledge.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
-import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
-
-/// Même filigrane que l’écran assistant IA (`ai_chat_screen.dart`).
-const String _kDiagnosticGuideWatermarkAsset = 'assets/images/iamecanoabord.png';
 
 class DiagnosticGuideScreen extends StatefulWidget {
   const DiagnosticGuideScreen({super.key});
@@ -77,15 +73,7 @@ class _DiagnosticGuideScreenState extends State<DiagnosticGuideScreen> {
     });
   }
 
-  /// Filigrane en fond, comme sur les autres écrans (contenu par-dessus).
-  Widget _bodyWithWatermark(Widget child) {
-    return MabWatermarkBackground(
-      assetPath: _kDiagnosticGuideWatermarkAsset,
-      watermarkOpacity: 0.55,
-      watermarkWidthFraction: 0.85,
-      child: child,
-    );
-  }
+  Widget _bodyWithWatermark(Widget child) => child;
 
   @override
   Widget build(BuildContext context) {

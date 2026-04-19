@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mecano_a_bord/formation_url.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
-import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 
 class FormationWebLaunchScreen extends StatefulWidget {
   const FormationWebLaunchScreen({super.key});
@@ -60,15 +59,13 @@ class _FormationWebLaunchScreenState extends State<FormationWebLaunchScreen> {
           style: MabTextStyles.titreSection,
         ),
       ),
-      body: MabWatermarkBackground(
-        child: Center(
-          child: Padding(
-            padding: MabDimensions.paddingEcran,
-            child: Text(
-              'Ouverture de la formation dans ton navigateur…',
-              style: MabTextStyles.corpsSecondaire,
-              textAlign: TextAlign.center,
-            ),
+      body: Center(
+        child: Padding(
+          padding: MabDimensions.paddingEcran,
+          child: Text(
+            'Ouverture de la formation dans ton navigateur…',
+            style: MabTextStyles.corpsSecondaire,
+            textAlign: TextAlign.center,
           ),
         ),
       ),

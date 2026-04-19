@@ -55,6 +55,9 @@ class LiveMonitoringService {
 
   Timer? _timerAll;
 
+  /// Évite plusieurs cycles [Timer.periodic] en parallèle (lectures OBD + SQLite lentes → surcharge et figements).
+  bool _pollCycleInFlight = false;
+
   final Map<_AlertKind, DateTime> _lastSpoken = {};
 
   /// Démo uniquement : annonces PID non supportés.
@@ -107,6 +110,7 @@ class LiveMonitoringService {
   void stop({bool obdDisconnected = false}) {
     _timerAll?.cancel();
     _timerAll = null;
+    _pollCycleInFlight = false;
     _lastSpoken.clear();
     ObdSessionCoordinator.liveMonitoringActive = false;
     liveMonitoringRunningNotifier.value = false;
@@ -120,7 +124,9 @@ class LiveMonitoringService {
   /// Hors démo : lecture groupée + [VehicleHealthService] (références + apprentissage + alertes graduées).
   Future<void> _pollProduction() async {
     if (!ObdSessionCoordinator.liveMonitoringActive) return;
-
+    if (_pollCycleInFlight) return;
+    _pollCycleInFlight = true;
+    try {
     final native = await _obd.readNativeConnectionState();
     if (native is! ObdConnected) {
       stop(obdDisconnected: true);
@@ -162,15 +168,24 @@ class LiveMonitoringService {
       oilPressureSupported: ro.supported,
       isElectricVehicle: isElectric,
     );
+    } finally {
+      _pollCycleInFlight = false;
+    }
   }
 
   // ——— Démo : ancienne logique par seuils (scénarios de test) ———
 
   Future<void> _pollDemoCycle() async {
     if (!ObdSessionCoordinator.liveMonitoringActive) return;
-    await _pollTemp(true);
-    await _pollVolt(true);
-    await _pollOil(true);
+    if (_pollCycleInFlight) return;
+    _pollCycleInFlight = true;
+    try {
+      await _pollTemp(true);
+      await _pollVolt(true);
+      await _pollOil(true);
+    } finally {
+      _pollCycleInFlight = false;
+    }
   }
 
   double _demoTemp() {

@@ -11,7 +11,6 @@ import 'package:mecano_a_bord/data/demo_data.dart';
 import 'package:mecano_a_bord/services/bluetooth_obd_service.dart';
 import 'package:mecano_a_bord/services/live_monitoring_service.dart';
 import 'package:mecano_a_bord/widgets/mab_obd_session_dialogs.dart';
-import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/widgets/mab_demo_banner.dart';
 import 'package:mecano_a_bord/services/tts_service.dart';
 import 'package:mecano_a_bord/widgets/mab_obd_not_responding_dialog.dart';
@@ -71,6 +70,8 @@ class _ObdScanScreenState extends State<ObdScanScreen>
   /// Diagnostic lancé depuis l’accueil ([autoStartDiagnostic]) : une seule lecture auto, sans bouton sur cet écran.
   bool _autoDiagnosticLaunched = false;
 
+  StreamSubscription<ObdConnectionState>? _obdConnSub;
+
   bool get _hideBondedDeviceList =>
       widget.autoStartDiagnostic && !_isDemoMode;
 
@@ -81,7 +82,7 @@ class _ObdScanScreenState extends State<ObdScanScreen>
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     )..repeat();
-    _obdService.connectionState.listen((state) {
+    _obdConnSub = _obdService.connectionState.listen((state) {
       if (!mounted) return;
 
       if ((state is ObdConnected ||
@@ -524,6 +525,7 @@ class _ObdScanScreenState extends State<ObdScanScreen>
   @override
   void dispose() {
     _connectingTimer?.cancel();
+    _obdConnSub?.cancel();
     _pulseController.dispose();
     _obdService.dispose();
     super.dispose();
@@ -549,11 +551,7 @@ class _ObdScanScreenState extends State<ObdScanScreen>
         children: [
           if (_isDemoMode) const MabDemoBanner(),
           Expanded(
-            child: MabWatermarkBackground(
-              assetPath: 'assets/images/suv_images.png',
-              watermarkOpacity: 0.55,
-              watermarkWidthFraction: 0.85,
-              child: Stack(
+            child: Stack(
                 children: [
                   Padding(
                     padding: MabDimensions.paddingEcran,
@@ -672,7 +670,9 @@ class _ObdScanScreenState extends State<ObdScanScreen>
                         shadows: _kObdFloatingTextShadows,
                       ),
                     ),
-                  ),
+                  )
+                else if (_state is ObdConnected)
+                  _buildLancerDiagnosticButton(),
               ],
               if (_hideBondedDeviceList)
                 Expanded(
@@ -713,11 +713,7 @@ class _ObdScanScreenState extends State<ObdScanScreen>
                                         textAlign: TextAlign.center,
                                       )
                                     : _state is ObdConnected
-                                        ? Text(
-                                            'OBD connecté.',
-                                            style: MabTextStyles.corpsNormal,
-                                            textAlign: TextAlign.center,
-                                          )
+                                        ? _buildLancerDiagnosticButton()
                                         : const SizedBox.shrink(),
                               ),
                             ),
@@ -829,16 +825,15 @@ class _ObdScanScreenState extends State<ObdScanScreen>
               ),
             ],
             ],
-              ),
-            ),
-            if (_state is ObdConnecting)
-              _ConnectingOverlay(
-                animation: _pulseController,
-                secondsRemaining: _connectingSecondsRemaining,
-              ),
-          ],
+          ),
         ),
-      ),
+        if (_state is ObdConnecting)
+          _ConnectingOverlay(
+            animation: _pulseController,
+            secondsRemaining: _connectingSecondsRemaining,
+          ),
+      ],
+    ),
           ),
           SafeArea(
             top: false,
@@ -1256,6 +1251,32 @@ class _ObdScanScreenState extends State<ObdScanScreen>
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  Widget _buildLancerDiagnosticButton() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: MabDimensions.espacementM),
+      child: SizedBox(
+        width: double.infinity,
+        height: MabDimensions.boutonHauteur,
+        child: ElevatedButton.icon(
+          onPressed: _vehicleReading ? null : () => unawaited(_readVehicleData()),
+          icon: const Icon(Icons.search_rounded, color: MabColors.blanc),
+          label: Text(
+            'Lancer le diagnostic',
+            style: MabTextStyles.boutonPrincipal.copyWith(color: MabColors.blanc),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: MabColors.rouge,
+            foregroundColor: MabColors.blanc,
+            disabledBackgroundColor: MabColors.grisContour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(MabDimensions.rayonBouton),
+            ),
+          ),
+        ),
       ),
     );
   }

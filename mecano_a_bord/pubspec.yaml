@@ -25,6 +25,7 @@ dependencies:
   permission_handler: ^11.3.0
   flutter_tts: ^4.2.0
   speech_to_text: ^7.0.0
+  webview_flutter: ^4.13.1
 
 dev_dependencies:
   flutter_test:
@@ -48,11 +49,11 @@ flutter:
 
 flutter_native_splash:
   color: "#111111" # MabColors.noir (noir profond)
-  image: assets/images/logo.png
+  image: assets/images/onboarding_page1.png
   fullscreen: true
   android_12:
     color: "#111111"
-    image: assets/images/logo_mark.png
+    branding: assets/images/logo_mark.png
   android: true
   ios: true
 

@@ -1,6 +1,6 @@
 // ============================================================
 // MÉCANO À BORD — Point d'entrée
-// Onboarding (une fois) → Profil véhicule → Accueil
+// Onboarding (une fois) → Formation WebView → Accueil (profil depuis l’accueil)
 // ============================================================
 //
 // URL formation : modifier uniquement kFormationUrl dans lib/formation_url.dart
@@ -25,6 +25,7 @@ import 'package:mecano_a_bord/screens/diagnostic_guide_screen.dart';
 import 'package:mecano_a_bord/screens/formation_web_launch_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mecano_a_bord/widgets/mab_logo.dart';
+import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/services/tts_service.dart';
 import 'package:mecano_a_bord/services/surveillance_auto_coordinator.dart';
 
@@ -130,14 +131,17 @@ class _SplashRoutingState extends State<SplashRouting> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MabColors.noir,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const MabLogo(size: 160),
-            const SizedBox(height: MabDimensions.espacementL),
-            const CircularProgressIndicator(color: MabColors.grisDore),
-          ],
+      body: MabWatermarkBackground(
+        watermarkOpacity: 0.15,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const MabLogo(size: 160),
+              const SizedBox(height: MabDimensions.espacementL),
+              const CircularProgressIndicator(color: MabColors.grisDore),
+            ],
+          ),
         ),
       ),
     );

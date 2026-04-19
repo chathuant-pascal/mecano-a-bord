@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 1 terminé et solide : hystérésis surveillance sur 4 canaux
+
+- **MODULE 1** considéré **bouclé côté produit** : diagnostic OBD validé + comportement **surveillance** sans annonces vocales en boucle après retour à la normale (terrain Inès / logique hystérésis).
+- **`vehicle_health_service.dart`** : hystérésis complète — **température** (≤ 95 °C + bande), **tension** (seuils 12,5 / 12,8 V + bande), **RPM** (retour plage idle), **pression huile** (&lt; 100 / &gt; 150 kPa) ; **reset** de tous les drapeaux dans `resetLiveMonitoringWarmupState()`.
+- **Commit** : message *« MODULE 1 : hystérésis complète sur tous les canaux surveillance… »* sur `main`.
+
+---
+
 ## 2026-04-19 — MODULE 1 validé : diagnostic OBD corrigé et testé (SM-A137F)
 
 - **MODULE 1 (diagnostic OBD)** : statut **validé** — connexion dongle sans blocage, lecture diagnostic aboutissante sur **Samsung SM-A137F** + dongle OBD (terrain Pascal).

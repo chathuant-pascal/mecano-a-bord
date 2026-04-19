@@ -1,7 +1,9 @@
 # FICHE MODULE 01 — DIAGNOSTIC OBD
 
 **Statut** : ✅ **Validé le 19/04/2026**  
+**Statut final** : ✅ **Validé le 19/04/2026** — MODULE 1 diagnostic OBD + chaîne surveillance associée **stables** (terrain).  
 **Corrections appliquées** : bouton « Lancer le diagnostic » + verrou surveillance (pas de conflit diagnostic / mode conduite) + abonnements Bluetooth (`StreamSubscription` annulés à la fermeture des écrans) + verrou anti-chevauchement des sondages surveillance (`live_monitoring_service.dart`).  
+**Surveillance mode conduite — hystérésis** (`vehicle_health_service.dart`) : appliquée sur les **4 canaux** — **température** (réarmement vocal ≤ 95 °C et logique bande), **tension batterie** (12,5 V / 12,8 V / retour bande), **régime moteur RPM** (retour dans la plage idle `[minB, maxB]`), **pression huile** (&lt; 100 kPa → réarmement &gt; 150 kPa) ; **reset complet** des drapeaux vocaux dans `resetLiveMonitoringWarmupState()` à l’arrêt / redémarrage surveillance.  
 **Test confirmé** : connexion immédiate sans blocage, **diagnostic aboutit** sur **Samsung SM-A137F** avec dongle OBD (iCar Pro Vgate).  
 **Date diagnostic initial** : 19/04/2026  
 **Développeur** : Pascal Chathuant + Claude Code / Cursor
@@ -28,6 +30,7 @@ Cet écran permet à l'utilisateur de connecter son téléphone à un petit boî
 | `lib/services/bluetooth_obd_service.dart` | Service Bluetooth — connexion SPP + envoi des commandes OBD |
 | `lib/services/obd_session_coordinator.dart` | Coordinateur — évite les conflits avec le Mode Conduite |
 | `lib/services/live_monitoring_service.dart` | Surveillance temps réel — bloque le diagnostic si actif |
+| `lib/services/vehicle_health_service.dart` | Alertes graduées mode conduite + **hystérésis vocale** sur les 4 canaux (température, batterie, RPM, huile) |
 | `lib/widgets/mab_obd_session_dialogs.dart` | Dialogues — "diagnostic bloqué par surveillance", "effacer codes" |
 | `lib/widgets/mab_obd_not_responding_dialog.dart` | Dialogue — "OBD ne répond pas, relancer ?" |
 | `lib/data/mab_repository.dart` | Accès données — profil véhicule, historique diagnostics |

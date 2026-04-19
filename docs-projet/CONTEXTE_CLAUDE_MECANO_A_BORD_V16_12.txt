@@ -1,0 +1,276 @@
+MECANO A BORD --- Fichier de contexte pour Claude
+Version 16.12 --- Mise à jour --- 14/04/2026
+
+⚠️ CE FICHIER REMPLACE LE V16.11
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.12.
+
+REGLE DE SESSION
+A intervalles reguliers, Claude met a jour ce fichier et le propose en telechargement.
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.12.
+
+================================================================
+QUI EST L'UTILISATEUR
+================================================================
+- Prenom : Pascal (Pascal Chathuant)
+- Localisation : Guadeloupe (decalage horaire -5h avec Paris)
+- Profil : Electromecanicien avec 25+ ans d'experience. Porteur du projet Mecano a Bord.
+- Niveau tech : Debutant complet en programmation.
+- Historique : A travaille avec ChatGPT (assistant Elina) pour preparer documentation et base de code.
+- Developpeuse : Ines (freelance) --- RDV CONFIRME MARDI 8H30 HEURE GUADELOUPE (13h30 Paris)
+- Mode de travail : Guide pas a pas, explications simples, sans jargon.
+  Fichiers livres un par un, telechargeables.
+  ⚠️ PROMPTS CURSOR/CLAUDE CODE : toujours en copier-coller direct, pas en fichier a telecharger.
+
+================================================================
+ENVIRONNEMENT DE TRAVAIL
+================================================================
+- Claude Code installe (extension VS Code) --- connexion via Claude.ai Subscription
+- Cursor installe (editeur de code avec IA integree --- base sur VS Code)
+- GitHub configure : repo chathuant-pascal/mecano-a-bord
+- Git installe et configure sur le PC de Pascal
+- Android Studio installe
+- Flutter installe
+- iOS : laisse de cote pour l'instant
+- Mode developpeur Windows active
+- Telephone de test (Pascal) : Samsung SM-A137F (Samsung A13) --- Android 14
+- Telephone Ines (developpeuse) : Samsung A36
+- Workspace : C:\Users\karuc\OneDrive\Bureau\Mecano A Bord\
+
+================================================================
+LE PROJET GLOBAL --- DEUX PILIERS
+================================================================
+- Pilier 1 : L'application mobile Mecano a Bord → VERSION 1.0.0+14 FONCTIONNELLE ✅
+- Pilier 2 : La formation web "La Methode Sans Stress Auto" → EN COURS DE FINALISATION
+- La formation explique, eduque, convainc → donne envie d'acheter l'app
+- L'application accompagne au quotidien → prolonge la valeur de la formation
+- La formation EST le produit principal, l'app en est l'outil compagnon
+
+================================================================
+PILIER 1 --- APPLICATION MOBILE MECANO A BORD
+================================================================
+
+Version actuelle : 1.0.0+14
+SDK Flutter : >=3.0.0 <4.0.0
+
+STATUT AU 14/04/2026 :
+   APPLICATION CONSIDEREE PRETE PAR PASCAL
+   RDV avec Ines : MARDI 8H30 HEURE GUADELOUPE (13h30 Paris) ← AVANCE
+
+----------------------------------------------------------------
+BRIEF INES --- MIS A JOUR LE 14/04/2026 ✅
+----------------------------------------------------------------
+Fichier : Brief_Ines_Licence_Signature_MAB_V2.docx ← VERSION A JOUR
+Corrections effectuees :
+✅ Version : 1.0.0+1 → corrige en 1.0.0+14
+✅ Date : Mars 2026 → corrige en Avril 2026
+✅ Distribution : "APK direct hors Play Store" → corrige en "Play Store"
+✅ Email contact : contact@mecanoabord.fr (a confirmer actif)
+
+MISSION 1 (PRIORITE ABSOLUE) : Cle de signature Release
+- Generer keystore .jks / configurer build.gradle.kts
+- Compiler APK Release : flutter build apk --release
+- Tester sur Samsung SM-A137F
+- Sauvegarder keystore : Google Drive + copie locale
+  ⚠️ JAMAIS dans GitHub
+
+MISSION 2 : Systeme de Licence (max 2 appareils)
+- Firebase : firebase_core + cloud_firestore + device_info_plus
+- Collection 'licences' : code → { valide, appareils: [id1,id2] }
+- Ecran activation code au 1er demarrage
+- Format : MAB-XXXX-XXXX-XXXX
+- Mode demo reste accessible sans code
+
+----------------------------------------------------------------
+DECISION STRATEGIQUE --- 11/04/2026
+----------------------------------------------------------------
+→ L'app est telechargeable librement sur le Play Store
+→ A la 1ere ouverture : SEULE la formation est accessible
+→ Toutes les autres fonctions VERROULLEES avec message :
+  "Cette fonction sera disponible une fois ta formation
+   Mecano a Bord completee."
+→ Une fois la formation terminee → tout se debloque automatiquement
+→ Sauvegarde via SharedPreferences Flutter
+⚠️ A implementer avec Cursor quand la formation est hebergee sur mecanoabord.fr
+
+----------------------------------------------------------------
+MODIFICATIONS APP EFFECTUEES --- SESSION 14/04/2026
+----------------------------------------------------------------
+✅ Splash Screen : image principale changee → onboarding_page1.png
+   (Android 12+ garde logo_mark.png)
+   Commande executee : dart run flutter_native_splash:create
+
+✅ Nouveau flux post-onboarding :
+   ANCIEN : Onboarding → Profil vehicule → Accueil
+   NOUVEAU : Onboarding → Formation WebView → Accueil
+   Fichier modifie : lib/screens/onboarding_screen.dart
+   Nouveau fichier cree : lib/screens/formation_webview_screen.dart
+
+✅ webview_flutter ^4.13.1 installe dans pubspec.yaml
+
+✅ Pont JavaScript prevu :
+   Quand formation terminee → page web appelle : MABFormation.postMessage('done')
+   Cela declenche le deblocage et navigation vers HomeScreen()
+   ⚠️ A ajouter dans index.html quand formation hebergee sur mecanoabord.fr
+
+================================================================
+PILIER 2 --- FORMATION WEB "TA VOITURE SANS GALERE"
+================================================================
+
+Nom commercial    : TA VOITURE SANS GALERE
+Nom methode       : La Methode Sans Stress Auto
+Slogan            : "Je ne t'apprends pas la mecanique.
+                     Je t'apprends a parler le meme langage que ta voiture."
+Public cible      : conducteurs novices, femmes, jeunes permis, anxieux face aux pannes
+
+----------------------------------------------------------------
+INFRASTRUCTURE TECHNIQUE
+----------------------------------------------------------------
+→ Fichier principal : formation-web/index.html (~8000+ lignes)
+→ Workspace : C:\Users\karuc\OneDrive\Bureau\Mecano A Bord\
+→ GitHub repo : chathuant-pascal/mecano-a-bord
+→ GitHub Pages : https://chathuant-pascal.github.io/mecano-a-bord/formation-web/index.html
+→ URL finale prevue : https://mecanoabord.fr/formation
+→ CLAUDE.md : lu automatiquement a chaque session Claude Code
+→ Mise a jour : git add . / git commit -m "..." / git push
+
+----------------------------------------------------------------
+STATUT FORMATION --- SESSION 14/04/2026
+----------------------------------------------------------------
+✅ 19 images generees avec ChatGPT et integrees dans index.html
+✅ Banniere application supprimee (IMAGE_APP_BANNER_01 + bloc HTML/CSS)
+   Commit : b63f89e — 56 lignes supprimees
+✅ Reorganisation Module 1 : pratique (1.1/1.2/1.3/1.4) avant theorie
+   Commit : (session 14/04)
+✅ Section 1.11 options vehicule :
+   - 10 cadres placeholders 80x80 crees en haut a droite de chaque carte
+   - Commit : f117a0f
+   - 10 images symboles officiels integrees (option-symbole-01 a 10)
+   - Commit : c72cd1f
+   - Correction texte Start & Stop (padding-right:100px)
+✅ Filigrane regle a 35% (opacity: 0.35) dans .filigrane-global
+
+⏳ Section 3.2 zones capot → modifications importantes a faire (DEMAIN)
+⏳ Section liquides/huiles → nouvelle section a creer (DEMAIN)
+⏳ Section pneus → nouvelle section a creer (DEMAIN)
+
+----------------------------------------------------------------
+DERNIERS COMMITS GITHUB
+----------------------------------------------------------------
+b63f89e — Suppression banniere app (56 lignes)
+f117a0f — Section 1.11 : 10 cadres placeholders 80x80
+c72cd1f — Section 1.11 : integration 10 images symboles options vehicule
+
+----------------------------------------------------------------
+IMAGES SECTION 1.11 OPTIONS VEHICULE
+----------------------------------------------------------------
+Toutes placees dans : formation-web/assets/images/etape1/
+option-symbole-01-start-stop.png ✅
+option-symbole-02-regulateur-vitesse.png ✅
+option-symbole-03-limiteur-vitesse.png ✅
+option-symbole-04-sieges-chauffants.png ✅
+option-symbole-05-climatisation-auto.png ✅
+option-symbole-06-frein-electrique-autohold.png ✅
+option-symbole-07-camera-radars-recul.png ✅
+option-symbole-08-degivrage.png ✅
+option-symbole-09-toit-ouvrant.png ✅
+option-symbole-10-sport-dynamic-racing.png ✅
+
+----------------------------------------------------------------
+PROMPTS CLAUDE CODE RESTANTS --- A FAIRE DEMAIN
+----------------------------------------------------------------
+⚠️ CES PROMPTS SONT DANS LE FICHIER : PROMPT_RAPPEL_SESSION_13_04_2026.txt
+→ Prompt C : Section 3.2 + liquides + pneus (le plus gros morceau)
+
+================================================================
+RESTE A FAIRE --- FORMATION WEB
+================================================================
+⏳ Prompt C : section 3.2 + liquides + pneus (Claude Code) ← DEMAIN
+⏳ 10 photos options vehicule (Pascal --- Pexels/Unsplash)
+⏳ 10 videos a filmer (Pascal)
+⏳ Pointer mecanoabord.fr vers GitHub Pages (OVH → CNAME)
+⏳ Ajouter MABFormation.postMessage('done') dans index.html
+⏳ Page de vente Systeme.io
+⏳ Sequence email post-webinaire
+
+================================================================
+RESTE A FAIRE --- APPLICATION MOBILE
+================================================================
+⏳ RDV Ines MARDI 8H30 heure Guadeloupe ← DEMAIN MATIN
+⏳ Cle de signature Release (Mission 1 Ines)
+⏳ Systeme de licence Firebase (Mission 2 Ines)
+⏳ Verrouillage app jusqu'a fin formation (Cursor) ← apres hebergement
+⏳ Completer SIRET dans mentions legales
+⏳ Confirmer contact@mecanoabord.fr actif
+⏳ Tester nouveau splash screen sur Samsung SM-A137F
+⏳ Tester nouveau flux onboarding → formation WebView → accueil
+
+================================================================
+COMPTES ET INFRASTRUCTURE
+================================================================
+✅ OVH : mecanoabord.fr + mecanoabord.com (karucards@gmail.com)
+✅ Gmail pro : mecanoabord@gmail.com
+✅ Systeme.io
+✅ GitHub : chathuant-pascal/mecano-a-bord (branche main)
+✅ GitHub Pages : actif et accessible
+⏳ YouTube
+⏳ Facebook (Page + Groupe prive eleves)
+⏳ Instagram
+⏳ TikTok (plus tard)
+⏳ LinkedIn (plus tard)
+
+================================================================
+ROADMAP V2/V3/V4
+================================================================
+V2 Priorite 1 → Base communautaire anonyme (Waze de la sante auto)
+V2 Priorite 2 → Coach Conducteur (score / impact / fatigue)
+V2 Priorite 3 → Boite Noire Conducteur (completion)
+V2 Priorite 4 → Miroir Garage (decoder devis auto, OCR)
+V2 Priorite 5 → Passeport Vehicule
+V3             → Garage des IA / patterns IA / partenariats
+V4             → Systeme Multi-IA Collaboratif
+
+================================================================
+PHRASES CLES DE PASCAL
+================================================================
+"Quand tu comprends ta voiture, tu apprends a la faire durer."
+"Un controle, c'est 2 minutes. Une casse, c'est 2 000 euros."
+"Ton moteur te pardonne tout, sauf l'oubli."
+"Un conducteur informe n'est plus un client perdu."
+"Comprendre ≠ reparer soi-meme. Comprendre = decider calmement."
+"Je ne t'apprends pas la mecanique, je t'apprends a parler le meme langage que ta voiture."
+
+================================================================
+REGLES DE TRAVAIL
+================================================================
+- Langage simple, sans jargon / un fichier a la fois
+- Prompts Claude Code / Cursor : copier-coller direct (pas de fichier)
+- Claude Code : diagnostic AVANT modification
+- Pascal : electromecanicien 25 ans / Guadeloupe (-5h Paris)
+- Ines : developpeuse freelance / Samsung A36
+- Couleur signature : rouge #CC0000
+
+================================================================
+FICHIERS A CONSERVER
+================================================================
+CE FICHIER : CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt ← REFERENCE
++ PROMPT_RAPPEL_SESSION_13_04_2026.txt (contient Prompt C encore utile)
++ Brief_Ines_Licence_Signature_MAB_V2.docx ← VERSION A JOUR
+
+FICHIERS A SUPPRIMER :
+❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_11.txt
+❌ PROMPT_RAPPEL_SESSION_12_04_2026.txt
+❌ Brief_Ines_Licence_Signature_MAB.docx (ancienne version)
+
+================================================================
+PROMPT DE RAPPEL --- PROCHAINE SESSION
+================================================================
+1. Charger CE FICHIER en premier (V16.12)
+2. Charger PROMPT_RAPPEL_SESSION_13_04_2026.txt (pour Prompt C)
+3. Claude Code → Prompt C (section 3.2 + liquides + pneus)
+4. Apres RDV Ines → tester splash + flux onboarding sur Samsung
+
+================================================================
+Fin du fichier --- Version 16.12 --- 14/04/2026
+⚠️ REMPLACE LE V16.11 --- Supprimer tous les precedents
+© Mecano a Bord --- Pascal Chathuant --- Guadeloupe
+================================================================

@@ -37,4 +37,4 @@ Pour l’**historique daté** et l’**état du projet**, utiliser en priorité 
 
 ---
 
-*Dernière mise à jour de cet index : **2026-04-05** — build **v1.0.0+11** ; doc VERIFICATION / BACKLOG / EVOLUTION / NOTES §5b alignées*
+*Dernière mise à jour de cet index : **2026-04-14** — entrée **EVOLUTION** + **VERIFICATION** (43 fichiers Dart, WebView formation) ; **BACKLOG** B10 ; **NOTES** navigation formation*

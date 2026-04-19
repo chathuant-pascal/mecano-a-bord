@@ -35,7 +35,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 
 | Id | Élément | Statut | Date / note |
 |----|---------|--------|-------------|
-| B10 | Onboarding (5 pages avec images) | Fait | 2026-03-09 — logo, obd, boite_a_gant, suv_images, systeme_io ; **2026-03-28** — page d’**acceptation des conditions** en premier (hors carrousel), puis 5 pages ; lien `/legal-mentions` ; bouton « J’accepte et je commence » |
+| B10 | Onboarding (5 pages avec images) | Fait | 2026-03-09 — logo, obd, boite_a_gant, suv_images, systeme_io ; **2026-03-28** — page d’**acceptation des conditions** en premier (hors carrousel), puis 5 pages ; lien `/legal-mentions` ; bouton « J’accepte et je commence » ; **2026-04-14** — après onboarding → **formation WebView interne** (`formation_webview_screen.dart`, `kFormationUrl`) puis accueil si **`formation_done`** ; profil véhicule **non** imposé au premier lancement |
 | B11 | Profil véhicule (glovebox_profile) | Fait | 2026-03-09 — VIN obligatoire (17 car. alphanum.), infobulle, validation ; isComplete inclut VIN ; **2026-03-28** — champ optionnel **motorisation** (SQLite `motorisation`, migration v4) |
 | B12 | Accueil (home_screen) + navigation | Fait | **2026-03-28** — bandeaux harmonisés : cartes Boîte à Gants / Mode Conduite / Mode Démo **sans sous-titre** tronqué ; **2026-04-08** — bandeau OBD par défaut **« Connecte ton OBD »** (`titreCard`, pastille masquée + `FittedBox`) — validé build **1.0.0+12** ; **2026-04-09** — build **1.0.0+13** (terrain SM-A137F) |
 | B12b | Accès direct « Système IO » (carte avec image sur l'accueil) | Fait | 2026-03-09 — route /systeme-io, image systeme_io.png |

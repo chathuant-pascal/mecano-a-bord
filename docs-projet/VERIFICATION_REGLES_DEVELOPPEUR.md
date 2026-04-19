@@ -2,7 +2,7 @@
 
 Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2025** (zones tactiles ≥ 48 dp), interface rassurante, stockage et assets documentés.
 
-**Dernière mise à jour (vérification projet) : 11 avril 2026**
+**Dernière mise à jour (vérification projet) : 14 avril 2026**
 
 ---
 
@@ -48,6 +48,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | **surveillance_only_screen** | TextButton « Mentions légales → » (sous texte outil d’aide) | ✅ `MabTextStyles.label` + `grisTexte` — lien secondaire |
 | **privacy_policy_screen** | TextButton « Voir aussi : Mentions légales complètes → » | ✅ `MabTextStyles.label` + `grisDore` |
 | **onboarding_screen** | Page d’acceptation (hors carrousel) : texte conditions + lien « Voir les mentions légales complètes → » (`/legal-mentions`) + « J’accepte et je commence » | ✅ `MabTextStyles.titreSection` / lien `corpsNormal` souligné blanc ; pas d’indicateurs sur cette étape |
+| **formation_webview_screen** | WebView formation post-onboarding (`kFormationUrl`), AppBar titre **Ta Voiture Sans Galère** | ✅ `MabColors` / `MabTextStyles.titreSection` ; contenu web — zones tactiles déléguées à la page |
 
 À valider en **test manuel** sur **Samsung SM-A137F** : lignes d’accordéon IA, tuiles surveillance mode conduite, **navigation mentions légales** (scroll automatique vers la section dans Réglages) et lisibilité des 9 blocs sur petit écran.
 
@@ -106,6 +107,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | permission_handler | ^11.3.0 |
 | flutter_tts | ^4.2.0 |
 | speech_to_text | ^7.0.0 |
+| webview_flutter | ^4.13.1 — WebView formation post-onboarding |
 
 **dev_dependencies** : `flutter_test` (sdk), `flutter_lints` ^3.0.0, `flutter_native_splash` ^2.4.7, `flutter_launcher_icons` ^0.14.4.
 
@@ -127,7 +129,7 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 
 | Fichier | Rôle |
 |---------|------|
-| `lib/main.dart` | Entrée app, `TtsService.init`, routes, splash → onboarding ou accueil. |
+| `lib/main.dart` | Entrée app, `TtsService.init`, routes, splash Flutter → onboarding ou accueil ; flux documenté : onboarding → formation WebView → accueil. |
 | `lib/formation_url.dart` | Constante **`kFormationUrl`** — URL formation web (GitHub Pages ; test local possible). |
 | `lib/data/chat_message.dart` | Modèle message chat (user / IA). |
 | `lib/data/demo_data.dart` | Données factices mode démo. |
@@ -137,14 +139,15 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 | `lib/screens/add_maintenance_screen.dart` | Ajout / édition ligne carnet d’entretien. |
 | `lib/screens/ai_chat_screen.dart` | Chat IA : messages flottants + ombres, filigrane, quota / clés, lien guide diagnostic. |
 | `lib/screens/diagnostic_guide_screen.dart` | Arbre décisionnel guidé → fiches `moteur_symptomes.json` (sans AppBar classique). |
-| `lib/screens/formation_web_launch_screen.dart` | Ouverture formation dans le navigateur (`kFormationUrl`, `url_launcher`) puis retour arrière. |
+| `lib/screens/formation_web_launch_screen.dart` | Ouverture formation dans le **navigateur externe** (`kFormationUrl`, `url_launcher`) — ex. route `/systeme-io` ; distinct de la WebView post-onboarding. |
+| `lib/screens/formation_webview_screen.dart` | **Après onboarding** : WebView interne `kFormationUrl` ; passage **`HomeScreen`** si prefs **`formation_done`** ou message canal JS **`MABFormation`**. |
 | `lib/screens/glovebox_profile_screen.dart` | Création / édition profil véhicule. |
 | `lib/screens/glovebox_screen.dart` | Boîte à gants : documents & entretien. |
 | `lib/screens/help_contact_screen.dart` | Aide (guide étapes, clés API) + contact. |
 | `lib/screens/legal_mentions_screen.dart` | Écran dédié mentions légales & CGU (scroll, même gabarit que politique). |
 | `lib/screens/home_screen.dart` | Accueil, bandeaux, navigation ; bandeau OBD (libellé par défaut **« Connecte ton OBD »**, `FittedBox` si besoin). |
 | `lib/screens/obd_scan_screen.dart` | OBD Bluetooth, connexion + diagnostic depuis l’accueil (auto), effacement codes DTC, filigrane. |
-| `lib/screens/onboarding_screen.dart` | Première ouverture : acceptation conditions puis carrousel 5 pages. |
+| `lib/screens/onboarding_screen.dart` | Première ouverture : acceptation conditions puis carrousel 5 pages ; fin → **`FormationWebViewScreen`** (plus **`/glovebox-profile`** obligatoire). |
 | `lib/screens/placeholder_screen.dart` | Écran titre générique. |
 | `lib/screens/privacy_policy_screen.dart` | Politique de confidentialité. |
 | `lib/screens/settings_screen.dart` | Coach vocal, IA accordéon, surveillance (lien), **Mentions légales & CGU** (scroll `initialSection: 'legal'`), **version affichée** (`package_info_plus`), **réinitialisation complète** (`AppResetService`). |
@@ -175,6 +178,6 @@ Contrôle de conformité : charte MAB (`mab_theme.dart`), accessibilité **EAA 2
 
 ---
 
-**Total** : **42** fichiers Dart sous `mecano_a_bord/lib/` (hors `test/`) — inventaire **exhaustif** dans le tableau § 5.4 ci-dessus.
+**Total** : **43** fichiers Dart sous `mecano_a_bord/lib/` (hors `test/`) — inventaire **exhaustif** dans le tableau § 5.4 ci-dessus.
 
-*Document de référence **règle développeur** MAB / EAA — à actualiser lors de changements majeurs d’UI ou de persistance. Dernière revue : **2026-04-11** — inventaire § 5.4 complété (formation web, `vehicle_reference_service`, onglet Santé) ; URL formation **GitHub Pages** (`formation_url.dart`) ; build terrain **1.0.0+13** (Samsung **SM-A137F**, mise à jour **2026-04-11**).*
+*Document de référence **règle développeur** MAB / EAA — à actualiser lors de changements majeurs d’UI ou de persistance. Dernière revue : **2026-04-14** — **`formation_webview_screen.dart`** ; dépendance **`webview_flutter`** ; splash natif image **`onboarding_page1.png`** (`flutter_native_splash`) ; parcours onboarding → WebView formation → accueil.*

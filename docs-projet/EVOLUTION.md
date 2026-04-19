@@ -6,6 +6,55 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 1 validé : diagnostic OBD corrigé et testé (SM-A137F)
+
+- **MODULE 1 (diagnostic OBD)** : statut **validé** — connexion dongle sans blocage, lecture diagnostic aboutissante sur **Samsung SM-A137F** + dongle OBD (terrain Pascal).
+- **Correctifs livrés** : bouton « Lancer le diagnostic » sur `obd_scan_screen.dart` ; cohérence diagnostic ↔ surveillance ; abonnements au flux Bluetooth annulés (`home_screen` / `obd_scan_screen`) ; anti-chevauchement des cycles de surveillance (`live_monitoring_service.dart`).
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_01_DIAGNOSTIC_OBD.md` mise à jour (statut validé 19/04/2026).
+
+---
+
+## 2026-04-14 — Profil véhicule : récupération plaque (API gouv) + fallback manuel
+
+- **Diagnostic écran existant** : `glovebox_profile_screen.dart` utilisait uniquement le formulaire complet local (SQLite via `MabRepository`), sans récupération plaque ni clé `SharedPreferences` dédiée.
+- **Ajout logique “une seule tentative API”** dans `glovebox_profile_screen.dart` :
+  - appel `GET https://particulier.api.gouv.fr/api/v2/immatriculation?immatriculation=...` (timeout 10 s) ;
+  - sauvegarde immédiate des clés prefs `vehicle_marque`, `vehicle_modele`, `vehicle_energie`, `vehicle_annee`, `vehicle_couleur`, `vehicle_immat`, `vehicle_data_fetched` (et `vehicle_portes` pour saisie manuelle) ;
+  - si `vehicle_data_fetched == true`, l’écran affiche les données sauvegardées et **n’appelle plus l’API**.
+- **Fallback bienveillant** : en cas d’échec API, bascule vers formulaire manuel (marque, modèle, année, carburant, couleur, portes) avec message rassurant.
+- **Modification à tout moment** : bouton “Modifier les informations” conservé dans la section identité véhicule ; enregistrement écrase les anciennes valeurs prefs tout en gardant `vehicle_data_fetched = true`.
+- **Navigation** : aucun changement du flux onboarding → formation → accueil.
+
+---
+
+## 2026-04-14 — Harmonisation filigrane app mobile (vitrine 15% / contenu sans filigrane)
+
+- **Filigrane vitrine** : opacité fixée à **15%** sur **Splash**, **Onboarding** et **Accueil** (`main.dart`, `onboarding_screen.dart`, `home_screen.dart`).
+- **Pages de contenu** : filigrane supprimé sur **diagnostic / résultats**, **profil véhicule** et **historique** (`diagnostic_guide_screen.dart`, `obd_scan_screen.dart`, `glovebox_profile_screen.dart`, `glovebox_screen.dart`).
+- **Parcours formation** : filigrane retiré sur l’écran de lancement navigateur (`formation_web_launch_screen.dart`) ; **WebView formation** déjà sans filigrane (`formation_webview_screen.dart`).
+- **Impact** : rendu plus lisible sur écrans de contenu, aligné avec la logique demandée (vitrine légère, contenu sans marque visuelle intrusive).
+
+---
+
+## 2026-04-14 — Correction attribution téléphones (Pascal / Inès)
+
+- **Correction** : le téléphone terrain **Samsung SM-A137F (A13, Android 14)** est celui de **Pascal** (et non celui d’Inès).
+- **Ajout** : téléphone d’Inès (développeuse) documenté comme **Samsung A36**.
+- Fichiers harmonisés : **`.cursor/rules/contexte-pascal-mab.mdc`**, **`CLAUDE.md`**, **`docs-projet/NOTES_INTENTION_TECHNIQUES.md`** (§5b), **`docs-projet/CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt`**.
+- **Impact** : clarification des appareils de test et des responsabilités terrain, sans changement de code applicatif.
+
+---
+
+## 2026-04-14 — Splash + parcours post-onboarding : formation en WebView interne
+
+- **`flutter_native_splash`** (`pubspec.yaml`) : image principale du splash → **`assets/images/onboarding_page1.png`** ; **Android 12+** inchangé (`logo_mark.png`). Régénération : `dart run flutter_native_splash:create`.
+- **Navigation** : fin d’onboarding → **`FormationWebViewScreen`** (`lib/screens/formation_webview_screen.dart`) : WebView **`webview_flutter`**, charge **`kFormationUrl`** (`formation_url.dart`) ; titre **« Ta Voiture Sans Galère »** ; fond **`MabColors.noir`**. Plus de redirection obligatoire vers **`/glovebox-profile`** au premier lancement — le profil véhicule reste accessible depuis l’accueil / Boîte à gants.
+- **Déblocage accueil** : lecture périodique + retour app sur **`SharedPreferences`** clé **`formation_done`** ; canal JS **`MABFormation`** (`postMessage` `done` / `1` / `true`) pour aligner la page web et Flutter.
+- **`main.dart`** : commentaire d’en-tête aligné sur le flux **Onboarding → Formation WebView → Accueil**.
+- **Terrain** : **`flutter build apk --release`** + **`flutter install -d R58T92HCDAX`** — Samsung **SM-A137F** (Android 14), APK **~87,4 Mo** (`app-release.apk`).
+
+---
+
 ## 2026-04-11 — Build 1.0.0+14 + formation / liens externes (Android 11+) — SM-A137F
 
 - **Cause** : `canLaunchUrl` renvoyait souvent **false** sur Android 11+ sans déclaration de visibilité ; `formation_web_launch_screen` n’appelait alors jamais `launchUrl` et revenait à l’accueil sans ouvrir le navigateur.

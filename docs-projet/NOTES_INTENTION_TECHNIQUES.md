@@ -21,6 +21,7 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 |----------|--------|
 | **Modèle cible** | MVVM (Model-View-ViewModel). Source de vérité : Boîte à gants (profil véhicule, documents, carnet). |
 | **Navigation** | Routage Flutter (routes nommées dans `main.dart` : `/glovebox-profile`, `/obd-scan`, `/glovebox`, `/add-maintenance` avec arguments optionnels `editEntryId`, `/ai-chat`, `/settings`). |
+| **Formation après onboarding (2026-04-14)** | Fin d’onboarding : **`FormationWebViewScreen`** (`webview_flutter`) charge **`kFormationUrl`** ; pas de profil véhicule obligatoire à cette étape. Accueil : prefs **`formation_done`** (polling + reprise app) et/ou canal JS **`MABFormation.postMessage('done')`**. L’écran **`formation_web_launch_screen`** (navigateur externe, `/systeme-io`) reste un parcours distinct. |
 | **État** | StatefulWidgets + services (AiConversationService, BluetoothObdService, MabRepository). Pas de state management global pour V1. |
 | **Données locales** | sqflite (SQLite) ; schéma et accès via `mab_database.dart` et `mab_repository.dart`. Données sensibles : flutter_secure_storage (Keychain iOS, EncryptedSharedPreferences Android). |
 
@@ -46,7 +47,7 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 | **Charte** | `mecano_a_bord/lib/theme/mab_theme.dart` — MabColors, MabTextStyles, MabDimensions. Aucune couleur/typo en dur dans les écrans. Palette officielle : Rouge principal `#C4161C`, Rouge secondaire `#E31E24`, Noir profond `#111111`, Gris anthracite `#2A2A2A`, Gris métallique `#B8A98A`, Fond clair `#F5F5F5`. |
 | **Accessibilité** | Conformité EAA 2025 : zones tactiles ≥ 48 dp (MabDimensions.zoneTactileMin), boutons 56 dp. |
 | **Ton** | Interface rassurante, pas de jargon ; mots interdits dans les messages (panne, danger, défaillance, etc.). |
-| **Design system / Figma** | Règles Cursor `.cursor/rules/mab-design-system-figma.mdc` pour aligner Figma et code (couleurs, typo, espacements). Logo complet (`assets/images/logo.png`) pour splash et écran d’accueil ; symbole sans texte (`assets/images/logo_mark.png`) pour icône et filigrane. |
+| **Design system / Figma** | Règles Cursor `.cursor/rules/mab-design-system-figma.mdc` pour aligner Figma et code (couleurs, typo, espacements). **Splash natif** (`flutter_native_splash`) : image principale **`onboarding_page1.png`** ; **Android 12+** : **`logo_mark.png`**. Logo complet / illustrations onboarding : fichiers sous `assets/images/` ; symbole sans texte (`logo_mark.png`) pour icône et filigrane. |
 
 ---
 
@@ -80,7 +81,8 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 
 | Décision | Détail |
 |----------|--------|
-| **Appareil** | **Samsung Galaxy A13** — modèle **SM-A137F**, **Android 14**. |
+| **Appareil principal (Pascal)** | **Samsung Galaxy A13** — modèle **SM-A137F**, **Android 14**. |
+| **Appareil Inès (développeuse)** | **Samsung A36** (modèle précis à confirmer), Android (version à confirmer). |
 | **Usage** | Builds terrain (`flutter build apk` / `flutter install`), tests OBD (dongle, permissions), UI petit écran (zones tactiles EAA), Assistant IA, coach vocal. |
 | **Mise à jour (installer une nouvelle version)** | Depuis le dossier **`mecano_a_bord/`** : `flutter build apk --release` → APK : **`build/app/outputs/flutter-apk/app-release.apk`**. Transfert sur le téléphone (USB, cloud) puis installation, **ou** avec USB et débogage : `flutter install`. À chaque livraison significative, installer sur le **SM-A137F** et consigner le résultat dans **EVOLUTION.md** (règle doc projet). |
 | **Dernière note terrain** | **2026-04-11** — Build **1.0.0+14** — Ouverture liens **https** / formation : `<queries>` Android 11+ + `launchUrl` sans blocage sur `canLaunchUrl` (`formation_web_launch_screen`, `help_contact_screen`, `update_check_service`). `flutter build apk --release` → `mecano_a_bord/build/app/outputs/flutter-apk/app-release.apk` ; **`flutter install -d R58T92HCDAX`** (Samsung **SM-A137F**, Android 14). |
@@ -99,4 +101,4 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 
 *Ces notes reflètent les intentions techniques actuelles. Toute évolution importante doit être ajoutée ici et datée dans EVOLUTION.md.*
 
-*Dernière mise à jour : 2026-04-11 — §5b terrain SM-A137F (build **1.0.0+14**), `url_launcher` + manifest Android*
+*Dernière mise à jour : 2026-04-14 — §5b corrigé : SM-A137F = appareil principal de Pascal ; ajout appareil Inès (Samsung A36).*

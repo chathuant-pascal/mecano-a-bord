@@ -7,6 +7,7 @@ import 'package:open_file/open_file.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/widgets/mab_demo_banner.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/widgets/glovebox_vehicle_health_tab.dart';
 
 /// Boîte à gants — version MAB (thème sombre)
@@ -355,8 +356,26 @@ class _DocumentsTabState extends State<_DocumentsTab> {
   }
 
   Future<void> _addFromCamera() async {
-    final picked =
-        await _imagePicker.pickImage(source: ImageSource.camera, imageQuality: 85);
+    XFile? picked;
+    try {
+      picked = await _imagePicker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 85,
+      );
+    } catch (e, st) {
+      mabLog('Glovebox: caméra pickImage — $e\n$st');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Impossible d\'utiliser l\'appareil photo. Vérifie les autorisations dans les réglages du téléphone.',
+            style: MabTextStyles.corpsNormal,
+          ),
+          backgroundColor: MabColors.diagnosticOrange,
+        ),
+      );
+      return;
+    }
     if (picked == null) return;
     try {
       final permanentPath = await widget.repository.copyDocumentToAppStorage(picked.path);
@@ -374,10 +393,26 @@ class _DocumentsTabState extends State<_DocumentsTab> {
   }
 
   Future<void> _addFromFile() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
+    FilePickerResult? result;
+    try {
+      result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowMultiple: false,
+      );
+    } catch (e, st) {
+      mabLog('Glovebox: FilePicker — $e\n$st');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Impossible d\'ouvrir le sélecteur de fichiers. Réessaie ou vérifie les autorisations.',
+            style: MabTextStyles.corpsNormal,
+          ),
+          backgroundColor: MabColors.diagnosticOrange,
+        ),
+      );
+      return;
+    }
     if (result == null || result.files.isEmpty) return;
     final path = result.files.single.path;
     if (path == null) return;
@@ -577,7 +612,24 @@ class _DocumentCard extends StatelessWidget {
       return;
     }
     final type = document.mimeType.isNotEmpty ? document.mimeType : null;
-    final result = await OpenFile.open(path, type: type);
+    OpenResult result;
+    try {
+      result = await OpenFile.open(path, type: type);
+    } catch (e, st) {
+      mabLog('Glovebox: OpenFile.open — $e\n$st');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Impossible d\'ouvrir le fichier pour le moment.',
+              style: MabTextStyles.corpsNormal,
+            ),
+            backgroundColor: MabColors.diagnosticOrange,
+          ),
+        );
+      }
+      return;
+    }
     if (context.mounted && result.type != ResultType.done) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

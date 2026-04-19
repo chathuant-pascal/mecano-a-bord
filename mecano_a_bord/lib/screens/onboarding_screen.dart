@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:mecano_a_bord/screens/formation_webview_screen.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
-import 'package:mecano_a_bord/widgets/mab_logo.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ─────────────────────────────────────────────
@@ -116,8 +116,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _skipOnboarding() => _finishOnboarding();
 
   Future<void> _finishOnboarding() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('onboarding_done', true);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('onboarding_done', true);
+    } catch (e, st) {
+      mabLog(
+        'Onboarding: impossible d\'enregistrer onboarding_done — $e\n$st',
+      );
+    }
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute<void>(
@@ -383,6 +389,11 @@ class _OnboardingPageWidget extends StatelessWidget {
 // ─────────────────────────────────────────────
 
 Future<bool> hasSeenOnboarding() async {
-  final prefs = await SharedPreferences.getInstance();
-  return prefs.getBool('onboarding_done') ?? false;
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('onboarding_done') ?? false;
+  } catch (e, st) {
+    mabLog('hasSeenOnboarding: SharedPreferences indisponible — $e\n$st');
+    return false;
+  }
 }

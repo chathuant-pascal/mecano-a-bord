@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 
 /// Titre affiché + liste de libellés (même chaînes que les types d’entretien en base).
@@ -298,24 +299,40 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
   }
 
   Future<void> _loadExistingEntry(int id) async {
-    final entry = await _repository.getMaintenanceEntryById(id);
+    MaintenanceEntry? entry;
+    try {
+      entry = await _repository.getMaintenanceEntryById(id);
+    } catch (e, st) {
+      mabLog('AddMaintenance: chargement entretien id=$id — $e\n$st');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Impossible de charger cet entretien. Réessaie ou reviens à la liste.',
+            style: MabTextStyles.corpsNormal,
+          ),
+        ),
+      );
+      return;
+    }
     if (entry == null || !mounted) return;
+    final loaded = entry;
 
     _suppressAutoNextDefaults = true;
     setState(() {
-      _selectedType = entry.entryType;
-      _selectedDate = DateTime.fromMillisecondsSinceEpoch(entry.date);
-      _selectedNextDate = entry.nextServiceDate != null
-          ? DateTime.fromMillisecondsSinceEpoch(entry.nextServiceDate!)
+      _selectedType = loaded.entryType;
+      _selectedDate = DateTime.fromMillisecondsSinceEpoch(loaded.date);
+      _selectedNextDate = loaded.nextServiceDate != null
+          ? DateTime.fromMillisecondsSinceEpoch(loaded.nextServiceDate!)
           : null;
-      _mileageCtrl.text = entry.mileageAtService.toString();
+      _mileageCtrl.text = loaded.mileageAtService.toString();
       _nextMileageCtrl.text =
-          entry.nextServiceMileage != null ? '${entry.nextServiceMileage}' : '';
-      _garageCtrl.text = entry.garage ?? '';
-      _costCtrl.text = entry.cost != null ? '${entry.cost}' : '';
-      _notesCtrl.text = entry.notes ?? '';
-      if (entry.receiptPhotoPath != null) {
-        _invoicePhoto = File(entry.receiptPhotoPath!);
+          loaded.nextServiceMileage != null ? '${loaded.nextServiceMileage}' : '';
+      _garageCtrl.text = loaded.garage ?? '';
+      _costCtrl.text = loaded.cost != null ? '${loaded.cost}' : '';
+      _notesCtrl.text = loaded.notes ?? '';
+      if (loaded.receiptPhotoPath != null) {
+        _invoicePhoto = File(loaded.receiptPhotoPath!);
       }
     });
     _suppressAutoNextDefaults = false;

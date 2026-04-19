@@ -6,6 +6,13 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 7 terminé : try/catch stockage & fichiers (prefs, SQLite, picker, OpenFile)
+
+- **MODULE 7** : **terminé le 2026-04-19** — protections **`try/catch`** + **`mabLog`** sur **`main.dart`** (`SharedPreferences`), **`onboarding_screen.dart`** (prefs + `hasSeenOnboarding`), **`add_maintenance_screen.dart`** (lecture SQLite entrée entretien), **`glovebox_screen.dart`** (`pickImage`, `FilePicker`, `OpenFile.open` + SnackBar en cas d’échec ; copie vers stockage app inchangée).
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_07_TRY_CATCH.md` ; **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 6 terminé : feature flags `mab_features.dart`
 
 - **MODULE 6** : **terminé le 2026-04-19** — création de **`mecano_a_bord/lib/config/mab_features.dart`** avec **12** constantes **`kFeature*`** (documentation / futurs `if (kFeatureXxx)`).

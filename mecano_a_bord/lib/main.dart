@@ -24,6 +24,7 @@ import 'package:mecano_a_bord/screens/help_contact_screen.dart';
 import 'package:mecano_a_bord/screens/diagnostic_guide_screen.dart';
 import 'package:mecano_a_bord/screens/formation_web_launch_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/widgets/mab_logo.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/services/tts_service.dart';
@@ -114,8 +115,14 @@ class _SplashRoutingState extends State<SplashRouting> {
   }
 
   Future<void> _route() async {
-    final prefs = await SharedPreferences.getInstance();
-    final onboardingDone = prefs.getBool('onboarding_done') ?? false;
+    var onboardingDone = false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      onboardingDone = prefs.getBool('onboarding_done') ?? false;
+    } catch (e, st) {
+      mabLog('SplashRouting: SharedPreferences indisponible — $e\n$st');
+      onboardingDone = false;
+    }
 
     if (!mounted) return;
     Navigator.of(context).pushReplacement(

@@ -111,8 +111,9 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | Module | Élément | Statut | Date / note |
 |--------|---------|--------|-------------|
 | **MODULE 4** | WebView formation sécurisée (`formation_webview_screen.dart`) — NavigationDelegate, allowlist, validation JS, erreurs, timer cycle de vie, spinner | **Fait** | **2026-04-19** — 6 correctifs (OWASP + UX) ; fiche `fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md` |
-| **MODULE 5** | Nettoyer `debugPrint` + `mab_logger.dart` (logger conditionnel) | **À faire** | **Suivant** — réf. CLAUDE.md MODULE 5 |
+| **MODULE 5** | Logger conditionnel `mab_logger.dart` + remplacement **13** `debugPrint` dans **7** fichiers | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_05_LOGGER.md` |
+| **MODULE 6** | Feature flags `lib/config/mab_features.dart` | **À faire** | **Suivant** — réf. CLAUDE.md MODULE 6 |
 
 ---
 
-*Dernière mise à jour backlog : 2026-04-19 — MODULE 4 WebView terminé ; MODULE 5 suivant. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-04-19 — MODULE 5 logger terminé ; MODULE 6 suivant. Mettre à jour statuts et dates à chaque avancement.*

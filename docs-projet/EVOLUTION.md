@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 5 terminé : logger conditionnel `mabLog` (remplacement des `debugPrint`)
+
+- **MODULE 5** : **terminé le 2026-04-19** — création de **`mecano_a_bord/lib/utils/mab_logger.dart`** (`mabLog`, actif uniquement en `kDebugMode`).
+- **13 remplacements** dans **7 fichiers** : `home_screen.dart` (6), `bluetooth_obd_service.dart`, `ai_conversation_service.dart`, `vehicle_reference_service.dart` (2), `formation_web_launch_screen.dart`, `help_contact_screen.dart` (2). Seul **`mab_logger.dart`** conserve un appel interne à `debugPrint`.
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_05_LOGGER.md` ; **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 4 terminé : WebView formation sécurisée (OWASP + UX)
 
 - **MODULE 4** : **terminé le 2026-04-19** — `mecano_a_bord/lib/screens/formation_webview_screen.dart` (formation « Ta Voiture Sans Galère »).

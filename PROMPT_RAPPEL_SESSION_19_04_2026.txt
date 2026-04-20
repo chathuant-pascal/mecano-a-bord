@@ -1,0 +1,71 @@
+MECANO A BORD — RAPPEL DE SESSION — 19/04/2026
+================================================
+
+FICHIERS A CHARGER EN PREMIER (ORDRE OBLIGATOIRE)
+-------------------------------------------------
+1. docs-projet/CONTEXTE_CLAUDE_MECANO_A_BORD_V16_18.txt
+2. CLAUDE.md V3.1 (racine du workspace — memoire permanente Claude Code)
+3. AUDIT_MECANO_A_BORD_V1.md (racine du workspace)
+4. AUDIT_MECANO_A_BORD_CURSOR_V1.md (racine du workspace)
+
+Ensuite : suivre la sequence indiquee dans CLAUDE.md (VERIFICATION_REGLES_DEVELOPPEUR.md, regles Cursor, etc.).
+
+ACCOMPLISSEMENTS SESSION 19/04/2026 (COMPLETS)
+------------------------------------------------
+- MODULE 1 : hysteresis surveillance 4 canaux + stabilite diagnostic OBD (terrain Samsung SM-A137F) ; fiche + journal.
+- MODULE 4 : WebView formation securisee (NavigationDelegate, allowlist, validation JS MABFormation, erreurs reseau + Reessayer, timer lifecycle, indicateur chargement) ; fiche MODULE 04.
+- MODULE 5 : mab_logger + remplacement des debugPrint (7 fichiers) ; fiche MODULE 05.
+- MODULE 6 : mab_features.dart — 12 feature flags (kFeatureLicence=false) ; fiche MODULE 06.
+- MODULE 7 : try/catch SharedPreferences, SQLite entretien, ImagePicker / FilePicker / OpenFile + SnackBar ; fiche MODULE 07.
+- MODULE 9 : tests unitaires service IA — 13 tests verts (MockClient, forTesting) ; fiche MODULE 09.
+- MODULE 14 : providers IA termines — 8 integrations HTTP (ChatGPT, Gemini, Claude, Mistral, Perplexity, Grok, DeepSeek, Qwen) + messages explicites Copilot / Meta AI ; fiche MODULE 14.
+- Documentation projet : EVOLUTION.md, BACKLOG.md, fiches fonctionnalites, contexte Claude mis a jour (V16.18).
+- Controle qualite session : 100% vert (analyses, tests, verifications).
+- Fichiers de reference ajoutes : audits, referentiel Ines, alignement CLAUDE.md et regles Cursor (session 19/04).
+- Code Flutter synchronise sur GitHub (branche main).
+
+PROCHAINES ETAPES (DANS L'ORDRE)
+--------------------------------
+1. MODULE 10 — tests unitaires Repository (CLAUDE.md PRIORITE 3) : prochaine etape code prioritaire.
+2. MODULE 8 — avec Ines : licence Firebase (Mission 2) + keystore Release (Mission 1) selon planning et brief.
+3. Formation web : PROMPT_RAPPEL_SESSION_13_04_2026.txt — Prompt C (section 3.2 + liquides + pneus).
+4. Tests terrain : splash, flux onboarding → formation WebView → accueil sur Samsung SM-A137F.
+5. Verrouillage app jusqu’a fin formation (apres hebergement mecanoabord.fr) ; mentions legales / contact ; pointer le domaine vers GitHub Pages (OVH).
+
+COMMITS DU JOUR — 19/04/2026 (CHRONOLOGIE : PLUS ANCIEN -> PLUS RECENT)
+------------------------------------------------------------------------
+df205ce — MODULE 1 : hysteresis complete sur tous les canaux surveillance + reset au redemarrage
+634a3f5 — Docs: MODULE 1 surveillance hysteresis 4 canaux + journal evolution
+0d4dac5 — MODULE 4 : securisation WebView (NavigationDelegate, allowlist, validation JS, erreurs, timer arriere-plan, spinner)
+fbf8c86 — Docs : MODULE 4 WebView valide + journal evolution
+f738f91 — Contexte V16.15 : session 19/04/2026 — MODULE 1 + MODULE 4 termines
+1ab1263 — MODULE 5 : mab_logger + remplacement 13 debugPrint dans 7 fichiers
+8f35729 — Docs : MODULE 5 logger valide + journal evolution
+ea00519 — MODULE 6 : mab_features.dart — 12 feature flags (kFeatureLicence=false)
+3836cd6 — Docs : MODULE 6 feature flags valide + journal evolution
+69e0607 — feat(module7): try/catch prefs, SQLite, picker et OpenFile + doc
+158239a — docs: contexte Claude V16.16 — MODULE 5–7 faits, prochaine etape MODULE 9 ou MODULE 8 avec Ines
+7496e38 — Docs : ajout section CONDITIONS DE TEST dans fiches 04-07
+e11fb4a — MODULE 9 : tests unitaires IA — 13 tests verts (quota, ChatGPT, Gemini, demo)
+ede3e28 — Docs : MODULE 9 tests IA valides + journal evolution
+2442962 — MODULE 14 : implementation 8 providers IA + messages Copilot/MetaAI
+f5021bb — Docs : MODULE 14 providers IA valides + journal evolution
+3bf6244 — Docs: contexte Claude V16.17 — MODULE 9, MODULE 14, prochaine etape MODULE 10
+89aa9f0 — Sync : CLAUDE.md + regles Cursor mis a jour session 19/04
+7bd9f6a — Ajout fichiers reference : audits + referentiel Ines + image onboarding
+3d548b9 — Fix : mabLog dans _callGemini + CONDITIONS DE TEST fiches 09 et 14
+
+COMMITS DE FIN DE SESSION (POINTS DE REPERE RAPIDES)
+----------------------------------------------------
+89aa9f0 / 7bd9f6a / 3d548b9
+
+INSTRUCTION SPECIALE POUR CLAUDE.AI
+------------------------------------
+A chaque nouvelle session Claude.ai,
+relire les dernieres conversations
+avec l'outil recent_chats pour avoir
+le contexte complet avant de commencer
+
+================================================================
+Fin du fichier — Mecano a Bord — Pascal Chathuant — 19/04/2026
+================================================================

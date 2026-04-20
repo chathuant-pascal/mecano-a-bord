@@ -7,7 +7,7 @@
 **Fichier cible** : `mecano_a_bord/lib/data/mab_repository.dart`  
 **Fichier de tests** : `mecano_a_bord/test/mab_repository_test.dart`
 
-**Résultat** : **`flutter test test/mab_repository_test.dart`** — **47 tests verts** ✅
+**Résultat** : **`flutter test test/mab_repository_test.dart`** — **55 tests verts** ✅
 
 ---
 
@@ -37,7 +37,7 @@ Méthodologie projet appliquée : **cas nominal**, **cas d'erreur**, **cas limit
 
 | Élément | Résultat |
 |--------|----------|
-| `mecano_a_bord/test/mab_repository_test.dart` | **Présent** — **47** tests (8 groupes) |
+| `mecano_a_bord/test/mab_repository_test.dart` | **Présent** — **55** tests (8 groupes) |
 | Autres tests sous `mecano_a_bord/test/` | `ai_conversation_service_test.dart`, `widget_test.dart` |
 
 ---
@@ -65,9 +65,18 @@ Méthodologie projet appliquée : **cas nominal**, **cas d'erreur**, **cas limit
 - Références constructeur + santé véhicule
 - Contexte IA `getAiSystemContextString()` (5 scénarios)
 
+### 5.4 Nouvelles méthodes ajoutées (passe 2)
+
+- `getDocumentById(int id)` dans `mab_database.dart` (+ exposition repository `getGloveboxDocumentById`)
+- `clearVehicleHealthAlerts(int vehicleProfileId)` dans `mab_database.dart` (+ exposition repository `clearVehicleHealthAlerts`)
+
+### 5.5 Correction métier appliquée
+
+- `deleteVehicleProfile(int id)` : nettoyage de `mab_active_vehicle_id` si le profil supprimé était le profil actif.
+
 ---
 
-## 6. GROUPES DE TESTS (47 TESTS)
+## 6. GROUPES DE TESTS (55 TESTS)
 
 | # | Groupe | Contenu |
 |---|--------|---------|
@@ -76,9 +85,9 @@ Méthodologie projet appliquée : **cas nominal**, **cas d'erreur**, **cas limit
 | 3 | **Profils véhicule** | CRUD profil + limite 2 profils |
 | 4 | **Carnet d'entretien** | CRUD entretien + `getLast3MaintenanceEntries` |
 | 5 | **OBD** | Dernier diag prefs, adresse dongle, historique, alertes entretien |
-| 6 | **Documents boîte à gants** | Lecture / ajout / validation mimeType |
-| 7 | **Références + santé** | JSON références, partage communauté, alertes santé, learned values |
-| 8 | **Contexte IA** | Profil incomplet, sans OBD, OBD vide, démo green, démo red |
+| 6 | **Documents boîte à gants** | Lecture / ajout / validation mimeType + suppression base + lookup par id |
+| 7 | **Références + santé** | JSON références, partage communauté, alertes santé, learned values + clear/list vide |
+| 8 | **Contexte IA** | Profil incomplet, sans OBD, OBD vide, démo green/red/orange |
 
 ---
 
@@ -89,7 +98,8 @@ Méthodologie projet appliquée : **cas nominal**, **cas d'erreur**, **cas limit
 | 20/04/2026 | Ajout dépendance dev `sqflite_common_ffi` pour tests SQLite repository. |
 | 20/04/2026 | Création de `mab_repository_test.dart` avec 42 tests (groupes 1 à 7). |
 | 20/04/2026 | Passe 2 : ajout de 5 tests `getAiSystemContextString()` (groupe 8). |
-| 20/04/2026 | Validation finale : **47/47 verts**. |
+| 20/04/2026 | Passe 3 : ajout des tests manquants (docs, santé, alerts km loin, profil actif, scénario orange) + nouvelles méthodes `getDocumentById` / `clearVehicleHealthAlerts` + fix `deleteVehicleProfile`. |
+| 20/04/2026 | Validation finale : **55/55 verts**. |
 
 ---
 
@@ -126,8 +136,8 @@ flutter test test/mab_repository_test.dart
 
 | Élément | Détail |
 |---|---|
-| Total tests | **47** |
-| Résultat | ✅ **47/47 verts — All tests passed!** |
+| Total tests | **55** |
+| Résultat | ✅ **55/55 verts — All tests passed!** |
 | Durée observée | ~5 à 6 secondes |
 
 ### 5. STATUT TEST

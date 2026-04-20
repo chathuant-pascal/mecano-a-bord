@@ -14,7 +14,8 @@ alwaysApply: true
 - → Toujours faire un **diagnostic AVANT toute modification** de code
 - → Livrer un fichier à la fois
 - **Inès** : développeuse freelance en charge des corrections complexes
-- Téléphone de test : Samsung SM-A137F — Android 14 (référence terrain : `docs-projet/NOTES_INTENTION_TECHNIQUES.md` §5b)
+- Téléphone de test (Pascal) : Samsung SM-A137F (A13) — Android 14 (référence terrain : `docs-projet/NOTES_INTENTION_TECHNIQUES.md` §5b)
+- Téléphone d'Inès (développeuse) : Samsung A36
 - Workspace : `c:\Users\karuc\OneDrive\Bureau\Mecano A Bord\`
 
 ---
@@ -87,7 +88,7 @@ Clés dans `flutter_secure_storage` :
 
 ## Inventaire des fichiers Dart
 
-**Source de vérité** : liste à jour (chemins + rôles) dans **`docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`** §5.4 — **42** fichiers sous `mecano_a_bord/lib/` + `test/widget_test.dart` (ex. écrans : `diagnostic_guide_screen`, `formation_web_launch_screen`, `legal_mentions_screen` ; services : `app_reset_service`, `vehicle_reference_service`, `live_monitoring_service`, `obd_session_coordinator`, `update_check_service` ; widgets : `glovebox_vehicle_health_tab`, `mab_obd_session_dialogs`, `mab_legal_mentions_body`, etc.).
+**Source de vérité** : liste à jour (chemins + rôles) dans **`docs-projet/VERIFICATION_REGLES_DEVELOPPEUR.md`** §5.4 — **43** fichiers sous `mecano_a_bord/lib/` + `test/widget_test.dart` (ex. écrans : `diagnostic_guide_screen`, `formation_web_launch_screen`, `formation_webview_screen`, `legal_mentions_screen` ; services : `app_reset_service`, `vehicle_reference_service`, `live_monitoring_service`, `obd_session_coordinator`, `update_check_service` ; widgets : `glovebox_vehicle_health_tab`, `mab_obd_session_dialogs`, `mab_legal_mentions_body`, etc.).
 
 ---
 

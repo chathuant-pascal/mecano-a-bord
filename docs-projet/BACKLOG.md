@@ -116,8 +116,9 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | **MODULE 7** | Ajouter `try/catch` manquants (`main.dart`, `onboarding_screen`, `add_maintenance_screen`, `glovebox_screen` — voir CLAUDE.md) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_07_TRY_CATCH.md` |
 | **MODULE 8** | Système licence Firebase (CLAUDE.md — Mission 2 Inès) | **À faire** | Selon planning Inès (hors périmètre auto sans accord) |
 | **MODULE 9** | Tests unitaires service IA (`ai_conversation_service_test.dart` — **13** tests ; `MockClient` `http/testing.dart`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md` |
+| **MODULE 14** | Providers IA — **8** appels API (`_callChatGpt`, `_callGemini`, `_callMistral`, `_callPerplexity`, `_callGrok`, `_callDeepSeek`, `_callQwen`, `_callClaude`) + **Copilot** / **Meta AI** (`AiError` sans API perso) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_14_PROVIDERS_IA.md` |
 | **MODULE 10** | Tests unitaires Repository (CLAUDE.md PRIORITÉ 3) | **À faire** | **Suivant** |
 
 ---
 
-*Dernière mise à jour backlog : 2026-04-19 — MODULE 9 tests IA terminé ; MODULE 10 (tests Repository) suivant. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-04-19 — MODULE 14 providers IA terminé ; MODULE 10 (tests Repository) suivant. Mettre à jour statuts et dates à chaque avancement.*

@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 14 terminé : 10 providers IA (8 API + messages Copilot / Meta AI)
+
+- **MODULE 14** : **terminé le 2026-04-19** — **`mecano_a_bord/lib/services/ai_conversation_service.dart`** : intégrations HTTP **Mistral, Perplexity, Grok, DeepSeek, Qwen, Claude** (complément **ChatGPT**, **Gemini** déjà présents). **Microsoft Copilot** et **Meta AI** : réponses **`AiError`** explicites (pas d’API accessible par clé personnelle dans ce périmètre), **sans** lecture de clé.
+- **Tests MODULE 9** : **`flutter test test/ai_conversation_service_test.dart`** — **13** tests toujours verts.
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_14_PROVIDERS_IA.md` ; **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 9 terminé : tests unitaires service IA (13 tests verts)
 
 - **MODULE 9** : **terminé le 2026-04-19** — **`mecano_a_bord/test/ai_conversation_service_test.dart`** : quota gratuit, ChatGPT / Gemini (réponses mockées), mode démo, **`askManufacturerReferenceJson`** ; stockage via **`FlutterSecureStorage.setMockInitialValues`** ; HTTP via **`MockClient`** (`package:http/testing.dart`).

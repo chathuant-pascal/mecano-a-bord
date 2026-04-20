@@ -6,6 +6,14 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-04-19 — MODULE 9 terminé : tests unitaires service IA (13 tests verts)
+
+- **MODULE 9** : **terminé le 2026-04-19** — **`mecano_a_bord/test/ai_conversation_service_test.dart`** : quota gratuit, ChatGPT / Gemini (réponses mockées), mode démo, **`askManufacturerReferenceJson`** ; stockage via **`FlutterSecureStorage.setMockInitialValues`** ; HTTP via **`MockClient`** (`package:http/testing.dart`).
+- **Code** : injection **`AiConversationService.forTesting`** + **`_httpClient.post`** dans **`ai_conversation_service.dart`** ; **`dev_dependencies`** : **`mockito`**, **`build_runner`** (autres usages possibles).
+- **Documentation** : `docs-projet/fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md` ; **EVOLUTION** / **BACKLOG** mis à jour.
+
+---
+
 ## 2026-04-19 — MODULE 7 terminé : try/catch stockage & fichiers (prefs, SQLite, picker, OpenFile)
 
 - **MODULE 7** : **terminé le 2026-04-19** — protections **`try/catch`** + **`mabLog`** sur **`main.dart`** (`SharedPreferences`), **`onboarding_screen.dart`** (prefs + `hasSeenOnboarding`), **`add_maintenance_screen.dart`** (lecture SQLite entrée entretien), **`glovebox_screen.dart`** (`pickImage`, `FilePicker`, `OpenFile.open` + SnackBar en cas d’échec ; copie vers stockage app inchangée).

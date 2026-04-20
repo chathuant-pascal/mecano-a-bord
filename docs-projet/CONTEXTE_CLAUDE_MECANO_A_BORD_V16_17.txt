@@ -1,12 +1,12 @@
 MECANO A BORD --- Fichier de contexte pour Claude
-Version 16.16 --- Mise à jour --- 19/04/2026
+Version 16.17 --- Mise à jour --- 19/04/2026
 
-⚠️ CE FICHIER REMPLACE LE V16.15 (pas de fichier V16.14 dans le depot --- cette version 16.16 est la reference a jour)
-En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.16.
+⚠️ CE FICHIER REMPLACE LE V16.16 (cette version 16.17 est la reference a jour)
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.17.
 
 REGLE DE SESSION
 A intervalles reguliers, Claude met a jour ce fichier et le propose en telechargement.
-En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.16.
+En cas de coupure de session, Pascal repart UNIQUEMENT de ce fichier V16.17.
 
 ================================================================
 ACCOMPLISSEMENTS --- SESSION 19/04/2026 (POINT DE REPERE)
@@ -49,6 +49,19 @@ MODULE 7 --- TERMINE ✅ (try/catch robustesse)
 - Fiche : docs-projet/fiches-fonctionnalites/FICHE_MODULE_07_TRY_CATCH.md
 - Journal : docs-projet/EVOLUTION.md (entree 2026-04-19 MODULE 7)
 
+MODULE 9 --- TERMINE ✅ (tests unitaires service IA)
+- Fichier de tests : mecano_a_bord/test/ai_conversation_service_test.dart — **13 tests verts** (MockClient `package:http/testing.dart`, `FlutterSecureStorage.setMockInitialValues`).
+- Service : `AiConversationService.forTesting` + `_httpClient.post` injectes pour mocker les reponses HTTP.
+- Fiche : docs-projet/fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md
+- Journal : docs-projet/EVOLUTION.md (entree 2026-04-19 MODULE 9)
+
+MODULE 14 --- TERMINE ✅ (providers IA — 8 APIs operationnelles)
+- Fichier principal : mecano_a_bord/lib/services/ai_conversation_service.dart
+- **8** integrations HTTP : ChatGPT, Gemini, Claude (Anthropic Messages), Mistral, Perplexity, Grok, DeepSeek, Qwen (endpoints + modeles : voir fiche).
+- **Copilot** + **Meta AI** : messages `AiError` explicites (pas d API cle personnelle dans ce perimetre) — avant lecture de cle.
+- Fiche : docs-projet/fiches-fonctionnalites/FICHE_MODULE_14_PROVIDERS_IA.md
+- Journal : docs-projet/EVOLUTION.md (entree 2026-04-19 MODULE 14)
+
 CODE FLUTTER --- SUR GITHUB ✅ (19/04/2026)
 - Repo : https://github.com/chathuant-pascal/mecano-a-bord (branche main)
 - Exemples de commits session :
@@ -56,10 +69,10 @@ CODE FLUTTER --- SUR GITHUB ✅ (19/04/2026)
   - Docs : MODULE 4 WebView valide + journal evolution (EVOLUTION.md + BACKLOG.md)
   - MODULE 7 : feat(module7) try/catch prefs, SQLite, picker et OpenFile + doc
 
-PROCHAINE ETAPE PRIORITAIRE --- AU CHOIX (CLAUDE.md)
-- OPTION A (code seul) : MODULE 9 — tests unitaires (ex. service IA, repository) — voir CLAUDE.md PRIORITE 3.
-- OPTION B : attendre Ines pour MODULE 8 — systeme de licence Firebase (Mission 2) + keystore Release (Mission 1) ; ne pas bloquer MODULE 9 si les tests peuvent avancer en parallele.
-- Reference : docs-projet/BACKLOG.md section 9 (MODULE 5–7 Fait ; MODULE 8 licence ; MODULE 9 tests).
+PROCHAINE ETAPE PRIORITAIRE --- CODE (CLAUDE.md)
+- **MODULE 10** — tests unitaires **Repository** (PRIORITE 3) — prochaine etape apres MODULE 9 + MODULE 14 termines.
+- MODULE 8 — avec Ines : systeme de licence Firebase (Mission 2) + keystore Release (Mission 1) selon planning.
+- Reference : docs-projet/BACKLOG.md section 9 (MODULE 10 suivant ; MODULE 8 licence Ines).
 
 ================================================================
 QUI EST L'UTILISATEUR
@@ -111,8 +124,10 @@ STATUT AU 19/04/2026 :
    MODULE 5 (mab_logger) : TERMINE ✅
    MODULE 6 (mab_features) : TERMINE ✅
    MODULE 7 (try/catch stockage & fichiers) : TERMINE ✅
+   MODULE 9 (tests unitaires service IA) : TERMINE ✅ --- **13 tests verts**
+   MODULE 14 (providers IA) : TERMINE ✅ --- **8** APIs operationnelles + Copilot/Meta AI (messages sans API)
    Code Flutter synchronise sur GitHub (main) --- session 19/04/2026
-   PROCHAINE ETAPE CODE : MODULE 9 (tests unitaires) OU MODULE 8 avec Ines (licence Firebase / keystore) --- voir CLAUDE.md
+   PROCHAINE ETAPE CODE : **MODULE 10** (tests unitaires Repository) --- voir CLAUDE.md PRIORITE 3
    APPLICATION CONSIDEREE PRETE PAR PASCAL (evolutions qualite en cours)
    RDV avec Ines : MARDI 8H30 HEURE GUADELOUPE (13h30 Paris) ← AVANCE
 
@@ -181,6 +196,8 @@ MODIFICATIONS APP --- SESSION 19/04/2026 (MODULE 1 + MODULE 4 + MODULE 5–7) �
 ✅ MODULE 5 : mab_logger + remplacement debugPrint (fiche MODULE 05)
 ✅ MODULE 6 : mab_features (12 flags, kFeatureLicence=false) (fiche MODULE 06)
 ✅ MODULE 7 : try/catch prefs, SQLite, picker, OpenFile (fiche MODULE 07)
+✅ MODULE 9 : 13 tests unitaires service IA + injection forTesting (fiche MODULE 09)
+✅ MODULE 14 : 8 providers IA via API + messages Copilot/Meta AI (fiche MODULE 14)
 ✅ Push GitHub : commits sur main (code + documentation projet)
 
 ================================================================
@@ -268,7 +285,9 @@ RESTE A FAIRE --- FORMATION WEB
 ================================================================
 RESTE A FAIRE --- APPLICATION MOBILE
 ================================================================
-⏳ MODULE 9 : tests unitaires (CLAUDE.md PRIORITE 3) ← PROCHAINE ETAPE CODE possible
+✅ MODULE 9 : tests unitaires service IA — **13 tests verts** (termine 19/04/2026)
+✅ MODULE 14 : providers IA — **8** APIs + Copilot/Meta AI (termine 19/04/2026)
+⏳ **MODULE 10** : tests unitaires **Repository** (CLAUDE.md PRIORITE 3) ← **PROCHAINE ETAPE CODE**
 ⏳ MODULE 8 : licence Firebase + keystore Release --- avec Ines (attendre si prioritaire Mission 1/2)
 ⏳ RDV Ines MARDI 8H30 heure Guadeloupe ← AVANCE
 ⏳ Verrouillage app jusqu'a fin formation (Cursor) ← apres hebergement
@@ -325,13 +344,14 @@ REGLES DE TRAVAIL
 ================================================================
 FICHIERS A CONSERVER
 ================================================================
-CE FICHIER : CONTEXTE_CLAUDE_MECANO_A_BORD_V16_16.txt ← REFERENCE (remplace V16.15)
+CE FICHIER : CONTEXTE_CLAUDE_MECANO_A_BORD_V16_17.txt ← REFERENCE (remplace V16.16)
 + PROMPT_RAPPEL_SESSION_13_04_2026.txt (contient Prompt C encore utile)
 + Brief_Ines_Licence_Signature_MAB_V2.docx ← VERSION A JOUR
 
 FICHIERS A SUPPRIMER / OBSOLETES :
-❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_15.txt (remplace par V16.16)
-❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt (remplace par V16.16)
+❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_16.txt (remplace par V16.17)
+❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_15.txt
+❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_12.txt
 ❌ CONTEXTE_CLAUDE_MECANO_A_BORD_V16_11.txt
 ❌ PROMPT_RAPPEL_SESSION_12_04_2026.txt
 ❌ Brief_Ines_Licence_Signature_MAB.docx (ancienne version)
@@ -339,13 +359,14 @@ FICHIERS A SUPPRIMER / OBSOLETES :
 ================================================================
 PROMPT DE RAPPEL --- PROCHAINE SESSION
 ================================================================
-1. Charger CE FICHIER en premier (V16.16)
-2. Prochaine etape code : MODULE 9 (tests unitaires) OU MODULE 8 avec Ines (licence / keystore) si RDV prioritaire
-3. Formation web : PROMPT_RAPPEL_SESSION_13_04_2026.txt → Prompt C (section 3.2 + liquides + pneus)
-4. RDV Ines / tests terrain : splash + flux onboarding → formation WebView → accueil sur Samsung SM-A137F
+1. Charger CE FICHIER en premier (V16.17)
+2. Prochaine etape code : **MODULE 10** (tests unitaires Repository) — MODULE 9 + MODULE 14 termines
+3. MODULE 8 avec Ines (licence / keystore) selon planning si prioritaire
+4. Formation web : PROMPT_RAPPEL_SESSION_13_04_2026.txt → Prompt C (section 3.2 + liquides + pneus)
+5. RDV Ines / tests terrain : splash + flux onboarding → formation WebView → accueil sur Samsung SM-A137F
 
 ================================================================
-Fin du fichier --- Version 16.16 --- 19/04/2026
-⚠️ REMPLACE LE V16.15 --- Supprimer les versions contexte obsoletes
+Fin du fichier --- Version 16.17 --- 19/04/2026
+⚠️ REMPLACE LE V16.16 --- Supprimer les versions contexte obsoletes
 © Mecano a Bord --- Pascal Chathuant --- Guadeloupe
 ================================================================

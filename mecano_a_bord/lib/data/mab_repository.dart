@@ -350,6 +350,7 @@ class MabRepository {
   /// Supprime un profil et nettoie les prefs OBD associées. Sans effet en démo.
   Future<void> deleteVehicleProfile(int id) async {
     if (await isDemoMode()) return;
+    final activeId = await getActiveVehicleId();
     final docEntries =
         await db.MabDatabase.instance.getDocumentsByVehicle(id);
     for (final e in docEntries) {
@@ -365,6 +366,9 @@ class MabRepository {
     await prefs.remove(_prefLastObdDtcsPermanent(id));
     await prefs.remove(_prefLastObdKm(id));
     await prefs.remove(_prefLastObdDeviceAddress(id));
+    if (activeId == id) {
+      await prefs.remove(_keyActiveVehicleId);
+    }
   }
 
   /// Résumé texte pour l'IA (ex. "Peugeot 308 2020").
@@ -723,6 +727,11 @@ class MabRepository {
         .toList();
   }
 
+  Future<void> clearVehicleHealthAlerts(int vehicleProfileId) async {
+    if (await isDemoMode()) return;
+    await db.MabDatabase.instance.clearVehicleHealthAlerts(vehicleProfileId);
+  }
+
   /// Dernier diagnostic OBD (date, MIL, km au scan, codes par catégorie, liste combinée).
   Future<
       ({
@@ -919,6 +928,13 @@ class MabRepository {
     if (vehicleId == null) return [];
     final list = await db.MabDatabase.instance.getDocumentsByVehicle(vehicleId);
     return list.map(_mapDocumentToDomain).toList();
+  }
+
+  Future<GloveboxDocument?> getGloveboxDocumentById(int id) async {
+    if (await isDemoMode()) return null;
+    final row = await db.MabDatabase.instance.getDocumentById(id);
+    if (row == null) return null;
+    return _mapDocumentToDomain(row);
   }
 
   /// Copie un fichier (photo ou import) dans le répertoire permanent de l'app.

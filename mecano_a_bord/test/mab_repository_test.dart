@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mecano_a_bord/data/mab_database.dart' as db;
@@ -266,6 +267,14 @@ void main() {
       await repo.deleteVehicleProfile(id);
       expect(await repo.getVehicleProfileById(id), isNull);
     });
+
+    test('deleteVehicleProfile du profil actif -> activeVehicleId nettoyé', () async {
+      final profile = await createAndGetActiveProfile();
+      final id = int.parse(profile.id);
+      expect(await repo.getActiveVehicleId(), id);
+      await repo.deleteVehicleProfile(id);
+      expect(await repo.getActiveVehicleId(), isNull);
+    });
   });
 
   group('4) Carnet d\'entretien', () {
@@ -422,6 +431,19 @@ void main() {
       expect(alerts, isNotEmpty);
       expect(alerts.first.entryType, 'Courroie');
     });
+
+    test('getUpcomingMaintenanceAlerts km loin -> liste vide', () async {
+      await createAndGetActiveProfile();
+      await repo.addMaintenanceEntry(
+        buildMaintenance(
+          entryType: 'Courroie',
+          mileageAtService: 120000,
+          nextServiceMileage: 130000,
+        ),
+      );
+      final alerts = await repo.getUpcomingMaintenanceAlerts(110000);
+      expect(alerts, isEmpty);
+    });
   });
 
   group('6) Documents boîte à gants', () {
@@ -456,6 +478,43 @@ void main() {
       );
       final docs = await repo.getAllGloveboxDocuments();
       expect(docs.first.mimeType, 'image/jpeg');
+    });
+
+    test('deleteGloveboxDocument supprime aussi en base', () async {
+      await createAndGetActiveProfile();
+      final tmpDir = await Directory.systemTemp.createTemp('mab_doc_test_');
+      final tmpFile = File('${tmpDir.path}/to_delete.pdf');
+      await tmpFile.writeAsString('test');
+      await repo.addGloveboxDocument(
+        buildDoc(
+          title: 'Doc temporaire',
+          filePath: tmpFile.path,
+          mimeType: 'application/pdf',
+        ),
+      );
+      final docsBefore = await repo.getAllGloveboxDocuments();
+      expect(docsBefore, isNotEmpty);
+      await repo.deleteGloveboxDocument(docsBefore.first);
+      final docsAfter = await repo.getAllGloveboxDocuments();
+      expect(docsAfter, isEmpty);
+      if (await tmpDir.exists()) {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('getGloveboxDocumentById existant -> document retourné', () async {
+      await createAndGetActiveProfile();
+      await repo.addGloveboxDocument(buildDoc(title: 'Assurance 2026'));
+      final docs = await repo.getAllGloveboxDocuments();
+      final id = int.parse(docs.first.id);
+      final one = await repo.getGloveboxDocumentById(id);
+      expect(one, isNotNull);
+      expect(one!.title, 'Assurance 2026');
+    });
+
+    test('getGloveboxDocumentById inexistant -> null', () async {
+      await createAndGetActiveProfile();
+      expect(await repo.getGloveboxDocumentById(99999), isNull);
     });
   });
 
@@ -523,6 +582,26 @@ void main() {
       expect(alerts, isNotEmpty);
       expect(alerts.first.level, 2);
       expect(alerts.first.message, 'Surveillance recommandée');
+    });
+
+    test('listVehicleHealthAlerts sans alertes -> liste vide', () async {
+      final profile = await createAndGetActiveProfile();
+      final id = int.parse(profile.id);
+      final alerts = await repo.listVehicleHealthAlerts(id);
+      expect(alerts, isEmpty);
+    });
+
+    test('clearVehicleHealthAlerts vide la liste', () async {
+      final profile = await createAndGetActiveProfile();
+      final id = int.parse(profile.id);
+      await repo.appendVehicleHealthAlert(
+        vehicleProfileId: id,
+        level: 1,
+        message: 'Alerte à effacer',
+      );
+      expect(await repo.listVehicleHealthAlerts(id), isNotEmpty);
+      await repo.clearVehicleHealthAlerts(id);
+      expect(await repo.listVehicleHealthAlerts(id), isEmpty);
     });
 
     test('upsert/getVehicleLearnedValuesEntry -> entrée restituée', () async {
@@ -614,6 +693,18 @@ void main() {
       expect(context, contains('Témoin Check Engine : ALLUMÉ'));
       expect(context, contains('Codes mémorisés : P0301, P0562'));
       expect(context, contains('Codes permanents : U0100'));
+    });
+
+    test('mode démo scénario orange -> mode démo + codes orange', () async {
+      await repo.setDemoMode(true);
+      await repo.setDemoObdScenario('orange');
+      final context = await repo.getAiSystemContextString();
+      expect(context, isNotNull);
+      expect(context!, contains('mode démo'));
+      expect(context, contains('Témoin Check Engine : éteint'));
+      expect(context, contains('Codes mémorisés : P0171, P0420'));
+      expect(context, contains('Codes en attente : aucun'));
+      expect(context, contains('Codes permanents : aucun'));
     });
   });
 }

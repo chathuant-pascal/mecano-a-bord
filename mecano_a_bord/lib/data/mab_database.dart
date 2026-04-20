@@ -765,6 +765,18 @@ class MabDatabase {
     await db.delete('documents', where: 'id = ?', whereArgs: [id]);
   }
 
+  Future<DocumentEntry?> getDocumentById(int id) async {
+    final db = await database;
+    final maps = await db.query(
+      'documents',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (maps.isEmpty) return null;
+    return DocumentEntry.fromMap(maps.first);
+  }
+
   Future<List<DocumentEntry>> getDocumentsExpires() async {
     final db = await database;
     final now = DateTime.now().millisecondsSinceEpoch;
@@ -870,6 +882,15 @@ class MabDatabase {
       limit: limit,
     );
     return maps.map(VehicleHealthAlertHistoryEntry.fromMap).toList();
+  }
+
+  Future<int> clearVehicleHealthAlerts(int vehicleProfileId) async {
+    final db = await database;
+    return db.delete(
+      'vehicle_health_alert_history',
+      where: 'vehicle_profile_id = ?',
+      whereArgs: [vehicleProfileId],
+    );
   }
 
   Future<void> close() async {

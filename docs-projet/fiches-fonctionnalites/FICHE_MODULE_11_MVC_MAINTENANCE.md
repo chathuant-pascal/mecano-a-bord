@@ -9,7 +9,7 @@
 - `mecano_a_bord/lib/screens/add_maintenance_screen.dart` (**modifié**)
 - `mecano_a_bord/test/controllers/maintenance_controller_test.dart` (**créé**)
 
-**Résultat tests** : **`flutter test test/controllers/maintenance_controller_test.dart`** — **32 tests verts** ✅
+**Résultat tests** : **`flutter test test/controllers/maintenance_controller_test.dart`** — **34 tests verts** ✅
 
 ---
 
@@ -62,8 +62,13 @@ Maintenant, les règles et les appels métier passent par `MaintenanceController
 - Création de `test/controllers/maintenance_controller_test.dart`
 - 28 tests `computeNextDefaults` (1 par type d'entretien)
 - + 1 test type inconnu
-- + 3 tests `canSave`
-- Total : **32/32 verts**
+- + 5 tests `canSave`
+- Total : **34/34 verts**
+
+### Correctifs complémentaires (Claude Code)
+- `add_maintenance_screen.dart` : `_canSave` passe par `MaintenanceController.canSave(...)`.
+- `maintenance_controller_test.dart` : ajout de 2 tests `canSave` manquants (`''` et `'   '`).
+- `add_maintenance_screen.dart` : fusion des 2 blocs `catch` identiques dans `_loadExistingEntry`.
 
 ---
 
@@ -93,6 +98,7 @@ Maintenant, les règles et les appels métier passent par `MaintenanceController
 | 20/04/2026 | Refactor `add_maintenance_screen.dart` (constantes puis calcul des défauts). |
 | 20/04/2026 | Délégation `loadEntry` / `saveEntry` + suppression repository direct dans la vue. |
 | 20/04/2026 | Ajout tests controller et validation `32/32` verts. |
+| 20/04/2026 | Passe 2 : `_canSave` délégué au controller + fusion `catch` + compléments tests `canSave`. |
 
 ---
 
@@ -122,9 +128,9 @@ flutter test test/controllers/maintenance_controller_test.dart
 
 | Élément | Détail |
 |---|---|
-| Total tests | **32** |
-| Résultat | ✅ **32/32 verts — All tests passed!** |
-| Portée | `computeNextDefaults` (28 types), type inconnu, `canSave` |
+| Total tests | **34** |
+| Résultat | ✅ **34/34 verts — All tests passed!** |
+| Portée | `computeNextDefaults` (28 types), type inconnu, `canSave` (5 cas) |
 
 ### 5. STATUT TEST
 

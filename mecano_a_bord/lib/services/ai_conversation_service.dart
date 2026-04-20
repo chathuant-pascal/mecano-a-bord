@@ -633,6 +633,19 @@ Règles absolues :
   }) async {
     await _migrateLegacyApiKeyIfNeeded();
     final provider = await getSavedSelectedProvider();
+    if (provider == AiProvider.copilot) {
+      return const AiError(
+        'Microsoft Copilot nécessite un compte entreprise Azure. '
+        'Il n\'est pas accessible par une clé personnelle. '
+        'Utilise un autre assistant comme ChatGPT ou Mistral.',
+      );
+    }
+    if (provider == AiProvider.meta_ai) {
+      return const AiError(
+        'Meta AI ne propose pas d\'accès par clé personnelle pour le moment. '
+        'Utilise un autre assistant comme ChatGPT ou Gemini.',
+      );
+    }
     final apiKey = await _storage.read(key: storageKeyForProvider(provider));
     if (apiKey == null || apiKey.isEmpty) {
       return const AiError('Clé API introuvable. Vérifiez vos réglages.');
@@ -646,6 +659,24 @@ Règles absolues :
     }
     if (provider == AiProvider.gemini) {
       return await _callGemini(apiKey, question, systemPromptWithContext, maxOutputTokens: maxTokens);
+    }
+    if (provider == AiProvider.mistral) {
+      return await _callMistral(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
+    }
+    if (provider == AiProvider.perplexity) {
+      return await _callPerplexity(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
+    }
+    if (provider == AiProvider.grok) {
+      return await _callGrok(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
+    }
+    if (provider == AiProvider.deepseek) {
+      return await _callDeepSeek(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
+    }
+    if (provider == AiProvider.qwen) {
+      return await _callQwen(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
+    }
+    if (provider == AiProvider.claude) {
+      return await _callClaude(apiKey, question, systemPromptWithContext, maxTokens: maxTokens);
     }
     final label = _providerLabel(provider);
     return AiError('$label sera disponible prochainement.');
@@ -704,6 +735,271 @@ Règles absolues :
       mabLog('CHATGPT ERROR: $e');
       return AiError('Connexion impossible à ChatGPT. Erreur : $e');
     }
+  }
+
+  /// API Mistral — format compatible OpenAI (`/v1/chat/completions`).
+  Future<AiResponse> _callMistral(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse('https://api.mistral.ai/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'mistral-large-latest',
+          'max_tokens': maxTokens,
+          'messages': [
+            {'role': 'system', 'content': systemPrompt},
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final text = json['choices'][0]['message']['content'] as String;
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API Mistral invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte Mistral. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec Mistral. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('MISTRAL ERROR: $e');
+      return AiError('Connexion impossible à Mistral. Erreur : $e');
+    }
+  }
+
+  /// API Perplexity — format compatible OpenAI (`/chat/completions`).
+  Future<AiResponse> _callPerplexity(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse('https://api.perplexity.ai/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'llama-3.1-sonar-large-128k-online',
+          'max_tokens': maxTokens,
+          'messages': [
+            {'role': 'system', 'content': systemPrompt},
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final text = json['choices'][0]['message']['content'] as String;
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API Perplexity invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte Perplexity. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec Perplexity. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('PERPLEXITY ERROR: $e');
+      return AiError('Connexion impossible à Perplexity. Erreur : $e');
+    }
+  }
+
+  /// API xAI Grok — format compatible OpenAI (`/v1/chat/completions`).
+  Future<AiResponse> _callGrok(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse('https://api.x.ai/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'grok-2-latest',
+          'max_tokens': maxTokens,
+          'messages': [
+            {'role': 'system', 'content': systemPrompt},
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final text = json['choices'][0]['message']['content'] as String;
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API Grok invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte Grok. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec Grok. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('GROK ERROR: $e');
+      return AiError('Connexion impossible à Grok. Erreur : $e');
+    }
+  }
+
+  /// API DeepSeek — format compatible OpenAI (`/v1/chat/completions`).
+  Future<AiResponse> _callDeepSeek(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse('https://api.deepseek.com/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'deepseek-chat',
+          'max_tokens': maxTokens,
+          'messages': [
+            {'role': 'system', 'content': systemPrompt},
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final text = json['choices'][0]['message']['content'] as String;
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API DeepSeek invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte DeepSeek. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec DeepSeek. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('DEEPSEEK ERROR: $e');
+      return AiError('Connexion impossible à DeepSeek. Erreur : $e');
+    }
+  }
+
+  /// API Qwen (DashScope) — compatible OpenAI. Endpoint international (Singapour).
+  Future<AiResponse> _callQwen(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse(
+          'https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions',
+        ),
+        headers: {
+          'Authorization': 'Bearer $apiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'qwen-plus',
+          'max_tokens': maxTokens,
+          'messages': [
+            {'role': 'system', 'content': systemPrompt},
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final text = json['choices'][0]['message']['content'] as String;
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API Qwen invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte Qwen. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec Qwen. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('QWEN ERROR: $e');
+      return AiError('Connexion impossible à Qwen. Erreur : $e');
+    }
+  }
+
+  /// API Anthropic Messages (`/v1/messages`) — format distinct d'OpenAI.
+  Future<AiResponse> _callClaude(
+    String apiKey,
+    String question,
+    String systemPrompt, {
+    int maxTokens = 300,
+  }) async {
+    try {
+      final response = await _httpClient.post(
+        Uri.parse('https://api.anthropic.com/v1/messages'),
+        headers: {
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'claude-sonnet-4-5-20250929',
+          'max_tokens': maxTokens,
+          'system': systemPrompt,
+          'messages': [
+            {'role': 'user', 'content': question},
+          ],
+        }),
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body) as Map<String, dynamic>;
+        final text = _anthropicConcatTextBlocks(json['content']);
+        return AiSuccess(text: text.trim(), mode: AiMode.personal);
+      } else if (response.statusCode == 401) {
+        return const AiError('Clé API Claude invalide. Vérifiez-la dans vos réglages.');
+      } else if (response.statusCode == 429) {
+        return const AiError('Vous avez atteint la limite de votre compte Claude. Réessayez dans quelques instants.');
+      } else {
+        return const AiError('Une erreur est survenue avec Claude. Réessayez dans quelques instants.');
+      }
+    } catch (e) {
+      mabLog('CLAUDE ERROR: $e');
+      return AiError('Connexion impossible à Claude. Erreur : $e');
+    }
+  }
+
+  /// Extrait le texte des blocs `content` (type `text`) de la réponse Messages.
+  String _anthropicConcatTextBlocks(dynamic content) {
+    if (content is! List) return '';
+    final buf = StringBuffer();
+    for (final item in content) {
+      if (item is Map) {
+        final type = item['type'];
+        final text = item['text'];
+        if (type == 'text' && text is String) {
+          buf.writeln(text);
+        }
+      }
+    }
+    return buf.toString();
   }
 
   Future<AiResponse> _callGemini(

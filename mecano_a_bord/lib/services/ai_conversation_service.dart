@@ -8,6 +8,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:mecano_a_bord/data/moteur_symptomes_knowledge.dart';
@@ -89,7 +90,26 @@ class AiConversationService {
     return _instance!;
   }
 
-  AiConversationService._();
+  AiConversationService._({
+    FlutterSecureStorage? storage,
+    http.Client? httpClient,
+  })  : _storage = storage ??
+          const FlutterSecureStorage(
+            aOptions: AndroidOptions(encryptedSharedPreferences: true),
+            iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+          ),
+        _httpClient = httpClient ?? http.Client();
+
+  /// Tests : stockage et client HTTP injectés (ne pas utiliser en production).
+  @visibleForTesting
+  factory AiConversationService.forTesting({
+    required FlutterSecureStorage storage,
+    required http.Client httpClient,
+  }) =>
+      AiConversationService._(storage: storage, httpClient: httpClient);
+
+  final FlutterSecureStorage _storage;
+  final http.Client _httpClient;
 
   static const _freeDailyLimit = 5;
 
@@ -104,11 +124,6 @@ class AiConversationService {
 
   /// Clé secure storage par fournisseur : api_key_chatgpt, api_key_meta_ai, etc.
   static String storageKeyForProvider(AiProvider p) => 'api_key_${p.name}';
-
-  final _storage = const FlutterSecureStorage(
-    aOptions: AndroidOptions(encryptedSharedPreferences: true),
-    iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
-  );
 
   static const _systemPrompt = '''
 Tu es l\'assistant de l\'application Mécano à Bord.
@@ -658,7 +673,7 @@ Règles absolues :
     int maxTokens = 300,
   }) async {
     try {
-      final response = await http.post(
+      final response = await _httpClient.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Authorization': 'Bearer $apiKey',
@@ -699,7 +714,7 @@ Règles absolues :
   }) async {
     try {
       final fullPrompt = '$systemPrompt\n\nQuestion de l\'utilisateur : $question';
-      final response = await http.post(
+      final response = await _httpClient.post(
         Uri.parse(
           'https://generativelanguage.googleapis.com/v1beta/models/'
           'gemini-1.5-flash:generateContent?key=$apiKey',

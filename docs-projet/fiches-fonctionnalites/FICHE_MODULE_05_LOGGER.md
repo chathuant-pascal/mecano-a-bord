@@ -61,3 +61,36 @@ L’application peut afficher des messages techniques dans la console pendant le
 | Date | Étape |
 |---|---|
 | 19/04/2026 | Création `mab_logger.dart` + remplacement des 13 `debugPrint` + fiche + doc |
+
+---
+
+## 8. CONDITIONS DE TEST RÉALISÉES PAR PASCAL
+
+### 1. MATÉRIEL UTILISÉ
+
+| Élément | Détail |
+|---|---|
+| Téléphone | Samsung SM-A137F — Android 14 |
+| Connexion | USB PC pour logcat |
+
+### 2. ENVIRONNEMENT DE TEST
+
+- Build release (APK non debug) pour vérifier l'absence de logs
+- Build debug pour vérifier la présence des `[MAB]` dans logcat
+
+### 3. PROCÉDURE À SUIVRE
+
+1. Build debug — lancer logcat — vérifier présence des `[MAB]` en console
+2. Build release — lancer logcat — vérifier absence totale des `[MAB]`
+
+### 4. RÉSULTAT ATTENDU
+
+- En debug : `[MAB]` visible dans logcat ✅
+- En release : aucun `[MAB]` dans logcat ✅
+
+### 5. STATUT TEST
+
+| Élément | Détail |
+|---|---|
+| Statut | ⏳ **En attente test Samsung SM-A137F** |
+| Date prévue | À effectuer en conditions réelles |

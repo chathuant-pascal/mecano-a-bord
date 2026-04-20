@@ -1,6 +1,6 @@
 # FICHE MODULE 04 — WEBVIEW FORMATION
 
-**Statut** : ✅ **Correctifs BUG-1 à BUG-6 implémentés** (tests terrain MODULE 4 à faire en fin de lot)  
+**Statut** : ⏳ **Tests terrain à effectuer** — Correctifs BUG-1 à BUG-6 implémentés, validation Samsung en attente  
 **Date diagnostic** : 19/04/2026  
 **Fichier principal** : `mecano_a_bord/lib/screens/formation_webview_screen.dart`  
 **URL formation (constante)** : `mecano_a_bord/lib/formation_url.dart` — `kFormationUrl`  
@@ -84,3 +84,44 @@ L’utilisateur suit la formation dans une page web intégrée à l’applicatio
 | 19/04/2026 | BUG-6 appliqué | `_pageLoading` + `onPageStarted` / `onPageFinished` ; overlay `CircularProgressIndicator` (`MabColors.rouge`) + voile `MabColors.noir` semi-transparent ; cohérence avec erreurs / réessai. |
 
 *(À compléter après chaque correctif validé.)*
+
+---
+
+## 9. CONDITIONS DE TEST RÉALISÉES PAR PASCAL
+
+### 1. MATÉRIEL UTILISÉ
+
+| Élément | Détail |
+|---|---|
+| Téléphone | Samsung SM-A137F — Android 14 |
+| Connexion | WiFi ou données mobiles |
+| Dongle OBD | Non requis pour ce module |
+
+### 2. ENVIRONNEMENT DE TEST
+
+- Téléphone seul (pas de connexion USB requise)
+- Connexion internet active puis coupée (test erreur réseau)
+- Application démarrée depuis l'onboarding
+
+### 3. PROCÉDURE À SUIVRE
+
+1. Lancer l'app depuis un onboarding vierge
+2. Vérifier que la WebView charge `kFormationUrl`
+3. Cliquer sur un lien externe — vérifier ouverture dans le navigateur
+4. Couper le WiFi — vérifier message d'erreur + bouton "Réessayer"
+5. Passer l'app en arrière-plan puis revenir — vérifier reprise correcte
+6. Simuler `MABFormation.postMessage('done')` depuis la page de formation
+
+### 4. RÉSULTAT ATTENDU
+
+- Liens hors allowlist ouverts dans le navigateur externe ✅
+- Page d'erreur réseau affichée avec bouton "Réessayer" ✅
+- Timer suspendu en arrière-plan, repris au retour ✅
+- Spinner visible pendant le chargement ✅
+
+### 5. STATUT TEST
+
+| Élément | Détail |
+|---|---|
+| Statut | ⏳ **En attente test Samsung SM-A137F** |
+| Date prévue | À effectuer en conditions réelles |

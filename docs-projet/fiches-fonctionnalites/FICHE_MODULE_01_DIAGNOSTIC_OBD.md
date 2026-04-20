@@ -248,6 +248,7 @@ TEST 6 — Mode démo
 | Tests sur Samsung SM-A137F | ✅ Fait — diagnostic aboutit |
 | Validation Pascal | ✅ **19/04/2026** |
 | Sauvegarde / commit GitHub | ✅ Fait |
+| Warning `_protocolDetectionDeviceName` inutilisé (`obd_scan_screen.dart:61`) | ⏳ À corriger avec Cursor |
 
 ---
 

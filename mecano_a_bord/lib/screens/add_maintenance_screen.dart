@@ -3,20 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mecano_a_bord/data/mab_repository.dart';
+import 'package:mecano_a_bord/controllers/maintenance_controller.dart';
+import 'package:mecano_a_bord/data/mab_repository.dart' show MaintenanceEntry;
 import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/utils/mab_logger.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
-
-/// Titre affiché + liste de libellés (même chaînes que les types d’entretien en base).
-class _MaintenanceCategoryDisplay {
-  final String title;
-  final List<String> types;
-  const _MaintenanceCategoryDisplay({
-    required this.title,
-    required this.types,
-  });
-}
 
 class AddMaintenanceScreen extends StatefulWidget {
   /// Si non null : mode édition d'un entretien existant.
@@ -29,7 +20,7 @@ class AddMaintenanceScreen extends StatefulWidget {
 }
 
 class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
-  final MabRepository _repository = MabRepository.instance;
+  final MaintenanceController _maintenanceController = MaintenanceController();
   final ImagePicker _imagePicker = ImagePicker();
 
   final _mileageCtrl = TextEditingController();
@@ -49,141 +40,12 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
   /// Évite d’écraser les champs « prochain » lors du chargement d’une entrée existante.
   bool _suppressAutoNextDefaults = false;
 
-  /// Titres de catégorie + ordre des puces à l’écran (données métier inchangées ailleurs).
-  static const List<_MaintenanceCategoryDisplay> _categoryDisplay = [
-    _MaintenanceCategoryDisplay(
-      title: '🔧 ENTRETIEN COURANT',
-      types: [
-        'Vidange + filtre à huile',
-        'Filtre à air',
-        'Filtre à carburant / gazole',
-        'Filtre habitacle (pollen)',
-        'Liquide de refroidissement',
-        'Essuie-glaces',
-        'Ampoules / éclairage',
-      ],
-    ),
-    _MaintenanceCategoryDisplay(
-      title: '⚙️ MOTEUR',
-      types: [
-        'Embrayage',
-        'Calorstat',
-        'Pompe à eau',
-        'Courroie de distribution',
-        'Courroie accessoire + galets',
-        'Joint de culasse',
-      ],
-    ),
-    _MaintenanceCategoryDisplay(
-      title: '🔋 ÉLECTRIQUE',
-      types: [
-        'Batterie',
-        'Alternateur',
-        'Démarreur',
-        'Électronique / Électricité',
-      ],
-    ),
-    _MaintenanceCategoryDisplay(
-      title: '❄️ CLIMATISATION',
-      types: [
-        'Climatisation — recharge gaz',
-        'Climatisation — filtre déshydrateur',
-      ],
-    ),
-    _MaintenanceCategoryDisplay(
-      title: '🚗 TRAIN ROULANT & SÉCURITÉ',
-      types: [
-        'Freins — plaquettes',
-        'Freins — disques',
-        'Pneumatiques (remplacement)',
-        'Pneumatiques (équilibrage / permutation)',
-        'Train avant (rotules / biellettes / triangles)',
-        'Amortisseurs / Suspension',
-      ],
-    ),
-    _MaintenanceCategoryDisplay(
-      title: '📋 ADMINISTRATIF & AUTRE',
-      types: [
-        'Contrôle technique',
-        'Révision générale',
-        'Autre intervention',
-      ],
-    ),
-  ];
-
-  final _maintenanceTypes = [
-    'Vidange + filtre à huile',
-    'Filtre à air',
-    'Filtre à carburant / gazole',
-    'Filtre habitacle (pollen)',
-    'Pneumatiques (remplacement)',
-    'Pneumatiques (équilibrage / permutation)',
-    'Freins — plaquettes',
-    'Freins — disques',
-    'Courroie de distribution',
-    'Batterie',
-    'Contrôle technique',
-    'Révision générale',
-    'Liquide de refroidissement',
-    'Ampoules / éclairage',
-    'Essuie-glaces',
-    // Groupe moteur
-    'Embrayage',
-    'Calorstat',
-    'Pompe à eau',
-    'Courroie accessoire + galets',
-    'Joint de culasse',
-    // Groupe électrique
-    'Alternateur',
-    'Démarreur',
-    'Électronique / Électricité',
-    // Groupe climatisation
-    'Climatisation — recharge gaz',
-    'Climatisation — filtre déshydrateur',
-    // Groupe train roulant
-    'Train avant (rotules / biellettes / triangles)',
-    'Amortisseurs / Suspension',
-    'Autre intervention',
-  ];
-
-  final Map<String, IconData> _typeIcons = {
-    'Vidange + filtre à huile': Icons.oil_barrel,
-    'Filtre à air': Icons.air,
-    'Filtre à carburant / gazole': Icons.local_gas_station,
-    'Filtre habitacle (pollen)': Icons.filter_alt,
-    'Pneumatiques (remplacement)': Icons.tire_repair,
-    'Pneumatiques (équilibrage / permutation)': Icons.rotate_right,
-    'Freins — plaquettes': Icons.do_not_disturb_on,
-    'Freins — disques': Icons.do_not_disturb_on_total_silence,
-    'Courroie de distribution': Icons.settings,
-    'Batterie': Icons.battery_charging_full,
-    'Contrôle technique': Icons.fact_check,
-    'Révision générale': Icons.build,
-    'Liquide de refroidissement': Icons.water_drop,
-    'Ampoules / éclairage': Icons.lightbulb,
-    'Essuie-glaces': Icons.water,
-    'Embrayage': Icons.settings_outlined,
-    'Calorstat': Icons.thermostat_outlined,
-    'Pompe à eau': Icons.water_outlined,
-    'Courroie accessoire + galets': Icons.rotate_right_outlined,
-    'Joint de culasse': Icons.layers_outlined,
-    'Alternateur': Icons.electric_bolt_outlined,
-    'Démarreur': Icons.power_settings_new_outlined,
-    'Électronique / Électricité': Icons.electrical_services_outlined,
-    'Climatisation — recharge gaz': Icons.ac_unit_outlined,
-    'Climatisation — filtre déshydrateur': Icons.air_outlined,
-    'Train avant (rotules / biellettes / triangles)':
-        Icons.directions_car_outlined,
-    'Amortisseurs / Suspension': Icons.expand_outlined,
-    'Autre intervention': Icons.handyman,
-  };
-
   @override
   void initState() {
     super.initState();
     assert(
-      Set<String>.from(_maintenanceTypes) ==
-          _categoryDisplay.expand((c) => c.types).toSet(),
+      Set<String>.from(MaintenanceController.maintenanceTypes) ==
+          MaintenanceController.categoryDisplay.expand((c) => c.types).toSet(),
       'Les types affichés par catégorie doivent correspondre à _maintenanceTypes.',
     );
     _mileageCtrl.addListener(_onMileageChanged);
@@ -203,105 +65,45 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
   /// Pré-remplit « prochain km » et « prochaine date » selon le type et le km saisi (modifiables ensuite).
   void _applyNextServiceDefaults() {
     if (_suppressAutoNextDefaults) return;
+
     final type = _selectedType;
     final raw = _mileageCtrl.text.replaceAll(RegExp(r'\s'), '');
     final currentKm = int.tryParse(raw);
     if (type == null || raw.isEmpty || currentKm == null) return;
 
     final baseDate = _selectedDate ?? DateTime.now();
-
-    int? nextKmValue;
-    var clearNextKm = false;
-    DateTime? nextDate;
-
-    switch (type) {
-      case 'Vidange + filtre à huile':
-        nextKmValue = currentKm + 15000;
-        nextDate = _addYears(baseDate, 1);
-        break;
-      case 'Freins — plaquettes':
-        nextKmValue = currentKm + 40000;
-        nextDate = null;
-        break;
-      case 'Courroie de distribution':
-        nextKmValue = currentKm + 120000;
-        nextDate = _addYears(baseDate, 10);
-        break;
-      case 'Pneumatiques (remplacement)':
-      case 'Pneumatiques (équilibrage / permutation)':
-        clearNextKm = true;
-        nextDate = _addYears(baseDate, 5);
-        break;
-      case 'Contrôle technique':
-        clearNextKm = true;
-        nextDate = _addYears(baseDate, 2);
-        break;
-      case 'Révision générale':
-        nextKmValue = currentKm + 30000;
-        nextDate = _addYears(baseDate, 2);
-        break;
-      case 'Embrayage':
-        nextKmValue = currentKm + 80000;
-        nextDate = null;
-        break;
-      case 'Calorstat':
-        nextKmValue = currentKm + 100000;
-        nextDate = _addYears(baseDate, 10);
-        break;
-      case 'Pompe à eau':
-        nextKmValue = currentKm + 100000;
-        nextDate = _addYears(baseDate, 10);
-        break;
-      case 'Courroie accessoire + galets':
-        nextKmValue = currentKm + 60000;
-        nextDate = _addYears(baseDate, 5);
-        break;
-      case 'Joint de culasse':
-      case 'Alternateur':
-      case 'Démarreur':
-      case 'Électronique / Électricité':
-      case 'Train avant (rotules / biellettes / triangles)':
-        clearNextKm = true;
-        nextDate = null;
-        break;
-      case 'Climatisation — recharge gaz':
-        clearNextKm = true;
-        nextDate = _addYears(baseDate, 2);
-        break;
-      case 'Climatisation — filtre déshydrateur':
-        nextKmValue = currentKm + 30000;
-        nextDate = _addYears(baseDate, 2);
-        break;
-      case 'Amortisseurs / Suspension':
-        nextKmValue = currentKm + 80000;
-        nextDate = _addYears(baseDate, 5);
-        break;
-      case 'Autre intervention':
-        clearNextKm = true;
-        nextDate = null;
-        break;
-      default:
-        return;
-    }
+    final defaults = _maintenanceController.computeNextDefaults(
+      type,
+      currentKm,
+      baseDate,
+    );
 
     setState(() {
-      if (clearNextKm) {
+      if (defaults.clearNextKm) {
         _nextMileageCtrl.clear();
-      } else if (nextKmValue != null) {
-        _nextMileageCtrl.text = '$nextKmValue';
+      } else if (defaults.nextKm != null) {
+        _nextMileageCtrl.text = '${defaults.nextKm}';
       }
-      _selectedNextDate = nextDate;
+      _selectedNextDate = defaults.nextDate;
     });
-  }
-
-  DateTime _addYears(DateTime d, int years) {
-    return DateTime(d.year + years, d.month, d.day);
   }
 
   Future<void> _loadExistingEntry(int id) async {
     MaintenanceEntry? entry;
     try {
-      entry = await _repository.getMaintenanceEntryById(id);
+      entry = await _maintenanceController.loadEntry(id);
+    } on MaintenanceControllerException catch (e, st) {
+      mabLog('AddMaintenance: chargement entretien id=$id — $e\n$st');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Impossible de charger cet entretien. Réessaie ou reviens à la liste.',
+            style: MabTextStyles.corpsNormal,
+          ),
+        ),
+      );
+      return;
     } catch (e, st) {
       mabLog('AddMaintenance: chargement entretien id=$id — $e\n$st');
       if (!mounted) return;
@@ -449,11 +251,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
         receiptPhotoPath: _invoicePhoto?.path,
       );
 
-      if (_isEditMode) {
-        await _repository.updateMaintenanceEntry(entry);
-      } else {
-        await _repository.addMaintenanceEntry(entry);
-      }
+      await _maintenanceController.saveEntry(entry, isEditMode: _isEditMode);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -620,7 +418,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (var i = 0; i < _categoryDisplay.length; i++) ...[
+        for (var i = 0; i < MaintenanceController.categoryDisplay.length; i++) ...[
           if (i > 0) ...[
             const SizedBox(height: MabDimensions.espacementM),
             Divider(
@@ -631,7 +429,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
             const SizedBox(height: MabDimensions.espacementM),
           ],
           Text(
-            _categoryDisplay[i].title,
+            MaintenanceController.categoryDisplay[i].title,
             style: MabTextStyles.label.copyWith(
               color: MabColors.rouge,
               fontSize: 13,
@@ -643,7 +441,9 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
           Wrap(
             spacing: MabDimensions.espacementS,
             runSpacing: MabDimensions.espacementS,
-            children: _categoryDisplay[i].types.map(_buildMaintenanceTypeChip).toList(),
+            children: MaintenanceController.categoryDisplay[i].types
+                .map(_buildMaintenanceTypeChip)
+                .toList(),
           ),
         ],
       ],
@@ -674,7 +474,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              _typeIcons[type] ?? Icons.build,
+              MaintenanceController.typeIcons[type] ?? Icons.build,
               size: 16,
               color: isSelected ? MabColors.blanc : MabColors.grisTexte,
             ),

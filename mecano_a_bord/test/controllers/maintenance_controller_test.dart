@@ -314,5 +314,19 @@ void main() {
         isTrue,
       );
     });
+
+    test('mileage vide -> false', () {
+      expect(
+        controller.canSave('Vidange + filtre à huile', baseDate, ''),
+        isFalse,
+      );
+    });
+
+    test('mileage espaces -> false', () {
+      expect(
+        controller.canSave('Vidange + filtre à huile', baseDate, '   '),
+        isFalse,
+      );
+    });
   });
 }

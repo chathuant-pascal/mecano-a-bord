@@ -92,18 +92,6 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
     MaintenanceEntry? entry;
     try {
       entry = await _maintenanceController.loadEntry(id);
-    } on MaintenanceControllerException catch (e, st) {
-      mabLog('AddMaintenance: chargement entretien id=$id — $e\n$st');
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Impossible de charger cet entretien. Réessaie ou reviens à la liste.',
-            style: MabTextStyles.corpsNormal,
-          ),
-        ),
-      );
-      return;
     } catch (e, st) {
       mabLog('AddMaintenance: chargement entretien id=$id — $e\n$st');
       if (!mounted) return;
@@ -141,9 +129,11 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
   }
 
   bool get _canSave =>
-      _selectedType != null &&
-      _selectedDate != null &&
-      _mileageCtrl.text.trim().isNotEmpty;
+      _maintenanceController.canSave(
+        _selectedType,
+        _selectedDate,
+        _mileageCtrl.text,
+      );
 
   Future<void> _pickDate({required bool isNext}) async {
     final initial = isNext

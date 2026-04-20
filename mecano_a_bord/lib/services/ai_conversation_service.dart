@@ -1036,6 +1036,7 @@ Règles absolues :
         return const AiError('Une erreur est survenue avec Gemini. Réessayez dans quelques instants.');
       }
     } catch (e) {
+      mabLog('GEMINI ERROR: $e');
       return const AiError('Connexion impossible à Gemini. Vérifiez votre connexion Internet.');
     }
   }

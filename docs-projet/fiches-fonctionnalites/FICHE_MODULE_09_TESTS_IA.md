@@ -93,4 +93,48 @@ Méthodologie projet : pour les tests — **cas nominal**, **cas d’erreur**, *
 
 ---
 
+## 9. CONDITIONS DE TEST RÉALISÉES PAR PASCAL
+
+### 1. MATÉRIEL UTILISÉ
+
+| Élément | Détail |
+|---|---|
+| PC | Windows 11 — exécution `flutter test` |
+| Téléphone | Samsung SM-A137F — Android 14 (non requis pour les tests automatisés) |
+| Outils | Flutter SDK + `flutter test` en ligne de commande |
+
+### 2. ENVIRONNEMENT DE TEST
+
+- Tests automatisés (pas de téléphone nécessaire)
+- HTTP mocké via `MockClient` (`package:http/testing.dart`)
+- Stockage mocké via `FlutterSecureStorage.setMockInitialValues({})`
+- Aucun appel API réel pendant les tests
+
+### 3. PROCÉDURE SUIVIE
+
+```
+flutter test test/ai_conversation_service_test.dart
+```
+
+### 4. RÉSULTAT
+
+| Élément | Détail |
+|---|---|
+| Total tests | **13** |
+| Résultat | ✅ **13/13 verts — All tests passed!** |
+| Durée | ~2 secondes |
+
+Groupes couverts :
+1. Quota gratuit : nominal / compteur aberrant / 6ᵉ question / 5ᵉ question
+2. ChatGPT : 200 / 401 / 429
+3. Gemini : 200 / 400 / 500
+4. Démo + `askManufacturerReferenceJson` : `isDemoMode` / sans clé / avec clé
+
+### 5. STATUT TEST
+
+| Élément | Détail |
+|---|---|
+| Statut | ✅ **Validé le 19/04/2026** — 13/13 tests verts |
+| Plateforme | PC Windows (tests automatisés) |
+
 *Fin de la fiche MODULE 09 — Tests IA service.*

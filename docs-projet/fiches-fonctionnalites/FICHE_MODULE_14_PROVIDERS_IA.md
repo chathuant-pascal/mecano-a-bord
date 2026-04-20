@@ -49,4 +49,50 @@ L’utilisateur choisit un assistant dans **Réglages** ; en **mode personnel**,
 
 ---
 
+---
+
+## 5. CONDITIONS DE TEST RÉALISÉES PAR PASCAL
+
+### 1. MATÉRIEL UTILISÉ
+
+| Élément | Détail |
+|---|---|
+| Téléphone | Samsung SM-A137F — Android 14 |
+| Clés API | Clés personnelles réelles (ChatGPT, Gemini, Mistral…) |
+| Connexion | WiFi ou données mobiles actives |
+
+### 2. ENVIRONNEMENT DE TEST
+
+- Test manuel depuis l'écran Réglages → sélection du provider → saisie de la clé API
+- Une question posée par provider pour vérifier la réponse réelle
+- Test avec clé invalide pour vérifier le message d'erreur
+- Test Copilot et Meta AI pour vérifier le message explicatif
+
+### 3. PROCÉDURE À SUIVRE
+
+1. Ouvrir Réglages → Assistant IA
+2. Sélectionner chaque provider un par un
+3. Saisir une clé API valide → poser une question → vérifier réponse cohérente
+4. Saisir une clé invalide → vérifier message d'erreur clair
+5. Sélectionner Copilot → vérifier message "compte entreprise Azure requis"
+6. Sélectionner Meta AI → vérifier message "pas d'accès par clé personnelle"
+
+### 4. RÉSULTAT ATTENDU
+
+| Provider | Attendu |
+|---|---|
+| ChatGPT, Gemini, Mistral, Perplexity, Grok, DeepSeek, Qwen, Claude | Réponse IA reçue en < 30s ✅ |
+| Clé invalide (401) | Message "Clé API invalide" ✅ |
+| Quota dépassé (429) | Message "limite atteinte" ✅ |
+| Copilot | Message explicatif Azure ✅ |
+| Meta AI | Message explicatif pas d'API personnelle ✅ |
+
+### 5. STATUT TEST
+
+| Élément | Détail |
+|---|---|
+| Tests automatisés (MODULE 9) | ✅ 13/13 verts |
+| Tests terrain Samsung SM-A137F | ⏳ **En attente test avec clés API réelles** |
+| Date prévue | À effectuer en conditions réelles |
+
 *Fiche MODULE 14 — Mécano à Bord — 19/04/2026*

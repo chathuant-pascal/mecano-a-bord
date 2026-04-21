@@ -1,16 +1,12 @@
 // Création / édition du profil véhicule (après onboarding).
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
+import 'package:mecano_a_bord/controllers/vehicle_profile_controller.dart';
 import 'package:mecano_a_bord/theme/mab_theme.dart';
-import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/screens/home_screen.dart';
-import 'package:mecano_a_bord/services/vehicle_reference_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// Arguments de route : `null` = profil actif (comportement historique), `'NEW_PROFILE'` = formulaire vierge,
 /// [int] ou [String] numérique = édition de ce profil.
@@ -24,16 +20,7 @@ class GloveboxProfileScreen extends StatefulWidget {
 }
 
 class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
-  static const _kVehicleMarque = 'vehicle_marque';
-  static const _kVehicleModele = 'vehicle_modele';
-  static const _kVehicleEnergie = 'vehicle_energie';
-  static const _kVehicleAnnee = 'vehicle_annee';
-  static const _kVehicleCouleur = 'vehicle_couleur';
-  static const _kVehicleImmat = 'vehicle_immat';
-  static const _kVehiclePortes = 'vehicle_portes';
-  static const _kVehicleDataFetched = 'vehicle_data_fetched';
-
-  final _repository = MabRepository.instance;
+  final VehicleProfileController _controller = VehicleProfileController();
   final _formKey = GlobalKey<FormState>();
   final _plateLookupCtrl = TextEditingController();
   final _brandCtrl = TextEditingController();
@@ -81,8 +68,8 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _loadExistingProfile();
-    _loadVehicleIdentityFromPrefs();
+    _loadExistingProfileFromController();
+    _loadIdentityFromController();
     _plateLookupCtrl.addListener(_syncPlateLookup);
     _brandCtrl.addListener(_refresh);
     _modelCtrl.addListener(_refresh);
@@ -104,25 +91,22 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     }
   }
 
-  String _normalizePlate(String raw) =>
-      raw.trim().toUpperCase().replaceAll(RegExp(r'\s+'), '-');
-
-  Future<void> _loadVehicleIdentityFromPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    final fetched = prefs.getBool(_kVehicleDataFetched) ?? false;
+  Future<void> _loadIdentityFromController() async {
+    final result = await _controller.loadIdentityFromPrefs();
     if (!mounted) return;
-    if (!fetched) {
+    if (!result.fetched || result.identity == null) {
       setState(() => _vehicleDataFetched = false);
       return;
     }
+    final identity = result.identity!;
     _applyIdentityToForm(
-      marque: prefs.getString(_kVehicleMarque) ?? '',
-      modele: prefs.getString(_kVehicleModele) ?? '',
-      energie: prefs.getString(_kVehicleEnergie) ?? '',
-      annee: prefs.getString(_kVehicleAnnee) ?? '',
-      couleur: prefs.getString(_kVehicleCouleur) ?? '',
-      immat: prefs.getString(_kVehicleImmat) ?? '',
-      portes: prefs.getInt(_kVehiclePortes),
+      marque: identity.marque,
+      modele: identity.modele,
+      energie: identity.energie,
+      annee: identity.annee,
+      couleur: identity.couleur,
+      immat: identity.immat,
+      portes: identity.portes,
     );
     setState(() {
       _vehicleDataFetched = true;
@@ -149,117 +133,37 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     _colorCtrl.text = couleur;
     _selectedDoors = portes;
     if (energie.isNotEmpty) {
-      _selectedFuel = _mapApiFuelToAppFuel(energie);
+      _selectedFuel = _controller.mapApiFuelToAppFuel(energie);
     }
   }
 
-  String _mapApiFuelToAppFuel(String raw) {
-    final r = raw.toLowerCase();
-    if (r.contains('diesel') || r.contains('gazole')) return 'Diesel (Gazole)';
-    if (r.contains('hybride')) return 'Hybride essence';
-    if (r.contains('elect') || r.contains('élect')) return 'Électrique';
-    return 'Essence (SP95, SP98)';
-  }
-
-  String _firstNonEmpty(Map<String, dynamic> map, List<String> keys) {
-    for (final k in keys) {
-      final v = map[k];
-      if (v != null && v.toString().trim().isNotEmpty) return v.toString().trim();
-    }
-    return '';
-  }
-
-  Future<void> _saveIdentityPrefs({
-    required String marque,
-    required String modele,
-    required String energie,
-    required String annee,
-    required String couleur,
-    required String immat,
-    required int? portes,
-  }) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_kVehicleMarque, marque);
-    await prefs.setString(_kVehicleModele, modele);
-    await prefs.setString(_kVehicleEnergie, energie);
-    await prefs.setString(_kVehicleAnnee, annee);
-    await prefs.setString(_kVehicleCouleur, couleur);
-    await prefs.setString(_kVehicleImmat, immat);
-    if (portes != null) {
-      await prefs.setInt(_kVehiclePortes, portes);
-    } else {
-      await prefs.remove(_kVehiclePortes);
-    }
-    await prefs.setBool(_kVehicleDataFetched, true);
-  }
-
-  Future<void> _lookupVehicle() async {
+  Future<void> _lookupVehicleFromController() async {
     if (_vehicleDataFetched) return;
-    final plate = _normalizePlate(_plateLookupCtrl.text);
-    if (plate.isEmpty) {
-      setState(() => _vehicleApiMessage = 'Entre une plaque pour continuer.');
-      return;
-    }
     setState(() {
       _isFetchingVehicle = true;
       _vehicleApiMessage = null;
     });
-    try {
-      final uri = Uri.parse(
-        'https://particulier.api.gouv.fr/api/v2/immatriculation?immatriculation=$plate',
-      );
-      final response = await http.get(uri).timeout(const Duration(seconds: 10));
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        throw Exception('Réponse serveur ${response.statusCode}');
-      }
-      final decoded = jsonDecode(response.body);
-      final Map<String, dynamic> data = decoded is Map<String, dynamic>
-          ? (decoded['data'] is Map<String, dynamic>
-              ? Map<String, dynamic>.from(decoded['data'] as Map)
-              : decoded)
-          : <String, dynamic>{};
-      final marque = _firstNonEmpty(data, ['marque', 'brand']);
-      final modele = _firstNonEmpty(data, ['modele', 'model']);
-      final energie = _firstNonEmpty(data, ['energie', 'carburant', 'fuel']);
-      final annee = _firstNonEmpty(
-        data,
-        ['annee', 'annee_premiere_mise_en_circulation', 'date_premiere_mise_en_circulation'],
-      ).replaceAll(RegExp(r'[^0-9]'), '').padLeft(4, '0').substring(0, 4);
-      final couleur = _firstNonEmpty(data, ['couleur']);
-      await _saveIdentityPrefs(
-        marque: marque,
-        modele: modele,
-        energie: energie,
-        annee: annee,
-        couleur: couleur,
-        immat: plate,
-        portes: null,
-      );
+    final result = await _controller.lookupVehicle(_plateLookupCtrl.text);
+    if (!mounted) return;
+    if (result.success && result.data != null) {
+      final data = result.data!;
       _applyIdentityToForm(
-        marque: marque,
-        modele: modele,
-        energie: energie,
-        annee: annee,
-        couleur: couleur,
-        immat: plate,
-        portes: null,
+        marque: data.marque,
+        modele: data.modele,
+        energie: data.energie,
+        annee: data.annee,
+        couleur: data.couleur,
+        immat: data.immat,
+        portes: data.portes,
       );
-      if (!mounted) return;
-      setState(() {
-        _vehicleDataFetched = true;
-        _showVehicleSummary = true;
-        _showManualVehicleForm = false;
-      });
-    } catch (_) {
-      if (!mounted) return;
-      setState(() {
-        _vehicleApiMessage =
-            'Pas de souci ! Tu peux remplir les infos de ta voiture toi-même. Tu trouveras tout sur ta carte grise.';
-        _showManualVehicleForm = true;
-      });
-    } finally {
-      if (mounted) setState(() => _isFetchingVehicle = false);
     }
+    setState(() {
+      _vehicleDataFetched = result.vehicleDataFetched;
+      _showVehicleSummary = result.showVehicleSummary;
+      _showManualVehicleForm = result.showManualVehicleForm;
+      _vehicleApiMessage = result.message;
+      _isFetchingVehicle = false;
+    });
   }
 
   Future<void> _saveManualIdentity() async {
@@ -268,13 +172,15 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
       setState(() => _vehicleApiMessage = 'Complète les champs obligatoires pour continuer.');
       return;
     }
-    await _saveIdentityPrefs(
+    await _controller.saveIdentityPrefs(
       marque: _brandCtrl.text.trim(),
       modele: _modelCtrl.text.trim(),
       energie: _selectedFuel ?? '',
       annee: year,
       couleur: _colorCtrl.text.trim(),
-      immat: _normalizePlate(_plateLookupCtrl.text.isNotEmpty ? _plateLookupCtrl.text : _plateCtrl.text),
+      immat: _controller.normalizePlate(
+        _plateLookupCtrl.text.isNotEmpty ? _plateLookupCtrl.text : _plateCtrl.text,
+      ),
       portes: _selectedDoors,
     );
     if (!mounted) return;
@@ -286,31 +192,13 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     });
   }
 
-  Future<void> _loadExistingProfile() async {
-    final args = widget.routeArguments;
-    if (args == 'NEW_PROFILE') {
-      return;
-    }
-
-    int? profileId;
-    if (args is int && args > 0) {
-      profileId = args;
-    } else if (args is String && args != 'NEW_PROFILE') {
-      profileId = int.tryParse(args);
-    }
-
-    VehicleProfile? profile;
-    if (profileId != null && profileId > 0) {
-      profile = await _repository.getVehicleProfileById(profileId);
-    } else {
-      profile = await _repository.getVehicleProfile();
-    }
-
-    final prof = profile;
+  Future<void> _loadExistingProfileFromController() async {
+    final result = await _controller.loadExistingProfile(widget.routeArguments);
+    final prof = result.profile;
     if (prof != null && mounted) {
       setState(() {
-        _isEditMode = true;
-        _existingProfileId = prof.id;
+        _isEditMode = result.isEditMode;
+        _existingProfileId = result.existingProfileId;
         _brandCtrl.text = prof.brand;
         _modelCtrl.text = prof.model;
         _motorisationCtrl.text = prof.motorisation;
@@ -325,78 +213,59 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     }
   }
 
-  static bool _isVinValid(String v) {
-    final s = v.trim();
-    if (s.length != 17) return false;
-    return RegExp(r'^[A-Za-z0-9]+$').hasMatch(s);
-  }
+  bool get _canSave => _controller.canSave(
+        brand: _brandCtrl.text,
+        model: _modelCtrl.text,
+        year: _yearCtrl.text,
+        plate: _plateCtrl.text,
+        vin: _vinCtrl.text,
+        mileage: _mileageCtrl.text,
+        selectedGearbox: _selectedGearbox,
+        selectedFuel: _selectedFuel,
+      );
 
-  bool get _canSave =>
-      _brandCtrl.text.trim().isNotEmpty &&
-      _modelCtrl.text.trim().isNotEmpty &&
-      _yearCtrl.text.trim().isNotEmpty &&
-      _plateCtrl.text.trim().isNotEmpty &&
-      _isVinValid(_vinCtrl.text) &&
-      _mileageCtrl.text.trim().isNotEmpty &&
-      _selectedGearbox != null &&
-      _selectedFuel != null;
-
-  Future<void> _saveProfile() async {
+  Future<void> _saveProfileFromController() async {
     if (!_formKey.currentState!.validate() || !_canSave) return;
 
     setState(() => _isSaving = true);
 
     try {
-      final profile = VehicleProfile(
-        id: _isEditMode ? _existingProfileId : '',
-        brand: _brandCtrl.text.trim(),
-        model: _modelCtrl.text.trim(),
-        year: int.tryParse(_yearCtrl.text) ?? 0,
-        mileage: int.tryParse(_mileageCtrl.text) ?? 0,
-        gearboxType: _selectedGearbox!,
-        fuelType: _selectedFuel!,
-        licensePlate: _plateCtrl.text.trim().toUpperCase(),
-        vin: _vinCtrl.text.trim().toUpperCase(),
-        motorisation: _motorisationCtrl.text.trim(),
-        notes: _notesCtrl.text.trim().isEmpty ? null : _notesCtrl.text.trim(),
+      final result = await _controller.saveProfile(
+        VehicleProfileSaveInput(
+          isEditMode: _isEditMode,
+          existingProfileId: _existingProfileId,
+          brand: _brandCtrl.text,
+          model: _modelCtrl.text,
+          motorisation: _motorisationCtrl.text,
+          year: _yearCtrl.text,
+          plate: _plateCtrl.text,
+          vin: _vinCtrl.text,
+          mileage: _mileageCtrl.text,
+          notes: _notesCtrl.text,
+          selectedGearbox: _selectedGearbox,
+          selectedFuel: _selectedFuel,
+        ),
       );
 
-      await _repository.saveVehicleProfile(profile);
-
-      final saved = await _repository.getVehicleProfile();
-      final vid = saved != null ? int.tryParse(saved.id) : null;
-      if (vid != null && vid > 0 && saved != null) {
-        unawaited(
-          VehicleReferenceService.instance.ensureReferenceValuesForProfile(
-            vehicleProfileId: vid,
-            profile: saved,
-          ),
-        );
-      }
-
-      if (mounted) {
+      if (mounted && result.success) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              _isEditMode ? 'Véhicule mis à jour ✓' : 'Véhicule enregistré ✓',
-            ),
+            content: Text(result.message),
             backgroundColor: MabColors.diagnosticVert,
           ),
         );
         Navigator.of(context).pushReplacement(
           MaterialPageRoute<void>(builder: (_) => const HomeScreen()),
         );
-      }
-    } on StateError catch (e) {
-      if (mounted) {
+      } else if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(e.message),
+            content: Text(result.message),
             backgroundColor: MabColors.diagnosticRouge,
           ),
         );
       }
-    } catch (e) {
+    } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -534,7 +403,7 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
                 width: double.infinity,
                 height: MabDimensions.boutonHauteur,
                 child: ElevatedButton(
-                  onPressed: _canSave && !_isSaving ? _saveProfile : null,
+                  onPressed: _canSave && !_isSaving ? _saveProfileFromController : null,
                   child: _isSaving
                       ? const SizedBox(
                           width: 24,
@@ -658,7 +527,9 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
             ),
             const SizedBox(height: MabDimensions.espacementS),
             DropdownButtonFormField<String>(
-              value: _selectedFuel != null ? _mapApiFuelToAppFuel(_selectedFuel!) : null,
+              value: _selectedFuel != null
+                  ? _controller.mapApiFuelToAppFuel(_selectedFuel!)
+                  : null,
               decoration: const InputDecoration(
                 labelText: 'Carburant',
                 prefixIcon: Icon(Icons.local_gas_station, color: MabColors.rouge),
@@ -666,7 +537,10 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
               items: _manualFuelOptions
                   .map((f) => DropdownMenuItem(value: f, child: Text(f)))
                   .toList(),
-              onChanged: (v) => setState(() => _selectedFuel = v == null ? null : _mapApiFuelToAppFuel(v)),
+              onChanged: (v) => setState(
+                () => _selectedFuel =
+                    v == null ? null : _controller.mapApiFuelToAppFuel(v),
+              ),
             ),
             const SizedBox(height: MabDimensions.espacementS),
             _buildTextField(
@@ -732,7 +606,7 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
             width: double.infinity,
             height: MabDimensions.boutonHauteur,
             child: ElevatedButton(
-              onPressed: _isFetchingVehicle ? null : _lookupVehicle,
+              onPressed: _isFetchingVehicle ? null : _lookupVehicleFromController,
               child: _isFetchingVehicle
                   ? const SizedBox(
                       width: 20,
@@ -776,9 +650,9 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
     return Container(
       padding: MabDimensions.paddingCard,
       decoration: BoxDecoration(
-        color: MabColors.rouge.withOpacity(0.15),
+        color: MabColors.rouge.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(MabDimensions.rayonMoyen),
-        border: Border.all(color: MabColors.rouge.withOpacity(0.3)),
+        border: Border.all(color: MabColors.rouge.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -820,7 +694,9 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
       ),
       validator: (v) {
         if (v == null || v.trim().isEmpty) return 'Le numéro VIN est obligatoire.';
-        if (!_isVinValid(v)) return 'Le numéro VIN doit contenir exactement 17 caractères alphanumériques.';
+        if (!VehicleProfileController.isVinValid(v)) {
+          return 'Le numéro VIN doit contenir exactement 17 caractères alphanumériques.';
+        }
         return null;
       },
     );
@@ -831,7 +707,7 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
       margin: const EdgeInsets.only(bottom: 4),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: MabColors.diagnosticOrange.withOpacity(0.2),
+        color: MabColors.diagnosticOrange.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(MabDimensions.rayonPetit),
         border: Border.all(color: MabColors.diagnosticOrange),
       ),
@@ -912,6 +788,7 @@ class _GloveboxProfileScreenState extends State<GloveboxProfileScreen> {
 
   @override
   void dispose() {
+    _controller.dispose();
     _plateLookupCtrl.dispose();
     _brandCtrl.dispose();
     _modelCtrl.dispose();

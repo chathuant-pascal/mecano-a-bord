@@ -8175,6 +8175,11 @@
     // ================================================================
 
     function initSectionFelicitations() {
+      // Notifier l'app Flutter que la formation est terminée
+      if (window.MABFormation && typeof window.MABFormation.postMessage === 'function') {
+        window.MABFormation.postMessage('done');
+      }
+
       // Poser le flag de formation complète dans localStorage
       localStorage.setItem('formation-complete', 'true');
 

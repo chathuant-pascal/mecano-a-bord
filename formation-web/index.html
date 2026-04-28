@@ -374,6 +374,67 @@
     .zone-confusions-table td:first-child { color: #ff6b6b; }
     .zone-confusions-table td:last-child { color: #4CAF50; }
 
+    /* ── BLOCS IMAGE/VIDÉO — SECTIONS PNEUS ET CHANGEMENT DE ROUE ── */
+    .formation-image-block {
+      border: 2px dashed #444;
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 22px 16px;
+      text-align: center;
+      margin: 16px 0;
+    }
+    .formation-image-block .image-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .formation-image-block .image-icon { font-size: 32px; color: var(--texte-discret); }
+    .formation-image-block .image-caption { font-size: 12px; color: var(--texte-discret); font-style: italic; line-height: 1.5; margin: 0; }
+
+    .formation-video-block {
+      border: 2px solid var(--rouge-principal);
+      border-radius: 12px;
+      margin: 28px 0;
+      overflow: hidden;
+    }
+    .formation-video-block .video-placeholder { margin: 0; border-radius: 0; border: none; }
+
+    /* Encadrés spéciaux : attention / info / conseil */
+    .encadre-attent {
+      background: #2a0505;
+      border-left: 4px solid var(--rouge-principal);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #ff8888;
+      line-height: 1.6;
+    }
+    .encadre-attent strong { color: #CC0000; }
+    .encadre-info {
+      background: #091824;
+      border-left: 4px solid #1e88e5;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #90caf9;
+      line-height: 1.6;
+    }
+    .encadre-info strong { color: #64b5f6; }
+    .encadre-conseil {
+      background: var(--fond-succes);
+      border-left: 4px solid var(--succes);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #a5d6a7;
+      line-height: 1.6;
+    }
+    .encadre-conseil strong { color: var(--succes); }
+
     /* ── IMAGE D'IDENTIFICATION PAR MODULE ─────────────────────── */
     .module-hero-img {
       display: block;
@@ -3762,9 +3823,9 @@
       <!-- ═══════════════════════════════════════════════════════════ -->
       <!-- AJOUT 2 — COMPRENDRE SES PNEUS                             -->
       <!-- ═══════════════════════════════════════════════════════════ -->
-      <h2 class="lecon-titre">🔵 3.2c — Comprendre ses pneus — Les bases indispensables</h2>
-
-      <p class="zone-detail-explication" style="margin-bottom:16px">Tes pneus sont le seul contact entre ta voiture et la route. Quatre surfaces de la taille d'une carte postale portent toute la voiture. Les connaître, c'est rouler en sécurité.</p>
+      <h2 class="lecon-titre">🔵 3.2c — Comprendre vos pneus</h2>
+      <p class="zone-detail-explication" style="font-style:italic;margin-bottom:8px">Les pneus sont le seul contact entre votre voiture et la route — voici tout ce qu'il faut savoir.</p>
+      <p class="zone-detail-explication" style="margin-bottom:24px">Quatre surfaces de la taille d'une carte postale portent toute la voiture. Les connaître, c'est rouler en sécurité.</p>
 
       <div class="zone-section-titre">Lire les dimensions d'un pneu</div>
 
@@ -3841,6 +3902,320 @@
           <span class="zph-label">📷 Photo à venir</span>
         </div>
         <div class="zone-alert-bloc"><strong>⚠️ Recommandation :</strong> Changer les pneus après 5 à 7 ans même s'ils semblent en bon état. Le caoutchouc vieillit et se craquelle à l'intérieur, même sans usure visible. Vérifier la date à l'achat de pneus d'occasion.</div>
+      </div>
+
+      <!-- ── Bloc 4 : Treadwear ── -->
+      <div class="zone-section-titre">L'indice Treadwear — La longévité de votre pneu</div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">📊 Lire l'indice Treadwear</h3>
+        <p class="zone-detail-explication">L'indice Treadwear est visible sur le flanc du pneu, à côté du marquage principal. Il indique la durée de vie relative du pneu par rapport à une référence standard.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Valeurs possibles : entre <strong style="color:#fff">60 et 620</strong></li>
+          <li><span class="zone-detail-num">2</span>Valeur de référence = <strong style="color:#fff">100</strong></li>
+          <li><span class="zone-detail-num">3</span>Plus l'indice est élevé, plus le pneu dure longtemps</li>
+          <li><span class="zone-detail-num">4</span>Exemple : un pneu indice <strong style="color:#fff">300</strong> dure 3× plus longtemps qu'un pneu indice <strong style="color:#fff">100</strong></li>
+        </ul>
+        <div class="zone-precision">⚠️ <strong style="color:#fff">Attention :</strong> La comparaison n'est valable qu'entre pneus de la <strong style="color:#fff">même marque</strong>. Chaque fabricant a sa propre échelle de mesure.</div>
+      </div>
+
+      <div class="formation-image-block" data-image="pneu-treadwear-comparaison.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Tableau visuel comparant des pneus avec différents indices Treadwear : 100 / 200 / 300 / 400</p>
+        </div>
+      </div>
+
+      <!-- ── Bloc 5 : Symboles spéciaux ── -->
+      <div class="zone-section-titre">Les symboles et lettres supplémentaires sur votre pneu</div>
+
+      <table class="zone-table">
+        <thead><tr><th>Symbole</th><th>Signification</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>M+S</td><td>Mud &amp; Snow — adapté boue et neige légère</td><td>Hiver léger, mais ne remplace pas un pneu hiver certifié</td></tr>
+          <tr><td>3PMSF ❄️</td><td>Flocon sur montagne à 3 pics — pneu hiver certifié</td><td>Obligatoire loi montagne du 1er novembre au 31 mars dans 48 départements</td></tr>
+          <tr><td>XL / Extra Load</td><td>Pneu renforcé — supporte des charges plus élevées</td><td>Véhicules chargés, SUV, utilitaires</td></tr>
+          <tr><td>Run Flat</td><td>Peut rouler après crevaison</td><td>Distance limitée (~80 km) — vérifier l'homologation de votre véhicule</td></tr>
+          <tr><td>Tubeless</td><td>Sans chambre à air</td><td>Standard sur toutes les voitures modernes</td></tr>
+          <tr><td>TWI</td><td>Emplacement du témoin d'usure sur le flanc</td><td>Chercher le petit triangle ▲ gravé sur le flanc du pneu</td></tr>
+        </tbody>
+      </table>
+
+      <div class="formation-image-block" data-image="pneu-symboles-speciaux.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Planche visuelle des symboles pneu : M+S, flocon 3PMSF, XL, Run Flat, Tubeless, TWI — avec explication de chacun</p>
+        </div>
+      </div>
+
+      <!-- ── Bloc 6 : 5 réflexes ── -->
+      <div class="zone-section-titre">Les 5 réflexes à adopter avec vos pneus</div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">✅ Récapitulatif — Ce qu'il faut faire</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Vérifier la <strong style="color:#fff">pression tous les mois</strong> et avant tout long trajet → la pression correcte est sur le montant de la portière ou dans le manuel (jamais sur le flanc du pneu)</li>
+          <li><span class="zone-detail-num">2</span>Contrôler visuellement les <strong style="color:#fff">témoins d'usure</strong> régulièrement</li>
+          <li><span class="zone-detail-num">3</span>Vérifier le <strong style="color:#fff">code DOT à l'achat</strong> pour ne pas acheter un pneu trop vieux</li>
+          <li><span class="zone-detail-num">4</span>Inspecter les <strong style="color:#fff">flancs</strong> : fissures ou bosses = changer le pneu</li>
+          <li><span class="zone-detail-num">5</span>Ne jamais dépasser <strong style="color:#fff">10 ans d'âge</strong>, même si le pneu paraît en bon état</li>
+        </ul>
+      </div>
+
+      <div class="formation-image-block" data-image="pneu-5-reflexes.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Infographie récapitulative : les 5 contrôles pneu à faire soi-même</p>
+        </div>
+      </div>
+
+      <div class="bloc-regle-or">
+        <p class="regle-titre">💬 Conseil Pascal</p>
+        <p class="regle-texte">"Un contrôle des pneus, c'est 2 minutes. Un pneu qui lâche sur route, c'est une tout autre histoire."</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- AJOUT 3 — CHANGEMENT DE ROUE APRÈS CREVAISON               -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+
+      <h2 class="lecon-titre">🔧 3.2d — Comment changer une roue après une crevaison</h2>
+      <p class="zone-detail-explication" style="font-style:italic;margin-bottom:8px">Pas de panique ! Avec la méthode et le matériel d'origine de votre voiture, vous pouvez vous en sortir seul.</p>
+      <p class="zone-detail-explication" style="margin-bottom:24px">Une crevaison n'est pas une urgence si vous savez quoi faire. Suivez ces étapes dans l'ordre, sans précipitation.</p>
+
+      <!-- ── Bloc intro : 3 types de solutions ── -->
+      <div class="zone-section-titre">Avant de commencer : les 3 types de solutions</div>
+
+      <p class="zone-detail-explication" style="margin-bottom:14px">Selon votre véhicule, vous disposez d'une de ces 3 solutions :</p>
+
+      <div class="zone-detail-card">
+        <h3>🛞 1 — La roue de secours complète</h3>
+        <p class="zone-detail-explication">Même taille que vos roues normales → vous pouvez rouler normalement jusqu'au garage.</p>
+
+        <h3 style="margin-top:16px">🛞 2 — La roue galette (petite roue de dépannage)</h3>
+        <p class="zone-detail-explication">La plus courante — petite roue de dépannage d'urgence.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Vitesse limitée à <strong style="color:#CC0000">80 km/h maximum</strong></li>
+          <li><span class="zone-detail-num">2</span>Distance limitée : <strong style="color:#CC0000">50 à 80 km maximum</strong></li>
+          <li><span class="zone-detail-num">3</span>La pression et la vitesse max sont inscrites sur la galette elle-même</li>
+        </ul>
+
+        <h3 style="margin-top:16px">🛞 3 — Le kit anti-crevaison (bombe + compresseur)</h3>
+        <p class="zone-detail-explication">Sur véhicules récents — solution temporaire uniquement.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Solution uniquement pour petites perforations — inutile si le pneu a éclaté</li>
+          <li><span class="zone-detail-num">2</span>Se trouve dans le coffre, sous le plancher</li>
+        </ul>
+      </div>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Vérifiez maintenant !</strong> Ouvrez votre coffre et identifiez quelle solution votre véhicule possède. Vérifiez aussi que la roue de secours est bien gonflée. Une roue de secours dégonflée ne sert à rien au bord de la route.
+      </div>
+
+      <!-- ── Bloc 1 : Matériel ── -->
+      <div class="zone-section-titre">Ce que vous avez déjà dans votre coffre</div>
+
+      <div class="zone-detail-card">
+        <h3>🧰 Matériel standard fourni d'origine</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span><strong style="color:#fff">La roue de secours (ou galette)</strong> → sous le plancher du coffre ou accrochée sous le véhicule</li>
+          <li><span class="zone-detail-num">2</span><strong style="color:#fff">Le cric mécanique</strong> → pour soulever la voiture</li>
+          <li><span class="zone-detail-num">3</span><strong style="color:#fff">La clé démonte-roue (ou croix)</strong> → pour desserrer les boulons</li>
+          <li><span class="zone-detail-num">4</span><strong style="color:#fff">La manivelle du cric</strong> → parfois intégrée à la clé</li>
+          <li><span class="zone-detail-num">5</span><strong style="color:#fff">La douille antivol</strong> → uniquement si votre voiture a des écrous de sécurité (1 boulon différent par roue)</li>
+        </ul>
+        <div class="zone-alert-bloc" style="margin-top:10px"><strong>⚠️ Douille antivol :</strong> Sans cette douille, impossible de démonter la roue. Vérifiez qu'elle est bien présente dans votre kit — avant d'en avoir besoin.</div>
+      </div>
+
+      <div class="encadre-info">
+        <strong>💡 Conseil de Pascal :</strong> Rangez tout ce matériel au même endroit et vérifiez qu'il est complet une fois par an. Beaucoup de conducteurs découvrent qu'il manque la douille antivol... au bord de la route, de nuit, sous la pluie.
+      </div>
+
+      <div class="formation-image-block" data-image="kit-changement-roue.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Photo du kit complet d'origine : cric, clé démonte-roue, manivelle, douille antivol et roue de secours posés au sol</p>
+        </div>
+      </div>
+
+      <!-- ── Bloc vidéo ── -->
+      <div class="zone-section-titre">Vidéo : Changement de roue étape par étape</div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <span class="ph-play">▶</span>
+          <span class="ph-nom">VIDEO_CHANGEMENT_ROUE</span>
+          <span class="ph-desc">Vidéo : Pascal démontre le changement de roue complet sur une vraie voiture</span>
+          <span class="ph-duree">⏱ Durée à définir</span>
+        </div>
+        <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'ID YouTube de ta vidéo, puis décommenter la ligne ci-dessous et supprimer le bloc video-placeholder ci-dessus
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>
+        -->
+      </div>
+
+      <!-- ── Bloc 2 : Sécurité ── -->
+      <div class="zone-section-titre">⚠️ PRIORITÉ ABSOLUE : Se mettre en sécurité</div>
+
+      <div class="zone-detail-card" style="border-left-color:#CC0000">
+        <h3 style="color:#CC0000">Avant de toucher à quoi que ce soit :</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#CC0000">1</span>Allumez immédiatement vos <strong style="color:#fff">feux de détresse</strong></li>
+          <li><span class="zone-detail-num" style="background:#CC0000">2</span>Ralentissez progressivement — ne freinez pas brusquement</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">3</span>Garez-vous sur le côté, sur <strong style="color:#fff">terrain plat et stable</strong> si possible → Évitez : pentes, terre meuble, autoroute</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">4</span>Mettez votre <strong style="color:#fff">gilet de sécurité réfléchissant AVANT de sortir</strong> du véhicule (il est dans la boîte à gants)</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">5</span>Placez le <strong style="color:#fff">triangle de signalisation à 30 mètres EN AMONT</strong> (dans le sens de la circulation qui arrive)</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">6</span>Serrez le <strong style="color:#fff">frein à main</strong></li>
+          <li><span class="zone-detail-num" style="background:#CC0000">7</span>Passez en <strong style="color:#fff">1ère vitesse</strong> (ou position P pour boîte automatique)</li>
+        </ul>
+      </div>
+
+      <div class="zone-danger-bloc" style="margin-bottom:16px">
+        <strong>⛔ NE CHANGEZ JAMAIS</strong> une roue sur le côté gauche du véhicule côté circulation, ni sur autoroute ou voie rapide. Dans ce cas : restez dans le véhicule, ceinture attachée, et appelez le 15, 17 ou 18 selon votre situation.
+      </div>
+
+      <div class="formation-image-block" data-image="triangle-signalisation.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Schéma : positionnement du triangle de signalisation à 30 mètres en amont du véhicule immobilisé</p>
+        </div>
+      </div>
+
+      <!-- ── Bloc 3 : 10 étapes ── -->
+      <div class="zone-section-titre">Les 10 étapes du changement de roue</div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 1 — Rassembler le matériel</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Sortir du coffre : cric + clé démonte-roue + roue de secours</li>
+          <li><span class="zone-detail-num">2</span>Poser tout à portée de main près de la roue crevée</li>
+          <li><span class="zone-detail-num">3</span>Vérifier que vous avez la douille antivol si nécessaire</li>
+        </ul>
+      </div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 2 — Retirer l'enjoliveur (si présent)</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Utiliser l'extrémité plate de la clé démonte-roue</li>
+          <li><span class="zone-detail-num">2</span>Faire levier doucement tout autour de l'enjoliveur</li>
+          <li><span class="zone-detail-num">3</span>Les voitures avec jantes alu n'ont pas d'enjoliveur</li>
+        </ul>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">🔧 Étape 3 — Desserrer les boulons AVANT de lever la voiture</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span>Tourner dans le sens inverse des aiguilles d'une montre</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Desserrer seulement — <strong style="color:#fff">ne pas enlever complètement</strong></li>
+          <li><span class="zone-detail-num" style="background:#f0a500">3</span>Appuyer avec le pied si les boulons sont durs</li>
+        </ul>
+        <div class="zone-alert-bloc" style="margin-top:10px"><strong>⚠️ Cette étape AVANT le cric est indispensable</strong> — si la roue est levée, elle tourne et vous ne pouvez plus desserrer.</div>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">🔧 Étape 4 — Trouver le point de cric</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span>Regarder sous le bas de caisse, près de la roue crevée</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Il y a une <strong style="color:#fff">encoche métallique renforcée</strong> = le point de levage</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">3</span>Consulter le manuel du véhicule si besoin</li>
+        </ul>
+        <div class="zone-alert-bloc" style="margin-top:10px"><strong>⚠️ Positionner le cric ailleurs</strong> peut déformer le bas de caisse.</div>
+      </div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 5 — Lever le véhicule avec le cric</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Placer le cric sous le point de levage</li>
+          <li><span class="zone-detail-num">2</span>S'assurer que le cric est <strong style="color:#fff">perpendiculaire au sol</strong></li>
+          <li><span class="zone-detail-num">3</span>Tourner la manivelle progressivement</li>
+          <li><span class="zone-detail-num">4</span>Lever jusqu'à ce que la roue ne touche plus le sol, puis quelques centimètres de plus (la roue de secours gonflée est plus haute que la roue crevée à plat)</li>
+        </ul>
+      </div>
+
+      <div class="formation-image-block" data-image="cric-point-levage.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Photo : positionnement correct du cric sur le point de levage avec flèche indiquant l'encoche métallique sous le bas de caisse</p>
+        </div>
+      </div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 6 — Déposer la roue crevée</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Dévisser complètement les boulons et les mettre dans une <strong style="color:#fff">poche ou endroit sûr</strong> (ne pas les poser par terre !)</li>
+          <li><span class="zone-detail-num">2</span>Si la roue est coincée : frapper doucement avec le poing sur le flanc du pneu pour la décoller</li>
+          <li><span class="zone-detail-num">3</span>Glisser la roue crevée <strong style="color:#fff">sous le bas de caisse</strong> comme protection au cas où le cric glisserait</li>
+        </ul>
+      </div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 7 — Monter la roue de secours</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Aligner les trous de la jante avec les goujons de l'essieu</li>
+          <li><span class="zone-detail-num">2</span>Visser les boulons <strong style="color:#fff">à la main d'abord, dans l'ordre croisé</strong> (en étoile, pas en cercle) pour centrer la roue</li>
+          <li><span class="zone-detail-num">3</span>Serrage préliminaire à la main uniquement</li>
+        </ul>
+      </div>
+
+      <div class="formation-image-block" data-image="serrage-boulons-etoile.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Schéma : ordre de serrage des boulons en étoile (ordre croisé) pour une roue à 4 boulons et pour une roue à 5 boulons</p>
+        </div>
+      </div>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Étape 8 — Redescendre le véhicule</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Actionner le cric en sens inverse progressivement</li>
+          <li><span class="zone-detail-num">2</span>Une fois la roue au sol, retirer le cric</li>
+        </ul>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">🔧 Étape 9 — Serrage final des boulons</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span>Serrer fermement avec la clé, <strong style="color:#fff">toujours en ordre croisé</strong></li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Le serrage doit être ferme mais sans excès</li>
+        </ul>
+        <div class="zone-alert-bloc" style="margin-top:10px"><strong>⚠️ Ne montez pas debout sur la clé pour serrer</strong> — vous risquez d'endommager la jante et l'essieu.</div>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">🔧 Étape 10 — Vérifications finales et rangement</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Remettre l'enjoliveur si votre véhicule en a un</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Ranger le cric et la clé dans le coffre</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Charger la roue crevée dans le coffre</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">4</span>Vérifier la pression de la roue de secours dès que possible à la prochaine station-service</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">5</span>Se rendre chez le garagiste dès que possible</li>
+        </ul>
+      </div>
+
+      <!-- ── Bloc 4 : Récapitulatif ── -->
+      <div class="zone-section-titre">Après le changement : ce qu'il faut savoir</div>
+
+      <table class="zone-table">
+        <thead><tr><th>Type de roue</th><th>Limite vitesse</th><th>Distance max</th><th>Conduite après</th></tr></thead>
+        <tbody>
+          <tr><td>Roue galette</td><td style="color:#CC0000;font-weight:700">80 km/h max</td><td style="color:#CC0000;font-weight:700">50 à 80 km max</td><td>Garage immédiatement</td></tr>
+          <tr><td>Roue complète identique</td><td>Conduite normale</td><td>Conduite normale</td><td>Garage dès que possible</td></tr>
+          <tr><td>Kit anti-crevaison</td><td>50 km/h max</td><td>Vérifier sur le kit</td><td>Garage immédiatement</td></tr>
+        </tbody>
+      </table>
+
+      <ul class="zone-detail-etapes" style="margin:16px 0">
+        <li><span class="zone-detail-num" style="background:#4CAF50">✓</span>Remettez une roue de secours gonflée dans votre coffre avant votre prochain trajet</li>
+        <li><span class="zone-detail-num" style="background:#4CAF50">✓</span>Vérifiez la pression de la roue de secours tous les mois en même temps que vos autres pneus</li>
+      </ul>
+
+      <div class="formation-image-block" data-image="10-etapes-changement-roue.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Infographie récapitulative : les 10 étapes résumées en visuel, avec les points de sécurité mis en évidence</p>
+        </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Entraînez-vous une fois chez vous, dans votre garage ou parking, avant d'en avoir besoin. 30 minutes d'entraînement à froid valent mieux qu'une heure de galère sous la pluie, de nuit, au bord d'une route.
       </div>
 
       <!-- 3.3 — Tableau voyants -->

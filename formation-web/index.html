@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -3419,13 +3419,33 @@
         <li><span class="liste-num">5</span>Observer sans toucher — repérer les 6 zones</li>
       </ol>
 
-      <!-- 3.2 — Les 6 zones -->
-      <h2 class="lecon-titre">3.2 — Les 6 zones visibles</h2>
+      <!-- 3.2 — Zones et liquides par sujet -->
       <img src="assets/images/etape3/image_etape3_02.webp"
            alt="Schéma simplifié du compartiment moteur avec les 6 zones numérotées"
            style="display:block;width:100%;border-radius:10px;margin:16px 0"
            loading="lazy">
-      <!-- Zone 1 — Huile moteur -->
+
+      <!-- ─── Table des matières cliquable ─── -->
+      <div style="background:#1a1a1a;border:1px solid #444;border-radius:10px;padding:18px 20px;margin:24px 0">
+        <p style="font-size:15px;font-weight:700;color:#fff;margin:0 0 12px">📋 Dans cette section — aller directement à</p>
+        <ol style="margin:0;padding-left:20px;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px">
+          <li><a href="#sec-3-2a" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2a').scrollIntoView({behavior:'smooth'});return false">🛢️ 3.2a — Huile moteur</a></li>
+          <li><a href="#sec-3-2b" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2b').scrollIntoView({behavior:'smooth'});return false">🔧 3.2b — Direction assistée</a></li>
+          <li><a href="#sec-3-2c" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2c').scrollIntoView({behavior:'smooth'});return false">🛑 3.2c — Liquide de frein</a></li>
+          <li><a href="#sec-3-2d" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2d').scrollIntoView({behavior:'smooth'});return false">🌡️ 3.2d — Refroidissement</a></li>
+          <li><a href="#sec-3-2e" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2e').scrollIntoView({behavior:'smooth'});return false">💧 3.2e — Lave-glace</a></li>
+          <li><a href="#sec-3-2f" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2f').scrollIntoView({behavior:'smooth'});return false">🔋 3.2f — Batterie + eau distillée</a></li>
+          <li><a href="#sec-3-2g" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2g').scrollIntoView({behavior:'smooth'});return false">🚨 3.2g — Confusions dangereuses</a></li>
+          <li><a href="#sec-3-2h" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2h').scrollIntoView({behavior:'smooth'});return false">🔵 3.2h — Comprendre vos pneus</a></li>
+          <li><a href="#sec-3-2i" style="color:#CC0000;text-decoration:none;font-size:14px" onclick="document.getElementById('sec-3-2i').scrollIntoView({behavior:'smooth'});return false">🔧 3.2i — Changer une roue</a></li>
+        </ol>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- 3.2a — HUILE MOTEUR                                        -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2a" class="lecon-titre">🛢️ 3.2a — Huile moteur</h2>
+
       <div class="zone-detail-card">
         <h3>🛢️ Zone 1 — Huile moteur · Jauge de niveau</h3>
         <p class="zone-detail-explication">L'huile lubrifie toutes les pièces mobiles du moteur. Sans huile, le moteur s'use très vite — ou casse. La jauge te permet de vérifier le niveau sans aucun outil.</p>
@@ -3445,113 +3465,6 @@
         <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — huile propre et légèrement dorée.</div>
         <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN, si l'huile est noire et épaisse, ou si le voyant huile rouge s'allume. → Rajouter de l'huile ou consulter un professionnel.</div>
       </div>
-
-      <!-- Zone 2 — Liquide de refroidissement -->
-      <div class="zone-detail-card">
-        <h3>🌡️ Zone 2 — Liquide de refroidissement · Réservoir transparent</h3>
-        <p class="zone-detail-explication">Ce liquide régule la température du moteur. Il l'empêche de surchauffer en été et de geler en hiver. Le réservoir est en plastique transparent — tu vois le niveau sans rien ouvrir.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Moteur froid obligatoire — ne jamais ouvrir à chaud (risque de brûlure)</li>
-          <li><span class="zone-detail-num">2</span>Repère le réservoir transparent (souvent vert, rose ou bleu)</li>
-          <li><span class="zone-detail-num">3</span>Lis le niveau à travers la paroi — repères MIN et MAX marqués sur le côté</li>
-          <li><span class="zone-detail-num">4</span>Si niveau bas : ouvre le bouchon uniquement à froid, rajoute du liquide adapté</li>
-        </ul>
-        <!-- Future image : <img src="assets/images/etape3/zone-2-refroidissement.jpg" alt="Réservoir liquide refroidissement"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🌡️</span>
-          <span class="zph-titre">Réservoir liquide de refroidissement</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — liquide clair, coloré (vert/rose/bleu).</div>
-        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau baisse régulièrement (fuite), le liquide est marron ou noirâtre, le voyant température rouge s'allume. → Garage immédiatement.</div>
-      </div>
-
-      <!-- Zone 3 — Liquide de frein -->
-      <div class="zone-detail-card">
-        <h3>🛑 Zone 3 — Liquide de frein · Réservoir transparent</h3>
-        <p class="zone-detail-explication">Le liquide de frein transmet la pression de ta pédale jusqu'aux freins. C'est la sécurité directe. Un réservoir bas peut signifier une fuite ou des plaquettes usées.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repère le petit réservoir transparent (généralement marqué d'un symbole de disque de frein)</li>
-          <li><span class="zone-detail-num">2</span>Lis le niveau à travers la paroi — repères MIN et MAX visibles</li>
-          <li><span class="zone-detail-num">3</span>Ne pas ouvrir le bouchon inutilement — le liquide absorbe l'humidité de l'air</li>
-        </ul>
-        <!-- Future image : <img src="assets/images/etape3/zone-3-frein.jpg" alt="Réservoir liquide de frein"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🛑</span>
-          <span class="zph-titre">Réservoir liquide de frein</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — liquide transparent ou légèrement jaune.</div>
-        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN. → Garage immédiatement — ne pas rouler avec un niveau de frein insuffisant.</div>
-      </div>
-
-      <!-- Zone 4 — Lave-glace -->
-      <div class="zone-detail-card">
-        <h3>💧 Zone 4 — Liquide lave-glace · Réservoir avec symbole jet d'eau</h3>
-        <p class="zone-detail-explication">Ce réservoir alimente les gicleurs du pare-brise et les buses de lavage de phares. C'est le seul réservoir que tu peux remplir à n'importe quelle température, moteur chaud ou froid.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repère le réservoir avec le symbole jet d'eau ou pare-brise</li>
-          <li><span class="zone-detail-num">2</span>Ouvre le bouchon et verse le liquide lave-glace dilué ou prêt à l'emploi</li>
-          <li><span class="zone-detail-num">3</span>En hiver : utilise un produit antigel pour éviter que les buses gèlent</li>
-          <li><span class="zone-detail-num">4</span>Ne pas utiliser d'eau pure — développe des bactéries et gèle en hiver</li>
-        </ul>
-        <!-- Future image : <img src="assets/images/etape3/zone-4-laveglace.jpg" alt="Réservoir lave-glace"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">💧</span>
-          <span class="zph-titre">Réservoir lave-glace</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le réservoir est visible et contient du liquide bleu ou coloré.</div>
-        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> les gicleurs ne fonctionnent plus — vérifier le niveau avant d'appeler un technicien.</div>
-      </div>
-
-      <!-- Zone 5 — Direction assistée -->
-      <div class="zone-detail-card">
-        <h3>🔧 Zone 5 — Réservoir de direction assistée</h3>
-        <div class="zone-precision">⚠️ <strong>Valable uniquement pour certaines voitures.</strong> Les véhicules récents sont équipés d'une direction assistée électrique (EPAS) — ils n'ont pas de réservoir de liquide. Si tu ne trouves pas ce réservoir, c'est normal : ta voiture est probablement électrique.</div>
-        <p class="zone-detail-explication">Sur les voitures avec direction hydraulique, un réservoir contient le liquide de direction. Il est reconnaissable à son bouchon sur lequel est dessiné un volant.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repère le petit réservoir avec le bouchon "volant" (hydraulique seulement)</li>
-          <li><span class="zone-detail-num">2</span>Vérifie le niveau à travers la paroi ou avec le repère sur le bouchon</li>
-          <li><span class="zone-detail-num">3</span>Vérifier tous les 6 mois — ce liquide ne se consomme pas vite normalement</li>
-          <li><span class="zone-detail-num">4</span>Si le niveau baisse → probable fuite → consulter un professionnel</li>
-        </ul>
-        <!-- Future image : <img src="assets/images/etape3/zone-5-direction.jpg" alt="Réservoir direction assistée"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🔧</span>
-          <span class="zph-titre">Réservoir de direction assistée hydraulique</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est stable et dans les repères — liquide clair ou légèrement rosé.</div>
-        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le volant devient lourd à tourner, tu entends un sifflement, ou des traces de liquide sous la voiture. → Garage rapidement.</div>
-      </div>
-
-      <!-- Zone 6 — Batterie -->
-      <div class="zone-detail-card">
-        <h3>🔋 Zone 6 — Batterie · Bornes et état visuel</h3>
-        <p class="zone-detail-explication">La batterie alimente tous les systèmes électriques au démarrage. Tu ne peux pas vérifier le niveau d'électrolyte (c'est fermé sur les batteries modernes), mais tu peux contrôler visuellement l'état des bornes.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repère la batterie — souvent sous le capot ou parfois dans le coffre</li>
-          <li><span class="zone-detail-num">2</span>Observe les bornes (+ rouge et − noir) : elles doivent être propres et serrées</li>
-          <li><span class="zone-detail-num">3</span>Si tu vois une poudre blanche ou bleue autour des bornes → c'est de l'oxydation</li>
-          <li><span class="zone-detail-num">4</span>Pour nettoyer : eau chaude + bicarbonate de soude — jamais de métal ou d'outil conducteur</li>
-        </ul>
-        <!-- Future image : <img src="assets/images/etape3/zone-6-batterie.jpg" alt="Batterie et bornes"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🔋</span>
-          <span class="zph-titre">Batterie — bornes + et −</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> les bornes sont propres, sans poudre blanche, câbles bien fixés.</div>
-        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> la batterie est bombée ou gonflée, les bornes très oxydées, ou le démarrage est lent et hésitant. → Faire tester la batterie chez un professionnel.</div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <!-- AJOUT 1 — LES LIQUIDES ET HUILES                           -->
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <h2 class="lecon-titre">🧪 3.2b — Les liquides et huiles — Ce que tu dois savoir</h2>
-
-      <p class="zone-detail-explication" style="margin-bottom:16px">Ta voiture contient plusieurs liquides essentiels. Les connaître te permet de comprendre ce que tu lis sur les étiquettes, et de ne jamais acheter le mauvais produit.</p>
 
       <div class="zone-section-titre">Les indices d'huile moteur — Lire l'étiquette du bidon</div>
 
@@ -3590,9 +3503,8 @@
         <p class="regle-texte">"Total, Castrol, Mobil, Motul, Elf, Shell… Toutes ces marques sont sérieuses et leurs produits respectent des normes très strictes. Mais voici ce que personne ne vous dit : une huile de marque distributeur (Norauto, Feu Vert, Leclerc…) qui respecte la bonne viscosité et les bonnes normes constructeur est aussi valable qu'une grande marque. Le prix élevé d'un bidon reflète souvent un partenariat constructeur — pas forcément une meilleure qualité.<br><br>La règle de Pascal : peu importe la marque du bidon. Ce qui compte : la bonne viscosité (5W30, 5W40…) et les bonnes normes (ACEA, API) indiquées dans votre carnet d'entretien. Un bidon à 12 € qui respecte ces critères vaut mieux qu'un bidon à 35 € avec la mauvaise viscosité."</p>
       </div>
 
-      <div class="zone-section-titre">Les 6 liquides du véhicule — Fiches détaillées</div>
+      <div class="zone-section-titre">Fiche détaillée — Huile moteur</div>
 
-      <!-- ── Liquide 1 : Huile moteur ── -->
       <div class="zone-liquide-card">
         <div class="zone-liquide-header">
           <span class="zone-liquide-emoji">🛢️</span>
@@ -3625,40 +3537,224 @@
         <div class="zone-danger-bloc"><strong>🚨 NE JAMAIS</strong> mélanger deux huiles de références différentes sans consulter un professionnel.</div>
       </div>
 
-      <!-- ── Liquide 2 : Liquide de refroidissement ── -->
+      <div class="zone-section-titre">Faire l'appoint d'huile moteur</div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">Quand faire l'appoint ?</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span><strong style="color:#fff">Le voyant huile clignote ou s'allume</strong> — ne pas rouler, vérifier immédiatement</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span><strong style="color:#fff">La jauge indique un niveau sous la mi-distance MIN/MAX</strong> — appoint à prévoir dans la semaine</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">La prochaine vidange approche</strong> — vérifier le niveau à chaque plein d'essence</li>
+        </ul>
+      </div>
+
+      <div class="formation-image-block" data-image="jauge-huile-niveau-bas.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Jauge d'huile : niveau bas visible — la trace d'huile se situe sous la mi-distance entre MIN et MAX</p>
+        </div>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">Choisir le bon bidon</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Cherchez l'autocollant sous le capot (souvent sur le cache moteur ou la jauge) — l'indice exact y est indiqué</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Si pas d'autocollant : consultez le carnet d'entretien constructeur — page "huile moteur recommandée"</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Utilisez <strong style="color:#fff">exactement le même indice</strong> que celui déjà dans le moteur — ne jamais mélanger deux références différentes</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">4</span>En Guadeloupe, un indice <strong style="color:#fff">5W40</strong> est souvent bien adapté aux fortes chaleurs — vérifiez quand même votre carnet constructeur</li>
+        </ul>
+      </div>
+
+      <div class="zone-section-titre">Les 8 étapes de l'appoint d'huile</div>
+
+      <ul class="zone-detail-etapes" style="margin:0 0 16px">
+        <li><span class="zone-detail-num">1</span><strong style="color:#fff">Moteur froid obligatoirement</strong> — attendre au minimum 10 minutes après l'arrêt du moteur</li>
+        <li><span class="zone-detail-num">2</span><strong style="color:#fff">Voiture à plat</strong> — sur un sol horizontal pour une lecture de jauge précise</li>
+        <li><span class="zone-detail-num">3</span>Retirez le bouchon de remplissage d'huile (symbole casserole avec gouttes 🛢️ sur le cache moteur)</li>
+        <li><span class="zone-detail-num">4</span>Versez <strong style="color:#fff">250 ml</strong> d'huile à la fois — jamais en une seule fois</li>
+        <li><span class="zone-detail-num">5</span>Remettez le bouchon, attendez <strong style="color:#fff">2 minutes</strong> que l'huile descende dans le carter</li>
+        <li><span class="zone-detail-num">6</span>Retirez la jauge, essuyez-la avec un chiffon propre, remettez-la à fond</li>
+        <li><span class="zone-detail-num">7</span>Ressortez la jauge et lisez le niveau — répétez l'étape 4 si encore trop bas</li>
+        <li><span class="zone-detail-num">8</span><strong style="color:#fff">Objectif : niveau entre le milieu et le MAX</strong> — jamais au-dessus du MAX</li>
+      </ul>
+
+      <div class="formation-image-block" data-image="huile-appoint-bouchon-bidon.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Bouchon de remplissage d'huile (symbole casserole) et bidon d'huile avec entonnoir — les 2 seuls éléments nécessaires pour faire l'appoint</p>
+        </div>
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Faire l'appoint d'huile moteur étape par étape</p>
+          <p class="video-sous-titre">Pascal vous montre les 8 étapes en situation réelle</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
+        </div>
+      </div>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Ne jamais dépasser le MAX</strong><br>
+        Trop d'huile est aussi néfaste que pas assez. Un niveau au-dessus du MAX crée une surpression dans le moteur — l'huile peut être projetée dans des zones qu'elle ne doit pas atteindre. Résultat : casse moteur ou fumée blanche. Ajoutez 250 ml à la fois et revérifiez la jauge entre chaque ajout.
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Tenez un petit carnet dans votre boîte à gants. Notez la date, le kilométrage et la quantité d'huile ajoutée à chaque appoint. Si vous ajoutez souvent plus de 500 ml entre deux vidanges, c'est le signe d'une fuite ou d'une consommation anormale à faire vérifier.
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- 3.2b — HUILE DIRECTION ASSISTÉE                           -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2b" class="lecon-titre">🔧 3.2b — Huile direction assistée</h2>
+
+      <div class="zone-detail-card">
+        <h3>🔧 Zone 5 — Réservoir de direction assistée</h3>
+        <div class="zone-precision">⚠️ <strong>Valable uniquement pour certaines voitures.</strong> Les véhicules récents sont équipés d'une direction assistée électrique (EPAS) — ils n'ont pas de réservoir de liquide. Si tu ne trouves pas ce réservoir, c'est normal : ta voiture est probablement électrique.</div>
+        <p class="zone-detail-explication">Sur les voitures avec direction hydraulique, un réservoir contient le liquide de direction. Il est reconnaissable à son bouchon sur lequel est dessiné un volant.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le petit réservoir avec le bouchon "volant" (hydraulique seulement)</li>
+          <li><span class="zone-detail-num">2</span>Vérifie le niveau à travers la paroi ou avec le repère sur le bouchon</li>
+          <li><span class="zone-detail-num">3</span>Vérifier tous les 6 mois — ce liquide ne se consomme pas vite normalement</li>
+          <li><span class="zone-detail-num">4</span>Si le niveau baisse → probable fuite → consulter un professionnel</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-5-direction.jpg" alt="Réservoir direction assistée"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🔧</span>
+          <span class="zph-titre">Réservoir de direction assistée hydraulique</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est stable et dans les repères — liquide clair ou légèrement rosé.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le volant devient lourd à tourner, tu entends un sifflement, ou des traces de liquide sous la voiture. → Garage rapidement.</div>
+      </div>
+
+      <div class="zone-section-titre">Fiche détaillée — Liquide de direction assistée</div>
+
       <div class="zone-liquide-card">
         <div class="zone-liquide-header">
-          <span class="zone-liquide-emoji">🌡️</span>
+          <span class="zone-liquide-emoji">🔧</span>
           <div>
-            <p class="zone-liquide-titre">Liquide de refroidissement</p>
-            <p class="zone-liquide-role">Empêche le moteur de surchauffer en été et de geler en hiver</p>
+            <p class="zone-liquide-titre">Liquide de direction assistée</p>
+            <p class="zone-liquide-role">Aide à tourner le volant sans effort — uniquement sur voitures à direction hydraulique</p>
           </div>
         </div>
         <div class="zone-liquide-meta">
-          <span class="zone-liquide-badge">Couleur : <span>Vert, rose ou bleu selon les marques</span></span>
-          <span class="zone-liquide-badge">Bouchon : <span>Symbole thermomètre ou radiateur</span></span>
-          <span class="zone-liquide-badge">Vérification : <span>1 fois par mois — lecture visuelle</span></span>
+          <span class="zone-liquide-badge">Couleur : <span>Transparent ou légèrement rouge/rose</span></span>
+          <span class="zone-liquide-badge">Bouchon : <span>Symbole volant avec flèches</span></span>
+          <span class="zone-liquide-badge">Vérification : <span>Tous les 6 mois</span></span>
         </div>
-        <!-- Future image : <img src="assets/images/etape3/liquide-2-refroidissement.jpg" alt="Réservoir refroidissement et bouchon"> -->
+        <!-- Future image : <img src="assets/images/etape3/liquide-5-direction.jpg" alt="Réservoir direction assistée"> -->
         <div class="zone-photo-cadre">
-          <span class="zph-emoji">🌡️</span>
-          <span class="zph-titre">Réservoir liquide de refroidissement + bouchon</span>
+          <span class="zph-emoji">🔧</span>
+          <span class="zph-titre">Réservoir direction assistée hydraulique + bouchon</span>
           <span class="zph-label">📷 Photo à venir</span>
         </div>
         <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Moteur FROID OBLIGATOIREMENT — ne jamais ouvrir à chaud (risque de brûlure grave)</li>
-          <li><span class="zone-detail-num">2</span>Repérer le réservoir transparent coloré (vert, rose, bleu)</li>
-          <li><span class="zone-detail-num">3</span>Lire le niveau à travers la paroi — repères MIN et MAX sur le côté</li>
-          <li><span class="zone-detail-num">4</span>Produit : liquide de refroidissement dilué 50/50 avec eau distillée OU prêt à l'emploi — jamais d'eau du robinet seule</li>
+          <li><span class="zone-detail-num">1</span>Repérer le petit réservoir transparent avec le bouchon "volant" (uniquement sur voitures hydrauliques)</li>
+          <li><span class="zone-detail-num">2</span>Vérifier le niveau à travers la paroi ou avec le repère sur le bouchon</li>
+          <li><span class="zone-detail-num">3</span>Produit : liquide de direction assistée spécifique — vérifier le carnet constructeur</li>
+          <li><span class="zone-detail-num">4</span>Ce liquide ne se consomme pas normalement — si le niveau baisse c'est signe d'une fuite</li>
         </ul>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> liquide coloré visible entre MIN et MAX, bouchon propre sans dépôts blancs.</div>
-        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> réservoir vide, liquide marron/rouille, dépôts blancs autour du bouchon. → Garage rapidement.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> ouvrir le bouchon moteur chaud — risque de brûlure grave par vapeur sous pression.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> remplacer par de l'eau du robinet seule — calcaire + risque de gel en hiver.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le lave-glace — le lave-glace détruirait le circuit de refroidissement.</div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> niveau stable entre MIN et MAX, liquide clair ou légèrement rosé.</div>
+        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> niveau qui baisse régulièrement (fuite probable), bruit de pompe au braquage, volant lourd. → Garage.</div>
+        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de frein — tous deux transparents mais totalement incompatibles.</div>
+        <div class="zone-danger-bloc"><strong>🚨 Sur les voitures récentes avec direction électrique :</strong> ce réservoir n'existe pas — ne pas chercher à en ajouter.</div>
       </div>
 
-      <!-- ── Liquide 3 : Liquide de frein ── -->
+      <div class="zone-section-titre">Hydraulique ou électrique — lequel avez-vous ?</div>
+
+      <p class="zone-detail-explication" style="margin-bottom:14px">Avant de chercher un réservoir de direction assistée, la première question à se poser : votre voiture est-elle équipée d'une direction <strong>hydraulique</strong> ou <strong>électrique</strong> ? La réponse change tout.</p>
+
+      <table class="zone-table">
+        <thead>
+          <tr><th>Type de direction</th><th>Comment le savoir ?</th><th>Réservoir ?</th><th>Entretien liquide ?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hydraulique</strong><br><span style="font-size:12px;color:#AAAAAA">La plupart des voitures avant 2010</span></td>
+            <td>Petit réservoir transparent sous le capot, bouchon avec symbole volant 🔧</td>
+            <td style="color:#4CAF50">Oui — à vérifier</td>
+            <td style="color:#4CAF50">Oui — tous les 2 à 3 ans</td>
+          </tr>
+          <tr>
+            <td><strong>Électrique</strong><br><span style="font-size:12px;color:#AAAAAA">La plupart des voitures après 2010</span></td>
+            <td>Pas de réservoir visible pour la direction — moteur électrique intégré à la colonne</td>
+            <td style="color:#CC0000">Non</td>
+            <td style="color:#CC0000">Aucun</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="bloc-regle-or">
+        <p class="regle-titre">💬 Le mot de Pascal — Direction assistée</p>
+        <p class="regle-texte">"Pour la direction assistée hydraulique, les marques de liquide (ATF Dexron, CHF 11S, PSF…) sont toutes sérieuses dès lors qu'elles respectent la norme de votre constructeur.<br><br>La règle de Pascal : ne cherchez pas la marque — cherchez la référence exacte indiquée dans votre manuel. Un liquide de direction mal choisi peut détruire la pompe et la crémaillère en quelques semaines.<br>→ Bonne marque mauvaise référence = destruction garantie<br>→ Marque inconnue bonne référence = protection assurée<br><br>La marque ne sauve pas un mauvais choix de produit."</p>
+      </div>
+
+      <div class="encadre-info">
+        <strong>🔵 Si votre voiture a moins de 15 ans</strong>, elle est probablement équipée d'une direction électrique. Pas de réservoir, pas de liquide à vérifier, pas de maintenance de ce type. Ne cherchez pas à en ajouter — il n'y a rien à faire de ce côté.
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">Vérifier le niveau — si votre direction est hydraulique</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Repérez le petit réservoir transparent avec le bouchon symbole volant — souvent situé sur le côté du moteur</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Pour une lecture précise : moteur démarré au ralenti, volant droit (pas en butée) — certains réservoirs ont deux repères selon que le moteur est chaud ou froid</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Produit : liquide de direction assistée spécifique à votre marque — vérifiez le carnet constructeur avant tout achat</li>
+        </ul>
+      </div>
+
+      <div class="formation-image-block" data-image="direction-assistee-reservoir-hydraulique.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Réservoir de direction assistée hydraulique — bouchon avec symbole volant, repères MIN/MAX visibles sur la paroi</p>
+        </div>
+      </div>
+
+      <div class="zone-section-titre">Les 4 signes d'alerte — direction assistée hydraulique</div>
+
+      <ul class="zone-detail-etapes" style="margin:0 0 16px">
+        <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Bruit sourd ou sifflement quand vous tournez le volant</strong> — pompe qui travaille à sec, niveau à vérifier immédiatement</li>
+        <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Volant de plus en plus lourd à manier</strong> — perte d'assistance, pompe ou fuite à diagnostiquer</li>
+        <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Tache huileuse sous la voiture côté avant</strong> — fuite probable sur le circuit de direction</li>
+        <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">Niveau qui baisse régulièrement</strong> — ce liquide ne se consomme pas normalement, toute baisse indique une fuite</li>
+      </ul>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Ne jamais confondre avec le liquide de frein</strong><br>
+        Les deux liquides sont transparents ou légèrement teintés. Mettre du liquide de direction dans le circuit de frein (ou l'inverse) détruirait les joints. Toujours repérer le bon bouchon avant de verser quoi que ce soit.
+      </div>
+
+      <div class="bloc-regle-or">
+        <p class="regle-titre">💬 La règle des 3 liquides — Pascal</p>
+        <p class="regle-texte">"Ces 3 liquides — l'huile moteur, le frein, la direction — c'est votre check mensuel. 5 minutes sous le capot, une fois par mois, moteur froid. Vous regardez, vous comparez avec le mois d'avant. Si quelque chose a changé, vous le savez avant que ça devienne un problème. C'est ça, être Mécano à Bord."</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- 3.2c — LIQUIDE DE FREIN                                    -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2c" class="lecon-titre">🛑 3.2c — Liquide de frein</h2>
+
+      <div class="zone-detail-card">
+        <h3>🛑 Zone 3 — Liquide de frein · Réservoir transparent</h3>
+        <p class="zone-detail-explication">Le liquide de frein transmet la pression de ta pédale jusqu'aux freins. C'est la sécurité directe. Un réservoir bas peut signifier une fuite ou des plaquettes usées.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère le petit réservoir transparent (généralement marqué d'un symbole de disque de frein)</li>
+          <li><span class="zone-detail-num">2</span>Lis le niveau à travers la paroi — repères MIN et MAX visibles</li>
+          <li><span class="zone-detail-num">3</span>Ne pas ouvrir le bouchon inutilement — le liquide absorbe l'humidité de l'air</li>
+        </ul>
+        <!-- Future image : <img src="assets/images/etape3/zone-3-frein.jpg" alt="Réservoir liquide de frein"> -->
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🛑</span>
+          <span class="zph-titre">Réservoir liquide de frein</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX — liquide transparent ou légèrement jaune.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN. → Garage immédiatement — ne pas rouler avec un niveau de frein insuffisant.</div>
+      </div>
+
+      <div class="zone-section-titre">Fiche détaillée — Liquide de frein</div>
+
       <div class="zone-liquide-card">
         <div class="zone-liquide-header">
           <span class="zone-liquide-emoji">🛑</span>
@@ -3691,72 +3787,207 @@
         <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre du DOT 5 à la place du DOT 4 sans vérification — ces deux liquides sont incompatibles.</div>
       </div>
 
-      <!-- ── Liquide 4 : Lave-glace ── -->
-      <div class="zone-liquide-card">
-        <div class="zone-liquide-header">
-          <span class="zone-liquide-emoji">🫧</span>
-          <div>
-            <p class="zone-liquide-titre">Liquide lave-glace</p>
-            <p class="zone-liquide-role">Nettoie le pare-brise et la lunette arrière</p>
-          </div>
-        </div>
-        <div class="zone-liquide-meta">
-          <span class="zone-liquide-badge">Couleur : <span>Bleu ou vert en général</span></span>
-          <span class="zone-liquide-badge">Bouchon : <span>Symbole jet d'eau sur pare-brise 💧</span></span>
-          <span class="zone-liquide-badge">Vérification : <span>1 fois par semaine si usage fréquent</span></span>
-        </div>
-        <!-- Future image : <img src="assets/images/etape3/liquide-4-laveglace.jpg" alt="Réservoir lave-glace et bouchon"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🫧</span>
-          <span class="zph-titre">Réservoir lave-glace + bouchon (symbole jet d'eau)</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
+      <div class="zone-section-titre">Surveiller le liquide de frein</div>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">Vérifier le niveau — 3 étapes visuelles</h3>
         <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repérer le réservoir plastique (souvent non transparent) avec le symbole jet d'eau</li>
-          <li><span class="zone-detail-num">2</span>Ouvrir le bouchon et verser le liquide lave-glace concentré dilué selon la saison OU prêt à l'emploi</li>
-          <li><span class="zone-detail-num">3</span>Ce réservoir peut être rempli à n'importe quelle température, moteur chaud ou froid</li>
-          <li><span class="zone-detail-num">4</span>En hiver : utiliser un produit antigel pour éviter que les buses gèlent</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span>Repérez le petit réservoir transparent sur le bord du compartiment moteur — bouchon avec le symbole ⚠️ (cercle avec point d'exclamation)</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Lisez le niveau à travers la paroi sans ouvrir le bouchon — les repères MIN et MAX sont visibles de l'extérieur</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">Ne jamais ouvrir le bouchon inutilement</strong> — le liquide absorbe l'humidité de l'air à chaque ouverture et se dégrade plus vite</li>
         </ul>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> réservoir suffisamment rempli, gicleurs fonctionnent correctement.</div>
-        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> réservoir vide, jets bouchés ou gicleurs qui ne fonctionnent plus.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre de l'eau du robinet seule — le calcaire bouche les gicleurs et gèle en hiver.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de refroidissement — couleurs similaires mais usages totalement différents.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> mettre du liquide vaisselle — mousse excessive et détériore les joints des gicleurs.</div>
       </div>
 
-      <!-- ── Liquide 5 : Direction assistée ── -->
-      <div class="zone-liquide-card">
-        <div class="zone-liquide-header">
-          <span class="zone-liquide-emoji">🔧</span>
-          <div>
-            <p class="zone-liquide-titre">Liquide de direction assistée</p>
-            <p class="zone-liquide-role">Aide à tourner le volant sans effort — uniquement sur voitures à direction hydraulique</p>
-          </div>
+      <div class="formation-image-block" data-image="frein-reservoir-min-max.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Réservoir de liquide de frein — repères MIN et MAX annotés, bouchon avec symbole ⚠️ visible</p>
         </div>
-        <div class="zone-liquide-meta">
-          <span class="zone-liquide-badge">Couleur : <span>Transparent ou légèrement rouge/rose</span></span>
-          <span class="zone-liquide-badge">Bouchon : <span>Symbole volant avec flèches</span></span>
-          <span class="zone-liquide-badge">Vérification : <span>Tous les 6 mois</span></span>
-        </div>
-        <!-- Future image : <img src="assets/images/etape3/liquide-5-direction.jpg" alt="Réservoir direction assistée"> -->
-        <div class="zone-photo-cadre">
-          <span class="zph-emoji">🔧</span>
-          <span class="zph-titre">Réservoir direction assistée hydraulique + bouchon</span>
-          <span class="zph-label">📷 Photo à venir</span>
-        </div>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num">1</span>Repérer le petit réservoir transparent avec le bouchon "volant" (uniquement sur voitures hydrauliques)</li>
-          <li><span class="zone-detail-num">2</span>Vérifier le niveau à travers la paroi ou avec le repère sur le bouchon</li>
-          <li><span class="zone-detail-num">3</span>Produit : liquide de direction assistée spécifique — vérifier le carnet constructeur</li>
-          <li><span class="zone-detail-num">4</span>Ce liquide ne se consomme pas normalement — si le niveau baisse c'est signe d'une fuite</li>
-        </ul>
-        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> niveau stable entre MIN et MAX, liquide clair ou légèrement rosé.</div>
-        <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> niveau qui baisse régulièrement (fuite probable), bruit de pompe au braquage, volant lourd. → Garage.</div>
-        <div class="zone-danger-bloc"><strong>🚨 JAMAIS</strong> confondre avec le liquide de frein — tous deux transparents mais totalement incompatibles.</div>
-        <div class="zone-danger-bloc"><strong>🚨 Sur les voitures récentes avec direction électrique :</strong> ce réservoir n'existe pas — ne pas chercher à en ajouter.</div>
       </div>
 
-      <!-- ── Liquide 6 : Eau distillée ── -->
+      <div class="zone-section-titre">Les indices DOT — lequel est dans votre voiture ?</div>
+
+      <table class="zone-table">
+        <thead>
+          <tr><th>Indice</th><th>Véhicules concernés</th><th>Fréquence de remplacement</th><th>Point d'ébullition</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DOT 3</td><td>Véhicules anciens (avant 2000)</td><td>Tous les ans</td><td>205 °C (neuf)</td></tr>
+          <tr><td><strong>DOT 4</strong></td><td><strong>Majorité des véhicules actuels</strong></td><td><strong>Tous les 2 ans</strong></td><td>230 °C (neuf)</td></tr>
+          <tr><td>DOT 5.1</td><td>Véhicules haute performance</td><td>Tous les 2 ans</td><td>260 °C (neuf)</td></tr>
+          <tr><td>DOT 5</td><td>Motos sportives — INCOMPATIBLE voiture</td><td>—</td><td>260 °C (neuf)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="bloc-regle-or">
+        <p class="regle-titre">💬 Le mot de Pascal — Les marques de liquide de frein</p>
+        <p class="regle-texte">"Bosch, Motul, Brembo, Ferodo, Total, Castrol… Pour le liquide de frein, toutes les grandes marques se valent si elles respectent la même norme DOT. Un DOT 4 Bosch et un DOT 4 Motul offrent la même protection — la norme l'impose.<br><br>La règle de Pascal : choisissez le bon indice DOT (indiqué dans votre carnet ou sur le bouchon du réservoir). La marque est secondaire — la norme est primordiale.<br><br>⚠️ Exception : pour un usage sportif intensif (conduite sur circuit, freinages répétés à haute vitesse), privilégiez une marque reconnue en DOT 5.1. Pour un usage routier normal : n'importe quelle marque sérieuse en DOT 4 suffit parfaitement."</p>
+      </div>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Ne jamais mélanger les indices DOT</strong><br>
+        Le DOT 3 et le DOT 4 sont compatibles entre eux. En revanche, le DOT 5 (à base de silicone) est <strong>totalement incompatible</strong> avec les autres — il détruirait vos joints de frein. En cas de doute, consultez le carnet constructeur ou un professionnel.
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#CC0000">
+        <h3 style="color:#CC0000">Quand aller au garage sans attendre ?</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Niveau sous le MIN</strong> — peut indiquer une fuite ou des plaquettes épuisées, pas juste une consommation normale</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Liquide foncé ou marron</strong> — liquide dégradé, chargé en eau, à changer immédiatement</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Pédale de frein molle ou qui s'enfonce trop</strong> — signe d'air dans le circuit ou de fuite — garage immédiat</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">Bruit anormal au freinage</strong> (grincement, craquement) — plaquettes ou disques à vérifier</li>
+        </ul>
+      </div>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Le liquide de frein se change tous les 2 ans — même si le niveau est bon</strong><br>
+        Ce liquide est hygroscopique : il absorbe l'humidité de l'air progressivement. Avec le temps, son point d'ébullition baisse. Lors d'un freinage intense (descente longue, freinages répétés), un liquide dégradé peut bouillir dans le circuit — le frein ne répond plus. C'est l'un des rares entretiens qui ne se voit pas mais qui compte vraiment.
+      </div>
+
+      <div class="formation-image-block" data-image="frein-bouchon-dot4.jpg">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Bouchon de réservoir de frein — inscription DOT 4 visible, symbole ⚠️ — les 2 informations à repérer avant tout achat</p>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- 3.2d — LIQUIDE DE REFROIDISSEMENT                          -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2d" class="lecon-titre">🌡️ 3.2d — Liquide de refroidissement</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">Le circuit de refroidissement maintient le moteur à bonne température. Son liquide demande <strong style="color:#fff">une précaution absolue</strong> : ne jamais intervenir moteur chaud.</p>
+
+      <div class="zone-detail-card" style="border-left-color:#f0a500">
+        <h3 style="color:#f0a500">Quand vérifier le niveau ?</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#f0a500">1</span><strong style="color:#fff">Le voyant température s'allume ou clignote</strong> — s'arrêter dès que possible, ne pas forcer</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Contrôle de routine — tous les 1 000 km ou avant un long trajet</li>
+          <li><span class="zone-detail-num" style="background:#f0a500">3</span>Après une réparation ou un choc — vérifier qu'il n'y a pas de fuite</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX sur le réservoir d'expansion — moteur froid.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> le niveau chute régulièrement — c'est signe d'une fuite. Un professionnel doit diagnostiquer.</div>
+      </div>
+
+      <div class="zone-section-titre">Comment faire l'appoint — 5 étapes</div>
+
+      <ul class="zone-detail-etapes" style="margin-bottom:16px">
+        <li><span class="zone-detail-num">1</span><strong style="color:#fff">Moteur froid obligatoirement</strong> — attendre au minimum 30 minutes après l'arrêt. Le circuit est sous pression tant que le moteur est chaud.</li>
+        <li><span class="zone-detail-num">2</span>Repérez le réservoir d'expansion (transparent, coloré) et lisez le niveau — si entre MIN et MAX, pas d'appoint nécessaire</li>
+        <li><span class="zone-detail-num">3</span>Ouvrez lentement le bouchon du réservoir d'expansion — si vous sentez une légère résistance, c'est normal, une petite dépression peut se former même à froid</li>
+        <li><span class="zone-detail-num">4</span>Versez le liquide de même norme que celui dans le circuit — <strong style="color:#fff">prêt à l'emploi</strong> ou concentré dilué 50/50 avec eau distillée</li>
+        <li><span class="zone-detail-num">5</span>Rebouchez, redémarrez le moteur 2 minutes, laissez refroidir, revérifiez le niveau</li>
+      </ul>
+
+      <div class="encadre-attent">
+        <strong>⚠️ Ne jamais ouvrir le bouchon moteur chaud</strong><br>
+        Le circuit de refroidissement fonctionne sous pression (1,2 à 1,5 bar). Ouvrir un bouchon à chaud libère cette pression instantanément — le liquide en ébullition jaillit sous forme de vapeur et de projection à plus de 100 °C. C'est l'une des causes les plus fréquentes de brûlures graves en mécanique amateur. La règle est absolue : 30 minutes de refroidissement minimum.
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Faire l'appoint de liquide de refroidissement</p>
+          <p class="video-sous-titre">Pascal montre les 5 étapes — moteur froid, bon produit, bonne quantité</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
+        </div>
+      </div>
+
+      <div class="zone-detail-card" style="border-left-color:#CC0000">
+        <h3 style="color:#CC0000">Le moteur surchauffe — 5 gestes d'urgence</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Allumez les warnings et cherchez un endroit sûr pour vous arrêter</strong> — ne forcez pas, chaque km supplémentaire aggrave la situation</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Coupez la climatisation</strong> — elle sollicite le moteur, réduisez la charge thermique immédiatement</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Coupez le moteur dès que vous êtes arrêté</strong> — ne le laissez pas tourner au ralenti si le voyant est rouge</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">N'ouvrez pas le capot immédiatement</strong> si vous voyez de la vapeur blanche — attendez 15 minutes que la pression redescende</li>
+          <li><span class="zone-detail-num" style="background:#CC0000">5</span><strong style="color:#fff">Appelez un professionnel ou une assistance</strong> — un moteur qui a surchauffé doit être diagnostiqué avant de reprendre la route</li>
+        </ul>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- 3.2e — LAVE-GLACE                                          -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2e" class="lecon-titre">💧 3.2e — Lave-glace</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">Le lave-glace est le seul réservoir sous le capot que vous pouvez remplir à tout moment, sans précaution particulière. Pas de pression, pas de risque — 30 secondes chrono.</p>
+
+      <div class="zone-detail-card" style="border-left-color:#4CAF50">
+        <h3 style="color:#4CAF50">Remplir le réservoir — le seul sans danger</h3>
+        <p style="font-size:13px;color:#AAAAAA;margin:0 0 12px">C'est le seul réservoir sous le capot que vous pouvez ouvrir à chaud ou à froid, sans aucun risque. Pas de pression, pas de température critique.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Repérez le réservoir lave-glace — bouchon bleu avec le symbole jet d'eau (🚿 ou ⊙) — toujours sous le capot</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Ouvrez le bouchon — pas de précaution de température, ouvrez directement</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Versez le liquide lave-glace jusqu'au repère MAX</li>
+          <li><span class="zone-detail-num" style="background:#4CAF50">4</span>Rebouchez et testez les essuie-glaces depuis l'habitacle</li>
+        </ul>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le jet atteint bien le centre du pare-brise — si le jet est dévié, les buses peuvent être réorientées avec une aiguille fine.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Ne jamais utiliser</strong> de l'eau du robinet seule — calcaire + gel en hiver = buses bouchées.</div>
+      </div>
+
+      <div class="zone-section-titre">Choisir le bon lave-glace</div>
+
+      <div class="zone-detail-card" style="border-left-color:#3a8ef5">
+        <h3 style="color:#3a8ef5">Été vs Hiver — la différence clé</h3>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num" style="background:#3a8ef5">🌞</span><strong style="color:#fff">Été / toutes saisons</strong> — formule anti-insectes, nettoie les projections et pollens</li>
+          <li><span class="zone-detail-num" style="background:#3a8ef5">❄️</span><strong style="color:#fff">Hiver</strong> — antigel indispensable : choisissez −20 °C minimum, −30 °C si montagne</li>
+          <li><span class="zone-detail-num" style="background:#3a8ef5">💡</span>Concentré ou prêt à l'emploi : le concentré est dilué selon les indications (été = plus dilué)</li>
+        </ul>
+      </div>
+
+      <div class="formation-photo-block">
+        <div class="image-placeholder">
+          <span class="image-icon">📷</span>
+          <p class="image-caption">Buses lave-glace sur le capot — position et orientation correcte du jet vers le centre du pare-brise</p>
+        </div>
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Remplir le lave-glace et nettoyer les buses</p>
+          <p class="video-sous-titre">Pascal montre le remplissage + la méthode aiguille pour réorienter les buses</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO_LAVEGLACE2 par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_LAVEGLACE2" ...></iframe> -->
+        </div>
+      </div>
+
+      <div class="bloc-regle-or">
+        <p class="regle-titre">💬 Le mot de Pascal — Les marques de lave-glace</p>
+        <p class="regle-texte">"Rain-X, Sonax, Total, Carglass, marque distributeur… Pour le lave-glace, la marque importe encore moins que pour les autres produits. Tous les lave-glaces vendus en France respectent les mêmes normes de composition de base.<br><br>La règle de Pascal : ce qui compte vraiment c'est :<br>→ La saison : hiver (antigel) ou été (anti-insectes)<br>→ La concentration antigel en hiver : −20 °C minimum, −30 °C si vous allez en montagne<br>→ Prêt à l'emploi vs concentré : selon votre usage<br><br>Un lave-glace à −20 °C de marque distributeur à 2 € protège aussi bien qu'un produit premium à 8 €. Ne payez pas la marque — payez la bonne protection."</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- 3.2f — BATTERIE ET EAU DISTILLÉE                          -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2f" class="lecon-titre">🔋 3.2f — Batterie et eau distillée</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">La batterie alimente tout au démarrage. Sur les batteries modernes, on ne peut pas vérifier le niveau d'électrolyte — mais on peut inspecter visuellement l'état des bornes. L'eau distillée, elle, n'est jamais un produit de remplacement — c'est un appoint d'urgence uniquement.</p>
+
+      <div class="zone-section-titre">Batterie — contrôle visuel des bornes</div>
+
+      <div class="zone-detail-card">
+        <h3>🔋 Zone 6 — Batterie · Bornes et état visuel</h3>
+        <p class="zone-detail-explication">La batterie alimente tous les systèmes électriques au démarrage. Tu ne peux pas vérifier le niveau d'électrolyte (c'est fermé sur les batteries modernes), mais tu peux contrôler visuellement l'état des bornes.</p>
+        <ul class="zone-detail-etapes">
+          <li><span class="zone-detail-num">1</span>Repère la batterie — souvent sous le capot ou parfois dans le coffre</li>
+          <li><span class="zone-detail-num">2</span>Observe les bornes (+ rouge et − noir) : elles doivent être propres et serrées</li>
+          <li><span class="zone-detail-num">3</span>Si tu vois une poudre blanche ou bleue autour des bornes → c'est de l'oxydation</li>
+          <li><span class="zone-detail-num">4</span>Pour nettoyer : eau chaude + bicarbonate de soude — jamais de métal ou d'outil conducteur</li>
+        </ul>
+        <div class="zone-photo-cadre">
+          <span class="zph-emoji">🔋</span>
+          <span class="zph-titre">Batterie — bornes + et −</span>
+          <span class="zph-label">📷 Photo à venir</span>
+        </div>
+        <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> les bornes sont propres, sans poudre blanche, câbles bien fixés.</div>
+        <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> la batterie est bombée ou gonflée, les bornes très oxydées, ou le démarrage est lent et hésitant. → Faire tester la batterie chez un professionnel.</div>
+      </div>
+
+      <div class="zone-section-titre">Eau distillée — l'appoint d'urgence uniquement</div>
+
       <div class="zone-liquide-card">
         <div class="zone-liquide-header">
           <span class="zone-liquide-emoji">💦</span>
@@ -3769,7 +4000,6 @@
           <span class="zone-liquide-badge">Usage : <span>Appoint refroidissement ou lave-glace uniquement</span></span>
           <span class="zone-liquide-badge">Se trouve : <span>Pharmacie, supermarché, station-service</span></span>
         </div>
-        <!-- Future image : <img src="assets/images/etape3/liquide-6-eau-distillee.jpg" alt="Bidon eau distillée"> -->
         <div class="zone-photo-cadre">
           <span class="zph-emoji">💦</span>
           <span class="zph-titre">Bidon d'eau distillée</span>
@@ -3783,6 +4013,13 @@
           <p class="regle-texte">"L'eau distillée c'est le dépannage d'urgence. Dès que tu peux, tu fais vérifier par un professionnel."</p>
         </div>
       </div>
+
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <!-- 3.2g — CONFUSIONS DANGEREUSES                              -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2g" class="lecon-titre">🚨 3.2g — Les confusions dangereuses à ne jamais faire</h2>
+
+      <p class="zone-detail-explication" style="margin-bottom:16px">Cinq erreurs classiques qui peuvent coûter très cher. Les connaître, c'est les éviter à coup sûr.</p>
 
       <!-- ── Encadré récapitulatif anti-erreurs ── -->
       <div style="background:#1a0000;border:2px solid #CC0000;border-radius:10px;padding:20px;margin:24px 0">
@@ -3825,10 +4062,13 @@
         </table>
       </div>
 
+
+
       <!-- ═══════════════════════════════════════════════════════════ -->
-      <!-- AJOUT 2 — COMPRENDRE SES PNEUS                             -->
       <!-- ═══════════════════════════════════════════════════════════ -->
-      <h2 class="lecon-titre">🔵 3.2c — Comprendre vos pneus</h2>
+      <!-- 3.2h — COMPRENDRE SES PNEUS                               -->
+      <!-- ═══════════════════════════════════════════════════════════ -->
+      <h2 id="sec-3-2h" class="lecon-titre">🔵 3.2h — Comprendre vos pneus</h2>
       <p class="zone-detail-explication" style="font-style:italic;margin-bottom:8px">Les pneus sont le seul contact entre votre voiture et la route — voici tout ce qu'il faut savoir.</p>
       <p class="zone-detail-explication" style="margin-bottom:24px">Quatre surfaces de la taille d'une carte postale portent toute la voiture. Les connaître, c'est rouler en sécurité.</p>
 
@@ -3988,7 +4228,7 @@
       <!-- AJOUT 3 — CHANGEMENT DE ROUE APRÈS CREVAISON               -->
       <!-- ═══════════════════════════════════════════════════════════ -->
 
-      <h2 class="lecon-titre">🔧 3.2d — Comment changer une roue après une crevaison</h2>
+      <h2 id="sec-3-2i" class="lecon-titre">🔧 3.2i — Comment changer une roue après une crevaison</h2>
       <p class="zone-detail-explication" style="font-style:italic;margin-bottom:8px">Pas de panique ! Avec la méthode et le matériel d'origine de votre voiture, vous pouvez vous en sortir seul.</p>
       <p class="zone-detail-explication" style="margin-bottom:24px">Une crevaison n'est pas une urgence si vous savez quoi faire. Suivez ces étapes dans l'ordre, sans précipitation.</p>
 
@@ -4226,409 +4466,6 @@
 
       <div class="encadre-conseil">
         <strong>✅ Conseil de Pascal :</strong> Entraînez-vous une fois chez vous, dans votre garage ou parking, avant d'en avoir besoin. 30 minutes d'entraînement à froid valent mieux qu'une heure de galère sous la pluie, de nuit, au bord d'une route.
-      </div>
-
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <!-- SECTION 3.2e — FAIRE L'APPOINT                             -->
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <h2 class="lecon-titre">🛢️ 3.2e — Faire l'appoint : huile, frein et direction</h2>
-
-      <p class="zone-detail-explication" style="margin-bottom:16px">Ces 3 liquides peuvent nécessiter un appoint que vous pouvez surveiller et faire vous-même, sans outil. Un seul principe : bon produit, bonne quantité, bon moment.</p>
-
-      <!-- ── Partie 1 — Huile moteur ── -->
-      <div class="zone-section-titre">Partie 1 — Huile moteur : l'appoint concret</div>
-
-      <div class="zone-detail-card" style="border-left-color:#f0a500">
-        <h3 style="color:#f0a500">Quand faire l'appoint ?</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#f0a500">1</span><strong style="color:#fff">Le voyant huile clignote ou s'allume</strong> — ne pas rouler, vérifier immédiatement</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">2</span><strong style="color:#fff">La jauge indique un niveau sous la mi-distance MIN/MAX</strong> — appoint à prévoir dans la semaine</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">La prochaine vidange approche</strong> — vérifier le niveau à chaque plein d'essence</li>
-        </ul>
-      </div>
-
-      <div class="formation-image-block" data-image="jauge-huile-niveau-bas.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Jauge d'huile : niveau bas visible — la trace d'huile se situe sous la mi-distance entre MIN et MAX</p>
-        </div>
-      </div>
-
-      <div class="zone-detail-card" style="border-left-color:#4CAF50">
-        <h3 style="color:#4CAF50">Choisir le bon bidon</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Cherchez l'autocollant sous le capot (souvent sur le cache moteur ou la jauge) — l'indice exact y est indiqué</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Si pas d'autocollant : consultez le carnet d'entretien constructeur — page "huile moteur recommandée"</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Utilisez <strong style="color:#fff">exactement le même indice</strong> que celui déjà dans le moteur — ne jamais mélanger deux références différentes</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">4</span>En Guadeloupe, un indice <strong style="color:#fff">5W40</strong> est souvent bien adapté aux fortes chaleurs — vérifiez quand même votre carnet constructeur</li>
-        </ul>
-      </div>
-
-      <div class="zone-section-titre">Les 8 étapes de l'appoint d'huile</div>
-
-      <ul class="zone-detail-etapes" style="margin:0 0 16px">
-        <li><span class="zone-detail-num">1</span><strong style="color:#fff">Moteur froid obligatoirement</strong> — attendre au minimum 10 minutes après l'arrêt du moteur</li>
-        <li><span class="zone-detail-num">2</span><strong style="color:#fff">Voiture à plat</strong> — sur un sol horizontal pour une lecture de jauge précise</li>
-        <li><span class="zone-detail-num">3</span>Retirez le bouchon de remplissage d'huile (symbole casserole avec gouttes 🛢️ sur le cache moteur)</li>
-        <li><span class="zone-detail-num">4</span>Versez <strong style="color:#fff">250 ml</strong> d'huile à la fois — jamais en une seule fois</li>
-        <li><span class="zone-detail-num">5</span>Remettez le bouchon, attendez <strong style="color:#fff">2 minutes</strong> que l'huile descende dans le carter</li>
-        <li><span class="zone-detail-num">6</span>Retirez la jauge, essuyez-la avec un chiffon propre, remettez-la à fond</li>
-        <li><span class="zone-detail-num">7</span>Ressortez la jauge et lisez le niveau — répétez l'étape 4 si encore trop bas</li>
-        <li><span class="zone-detail-num">8</span><strong style="color:#fff">Objectif : niveau entre le milieu et le MAX</strong> — jamais au-dessus du MAX</li>
-      </ul>
-
-      <div class="formation-image-block" data-image="huile-appoint-bouchon-bidon.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Bouchon de remplissage d'huile (symbole casserole) et bidon d'huile avec entonnoir — les 2 seuls éléments nécessaires pour faire l'appoint</p>
-        </div>
-      </div>
-
-      <div class="formation-video-block">
-        <div class="video-placeholder">
-          <div class="video-play-btn">▶</div>
-          <p class="video-titre">Vidéo : Faire l'appoint d'huile moteur étape par étape</p>
-          <p class="video-sous-titre">Pascal vous montre les 8 étapes en situation réelle</p>
-          <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'identifiant YouTube de votre vidéo -->
-          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
-        </div>
-      </div>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Ne jamais dépasser le MAX</strong><br>
-        Trop d'huile est aussi néfaste que pas assez. Un niveau au-dessus du MAX crée une surpression dans le moteur — l'huile peut être projetée dans des zones qu'elle ne doit pas atteindre. Résultat : casse moteur ou fumée blanche. Ajoutez 250 ml à la fois et revérifiez la jauge entre chaque ajout.
-      </div>
-
-      <div class="encadre-conseil">
-        <strong>✅ Conseil de Pascal :</strong> Tenez un petit carnet dans votre boîte à gants. Notez la date, le kilométrage et la quantité d'huile ajoutée à chaque appoint. Si vous ajoutez souvent plus de 500 ml entre deux vidanges, c'est le signe d'une fuite ou d'une consommation anormale à faire vérifier.
-      </div>
-
-      <!-- ── Partie 2 — Liquide de frein ── -->
-      <div class="zone-section-titre">Partie 2 — Liquide de frein : surveiller sans toucher</div>
-
-      <div class="zone-detail-card" style="border-left-color:#f0a500">
-        <h3 style="color:#f0a500">Vérifier le niveau — 3 étapes visuelles</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#f0a500">1</span>Repérez le petit réservoir transparent sur le bord du compartiment moteur — bouchon avec le symbole ⚠️ (cercle avec point d'exclamation)</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">2</span>Lisez le niveau à travers la paroi sans ouvrir le bouchon — les repères MIN et MAX sont visibles de l'extérieur</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">Ne jamais ouvrir le bouchon inutilement</strong> — le liquide absorbe l'humidité de l'air à chaque ouverture et se dégrade plus vite</li>
-        </ul>
-      </div>
-
-      <div class="formation-image-block" data-image="frein-reservoir-min-max.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Réservoir de liquide de frein — repères MIN et MAX annotés, bouchon avec symbole ⚠️ visible</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Les indices DOT — lequel est dans votre voiture ?</div>
-
-      <table class="zone-table">
-        <thead>
-          <tr><th>Indice</th><th>Véhicules concernés</th><th>Fréquence de remplacement</th><th>Point d'ébullition</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>DOT 3</td><td>Véhicules anciens (avant 2000)</td><td>Tous les ans</td><td>205 °C (neuf)</td></tr>
-          <tr><td><strong>DOT 4</strong></td><td><strong>Majorité des véhicules actuels</strong></td><td><strong>Tous les 2 ans</strong></td><td>230 °C (neuf)</td></tr>
-          <tr><td>DOT 5.1</td><td>Véhicules haute performance</td><td>Tous les 2 ans</td><td>260 °C (neuf)</td></tr>
-          <tr><td>DOT 5</td><td>Motos sportives — INCOMPATIBLE voiture</td><td>—</td><td>260 °C (neuf)</td></tr>
-        </tbody>
-      </table>
-
-      <div class="bloc-regle-or">
-        <p class="regle-titre">💬 Le mot de Pascal — Les marques de liquide de frein</p>
-        <p class="regle-texte">"Bosch, Motul, Brembo, Ferodo, Total, Castrol… Pour le liquide de frein, toutes les grandes marques se valent si elles respectent la même norme DOT. Un DOT 4 Bosch et un DOT 4 Motul offrent la même protection — la norme l'impose.<br><br>La règle de Pascal : choisissez le bon indice DOT (indiqué dans votre carnet ou sur le bouchon du réservoir). La marque est secondaire — la norme est primordiale.<br><br>⚠️ Exception : pour un usage sportif intensif (conduite sur circuit, freinages répétés à haute vitesse), privilégiez une marque reconnue en DOT 5.1. Pour un usage routier normal : n'importe quelle marque sérieuse en DOT 4 suffit parfaitement."</p>
-      </div>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Ne jamais mélanger les indices DOT</strong><br>
-        Le DOT 3 et le DOT 4 sont compatibles entre eux. En revanche, le DOT 5 (à base de silicone) est <strong>totalement incompatible</strong> avec les autres — il détruirait vos joints de frein. En cas de doute, consultez le carnet constructeur ou un professionnel.
-      </div>
-
-      <div class="zone-detail-card" style="border-left-color:#CC0000">
-        <h3 style="color:#CC0000">Quand aller au garage sans attendre ?</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Niveau sous le MIN</strong> — peut indiquer une fuite ou des plaquettes épuisées, pas juste une consommation normale</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Liquide foncé ou marron</strong> — liquide dégradé, chargé en eau, à changer immédiatement</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Pédale de frein molle ou qui s'enfonce trop</strong> — signe d'air dans le circuit ou de fuite — garage immédiat</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">Bruit anormal au freinage</strong> (grincement, craquement) — plaquettes ou disques à vérifier</li>
-        </ul>
-      </div>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Le liquide de frein se change tous les 2 ans — même si le niveau est bon</strong><br>
-        Ce liquide est hygroscopique : il absorbe l'humidité de l'air progressivement. Avec le temps, son point d'ébullition baisse. Lors d'un freinage intense (descente longue, freinages répétés), un liquide dégradé peut bouillir dans le circuit — le frein ne répond plus. C'est l'un des rares entretiens qui ne se voit pas mais qui compte vraiment.
-      </div>
-
-      <div class="formation-image-block" data-image="frein-bouchon-dot4.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Bouchon de réservoir de frein — inscription DOT 4 visible, symbole ⚠️ — les 2 informations à repérer avant tout achat</p>
-        </div>
-      </div>
-
-      <!-- ── Partie 3 — Direction assistée ── -->
-      <div class="zone-section-titre">Partie 3 — Direction assistée : hydraulique ou électrique ?</div>
-
-      <p class="zone-detail-explication" style="margin-bottom:14px">Avant de chercher un réservoir de direction assistée, la première question à se poser : votre voiture est-elle équipée d'une direction <strong>hydraulique</strong> ou <strong>électrique</strong> ? La réponse change tout.</p>
-
-      <table class="zone-table">
-        <thead>
-          <tr><th>Type de direction</th><th>Comment le savoir ?</th><th>Réservoir ?</th><th>Entretien liquide ?</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Hydraulique</strong><br><span style="font-size:12px;color:#AAAAAA">La plupart des voitures avant 2010</span></td>
-            <td>Petit réservoir transparent sous le capot, bouchon avec symbole volant 🔧</td>
-            <td style="color:#4CAF50">Oui — à vérifier</td>
-            <td style="color:#4CAF50">Oui — tous les 2 à 3 ans</td>
-          </tr>
-          <tr>
-            <td><strong>Électrique</strong><br><span style="font-size:12px;color:#AAAAAA">La plupart des voitures après 2010</span></td>
-            <td>Pas de réservoir visible pour la direction — moteur électrique intégré à la colonne</td>
-            <td style="color:#CC0000">Non</td>
-            <td style="color:#CC0000">Aucun</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="bloc-regle-or">
-        <p class="regle-titre">💬 Le mot de Pascal — Direction assistée</p>
-        <p class="regle-texte">"Pour la direction assistée hydraulique, les marques de liquide (ATF Dexron, CHF 11S, PSF…) sont toutes sérieuses dès lors qu'elles respectent la norme de votre constructeur.<br><br>La règle de Pascal : ne cherchez pas la marque — cherchez la référence exacte indiquée dans votre manuel. Un liquide de direction mal choisi peut détruire la pompe et la crémaillère en quelques semaines.<br>→ Bonne marque mauvaise référence = destruction garantie<br>→ Marque inconnue bonne référence = protection assurée<br><br>La marque ne sauve pas un mauvais choix de produit."</p>
-      </div>
-
-      <div class="encadre-info">
-        <strong>🔵 Si votre voiture a moins de 15 ans</strong>, elle est probablement équipée d'une direction électrique. Pas de réservoir, pas de liquide à vérifier, pas de maintenance de ce type. Ne cherchez pas à en ajouter — il n'y a rien à faire de ce côté.
-      </div>
-
-      <div class="zone-detail-card" style="border-left-color:#4CAF50">
-        <h3 style="color:#4CAF50">Vérifier le niveau — si votre direction est hydraulique</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Repérez le petit réservoir transparent avec le bouchon symbole volant — souvent situé sur le côté du moteur</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Pour une lecture précise : moteur démarré au ralenti, volant droit (pas en butée) — certains réservoirs ont deux repères selon que le moteur est chaud ou froid</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Produit : liquide de direction assistée spécifique à votre marque — vérifiez le carnet constructeur avant tout achat</li>
-        </ul>
-      </div>
-
-      <div class="formation-image-block" data-image="direction-assistee-reservoir-hydraulique.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Réservoir de direction assistée hydraulique — bouchon avec symbole volant, repères MIN/MAX visibles sur la paroi</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Les 4 signes d'alerte — direction assistée hydraulique</div>
-
-      <ul class="zone-detail-etapes" style="margin:0 0 16px">
-        <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Bruit sourd ou sifflement quand vous tournez le volant</strong> — pompe qui travaille à sec, niveau à vérifier immédiatement</li>
-        <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Volant de plus en plus lourd à manier</strong> — perte d'assistance, pompe ou fuite à diagnostiquer</li>
-        <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Tache huileuse sous la voiture côté avant</strong> — fuite probable sur le circuit de direction</li>
-        <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">Niveau qui baisse régulièrement</strong> — ce liquide ne se consomme pas normalement, toute baisse indique une fuite</li>
-      </ul>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Ne jamais confondre avec le liquide de frein</strong><br>
-        Les deux liquides sont transparents ou légèrement teintés. Mettre du liquide de direction dans le circuit de frein (ou l'inverse) détruirait les joints. Toujours repérer le bon bouchon avant de verser quoi que ce soit.
-      </div>
-
-      <div class="bloc-regle-or">
-        <p class="regle-titre">💬 La règle des 3 liquides — Pascal</p>
-        <p class="regle-texte">"Ces 3 liquides — l'huile moteur, le frein, la direction — c'est votre check mensuel. 5 minutes sous le capot, une fois par mois, moteur froid. Vous regardez, vous comparez avec le mois d'avant. Si quelque chose a changé, vous le savez avant que ça devienne un problème. C'est ça, être Mécano à Bord."</p>
-      </div>
-
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <!-- SECTION 3.2f — REFROIDISSEMENT ET LAVE-GLACE              -->
-      <!-- ═══════════════════════════════════════════════════════════ -->
-      <h2 class="lecon-titre">🌡️ 3.2f — Refroidissement et lave-glace : faire l'appoint en toute sécurité</h2>
-
-      <p class="zone-detail-explication" style="margin-bottom:16px">Ces deux réservoirs sont sous le même capot mais n'ont rien en commun. L'un demande une précaution absolue — moteur froid obligatoire. L'autre se remplit en 30 secondes à n'importe quel moment, sans aucun risque.</p>
-
-      <!-- ── Partie 1 — Liquide de refroidissement ── -->
-      <div class="zone-section-titre">Partie 1 — Liquide de refroidissement : la règle du froid absolu</div>
-
-      <div class="zone-detail-card" style="border-left-color:#f0a500">
-        <h3 style="color:#f0a500">Quand vérifier le niveau ?</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#f0a500">1</span><strong style="color:#fff">Le voyant température s'allume ou clignote</strong> — s'arrêter dès que possible, ne pas forcer</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">2</span><strong style="color:#fff">Avant un long trajet</strong> — vérifier le niveau fait partie du check départ</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">Une fois par mois</strong> — en même temps que l'huile moteur, moteur froid</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">4</span><strong style="color:#fff">Si le niveau baisse régulièrement</strong> — une baisse lente peut indiquer une fuite ou un joint de culasse défaillant à faire vérifier</li>
-        </ul>
-      </div>
-
-      <div class="formation-image-block" data-image="refroid-reservoir-expansion-min-max.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Réservoir d'expansion (le bon à ouvrir) — bouchon coloré, repères MIN et MAX annotés sur la paroi transparente</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Les 2 bouchons à connaître — lequel ouvrir, lequel ne jamais toucher</div>
-
-      <div class="zone-detail-card" style="border-left-color:#f0a500">
-        <h3 style="color:#f0a500">Deux bouchons, deux règles opposées</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#4CAF50">✓</span><strong style="color:#4CAF50">Le bouchon du réservoir d'expansion</strong> (petit réservoir en plastique transparent, côté moteur) — c'est celui qu'on ouvre pour faire l'appoint, <em>uniquement moteur froid</em></li>
-          <li><span class="zone-detail-num" style="background:#CC0000">✗</span><strong style="color:#CC0000">Le bouchon du radiateur</strong> (sur le radiateur lui-même, en métal, souvent au centre) — ne jamais l'ouvrir soi-même, surtout pas à chaud. Ce circuit est sous haute pression.</li>
-        </ul>
-        <p style="font-size:13px;color:#AAAAAA;margin:10px 0 0">👉 Sur la plupart des voitures modernes, le bouchon du radiateur est difficile d'accès ou absent — le réservoir d'expansion est le seul point d'intervention.</p>
-      </div>
-
-      <div class="formation-image-block" data-image="refroid-deux-bouchons-comparaison.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Comparaison : bouchon réservoir d'expansion (✓ à ouvrir moteur froid) vs bouchon radiateur (✗ à ne jamais ouvrir soi-même)</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Choisir le bon produit — les normes G11, G12, G13</div>
-
-      <table class="zone-table">
-        <thead>
-          <tr><th>Norme</th><th>Couleur habituelle</th><th>Véhicules concernés</th><th>Dilution conseillée</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>G11</td><td style="color:#4CAF50">Vert</td><td>Véhicules anciens (avant 1996)</td><td>50 % eau distillée + 50 % concentré</td></tr>
-          <tr><td>G12 / G12+</td><td style="color:#CC0000">Rouge / Rose</td><td>Volkswagen, Audi, Seat, Skoda — et beaucoup d'autres</td><td>50 % eau distillée + 50 % concentré</td></tr>
-          <tr><td><strong>G13</strong></td><td style="color:#9C27B0">Violet / Mauve</td><td><strong>Véhicules récents (2008+) — normes environnementales</strong></td><td>50 % eau distillée + 50 % concentré</td></tr>
-          <tr><td>Prêt à l'emploi</td><td style="color:#AAAAAA">Toutes couleurs</td><td>Tous véhicules — vérifier la norme indiquée sur l'emballage</td><td>Verser directement — déjà dilué</td></tr>
-        </tbody>
-      </table>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Ne jamais mélanger deux couleurs différentes</strong><br>
-        Chaque norme G utilise une chimie différente (silicates, OAT, HOAT). Mélanger G11 vert et G13 violet, par exemple, crée une réaction qui forme des dépôts — ces dépôts peuvent boucher le circuit de refroidissement ou abîmer la pompe à eau. Toujours utiliser la même norme que celle déjà présente dans le circuit, ou faire une vidange complète du circuit avant de changer de norme.
-      </div>
-
-      <div class="formation-image-block" data-image="refroid-bidons-normes-couleurs.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Trois bidons côte à côte : G11 vert, G12 rouge, G13 violet — les normes et couleurs distinctives à repérer avant tout achat</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Les 5 étapes de l'appoint</div>
-
-      <ul class="zone-detail-etapes" style="margin:0 0 16px">
-        <li><span class="zone-detail-num">1</span><strong style="color:#fff">Moteur froid obligatoirement</strong> — attendre au minimum 30 minutes après l'arrêt. Le circuit est sous pression tant que le moteur est chaud.</li>
-        <li><span class="zone-detail-num">2</span>Repérez le réservoir d'expansion (transparent, coloré) et lisez le niveau — si entre MIN et MAX, pas d'appoint nécessaire</li>
-        <li><span class="zone-detail-num">3</span>Ouvrez lentement le bouchon du réservoir d'expansion — si vous sentez une légère résistance, c'est normal, une petite dépression peut se former même à froid</li>
-        <li><span class="zone-detail-num">4</span>Versez le liquide de même norme que celui dans le circuit — <strong style="color:#fff">prêt à l'emploi</strong> ou concentré dilué 50/50 avec eau distillée</li>
-        <li><span class="zone-detail-num">5</span>Rebouchez, redémarrez le moteur 2 minutes, laissez refroidir, revérifiez le niveau</li>
-      </ul>
-
-      <div class="encadre-attent">
-        <strong>⚠️ Ne jamais ouvrir le bouchon moteur chaud</strong><br>
-        Le circuit de refroidissement fonctionne sous pression (1,2 à 1,5 bar). Ouvrir un bouchon à chaud libère cette pression instantanément — le liquide en ébullition jaillit sous forme de vapeur et de projection à plus de 100 °C. C'est l'une des causes les plus fréquentes de brûlures graves en mécanique amateur. La règle est absolue : 30 minutes de refroidissement minimum.
-      </div>
-
-      <div class="formation-video-block">
-        <div class="video-placeholder">
-          <div class="video-play-btn">▶</div>
-          <p class="video-titre">Vidéo : Faire l'appoint de liquide de refroidissement</p>
-          <p class="video-sous-titre">Pascal montre les 5 étapes — moteur froid, bon produit, bonne quantité</p>
-          <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'identifiant YouTube de votre vidéo -->
-          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
-        </div>
-      </div>
-
-      <div class="zone-detail-card" style="border-left-color:#CC0000">
-        <h3 style="color:#CC0000">Le moteur surchauffe — 5 gestes d'urgence</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#CC0000">1</span><strong style="color:#fff">Allumez les warnings et cherchez un endroit sûr pour vous arrêter</strong> — ne forcez pas, chaque km supplémentaire aggrave la situation</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">2</span><strong style="color:#fff">Coupez la climatisation</strong> — elle sollicite le moteur, réduisez la charge thermique immédiatement</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">3</span><strong style="color:#fff">Coupez le moteur dès que vous êtes arrêté</strong> — ne le laissez pas tourner au ralenti si le voyant est rouge</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">4</span><strong style="color:#fff">N'ouvrez pas le capot immédiatement</strong> si vous voyez de la vapeur blanche — attendez 15 minutes que la pression redescende</li>
-          <li><span class="zone-detail-num" style="background:#CC0000">5</span><strong style="color:#fff">Appelez un professionnel ou une assistance</strong> — un moteur qui a surchauffé doit être diagnostiqué avant de reprendre la route</li>
-        </ul>
-      </div>
-
-      <!-- ── Partie 2 — Liquide lave-glace ── -->
-      <div class="zone-section-titre">Partie 2 — Liquide lave-glace : remplir sans risque</div>
-
-      <div class="zone-detail-card" style="border-left-color:#4CAF50">
-        <h3 style="color:#4CAF50">Remplir le réservoir — le seul sans danger</h3>
-        <p style="font-size:13px;color:#AAAAAA;margin:0 0 12px">C'est le seul réservoir sous le capot que vous pouvez ouvrir à chaud ou à froid, sans aucun risque. Pas de pression, pas de température critique.</p>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#4CAF50">1</span>Repérez le bouchon <strong style="color:#fff">bleu</strong> avec le symbole jet d'eau 💧 — c'est le seul bouchon de cette couleur sous le capot</li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">2</span>Ouvrez et versez directement si le produit est <strong style="color:#fff">prêt à l'emploi</strong>, ou diluez dans un bidon séparé si c'est du <strong style="color:#fff">concentré</strong></li>
-          <li><span class="zone-detail-num" style="background:#4CAF50">3</span>Pas de niveau MAX strict — le réservoir peut être rempli à ras bord sans risque de débordement problématique</li>
-        </ul>
-      </div>
-
-      <div class="formation-image-block" data-image="laveglace-reservoir-bouchon-bleu.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Réservoir lave-glace avec bouchon bleu et symbole jet d'eau — le seul réservoir sans danger, ouvrable à n'importe quelle température</p>
-        </div>
-      </div>
-
-      <div class="zone-section-titre">Quel format choisir ?</div>
-
-      <table class="zone-table">
-        <thead>
-          <tr><th>Format</th><th>Quand l'utiliser</th><th>Dilution</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Prêt à l'emploi</strong></td>
-            <td>Toujours, partout — le plus simple</td>
-            <td style="color:#4CAF50">Aucune — verser directement</td>
-          </tr>
-          <tr>
-            <td><strong>Concentré</strong></td>
-            <td>Pour doser selon la saison et la température</td>
-            <td>50/50 eau distillée en été → 100 % concentré antigel en hiver</td>
-          </tr>
-          <tr>
-            <td><strong>Antigel hiver</strong></td>
-            <td>Régions froides, montagne, métropole en hiver</td>
-            <td>Selon la température cible indiquée sur l'emballage (−10°C, −20°C…)</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="bloc-regle-or">
-        <p class="regle-titre">💬 Le mot de Pascal — Les marques de lave-glace</p>
-        <p class="regle-texte">"Rain-X, Sonax, Total, Carglass, marque distributeur… Pour le lave-glace, la marque importe encore moins que pour les autres produits. Tous les lave-glaces vendus en France respectent les mêmes normes de composition de base.<br><br>La règle de Pascal : ce qui compte vraiment c'est :<br>→ La saison : hiver (antigel) ou été (anti-insectes)<br>→ La concentration antigel en hiver : −20 °C minimum, −30 °C si vous allez en montagne<br>→ Prêt à l'emploi vs concentré : selon votre usage<br><br>Un lave-glace à −20 °C de marque distributeur à 2 € protège aussi bien qu'un produit premium à 8 €. Ne payez pas la marque — payez la bonne protection."</p>
-      </div>
-
-      <div class="encadre-info">
-        <strong>💡 En Guadeloupe et DOM-TOM :</strong><br>
-        Le prêt à l'emploi suffit toute l'année. Pas besoin d'antigel — les températures ne descendent jamais en dessous de zéro. Si vous voyagez en métropole en hiver, prenez un bidon de concentré antigel −20 °C dans votre coffre.
-      </div>
-
-      <div class="zone-detail-card" style="border-left-color:#f0a500">
-        <h3 style="color:#f0a500">Buses bouchées ou jet de travers — 3 méthodes</h3>
-        <ul class="zone-detail-etapes">
-          <li><span class="zone-detail-num" style="background:#f0a500">1</span><strong style="color:#fff">Aiguille fine</strong> dans le trou de la buse — orientez doucement vers le haut du pare-brise pour corriger la direction du jet</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">2</span><strong style="color:#fff">Eau chaude</strong> versée sur la buse gelée en hiver — suffit à déboucher une buse simplement gelée</li>
-          <li><span class="zone-detail-num" style="background:#f0a500">3</span><strong style="color:#fff">Spray dégivrant buses</strong> (vendu en grande surface auto) — efficace sur les bouchons réfractaires</li>
-        </ul>
-        <div class="zone-danger-bloc" style="margin-top:10px"><strong>⚠️ Ne jamais percer avec un objet trop gros</strong> — agrandir le trou rend le jet inutilisable et oblige le remplacement de la buse.</div>
-      </div>
-
-      <div class="formation-image-block" data-image="laveglace-buses-orientation.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Buses lave-glace sur le capot — position et orientation correcte du jet vers le centre du pare-brise</p>
-        </div>
-      </div>
-
-      <div class="formation-video-block">
-        <div class="video-placeholder">
-          <div class="video-play-btn">▶</div>
-          <p class="video-titre">Vidéo : Remplir le lave-glace et nettoyer les buses</p>
-          <p class="video-sous-titre">Pascal montre le remplissage + la méthode aiguille pour réorienter les buses</p>
-          <!-- PASCAL : remplacer VOTRE_ID_VIDEO_LAVEGLACE2 par l'identifiant YouTube de votre vidéo -->
-          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_LAVEGLACE2" ...></iframe> -->
-        </div>
-      </div>
-
-      <div class="bloc-regle-or">
-        <p class="regle-titre">💬 La règle des 2 réservoirs — Pascal</p>
-        <p class="regle-texte">"Le lave-glace, c'est 30 secondes et zéro risque. Le refroidissement, c'est 2 minutes mais moteur froid. Si vous retenez une seule chose : ne jamais ouvrir le bouchon rouge ou jaune moteur chaud."</p>
       </div>
 
       <!-- 3.3 — Tableau voyants -->

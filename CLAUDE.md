@@ -74,6 +74,18 @@ RÈGLE 5 — PROFILS VÉHICULE
 RÈGLE 6 — PÉRIMÈTRE V1 STRICT
 → Interdit de coder ou préparer les modules V2/V3/V4
 → Toute évolution hors V1 doit être validée par Pascal avant implémentation
+
+RÈGLE 7 — ENCODAGE UTF-8 OBLIGATOIRE POUR formation-web/index.html
+→ Tout Set-Content sur index.html doit toujours utiliser :
+   Set-Content $path -Value $text -Encoding utf8NoBOM
+→ Tout Get-Content sur index.html doit toujours utiliser :
+   Get-Content $path -Encoding utf8
+→ Pour les remplacements globaux, toujours utiliser :
+   $text = [System.IO.File]::ReadAllText($abs, 
+     [System.Text.Encoding]::UTF8)
+   # ... modifications ...
+   [System.IO.File]::WriteAllText($abs, $text,
+     (New-Object System.Text.UTF8Encoding $false))
 ```
 
 ---

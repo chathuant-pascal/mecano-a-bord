@@ -252,8 +252,20 @@
     }
     .zone-detail-etapes li {
       font-size: 13px;
-      padding: 6px 0;
-      border-bottom: 1px solid #2a2a2a;
+      p          // ── PARTIE 2
+          c += sep2;
+          c += '<div style="margin:32px 0 20px;padding:22px 22px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:18px;background:rgba(255,255,255,0.03);'>';
+          c += '<h3 style="font-size:20px;margin:0 0 12px;color:var(--rouge-principal);letter-spacing:0.02em">🔋 PARTIE 2 — HYBRIDES &amp; ÉLECTRIQUES</h3>';
+          c += '<p style="margin:0 0 16px;color:var(--texte-secondaire);line-height:1.75;max-width:760px">';
+          c += 'Dans cette partie, on passe aux véhicules qui mélangent thermique et électrique, ou qui sont 100 % électriques. ';
+          c += 'Tu vas comprendre les différences clés, les risques spécifiques et les gestes à adopter pour rester en sécurité.';
+          c += '</p>';
+          c += '<div class="bc-etape" style="margin:0;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">';
+          c += '💡 <strong>Hybride</strong> = moteur thermique + moteur(s) électrique(s)<br>';
+          c += '⚡ <strong>Électrique</strong> = uniquement moteur(s) électrique(s)<br>';
+          c += '⚠️ <strong>Ces véhicules utilisent des tensions jusqu\'à 800 volts. Ne JAMAIS toucher les composants orange sans formation spécifique.</strong>';
+          c += '</div>';
+          c += '</div>'; solid #2a2a2a;
       display: flex;
       gap: 8px;
       align-items: flex-start;
@@ -7204,11 +7216,17 @@
 
           // ── PARTIE 2
           c += sep2;
-          c += '<h3>🔋 PARTIE 2 — HYBRIDES &amp; ÉLECTRIQUES</h3>';
-          c += '<div class="bc-etape" style="margin:16px 0">';
+          c += '<div style="margin:32px 0 20px;padding:22px 22px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:18px;background:rgba(255,255,255,0.03);">';
+          c += '<h3 style="font-size:20px;margin:0 0 12px;color:var(--rouge-principal);letter-spacing:0.02em">🔋 PARTIE 2 — HYBRIDES &amp; ÉLECTRIQUES</h3>';
+          c += '<p style="margin:0 0 16px;color:var(--texte-secondaire);line-height:1.75;max-width:760px">';
+          c += 'Dans cette partie, on passe aux véhicules qui mélangent thermique et électrique, ou qui sont 100 % électriques. ';
+          c += 'Tu vas comprendre les différences clés, les risques spécifiques et les gestes à adopter pour rester en sécurité.';
+          c += '</p>';
+          c += '<div class="bc-etape" style="margin:0;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">';
           c += '💡 <strong>Hybride</strong> = moteur thermique + moteur(s) électrique(s)<br>';
           c += '⚡ <strong>Électrique</strong> = uniquement moteur(s) électrique(s)<br>';
           c += '⚠️ <strong>Ces véhicules utilisent des tensions jusqu\'à 800 volts. Ne JAMAIS toucher les composants orange sans formation spécifique.</strong>';
+          c += '</div>';
           c += '</div>';
 
           // Section 12

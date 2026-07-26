@@ -1,4 +1,4 @@
-package com.example.mecano_a_bord
+package fr.mecanoabord.app
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
@@ -17,13 +17,13 @@ import java.util.concurrent.Executors
 /**
  * Activité principale Flutter.
  * Connexion OBD en Bluetooth classique (SPP) pour dongle iCar Pro Vgate appairé par PIN.
- * MethodChannel "com.example.mecano_a_bord/obd" : getBondedDevices, connect, disconnect, getConnectionState,
+ * MethodChannel "fr.mecanoabord.app/obd" : getBondedDevices, connect, disconnect, getConnectionState,
  * readVehicleDataStep, readLiveData (PID mode 01 : 0105, 0142, 010B, 010C), clearDtcCodes (mode 04), resetObdNativePrefs.
  */
 class MainActivity : FlutterActivity() {
 
     companion object {
-        private const val CHANNEL = "com.example.mecano_a_bord/obd"
+        private const val CHANNEL = "fr.mecanoabord.app/obd"
         private val SPP_UUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         private const val ATZ_TIMEOUT_MS = 15000
         /** Après le premier ">" dans la réponse OBD, attente courte pour la fin des octets (sendObdCommand). */

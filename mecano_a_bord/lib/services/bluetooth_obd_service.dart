@@ -106,7 +106,7 @@ class LivePidResult {
 }
 
 /// Canal natif Android pour Bluetooth classique (appareils appairés + SPP).
-const _channel = MethodChannel('com.example.mecano_a_bord/obd');
+const _channel = MethodChannel('fr.mecanoabord.app/obd');
 
 /// Service OBD en Bluetooth classique : appareils appairés dans les réglages du téléphone,
 /// connexion SPP (Serial Port Profile) + envoi ATZ pour valider le dongle ELM327.

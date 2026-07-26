@@ -117,8 +117,10 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | **MODULE 8** | Système licence Firebase (CLAUDE.md — Mission 2 Inès) | **À faire** | Selon planning Inès (hors périmètre auto sans accord) |
 | **MODULE 9** | Tests unitaires service IA (`ai_conversation_service_test.dart` — **13** tests ; `MockClient` `http/testing.dart`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md` |
 | **MODULE 14** | Providers IA — **8** appels API (`_callChatGpt`, `_callGemini`, `_callMistral`, `_callPerplexity`, `_callGrok`, `_callDeepSeek`, `_callQwen`, `_callClaude`) + **Copilot** / **Meta AI** (`AiError` sans API perso) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_14_PROVIDERS_IA.md` |
+| **MODULE 2** | Keystore de signature Release Android (bloquant Play Store) — `mecanoabord-release.jks` + `android/key.properties` | **Fait** | **2026-07-26** — RSA 2048, alias `mecanoabord`, validité 10 000 jours ; ancienne tentative (mot de passe exposé) sans fichier trouvé à révoquer ; réalisé directement (hors planning Inès, sur demande explicite de Pascal) |
+| **MODULE 3** | Renommage package Android `com.example.mecano_a_bord` → `fr.mecanoabord.app` (irréversible après publication) | **Fait** | **2026-07-26** — `build.gradle.kts` (`namespace`/`applicationId`) + déplacement `MainActivity.kt` ; réalisé directement (hors planning Inès) ; changements code pas encore commités à cette date |
 | **MODULE 10** | Tests unitaires Repository (CLAUDE.md PRIORITÉ 3) | **À faire** | **Suivant** |
 
 ---
 
-*Dernière mise à jour backlog : 2026-04-19 — MODULE 14 providers IA terminé ; MODULE 10 (tests Repository) suivant. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-07-26 — MODULE 2 (keystore Release) terminé ; MODULE 10 (tests Repository) suivant. Mettre à jour statuts et dates à chaque avancement.*

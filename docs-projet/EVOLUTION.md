@@ -6,6 +6,28 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-07-26 — MODULE 2 terminé : keystore de signature Release généré
+
+- **MODULE 2** : **terminé le 2026-07-26** — génération du keystore de signature Release Android (bloquant Play Store).
+- **Contexte** : une tentative précédente avait été interrompue et son mot de passe exposé accidentellement (copié dans un historique externe) ; l'éventuel keystore/`key.properties` associé a été considéré comme compromis (aucun fichier de ce type n'a finalement été trouvé dans le dossier projet — rien à révoquer).
+- **Génération** : `mecanoabord-release.jks` (racine `mecano_a_bord/`, ignoré par Git) — RSA 2048 bits, SHA384withRSA, alias `mecanoabord`, validité 10 000 jours (26/07/2026 → 11/12/2053). Mot de passe fort généré aléatoirement, écrit **uniquement** dans `mecano_a_bord/android/key.properties` (ignoré par Git) — jamais affiché en clair dans un terminal ou un historique, pour éviter de reproduire l'incident précédent.
+- **Vérification** : `build.gradle.kts` lisait déjà `key.properties` pour la config `signingConfigs["release"]` (pas de repli sur la signature debug) — seul le secret manquait ; confirmé via `git check-ignore` que les deux fichiers sont bien ignorés.
+- **Sauvegarde** : Pascal a confirmé avoir copié le `.jks` + le mot de passe vers un emplacement séparé et sûr (hors PC/OneDrive uniquement).
+- **Écart CLAUDE.md** : ce module est marqué **« INES OBLIGATOIRE »** / Mission 1 Inès dans `CLAUDE.md`. Réalisé directement par Pascal + Claude Code sur demande explicite de Pascal, sans attendre Inès.
+
+---
+
+## 2026-07-26 — MODULE 3 terminé : renommage du package Android (`fr.mecanoabord.app`)
+
+- **MODULE 3** : **terminé** — `com.example.mecano_a_bord` → **`fr.mecanoabord.app`** (identifiant définitif avant publication Play Store).
+- **`android/app/build.gradle.kts`** : `namespace` et `applicationId` mis à jour.
+- **Kotlin** : `MainActivity.kt` déplacé de `android/app/src/main/kotlin/com/example/mecano_a_bord/` vers **`android/app/src/main/kotlin/fr/mecanoabord/app/`** (ancien chemin supprimé).
+- **⚠️ Irréversible** après publication Play Store — rappel `CLAUDE.md` (MODULE 3).
+- **Écart CLAUDE.md** : ce module est marqué **« FAIRE AVEC INES AVANT PUBLICATION »** dans `CLAUDE.md`. Réalisé directement par Pascal, sans attendre Inès.
+- **Statut Git** : changements présents dans l'arbre de travail, **pas encore commités** à la date de cette entrée (seule la documentation — ce fichier et `BACKLOG.md` — a été commitée à ce stade).
+
+---
+
 ## 2026-04-19 — MODULE 14 terminé : 10 providers IA (8 API + messages Copilot / Meta AI)
 
 - **MODULE 14** : **terminé le 2026-04-19** — **`mecano_a_bord/lib/services/ai_conversation_service.dart`** : intégrations HTTP **Mistral, Perplexity, Grok, DeepSeek, Qwen, Claude** (complément **ChatGPT**, **Gemini** déjà présents). **Microsoft Copilot** et **Meta AI** : réponses **`AiError`** explicites (pas d’API accessible par clé personnelle dans ce périmètre), **sans** lecture de clé.

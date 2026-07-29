@@ -422,8 +422,59 @@ class _ObdScanScreenState extends State<ObdScanScreen>
     }
   }
 
+  /// Explique pourquoi le Bluetooth est nécessaire avant la demande système.
+  Future<bool> _showBluetoothPermissionRationale() async {
+    final agreed = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: MabColors.noirMoyen,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MabDimensions.rayonGrand),
+        ),
+        title: Text(
+          'Autorisation Bluetooth',
+          style: MabTextStyles.titreCard.copyWith(color: MabColors.blanc),
+        ),
+        content: Text(
+          'Mécano à Bord a besoin du Bluetooth pour se connecter à votre '
+          'boîtier OBD et lire les données de votre véhicule.',
+          style: MabTextStyles.corpsNormal.copyWith(color: MabColors.grisTexte),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: MabColors.rouge,
+              foregroundColor: MabColors.blanc,
+              minimumSize: const Size(0, MabDimensions.boutonHauteur),
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(
+              'Continuer',
+              style: MabTextStyles.boutonPrincipal.copyWith(color: MabColors.blanc),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(
+              'Annuler',
+              style: MabTextStyles.boutonSecondaire.copyWith(color: MabColors.grisTexte),
+            ),
+          ),
+        ],
+      ),
+    );
+    return agreed ?? false;
+  }
+
   /// Demande la permission Bluetooth (connexion / liste des appairés).
+  /// Affiche d'abord une explication si la permission n'est pas déjà accordée.
   Future<bool> _requestBluetoothPermission() async {
+    final currentStatus = await Permission.bluetoothConnect.status;
+    if (currentStatus.isGranted || currentStatus.isLimited) return true;
+    if (!mounted) return false;
+    final agreed = await _showBluetoothPermissionRationale();
+    if (!agreed || !mounted) return false;
     final statusConnect = await Permission.bluetoothConnect.request();
     return statusConnect.isGranted || statusConnect.isLimited;
   }

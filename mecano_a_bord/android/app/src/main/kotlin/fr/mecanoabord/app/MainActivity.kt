@@ -317,7 +317,9 @@ class MainActivity : FlutterActivity() {
 
                 // 2) Test du protocole : commande 0100 (supported PIDs)
                 val testRaw = sendObdCommandForDetection(out, inp, "0100")
-                Log.d(OBD_LOG_TAG, "Protocol $protocolIndex response: $testRaw")
+                if (BuildConfig.DEBUG) {
+                    Log.d(OBD_LOG_TAG, "Protocol $protocolIndex response: $testRaw")
+                }
 
                 val ok = isProtocolResponseValid(testRaw)
                 if (ok) {
@@ -331,7 +333,9 @@ class MainActivity : FlutterActivity() {
                     ))
                 }
             } catch (e: Exception) {
-                Log.d(OBD_LOG_TAG, "Protocol $protocolIndex exception: ${e.message}")
+                if (BuildConfig.DEBUG) {
+                    Log.d(OBD_LOG_TAG, "Protocol $protocolIndex exception: ${e.message}")
+                }
                 runOnUiThread {
                     result.success(mapOf(
                         "success" to false,
@@ -593,7 +597,9 @@ class MainActivity : FlutterActivity() {
                     else -> unsupportedLive(result, normalized)
                 }
             } catch (e: Exception) {
-                Log.d(OBD_LOG_TAG, "readLiveData exception: ${e.message}")
+                if (BuildConfig.DEBUG) {
+                    Log.d(OBD_LOG_TAG, "readLiveData exception: ${e.message}")
+                }
                 runOnUiThread {
                     result.success(
                         mapOf(

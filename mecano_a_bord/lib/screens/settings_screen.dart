@@ -32,6 +32,14 @@ class SettingsScreen extends StatefulWidget {
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
+/// Fournisseurs dont l'appel IA n'est pas encore implémenté côté service
+/// (voir ai_conversation_service.dart) — masqués de la grille tant qu'ils
+/// ne sont pas câblés, pour ne pas proposer un choix non fonctionnel.
+const List<AiProvider> _kUnavailableAiProviders = [
+  AiProvider.copilot,
+  AiProvider.meta_ai,
+];
+
 String _aiProviderLabel(AiProvider p) {
   return switch (p) {
     AiProvider.claude => 'Claude',
@@ -679,7 +687,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     const logoRadius = 8.0;
     const accordionDuration = Duration(milliseconds: 280);
     const accordionCurve = Curves.easeInOut;
-    final providers = AiProvider.values;
+    final providers = AiProvider.values
+        .where((p) => !_kUnavailableAiProviders.contains(p))
+        .toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: providers.map((provider) {

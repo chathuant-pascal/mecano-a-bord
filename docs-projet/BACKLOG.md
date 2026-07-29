@@ -74,6 +74,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 |----|---------|--------|-------------|
 | B40 | IA conversationnelle (mode gratuit + personnel) | Fait | 2026-03-09 — Contexte véhicule auto (profil, dernier OBD, 3 derniers entretiens) injecté en system prompt ; profil incomplet = blocage + message Boîte à gants ; **2026-03-28** — contexte enrichi : **boîte**, **motorisation**, **km au diagnostic OBD** (`mab_last_obd_km_<id>`) |
 | B41 | Coach vocal (voix F/M, alertes) | Fait | 2026-03-09 — TTS (flutter_tts) : alertes OBD orange/rouge, test voix dans Réglages ; STT (speech_to_text) : bouton micro sur Assistant IA |
+| B42 | Simplifier le système IA (fournisseur unique intégré) | Reporté | Remplacer le choix entre 8 clés API BYOK par un seul fournisseur intégré et pré-configuré, plus adapté à un public débutant. Prévu pour la V2 de Mécano à Bord. |
 
 ---
 

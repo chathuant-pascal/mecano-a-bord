@@ -14,6 +14,7 @@ import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/widgets/mab_demo_banner.dart';
 import 'package:mecano_a_bord/widgets/mab_obd_not_responding_dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Hauteur unique des bandeaux « menu » accueil (hors carte entretien alerte).
 const double _kHomeBandHeight = 80;
@@ -27,6 +28,12 @@ const String _kSuvImagesAsset = 'assets/images/suv_images.png';
 /// Illustration bandeau « Mode conduite » (48×48 dp, ronde).
 const String _kModeConduiteAsset = 'assets/images/modeconduite.png';
 const double _kPoserQuestionAvatarDp = 48;
+
+/// Nombre de visites de l'accueil pendant lesquelles la carte Mode Conduite
+/// est mise en avant (badge + bordure dorée) — le temps de la découvrir
+/// juste après la formation, sans redirection forcée.
+const String _kModeConduiteHighlightViewsKey = 'mode_conduite_highlight_views';
+const int _kModeConduiteHighlightMaxViews = 3;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,12 +56,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedNavIndex = 0;
 
+  /// true pendant les [_kModeConduiteHighlightMaxViews] premières visites de
+  /// l'accueil : met en avant la carte Mode Conduite (badge + bordure dorée).
+  bool _showModeConduiteHighlight = false;
+
   StreamSubscription<ObdConnectionState>? _obdConnSub;
 
   @override
   void initState() {
     super.initState();
     _loadData();
+    _loadModeConduiteHighlightState();
     _obdConnSub = _obdService.connectionState.listen((state) {
       if (mounted) setState(() => _obdState = state);
     });
@@ -62,6 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
       if (!mounted) return;
       UpdateCheckService.instance.checkForUpdateAndPromptIfNeeded(context);
     });
+  }
+
+  /// Comptabilise les visites de l'accueil et éteint la mise en avant après
+  /// [_kModeConduiteHighlightMaxViews] fois.
+  Future<void> _loadModeConduiteHighlightState() async {
+    final prefs = await SharedPreferences.getInstance();
+    final views = prefs.getInt(_kModeConduiteHighlightViewsKey) ?? 0;
+    if (!mounted) return;
+    setState(() => _showModeConduiteHighlight = views < _kModeConduiteHighlightMaxViews);
+    if (views < _kModeConduiteHighlightMaxViews) {
+      await prefs.setInt(_kModeConduiteHighlightViewsKey, views + 1);
+    }
   }
 
   Future<void> _loadData() async {
@@ -243,6 +267,62 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  /// Explique pourquoi le Bluetooth est nécessaire avant la demande système.
+  Future<bool> _showBluetoothPermissionRationale() async {
+    final agreed = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: MabColors.noirMoyen,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MabDimensions.rayonGrand),
+        ),
+        title: Text(
+          'Autorisation Bluetooth',
+          style: MabTextStyles.titreCard.copyWith(color: MabColors.blanc),
+        ),
+        content: Text(
+          'Mécano à Bord a besoin du Bluetooth pour se connecter à votre '
+          'boîtier OBD et lire les données de votre véhicule.',
+          style: MabTextStyles.corpsNormal.copyWith(color: MabColors.grisTexte),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: MabColors.rouge,
+              foregroundColor: MabColors.blanc,
+              minimumSize: const Size(0, MabDimensions.boutonHauteur),
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(
+              'Continuer',
+              style: MabTextStyles.boutonPrincipal.copyWith(color: MabColors.blanc),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(
+              'Annuler',
+              style: MabTextStyles.boutonSecondaire.copyWith(color: MabColors.grisTexte),
+            ),
+          ),
+        ],
+      ),
+    );
+    return agreed ?? false;
+  }
+
+  /// Demande la permission Bluetooth, avec explication préalable si elle n'est pas déjà accordée.
+  Future<bool> _requestBluetoothPermission() async {
+    final currentStatus = await Permission.bluetoothConnect.status;
+    if (currentStatus.isGranted || currentStatus.isLimited) return true;
+    if (!mounted) return false;
+    final agreed = await _showBluetoothPermissionRationale();
+    if (!agreed || !mounted) return false;
+    final status = await Permission.bluetoothConnect.request();
+    return status.isGranted || status.isLimited;
+  }
+
   Future<void> _launchDiagnostic() async {
     final complete = await _repository.isVehicleProfileComplete();
     if (!mounted) return;
@@ -254,8 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushNamed(context, '/obd-scan');
       return;
     }
-    final status = await Permission.bluetoothConnect.request();
-    final ok = status.isGranted || status.isLimited;
+    final ok = await _requestBluetoothPermission();
     if (!mounted) return;
     if (!ok) {
       await showMabObdNotRespondingDialog(
@@ -343,6 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
     required String semanticsLabel,
     required Widget leading,
     required Widget centerColumn,
+    bool highlighted = false,
   }) {
     return Semantics(
       label: semanticsLabel,
@@ -359,7 +439,10 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             color: MabColors.noirMoyen,
             borderRadius: BorderRadius.circular(MabDimensions.rayonMoyen),
-            border: Border.all(color: MabColors.grisContour),
+            border: Border.all(
+              color: highlighted ? MabColors.grisDore : MabColors.grisContour,
+              width: highlighted ? 2 : 1,
+            ),
           ),
           clipBehavior: Clip.antiAlias,
           child: Row(
@@ -757,7 +840,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildModeConduiteBand() {
     return _buildHomeBand(
       onTap: _launchDrivingModeToSettings,
-      semanticsLabel: 'Mode conduite. Surveillance en arrière-plan. Ouvrir les réglages.',
+      semanticsLabel: _showModeConduiteHighlight
+          ? 'Mode conduite. Nouveau. Surveillance en arrière-plan. Ouvrir les réglages.'
+          : 'Mode conduite. Surveillance en arrière-plan. Ouvrir les réglages.',
+      highlighted: _showModeConduiteHighlight,
       leading: Center(
         child: ClipRRect(
           borderRadius:
@@ -785,7 +871,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       centerColumn: _buildTitleSubtitleColumn(
         'Mode Conduite',
-        null,
+        _showModeConduiteHighlight ? 'Nouveau — surveillance en temps réel' : null,
+        subtitleStyle: _showModeConduiteHighlight
+            ? MabTextStyles.corpsSecondaire.copyWith(
+                color: MabColors.grisDore,
+                fontWeight: FontWeight.w600,
+              )
+            : null,
       ),
     );
   }

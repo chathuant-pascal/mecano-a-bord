@@ -6,6 +6,7 @@ import 'package:mecano_a_bord/theme/mab_theme.dart';
 import 'package:mecano_a_bord/data/mab_repository.dart';
 import 'package:mecano_a_bord/services/live_monitoring_service.dart';
 import 'package:mecano_a_bord/services/obd_session_coordinator.dart';
+import 'package:mecano_a_bord/services/tts_service.dart';
 import 'package:mecano_a_bord/widgets/mab_obd_session_dialogs.dart';
 import 'package:mecano_a_bord/widgets/mab_watermark_background.dart';
 import 'package:mecano_a_bord/widgets/mab_demo_banner.dart';
@@ -20,6 +21,25 @@ class SurveillanceOnlyScreen extends StatefulWidget {
 class _SurveillanceOnlyScreenState extends State<SurveillanceOnlyScreen> {
   final MabRepository _repository = MabRepository.instance;
   bool _isDemoMode = false;
+
+  /// Même bandeau + voix qu'une vraie alerte, mais clairement annoncé comme
+  /// exemple — pour montrer à quoi ça ressemble avant qu'un vrai souci n'arrive.
+  static const LiveMonitoringBanner _kDemoBanner = LiveMonitoringBanner(
+    message: "Exemple d'alerte (démonstration) : température moteur élevée.",
+    isCritical: false,
+  );
+
+  Future<void> _showDemoAlert() async {
+    liveMonitoringBannerNotifier.value = _kDemoBanner;
+    await TtsService.instance.speakLiveMonitoringAlert(
+      "Ceci est un exemple, pas une vraie alerte. Pendant la surveillance, "
+      "Mécano à Bord vous préviendra comme ceci : attention, température moteur élevée.",
+    );
+    await Future.delayed(const Duration(seconds: 6));
+    if (mounted && liveMonitoringBannerNotifier.value == _kDemoBanner) {
+      liveMonitoringBannerNotifier.value = null;
+    }
+  }
 
   @override
   void initState() {
@@ -176,6 +196,22 @@ class _SurveillanceOnlyScreenState extends State<SurveillanceOnlyScreen> {
                               child: const Text('Lancer un diagnostic véhicule'),
                             ),
                           ),
+                          if (!running) ...[
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              width: double.infinity,
+                              height: MabDimensions.boutonHauteur,
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(color: MabColors.grisDore, width: 2),
+                                  foregroundColor: MabColors.grisDore,
+                                ),
+                                onPressed: _showDemoAlert,
+                                icon: const Icon(Icons.notifications_active_outlined),
+                                label: const Text('Voir un exemple d\'alerte'),
+                              ),
+                            ),
+                          ],
                         ],
                       );
                     },

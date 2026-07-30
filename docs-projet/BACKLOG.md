@@ -83,7 +83,8 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | Id | Élément | Statut | Date / note |
 |----|---------|--------|-------------|
 | B50 | Surveillance arrière-plan (Foreground Service / Background Task) | À faire | Référence monitoring_background_service |
-| B51 | Gestion licence (Firebase, 2 appareils) | À faire | Référence firebase_licence_manager |
+| B51 | Gestion licence (Firebase) | En cours | **2026-07-30** — projet Firebase `mecano-a-bord` créé (Spark, Firestore Montréal `northamerica-northeast1`) ; app Android enregistrée ; Auth anonyme activée (nettoyage auto désactivé) ; règles Firestore `licenses/` déployées (liaison par `request.auth.uid`) ; `license_service.dart` + `mab_auth_service.dart` + 11 tests unitaires ; **reste à faire** : écran de saisie du code, appel au démarrage/mise à jour, création manuelle des codes de test |
+| B52 | Envoi du code de licence par SMS (alternative à l'email) | Reporté | **2026-07-30** — email retenu comme canal V1 (infra déjà en place : Gmail pro + Systeme.io) ; SMS nécessiterait un prestataire payant (ex: Twilio) non intégré au projet ; à ne construire que si un besoin réel se présente (système déjà neutre vis-à-vis du canal d'envoi, aucune adaptation requise côté vérification) |
 
 ---
 
@@ -115,7 +116,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | **MODULE 5** | Logger conditionnel `mab_logger.dart` + remplacement **13** `debugPrint` dans **7** fichiers | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_05_LOGGER.md` |
 | **MODULE 6** | Feature flags `lib/config/mab_features.dart` — **12** `kFeature*` (`kFeatureLicence=false`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_06_FEATURE_FLAGS.md` |
 | **MODULE 7** | Ajouter `try/catch` manquants (`main.dart`, `onboarding_screen`, `add_maintenance_screen`, `glovebox_screen` — voir CLAUDE.md) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_07_TRY_CATCH.md` |
-| **MODULE 8** | Système licence Firebase (CLAUDE.md — Mission 2 Inès) | **À faire** | Selon planning Inès (hors périmètre auto sans accord) |
+| **MODULE 8** | Système licence Firebase (CLAUDE.md — Mission 2 Inès) | **En cours** | **2026-07-30** — réalisé directement avec Pascal (hors planning Inès, sur demande explicite) : projet Firebase + Firestore + Auth anonyme + règles de sécurité + service de licence + tests (voir B51) ; reste : écran de saisie + intégration au flux de démarrage |
 | **MODULE 9** | Tests unitaires service IA (`ai_conversation_service_test.dart` — **13** tests ; `MockClient` `http/testing.dart`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md` |
 | **MODULE 14** | Providers IA — **8** appels API (`_callChatGpt`, `_callGemini`, `_callMistral`, `_callPerplexity`, `_callGrok`, `_callDeepSeek`, `_callQwen`, `_callClaude`) + **Copilot** / **Meta AI** (`AiError` sans API perso) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_14_PROVIDERS_IA.md` |
 | **MODULE 2** | Keystore de signature Release Android (bloquant Play Store) — `mecanoabord-release.jks` + `android/key.properties` | **Fait** | **2026-07-26** — RSA 2048, alias `mecanoabord`, validité 10 000 jours ; ancienne tentative (mot de passe exposé) sans fichier trouvé à révoquer ; réalisé directement (hors planning Inès, sur demande explicite de Pascal) |
@@ -124,4 +125,4 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 
 ---
 
-*Dernière mise à jour backlog : 2026-07-26 — MODULE 2 (keystore Release) terminé ; MODULE 10 (tests Repository) suivant. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-07-30 — MODULE 8 (licence Firebase) en cours : projet + Firestore + Auth anonyme + règles + service + tests faits ; écran de saisie et intégration au démarrage restants. Mettre à jour statuts et dates à chaque avancement.*

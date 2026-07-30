@@ -6,6 +6,22 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-07-30 — MODULE 8 en cours : système de licence Firebase (projet, Firestore, Auth anonyme, service)
+
+- **MODULE 8** (Système licence Firebase, `MAB-XXXX-XXXX-XXXX`) : **démarré et bien avancé** — réalisé directement avec Pascal, sur demande explicite (ce module est marqué **« INES OBLIGATOIRE »** / Mission 2 Inès dans `CLAUDE.md`, écart assumé comme pour MODULE 2/3).
+- **Séparation des dépôts** : le code de l'appli mobile (`mecano_a_bord/`) a été déplacé vers un nouveau dépôt **privé** `chathuant-pascal/mecano-a-bord-app`, sur demande de Pascal (le dépôt public `mecano-a-bord` restait sinon indexable par n'importe qui, GitHub Pages exigeant un dépôt public sur compte gratuit). Le dépôt public ne contient plus que `formation-web/` (+ docs) ; historique public conservé tel quel (pas de réécriture). Fichiers locaux inchangés (mêmes chemins).
+- **Projet Firebase** : `mecano-a-bord` créé, plan **Spark** (gratuit — largement suffisant pour ce volume d'usage). Firestore Standard en région **`northamerica-northeast1` (Montréal)** — choix motivé par (a) l'accord d'adéquation RGPD Canada/UE et (b) la proximité géographique avec la Guadeloupe (~3400 km vs ~6700 km pour une région Europe), donc meilleure latence pour les utilisateurs réels.
+- **App Android enregistrée** (`fr.mecanoabord.app`) ; `google-services.json` placé dans `android/app/`, exclu du dépôt (public **et** privé) via `.gitignore` par précaution.
+- **Authentification anonyme Firebase activée** : décision de Pascal d'aller au-delà du plan initial (qui reposait sur un identifiant `device_info_plus` fourni par le client, falsifiable) — chaque appareil obtient désormais un UID signé côté serveur (`request.auth.uid`), impossible à falsifier depuis le client. Nettoyage automatique des comptes anonymes **désactivé** (sinon perte de la liaison après 30 jours).
+- **Règles de sécurité Firestore** (`firestore.rules`, déployées) : collection `licenses/{code}` — lecture seule si connecté, écriture limitée à l'attachement `deviceId`/`activatedAt`/`lastCheckedAt` d'une licence libre ou déjà liée à soi-même ; création/suppression/changement de `status` interdits depuis le client (réservés à la Console Firebase).
+- **Code** : `lib/firebase_options.dart` (config Android), `lib/services/mab_auth_service.dart` (connexion anonyme, try/catch), `lib/services/license_service.dart` (vérification/activation, cache hors-ligne 7 jours de grâce, try/catch systématique), appel `Firebase.initializeApp()` + `ensureSignedIn()` dans `main.dart`.
+- **Tests** : `test/license_service_test.dart` — **11 tests** verts (`fake_cloud_firestore` en dev dependency) : cas nominal (activation, re-vérification, normalisation code), erreurs (format invalide, code inconnu, appareil différent, licence désactivée), cas limites (hors ligne sans/avec cache, cache expiré, cache pour un autre code).
+- **Décision produit** : le code de licence sera envoyé par **email** (infra déjà en place : Gmail pro + Systeme.io) plutôt que SMS — SMS nécessiterait un prestataire payant non intégré ; noté en **B52** (Reporté) dans le backlog, sans code préparé (le service de vérification est déjà neutre vis-à-vis du canal d'envoi).
+- **Limite de sécurité assumée** : sans Firebase Authentication réelle (compte utilisateur), le système dissuade le partage occasionnel mais ne résiste pas à un contournement technique sophistiqué (app décompilée) — accepté par Pascal comme suffisant pour une PME, pas un niveau bancaire.
+- **Reste à faire** : écran de saisie du code de licence (UI), appel de `LicenseService.verify()` au démarrage et après mise à jour de l'app, création manuelle de licences de test dans la Console Firebase, test terrain sur Samsung SM-A137F.
+
+---
+
 ## 2026-07-26 — MODULE 2 terminé : keystore de signature Release généré
 
 - **MODULE 2** : **terminé le 2026-07-26** — génération du keystore de signature Release Android (bloquant Play Store).

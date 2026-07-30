@@ -240,6 +240,56 @@
       font-size: 17px;
       margin: 0 0 10px;
     }
+    .module-section-visual {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 16px 16px 6px;
+      margin: 16px 0 24px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+    }
+    .module-section-head {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .module-section-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      background: rgba(204,0,0,0.16);
+      color: #CC0000;
+    }
+    .module-section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .module-section-copy {
+      font-size: 13px;
+      color: var(--texte-secondaire);
+      line-height: 1.6;
+    }
+    .formation-image-block,
+    .formation-video-block {
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+    .formation-video-block .video-placeholder {
+      background: linear-gradient(135deg, rgba(204,0,0,0.16), rgba(17,17,17,0.95));
+    }
+    .formation-image-block .image-placeholder img {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
     .zone-detail-explication {
       font-size: 14px;
       color: #AAAAAA;
@@ -252,20 +302,7 @@
     }
     .zone-detail-etapes li {
       font-size: 13px;
-      p          // ── PARTIE 2
-          c += sep2;
-          c += '<div style="margin:32px 0 20px;padding:22px 22px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:18px;background:rgba(255,255,255,0.03);'>';
-          c += '<h3 style="font-size:20px;margin:0 0 12px;color:var(--rouge-principal);letter-spacing:0.02em">🔋 PARTIE 2 — HYBRIDES &amp; ÉLECTRIQUES</h3>';
-          c += '<p style="margin:0 0 16px;color:var(--texte-secondaire);line-height:1.75;max-width:760px">';
-          c += 'Dans cette partie, on passe aux véhicules qui mélangent thermique et électrique, ou qui sont 100 % électriques. ';
-          c += 'Tu vas comprendre les différences clés, les risques spécifiques et les gestes à adopter pour rester en sécurité.';
-          c += '</p>';
-          c += '<div class="bc-etape" style="margin:0;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">';
-          c += '💡 <strong>Hybride</strong> = moteur thermique + moteur(s) électrique(s)<br>';
-          c += '⚡ <strong>Électrique</strong> = uniquement moteur(s) électrique(s)<br>';
-          c += '⚠️ <strong>Ces véhicules utilisent des tensions jusqu\'à 800 volts. Ne JAMAIS toucher les composants orange sans formation spécifique.</strong>';
-          c += '</div>';
-          c += '</div>'; solid #2a2a2a;
+      border-bottom: 1px solid #2a2a2a;
       display: flex;
       gap: 8px;
       align-items: flex-start;
@@ -413,7 +450,6 @@
     .formation-video-block .video-placeholder { margin: 0; border-radius: 0; border: none; }
 
     /* Encadrés spéciaux : attention / info / conseil */
-      <p class="phrase-cle">⚠️ <em>Un moteur qui manque d'huile s'use silencieusement — un simple appoint fait au bon moment peut lui éviter une casse irréparable.</em></p>
     .encadre-attent {
       background: #2a0505;
       border-left: 4px solid var(--rouge-principal);
@@ -423,7 +459,6 @@
       font-size: 14px;
       color: #ff8888;
       line-height: 1.6;
-      <p class="phrase-cle">⚠️ <em>Une surchauffe moteur peut te laisser en panne sur l'autoroute — vérifier ton liquide de refroidissement prend 2 minutes.</em></p>
     }
     .encadre-attent strong { color: #CC0000; }
     .encadre-info {
@@ -433,7 +468,6 @@
       padding: 16px 20px;
       margin: 16px 0;
       font-size: 14px;
-      <p class="phrase-cle">⚠️ <em>Rouler avec un pare-brise sale réduit ta visibilité et met ta vie en danger — un entretien simple et rapide suffit.</em></p>
       color: #90caf9;
       line-height: 1.6;
     }
@@ -445,14 +479,12 @@
       padding: 16px 20px;
       margin: 16px 0;
       font-size: 14px;
-      <p class="phrase-cle">⚠️ <em>Attendre les secours en bord de route pendant des heures, c'est évitable — savoir changer une roue te remet en route en 20 minutes.</em></p>
       color: #a5d6a7;
       line-height: 1.6;
     }
     .encadre-conseil strong { color: var(--succes); }
 
     /* ── IMAGE D'IDENTIFICATION PAR MODULE ─────────────────────── */
-      <p class="phrase-cle">⚠️ <em>Un pneu sous-gonflé augmente ta distance de freinage et consomme plus de carburant — vérifier la pression régulièrement te protège et te fait économiser.</em></p>
     .module-hero-img {
       display: block;
       width: 100%;
@@ -2435,12 +2467,7 @@
            loading="lazy">
 
       <!-- VIDEO_MODULE0_01 -->
-      <div class="video-placeholder">
-        <span class="ph-play">▶</span>
-        <span class="ph-nom">VIDEO_MODULE0_01</span>
-        <span class="ph-desc">Pascal se présente, explique sa philosophie et la transformation promise</span>
-        <span class="ph-duree">⏱ 3 à 5 minutes</span>
-      </div>
+      <iframe width="100%" height="400" src="https://www.youtube.com/embed/T3327kadvU0" title="Pascal se présente, explique sa philosophie et la transformation promise" frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>
       <p class="phrase-cle">⚠️ <em>Une voiture mal entretenue peut tomber en panne n'importe où — cette formation te donne les clés pour éviter ça.</em></p>
 
       <!-- Bloc PROBLÈME -->
@@ -3481,6 +3508,15 @@
       <!-- ══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2a" class="lecon-titre">🛢️ 3.2a — Huile moteur</h2>
 
+      <div class="module-section-visual" style="border-left:3px solid #f0a500">
+        <div class="module-section-head" style="border-left:4px solid #f0a500; background:linear-gradient(90deg, rgba(240,165,0,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(240,165,0,.16); color:#f0a500">🛢️</span>
+          <div>
+            <div class="module-section-title">À retenir : vérifier l'huile en 2 minutes</div>
+            <div class="module-section-copy">Un contrôle simple mais déterminant pour éviter l'usure prématurée du moteur et sécuriser un appoint sans erreur.</div>
+          </div>
+        </div>
+
       <p class="zone-detail-explication">L'huile lubrifie toutes les pièces mobiles du moteur. Sans huile, le moteur s'use très vite — ou casse. La jauge te permet de vérifier le niveau sans aucun outil.</p>
 
       <div class="zone-liquide-meta" style="margin:12px 0 20px">
@@ -3572,15 +3608,21 @@
         </div>
       </div>
 
-      <div class="formation-video-block">
-        <div class="video-placeholder">
-          <div class="video-play-btn">▶</div>
-          <p class="video-titre">Vidéo : Faire l'appoint d'huile moteur étape par étape</p>
-          <p class="video-sous-titre">Pascal vous montre les 8 étapes en situation réelle</p>
-          <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'identifiant YouTube de votre vidéo -->
-          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_huile_moteur.jpg">
+        <div class="image-placeholder">
+          <img src="assets/images/PHOTO_A_REMPLACER_huile_moteur.jpg" alt="Photo réelle : bouchon de remplissage d'huile moteur sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #f0a500;margin-bottom:10px">
+          <p class="image-caption">Repère le bouchon avec le symbole casserole et la jauge d'huile pour vérifier le niveau sans te tromper.</p>
         </div>
       </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Le contrôle se fait en deux minutes, moteur froid : tu n'as pas besoin d'être expert pour vérifier le niveau.
+      </div>
+
+      <div class="formation-video-block">
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/iY49Wq81Nas" title="Vidéo : Faire l'appoint d'huile moteur étape par étape" frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>
+      </div>
+      <p class="phrase-cle">⚠️ <em>Un moteur qui manque d'huile s'use silencieusement — un simple appoint fait au bon moment peut lui éviter une casse irréparable.</em></p>
 
       <div class="zone-ok-bloc"><strong>✅ C'est bon si…</strong> le niveau est entre MIN et MAX sur la jauge, huile propre de couleur dorée.</div>
       <div class="zone-alert-bloc" style="margin:6px 0"><strong>⚠️ Attention si…</strong> le niveau est sous le MIN, huile noire et épaisse, odeur de brûlé. → Rajouter de l'huile ou consulter un professionnel.</div>
@@ -3595,11 +3637,21 @@
       <div class="encadre-conseil">
         <strong>✅ Conseil de Pascal :</strong> Tenez un petit carnet dans votre boîte à gants. Notez la date, le kilométrage et la quantité d'huile ajoutée à chaque appoint. Si vous ajoutez souvent plus de 500 ml entre deux vidanges, c'est le signe d'une fuite ou d'une consommation anormale à faire vérifier.
       </div>
+      </div>
 
       <!-- ══════════════════════════════════════════════════════════ -->
       <!-- 3.2b — HUILE DIRECTION ASSISTÉE                           -->
       <!-- ══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2b" class="lecon-titre">🔧 3.2b — Huile direction assistée</h2>
+
+      <div class="module-section-visual" style="border-left:3px solid #3a8ef5">
+        <div class="module-section-head" style="border-left:4px solid #3a8ef5; background:linear-gradient(90deg, rgba(58,142,245,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(58,142,245,.16); color:#3a8ef5">🔧</span>
+          <div>
+            <div class="module-section-title">À retenir : distinguer hydraulique et électrique</div>
+            <div class="module-section-copy">Le bon repère, c'est la présence ou non d'un réservoir visible sous le capot.</div>
+          </div>
+        </div>
 
       <div class="zone-precision">⚠️ <strong>Valable uniquement pour certaines voitures.</strong> Les véhicules récents sont équipés d'une direction assistée électrique (EPAS) — ils n'ont pas de réservoir de liquide. Si tu ne trouves pas ce réservoir, c'est normal : ta voiture est probablement électrique.</div>
 
@@ -3662,6 +3714,27 @@
         </div>
       </div>
 
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_direction_assistee.jpg">
+        <div class="image-placeholder">
+          <img src="assets/images/PHOTO_A_REMPLACER_direction_assistee.jpg" alt="Photo réelle : réservoir de direction assistée hydraulique sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #3a8ef5;margin-bottom:10px">
+          <p class="image-caption">Repère le petit réservoir transparent avec le bouchon en forme de volant pour éviter de le confondre avec un autre liquide.</p>
+        </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Si tu ne trouves pas de réservoir, ce n'est pas un souci : beaucoup de voitures modernes sont équipées d'une direction électrique.
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Vérifier la direction assistée en toute sécurité</p>
+          <p class="video-sous-titre">Pascal vous montre comment reconnaître le réservoir et vérifier le niveau sans se tromper</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO_DIRECTION par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_DIRECTION" ...></iframe> -->
+        </div>
+      </div>
+
       <div class="zone-section-titre">Les 4 signes d'alerte — direction assistée hydraulique</div>
 
       <ul class="zone-detail-etapes" style="margin:0 0 16px">
@@ -3685,11 +3758,21 @@
         <p class="regle-titre">💬 La règle des 3 liquides — Pascal</p>
         <p class="regle-texte">"Ces 3 liquides — l'huile moteur, le frein, la direction — c'est votre check mensuel. 5 minutes sous le capot, une fois par mois, moteur froid. Vous regardez, vous comparez avec le mois d'avant. Si quelque chose a changé, vous le savez avant que ça devienne un problème. C'est ça, être Mécano à Bord."</p>
       </div>
+      </div>
 
       <!-- ══════════════════════════════════════════════════════════ -->
       <!-- 3.2c — LIQUIDE DE FREIN                                    -->
       <!-- ══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2c" class="lecon-titre">🛑 3.2c — Liquide de frein</h2>
+
+      <div class="module-section-visual" style="border-left:3px solid #CC0000">
+        <div class="module-section-head" style="border-left:4px solid #CC0000; background:linear-gradient(90deg, rgba(204,0,0,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(204,0,0,.16); color:#CC0000">🛑</span>
+          <div>
+            <div class="module-section-title">À retenir : le liquide de frein, c'est la sécurité</div>
+            <div class="module-section-copy">Un contrôle visuel rapide suffit souvent à repérer un niveau anormal ou une dégradation avant la panne.</div>
+          </div>
+        </div>
 
       <p class="zone-detail-explication">Le liquide de frein transmet la pression de ta pédale jusqu'aux freins. C'est la sécurité directe. Un réservoir bas peut signifier une fuite ou des plaquettes usées.</p>
 
@@ -3715,6 +3798,27 @@
         <div class="image-placeholder">
           <span class="image-icon">📷</span>
           <p class="image-caption">Réservoir de liquide de frein — repères MIN et MAX annotés, bouchon avec symbole ⚠️ visible</p>
+        </div>
+      </div>
+
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_liquide_frein.jpg">
+        <div class="image-placeholder">
+          <img src="assets/images/PHOTO_A_REMPLACER_liquide_frein.jpg" alt="Photo réelle : réservoir de liquide de frein sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #CC0000;margin-bottom:10px">
+          <p class="image-caption">Repère le réservoir transparent avec son bouchon de sécurité pour vérifier le niveau sans te tromper.</p>
+        </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Un contrôle visuel rapide suffit souvent à repérer un problème avant qu'il ne devienne critique.
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Vérifier le liquide de frein et repérer les signes d'alerte</p>
+          <p class="video-sous-titre">Pascal vous montre comment lire le niveau sans ouvrir inutilement le réservoir</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO_FREIN par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_FREIN" ...></iframe> -->
         </div>
       </div>
 
@@ -3769,12 +3873,22 @@
           <p class="image-caption">Bouchon de réservoir de frein — inscription DOT 4 visible, symbole ⚠️ — les 2 informations à repérer avant tout achat</p>
         </div>
       </div>
+      </div>
 
 
       <!-- ═══════════════════════════════════════════════════════════ -->
       <!-- 3.2d — LIQUIDE DE REFROIDISSEMENT                          -->
       <!-- ═══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2d" class="lecon-titre">🌡️ 3.2d — Liquide de refroidissement</h2>
+
+      <div class="module-section-visual" style="border-left:3px solid #f0a500">
+        <div class="module-section-head" style="border-left:4px solid #f0a500; background:linear-gradient(90deg, rgba(240,165,0,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(240,165,0,.16); color:#f0a500">🌡️</span>
+          <div>
+            <div class="module-section-title">À retenir : jamais ouvrir le bouchon à chaud</div>
+            <div class="module-section-copy">Le refroidissement fonctionne sous pression ; une erreur ici peut provoquer de graves brûlures.</div>
+          </div>
+        </div>
 
       <p class="zone-detail-explication" style="margin-bottom:16px">Le circuit de refroidissement maintient le moteur à bonne température. Son liquide demande <strong style="color:#fff">une précaution absolue</strong> : ne jamais intervenir moteur chaud.</p>
 
@@ -3804,6 +3918,17 @@
         Le circuit de refroidissement fonctionne sous pression (1,2 à 1,5 bar). Ouvrir un bouchon à chaud libère cette pression instantanément — le liquide en ébullition jaillit sous forme de vapeur et de projection à plus de 100 °C. C'est l'une des causes les plus fréquentes de brûlures graves en mécanique amateur. La règle est absolue : 30 minutes de refroidissement minimum.
       </div>
 
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_refroidissement.jpg">
+        <div class="image-placeholder">
+          <img src="assets/images/PHOTO_A_REMPLACER_refroidissement.jpg" alt="Photo réelle : réservoir d'expansion du liquide de refroidissement sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #f0a500;margin-bottom:10px">
+          <p class="image-caption">Repère le réservoir d'expansion transparent et ses repères MIN/MAX avant toute vérification.</p>
+        </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Le contrôle se fait très simplement à froid : tu n'as pas besoin de toucher au moteur pour vérifier.
+      </div>
+
       <div class="formation-video-block">
         <div class="video-placeholder">
           <div class="video-play-btn">▶</div>
@@ -3813,6 +3938,7 @@
           <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" ...></iframe> -->
         </div>
       </div>
+      <p class="phrase-cle">⚠️ <em>Une surchauffe moteur peut te laisser en panne sur l'autoroute — vérifier ton liquide de refroidissement prend 2 minutes.</em></p>
 
       <div class="zone-detail-card" style="border-left-color:#CC0000">
         <h3 style="color:#CC0000">Le moteur surchauffe — 5 gestes d'urgence</h3>
@@ -3824,11 +3950,21 @@
           <li><span class="zone-detail-num" style="background:#CC0000">5</span><strong style="color:#fff">Appelez un professionnel ou une assistance</strong> — un moteur qui a surchauffé doit être diagnostiqué avant de reprendre la route</li>
         </ul>
       </div>
+      </div>
 
       <!-- ═══════════════════════════════════════════════════════════ -->
       <!-- 3.2e — LAVE-GLACE                                          -->
       <!-- ═══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2e" class="lecon-titre">💧 3.2e — Lave-glace</h2>
+
+      <div class="module-section-visual" style="border-left:3px solid #4CAF50">
+        <div class="module-section-head" style="border-left:4px solid #4CAF50; background:linear-gradient(90deg, rgba(76,175,80,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(76,175,80,.16); color:#4CAF50">💧</span>
+          <div>
+            <div class="module-section-title">À retenir : le lave-glace est le plus simple</div>
+            <div class="module-section-copy">Le remplissage se fait sans risque particulier, à condition de choisir le bon produit selon la saison.</div>
+          </div>
+        </div>
 
       <p class="zone-detail-explication" style="margin-bottom:16px">Le lave-glace est le seul réservoir sous le capot que vous pouvez remplir à tout moment, sans précaution particulière. Pas de pression, pas de risque — 30 secondes chrono.</p>
 
@@ -3855,11 +3991,15 @@
         </ul>
       </div>
 
-      <div class="formation-photo-block">
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_lave_glace.jpg">
         <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Buses lave-glace sur le capot — position et orientation correcte du jet vers le centre du pare-brise</p>
+          <img src="assets/images/PHOTO_A_REMPLACER_lave_glace.jpg" alt="Photo réelle : réservoir de lave-glace sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #4CAF50;margin-bottom:10px">
+          <p class="image-caption">Repère le bouchon bleu du réservoir lave-glace et le symbole de jet pour remplir sans erreur.</p>
         </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Le lave-glace est l'un des points de contrôle les plus simples du capot : un remplissage rapide suffit souvent.
       </div>
 
       <div class="formation-video-block">
@@ -3871,10 +4011,12 @@
           <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_LAVEGLACE2" ...></iframe> -->
         </div>
       </div>
+      <p class="phrase-cle">⚠️ <em>Rouler avec un pare-brise sale réduit ta visibilité et met ta vie en danger — un entretien simple et rapide suffit.</em></p>
 
       <div class="bloc-regle-or">
         <p class="regle-titre">💬 Le mot de Pascal — Les marques de lave-glace</p>
         <p class="regle-texte">"Rain-X, Sonax, Total, Carglass, marque distributeur… Pour le lave-glace, la marque importe encore moins que pour les autres produits. Tous les lave-glaces vendus en France respectent les mêmes normes de composition de base.<br><br>La règle de Pascal : ce qui compte vraiment c'est :<br>→ La saison : hiver (antigel) ou été (anti-insectes)<br>→ La concentration antigel en hiver : −20 °C minimum, −30 °C si vous allez en montagne<br>→ Prêt à l'emploi vs concentré : selon votre usage<br><br>Un lave-glace à −20 °C de marque distributeur à 2 € protège aussi bien qu'un produit premium à 8 €. Ne payez pas la marque — payez la bonne protection."</p>
+      </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════════════════ -->
@@ -3882,7 +4024,37 @@
       <!-- ═══════════════════════════════════════════════════════════ -->
       <h2 id="sec-3-2f" class="lecon-titre">🔋 3.2f — Batterie et eau distillée</h2>
 
+      <div class="module-section-visual" style="border-left:3px solid #f0a500">
+        <div class="module-section-head" style="border-left:4px solid #f0a500; background:linear-gradient(90deg, rgba(240,165,0,.16), transparent);">
+          <span class="module-section-badge" style="background:rgba(240,165,0,.16); color:#f0a500">🔋</span>
+          <div>
+            <div class="module-section-title">À retenir : contrôler la batterie sans risque</div>
+            <div class="module-section-copy">Le bon geste, c'est un contrôle visuel des bornes et une manipulation prudente, sans objet métallique en contact.</div>
+          </div>
+        </div>
+
       <p class="zone-detail-explication" style="margin-bottom:16px">La batterie alimente tout au démarrage. Sur les batteries modernes, on ne peut pas vérifier le niveau d'électrolyte — mais on peut inspecter visuellement l'état des bornes. L'eau distillée, elle, n'est jamais un produit de remplacement — c'est un appoint d'urgence uniquement.</p>
+
+      <div class="formation-image-block" data-image="PHOTO_A_REMPLACER_batterie.jpg">
+        <div class="image-placeholder">
+          <img src="assets/images/PHOTO_A_REMPLACER_batterie.jpg" alt="Photo réelle : emplacement de la batterie sous le capot" style="width:100%;max-height:260px;object-fit:cover;border-radius:8px;border:1px solid #f0a500;margin-bottom:10px">
+          <p class="image-caption">Repère la batterie et ses bornes rouges et noires pour éviter toute confusion avec les autres composants.</p>
+        </div>
+      </div>
+
+      <div class="encadre-conseil">
+        <strong>✅ Conseil de Pascal :</strong> Ne touche jamais les deux bornes en même temps avec un objet métallique ; un contrôle visuel suffit souvent à repérer un problème.
+      </div>
+
+      <div class="formation-video-block">
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-titre">Vidéo : Contrôler la batterie et les bornes en toute sécurité</p>
+          <p class="video-sous-titre">Pascal vous montre comment repérer les signes d'oxydation et éviter les erreurs de manipulation</p>
+          <!-- PASCAL : remplacer VOTRE_ID_VIDEO_BATTERIE par l'identifiant YouTube de votre vidéo -->
+          <!-- <iframe src="https://www.youtube.com/embed/VOTRE_ID_VIDEO_BATTERIE" ...></iframe> -->
+        </div>
+      </div>
 
       <div class="zone-section-titre">Batterie — contrôle visuel des bornes</div>
 
@@ -3929,6 +4101,7 @@
           <p class="regle-titre">💬 Conseil Pascal</p>
           <p class="regle-texte">"L'eau distillée c'est le dépannage d'urgence. Dès que tu peux, tu fais vérifier par un professionnel."</p>
         </div>
+      </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════════════════ -->
@@ -4128,6 +4301,7 @@
           <li><span class="zone-detail-num">5</span>Ne jamais dépasser <strong style="color:#fff">10 ans d'âge</strong>, même si le pneu paraît en bon état</li>
         </ul>
       </div>
+      <p class="phrase-cle">⚠️ <em>Un pneu sous-gonflé augmente ta distance de freinage et consomme plus de carburant — vérifier la pression régulièrement te protège et te fait économiser.</em></p>
 
       <div class="formation-image-block" data-image="pneu-5-reflexes.jpg">
         <div class="image-placeholder">
@@ -4208,16 +4382,9 @@
       <div class="zone-section-titre">Vidéo : Changement de roue étape par étape</div>
 
       <div class="formation-video-block">
-        <div class="video-placeholder">
-          <span class="ph-play">▶</span>
-          <span class="ph-nom">VIDEO_CHANGEMENT_ROUE</span>
-          <span class="ph-desc">Vidéo : Pascal démontre le changement de roue complet sur une vraie voiture</span>
-          <span class="ph-duree">⏱ Durée à définir</span>
-        </div>
-        <!-- PASCAL : remplacer VOTRE_ID_VIDEO par l'ID YouTube de ta vidéo, puis décommenter la ligne ci-dessous et supprimer le bloc video-placeholder ci-dessus
-        <iframe width="100%" height="400" src="https://www.youtube.com/embed/VOTRE_ID_VIDEO" frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>
-        -->
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/2G08yncJJuk" title="Vidéo : Pascal démontre le changement de roue complet sur une vraie voiture" frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>
       </div>
+      <p class="phrase-cle">⚠️ <em>Attendre les secours en bord de route pendant des heures, c'est évitable — savoir changer une roue te remet en route en 20 minutes.</em></p>
 
       <!-- ── Bloc 2 : Sécurité ── -->
       <div class="zone-section-titre">⚠️ PRIORITÉ ABSOLUE : Se mettre en sécurité</div>
@@ -6204,7 +6371,7 @@
       document.getElementById('question-texte').textContent = q.texte;
 
       // Mettre à jour la barre de progression
-      var pourcentage = Math.round((index / total) * 100);
+      var pourcentage = Math.round(((index + 1) / total) * 100);
       document.getElementById('progression-texte').textContent =
         'Question ' + (index + 1) + ' sur ' + total;
       document.getElementById('progression-pourcentage').textContent =
@@ -6582,7 +6749,7 @@
       var et  = qmEtats[id];
       var q   = qz.questions[index];
       var tot = qz.questions.length;
-      var pct = Math.round((index / tot) * 100);
+      var pct = Math.round(((index + 1) / tot) * 100);
       var px  = qz.prefix;
 
       document.getElementById(px + '-label').textContent  = 'Question ' + (index + 1) + ' sur ' + tot;
@@ -8627,12 +8794,7 @@
       // ── VIDÉO DE BIENVENUE ───────────────────────────────────────
       c += '<div style="margin:0 0 24px">';
       c += '<h2 style="color:var(--rouge-principal);font-size:18px;font-weight:800;margin:0 0 14px;text-align:center">🎬 Bienvenue dans Ta Voiture Sans Galère !</h2>';
-      c += '<div class="video-placeholder">';
-      c += '<span class="ph-play">▶</span>';
-      c += '<span class="ph-nom">VIDEO_BIENVENUE_01</span>';
-      c += '<span class="ph-desc">Pascal accueille l\'élève, le félicite de son acquisition et présente la transformation promise.</span>';
-      c += '<span class="ph-duree">⏱ 3 à 5 minutes</span>';
-      c += '</div>';
+      c += '<iframe width="100%" height="400" src="https://www.youtube.com/embed/dPgsVOJGnv8" title="Pascal accueille l\'élève, le félicite de son acquisition et présente la transformation promise." frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>';
       c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--rouge-principal);border-radius:0 10px 10px 0;padding:18px 20px;margin-top:14px">';
       c += '<p style="color:var(--texte-secondaire);font-size:14px;line-height:1.75;margin:0 0 14px">Félicitations ! Tu viens de faire le premier pas vers une relation sereine avec ta voiture.<br>Dans cette courte vidéo, Pascal te présente ce qui t\'attend et la transformation que tu vas vivre.</p>';
       c += '<div style="background:#1a0000;border-radius:8px;padding:14px 16px;text-align:center;margin-bottom:12px">';

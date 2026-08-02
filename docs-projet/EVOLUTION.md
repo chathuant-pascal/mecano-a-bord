@@ -6,6 +6,19 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-08-02 — Kill switch à distance : Firebase Remote Config pour les feature flags
+
+- **Contexte** : audit infrastructure post-lancement du 2026-08-02 — lacune identifiée : `lib/config/mab_features.dart` ne contenait que des constantes `const bool` compilées en dur, sans moyen de désactiver une fonctionnalité après publication sans recompiler/republier sur les stores (délai de review Apple/Google).
+- **`lib/services/remote_feature_flags.dart`** (nouveau) : lit 12 flags depuis **Firebase Remote Config** (`firebase_remote_config: ^6.5.5` ajouté), avec repli automatique sur les valeurs de `mab_features.dart` si Remote Config est injoignable (hors ligne, erreur, premier lancement). `minimumFetchInterval` = 1h ; `forceRefresh()` pour un fetch immédiat (bouton "Réessayer"). Testé sans SDK Firebase réel — injection de closures (pas de fake officiel pour Remote Config, contrairement à `fake_cloud_firestore`).
+- **`mab_features.dart`** : les 12 constantes deviennent des valeurs de repli (`kFeatureXxxDefault`) + `kFeatureDefaultsMap` pour `setDefaults()`.
+- **`lib/widgets/mab_feature_disabled_notice.dart`** (nouveau) : message MAB rassurant à la place d'une fonctionnalité coupée à distance (mode `standalone` pour un écran de route, mode inline pour un onglet), avec bouton "Réessayer" optionnel.
+- **Branchement réel** de 10 des 12 flags jusque-là inertes (seuls `kFeatureLicence`/`kFeaturePlaque` étaient câblés) : routes `/obd-scan`, `/surveillance-only`, `/ai-chat`, `/add-maintenance`, `/systeme-io` gatées dans `main.dart` ; démarrage auto de la surveillance (`SurveillanceAutoCoordinator.attach()`) conditionné ; TTS coupé au niveau du service (`tts_service.dart`) plutôt qu'à chaque site d'appel ; onglets Documents/Carnet/Santé de la Boîte à gants remplacés par le message de repli sans toucher à l'indexation des onglets ; vérification de mise à jour (`home_screen.dart`) et formation post-onboarding (`onboarding_screen.dart`, écran bloquant + Réessayer, décision validée avec Pascal) gatées.
+- **Hors périmètre assumé** : `kFeatureRappelsAdmin` ne correspond à aucune fonctionnalité implémentée (recherche exhaustive confirmée) — documenté comme réservé/sans effet dans `REMOTE_CONFIG.md`, pas de nouvelle fonctionnalité construite (règle V1 stricte).
+- **`REMOTE_CONFIG.md`** (nouveau, racine du projet) : liste des 12 clés, procédure de modification depuis la Console Firebase, délai de propagation réel (jusqu'à 1h), limites connues (flag réservé, Remote Config Android uniquement pour l'instant).
+- **Tests** : `test/remote_feature_flags_test.dart` (11 tests, nominal/erreur/limites) + suite complète : **167/167 tests verts**, aucune régression.
+
+---
+
 ## 2026-07-30 — MODULE 8 en cours : système de licence Firebase (projet, Firestore, Auth anonyme, service)
 
 - **MODULE 8** (Système licence Firebase, `MAB-XXXX-XXXX-XXXX`) : **démarré et bien avancé** — réalisé directement avec Pascal, sur demande explicite (ce module est marqué **« INES OBLIGATOIRE »** / Mission 2 Inès dans `CLAUDE.md`, écart assumé comme pour MODULE 2/3).

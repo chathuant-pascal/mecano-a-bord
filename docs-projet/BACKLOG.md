@@ -28,6 +28,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | B3b | Identité visuelle (palette, logo, splash, icône, filigrane, thème Réglages) | Fait | 2026-02-27 — validé par l’utilisateur |
 | B4 | Configuration Android (manifest, permissions Bluetooth) | Fait | 2026-02-25 |
 | B5 | Configuration iOS (Info.plist, NSBluetoothAlwaysUsageDescription) | Fait | 2026-02-25 |
+| B5b | Provisioning Firebase iOS (Auth + Firestore + Remote Config + Analytics) | À faire | **2026-08-02** — ce n'est pas un manque du kill switch (MODULE 6+) mais un manque global : toute la chaîne Firebase (Auth anonyme, Firestore licences, Remote Config, Analytics) est Android uniquement aujourd'hui (pas de `GoogleService-Info.plist`, bundle ID encore `com.example.mecanoABord`, pas de `Podfile`). À traiter en bloc avec les autres chantiers iOS déjà connus (Codemagic, compte Apple Developer, renommage bundle ID) le jour où une sortie iOS sera planifiée — pas de date prévue à ce jour |
 
 ---
 
@@ -114,7 +115,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 |--------|---------|--------|-------------|
 | **MODULE 4** | WebView formation sécurisée (`formation_webview_screen.dart`) — NavigationDelegate, allowlist, validation JS, erreurs, timer cycle de vie, spinner | **Fait** | **2026-04-19** — 6 correctifs (OWASP + UX) ; fiche `fiches-fonctionnalites/FICHE_MODULE_04_WEBVIEW.md` |
 | **MODULE 5** | Logger conditionnel `mab_logger.dart` + remplacement **13** `debugPrint` dans **7** fichiers | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_05_LOGGER.md` |
-| **MODULE 6** | Feature flags `lib/config/mab_features.dart` — **12** `kFeature*` (`kFeatureLicence=false`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_06_FEATURE_FLAGS.md` |
+| **MODULE 6** | Feature flags `lib/config/mab_features.dart` — **12** `kFeature*` (`kFeatureLicence=false`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_06_FEATURE_FLAGS.md` ; étendu en kill switch distant le **2026-08-02** (voir ligne ci-dessous) |
 | **MODULE 7** | Ajouter `try/catch` manquants (`main.dart`, `onboarding_screen`, `add_maintenance_screen`, `glovebox_screen` — voir CLAUDE.md) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_07_TRY_CATCH.md` |
 | **MODULE 8** | Système licence Firebase (CLAUDE.md — Mission 2 Inès) | **En cours** | **2026-07-30** — réalisé directement avec Pascal (hors planning Inès, sur demande explicite) : projet Firebase + Firestore + Auth anonyme + règles de sécurité + service de licence + tests (voir B51) ; reste : écran de saisie + intégration au flux de démarrage |
 | **MODULE 9** | Tests unitaires service IA (`ai_conversation_service_test.dart` — **13** tests ; `MockClient` `http/testing.dart`) | **Fait** | **2026-04-19** — fiche `fiches-fonctionnalites/FICHE_MODULE_09_TESTS_IA.md` |
@@ -122,7 +123,8 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | **MODULE 2** | Keystore de signature Release Android (bloquant Play Store) — `mecanoabord-release.jks` + `android/key.properties` | **Fait** | **2026-07-26** — RSA 2048, alias `mecanoabord`, validité 10 000 jours ; ancienne tentative (mot de passe exposé) sans fichier trouvé à révoquer ; réalisé directement (hors planning Inès, sur demande explicite de Pascal) |
 | **MODULE 3** | Renommage package Android `com.example.mecano_a_bord` → `fr.mecanoabord.app` (irréversible après publication) | **Fait** | **2026-07-26** — `build.gradle.kts` (`namespace`/`applicationId`) + déplacement `MainActivity.kt` ; réalisé directement (hors planning Inès) ; changements code pas encore commités à cette date |
 | **MODULE 10** | Tests unitaires Repository (CLAUDE.md PRIORITÉ 3) | **À faire** | **Suivant** |
+| **MODULE 6+** | Kill switch à distance — Firebase Remote Config pour les 12 feature flags (`remote_feature_flags.dart`, `mab_feature_disabled_notice.dart`) | **Fait** | **2026-08-02** — 10 des 12 flags désormais réellement branchés (routes, TTS, onglets Boîte à gants, mise à jour, formation) ; repli automatique sur les valeurs par défaut si Remote Config injoignable ; `kFeatureRappelsAdmin` documenté comme sans effet (aucune fonctionnalité correspondante) ; voir `REMOTE_CONFIG.md` ; 167/167 tests verts |
 
 ---
 
-*Dernière mise à jour backlog : 2026-07-30 — MODULE 8 (licence Firebase) en cours : projet + Firestore + Auth anonyme + règles + service + tests faits ; écran de saisie et intégration au démarrage restants. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-08-02 — kill switch Remote Config (MODULE 6+) fait, voir REMOTE_CONFIG.md et EVOLUTION.md. Mettre à jour statuts et dates à chaque avancement.*

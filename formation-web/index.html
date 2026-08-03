@@ -6058,9 +6058,21 @@
       // Sauvegarder la section courante dans localStorage
       localStorage.setItem('section-active', idSection);
 
+      // Repère de position pour le Sommaire (mode "formation terminée") —
+      // uniquement les grandes étapes du parcours, pas les écrans méta
+      // (sommaire, dashboard) qui écraseraient sinon la vraie position.
+      if (ordreEtapesRepere.indexOf(idSection) !== -1) {
+        localStorage.setItem('derniere-etape-repere', idSection);
+      }
+
       // Rafraîchir le sommaire à chaque visite
       if (idSection === 'sommaire') {
         afficherSommaire();
+      }
+
+      // Signaler le démarrage d'un module principal (une seule fois par module)
+      if (/^module[0-6]$/.test(idSection)) {
+        marquerModuleDemarre(idSection);
       }
 
       // Charger la fiche personnelle véhicule à chaque visite du Module 1
@@ -6871,6 +6883,11 @@
     // TABLEAU DE BORD — Progression élève
     // ================================================================
 
+    // Les 9 grandes étapes du parcours, dans l'ordre — utilisées pour le
+    // repère de position du Sommaire une fois la formation terminée
+    // (voir afficherSection() et afficherSommaire()).
+    var ordreEtapesRepere = ['module0', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6', 'bonus', 'felicitations'];
+
     // Définition des 6 modules dans l'ordre
     var modulesData = [
       {
@@ -6939,11 +6956,34 @@
       return data ? JSON.parse(data) : [];
     }
 
+    // Signale un événement à l'appli (pont déjà utilisé pour "formation
+    // terminée") — sans effet si l'appli n'est pas là (ex: navigateur seul).
+    function envoyerEvenementFormation(message) {
+      if (window.MABFormation && typeof window.MABFormation.postMessage === 'function') {
+        window.MABFormation.postMessage(message);
+      }
+    }
+
+    function getModulesDemarres() {
+      var data = localStorage.getItem('modules-demarres');
+      return data ? JSON.parse(data) : [];
+    }
+
+    function marquerModuleDemarre(idModule) {
+      var liste = getModulesDemarres();
+      if (liste.indexOf(idModule) === -1) {
+        liste.push(idModule);
+        localStorage.setItem('modules-demarres', JSON.stringify(liste));
+        envoyerEvenementFormation('module_started:' + idModule);
+      }
+    }
+
     function marquerModuleTermine(idModule) {
       var liste = getModulesCompletes();
       if (liste.indexOf(idModule) === -1) {
         liste.push(idModule);
         localStorage.setItem('modules-completes', JSON.stringify(liste));
+        envoyerEvenementFormation('module_completed:' + idModule);
       }
     }
 
@@ -8812,12 +8852,26 @@
       c += '</div>';
 
       // ── BARRE DE PROGRESSION ────────────────────────────────────
+      // Avant la fin de la formation : pourcentage cumulé sur 18 étapes.
+      // Une fois terminée (toutFini) : repère de position dans le parcours
+      // (dernière étape visitée), plus utile qu'un pourcentage qui reste
+      // bloqué à 100 % pour toujours.
       c += '<div class="sommaire-progress-wrap">';
       c += '<div class="sommaire-progress-label">';
-      c += '<span>' + progression + ' / 18 étapes complétées</span>';
-      if (toutFini) c += '<span style="color:var(--succes);font-weight:700">🎉 Formation terminée !</span>';
-      c += '</div>';
-      c += '<div class="sommaire-progress-track"><div class="sommaire-progress-fill" style="width:' + pct + '%"></div></div>';
+      if (toutFini) {
+        var derniereEtape = localStorage.getItem('derniere-etape-repere');
+        var rangEtape = ordreEtapesRepere.indexOf(derniereEtape) + 1;
+        if (rangEtape < 1) rangEtape = 1;
+        var pctRepere = Math.round((rangEtape / ordreEtapesRepere.length) * 100);
+        c += '<span>Tu es à l\'étape ' + rangEtape + ' sur ' + ordreEtapesRepere.length + '</span>';
+        c += '<span style="color:var(--succes);font-weight:700">🎉 Formation terminée !</span>';
+        c += '</div>';
+        c += '<div class="sommaire-progress-track"><div class="sommaire-progress-fill" style="width:' + pctRepere + '%"></div></div>';
+      } else {
+        c += '<span>' + progression + ' / 18 étapes complétées</span>';
+        c += '</div>';
+        c += '<div class="sommaire-progress-track"><div class="sommaire-progress-fill" style="width:' + pct + '%"></div></div>';
+      }
       c += '</div>';
 
       // ── LISTE MODULES PRINCIPAUX ─────────────────────────────────

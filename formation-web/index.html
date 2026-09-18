@@ -9377,6 +9377,16 @@
     }
   </script>
 
+  <script>
+    // Accès hors-ligne aux leçons/photos déjà consultées — sans effet si
+    // le navigateur ou la WebView ne supporte pas les Service Workers.
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+
 </body>
 </html>
 

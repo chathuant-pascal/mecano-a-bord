@@ -450,6 +450,28 @@
     }
     .formation-video-block .video-placeholder { margin: 0; border-radius: 0; border: none; }
 
+    /* Galerie de photos définitives (déjà tournées) — bordure pleine pour ne plus
+       se confondre visuellement avec un cadre "photo à venir" (bordure pointillée) */
+    .formation-galerie-photos {
+      border: 2px solid var(--succes);
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .formation-galerie-photos .galerie-titre {
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 0 0 12px;
+    }
+    .formation-galerie-photos img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
     /* Encadrés spéciaux : attention / info / conseil */
     .encadre-attent {
       background: #2a0505;
@@ -3470,10 +3492,38 @@
           <li><span class="zone-detail-num" style="background:#4CAF50">V</span><strong style="color:#fff">V</strong> = indice de vitesse = 240 km/h maximum</li>
         </ul>
       </div>
-      <!-- Future image : <img src="assets/images/etape3/pneu-dimensions.jpg" alt="Schéma annoté dimensions pneu" loading="lazy"> -->
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Dimensions des pneus</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <img src="assets/images/pneus_dimensions_1.jpg" alt="Schéma annoté d'un pneu 205/55 R16 — flèches indiquant largeur, hauteur du flanc, structure radiale et diamètre de jante" loading="lazy">
+          <img src="assets/images/pneus_dimensions_2.jpg" alt="Flanc de pneu marqué 245/45 R17 99V Extra Load, doigt pointant l'inscription de taille" loading="lazy">
+          <img src="assets/images/pneus_dimensions_3.jpg" alt="Flanc de pneu marqué 205/55R16 91V avec la mention « Do not mount on 16.5 inch rim », doigt pointant le marquage" loading="lazy">
+        </div>
+        <p class="image-caption">Chaque pneu porte ses dimensions inscrites sur le flanc — repère-les avant tout achat, elles doivent toujours correspondre à celles indiquées par ton constructeur.</p>
+      </div>
+
+      <div class="zone-section-titre">Trouver la pression recommandée</div>
+
+      <p class="zone-detail-explication">La pression recommandée par le constructeur ne se devine jamais et n'est jamais indiquée sur le pneu lui-même. Elle se trouve à l'un de ces 3 endroits selon les véhicules : une étiquette collée sur le montant de la portière conducteur (l'endroit le plus courant), l'intérieur de la trappe à carburant, ou le carnet d'entretien du constructeur. Elle est souvent donnée en deux valeurs différentes — une pour l'avant, une pour l'arrière — parfois une troisième pour une charge complète (bagages, passagers).</p>
+
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Étiquette de pression</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <img src="assets/images/pneus_etiquette_1.jpg" alt="Étiquette de pression sur le montant de la portière conducteur" loading="lazy">
+          <img src="assets/images/pneus_etiquette_2.jpg" alt="Étiquette de pression à l'intérieur de la trappe à carburant" loading="lazy">
+          <img src="assets/images/pneus_etiquette_3.jpg" alt="Tableau des pressions recommandées dans le carnet constructeur" loading="lazy">
+          <img src="assets/images/pneus_etiquette_4.jpg" alt="Gros plan sur les valeurs de pression avant/arrière recommandées" loading="lazy">
+        </div>
+        <p class="image-caption">La pression recommandée n'est jamais à deviner : elle est toujours indiquée sur ta voiture, sur la portière ou la trappe à carburant, ou dans le carnet constructeur.</p>
+      </div>
+
+      <div class="zone-section-titre">Vérifier et ajuster la pression</div>
+
+      <p class="zone-detail-explication">Une fois la valeur trouvée, direction la station-service la plus proche avec un compresseur d'air. Dévissez le petit bouchon de la valve, appuyez le manomètre fermement dessus jusqu'à ce que le sifflement d'air s'arrête, puis lisez la pression affichée. Ajoutez de l'air par petites touches si la pression est trop basse, ou appuyez sur la tige centrale de la valve pour en relâcher si elle est trop haute. <strong style="color:#fff">Contrôlez toujours la pression à froid</strong> — après avoir roulé, les pneus chauffent et la pression augmente artificiellement, faussant la lecture.</p>
+
       <div class="zone-photo-cadre">
-        <span class="zph-emoji">🔵</span>
-        <span class="zph-titre">Schéma annoté d'un pneu — dimensions 205/55 R16 91V</span>
+        <span class="zph-emoji">🔧</span>
+        <span class="zph-titre">Manomètre — comment faire la pression</span>
         <span class="zph-label">📷 Photo à venir</span>
       </div>
 
@@ -3513,6 +3563,17 @@
         <div class="zone-alert-bloc"><strong>⚠️ Attention si…</strong> la surface du pneu affleurer le témoin, ou si tu vois des craquelures sur les flancs. → Changer les pneus.</div>
       </div>
 
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Usure des pneus</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <img src="assets/images/pneus_usure_1.jpg" alt="Pneu neuf avec sculptures profondes" loading="lazy">
+          <img src="assets/images/pneus_usure_2.jpg" alt="Pneu à usure modérée, témoin encore visible" loading="lazy">
+          <img src="assets/images/pneus_usure_3.jpg" alt="Pneu usé proche du témoin d'usure" loading="lazy">
+          <img src="assets/images/pneus_usure_4.jpg" alt="Pneu à l'état critique, témoin d'usure affleurant" loading="lazy">
+        </div>
+        <p class="image-caption">L'usure d'un pneu se voit à l'œil nu : plus la bande de roulement se rapproche du témoin d'usure, plus il est temps d'y penser.</p>
+      </div>
+
       <div class="zone-section-titre">La date de fabrication — Le code DOT</div>
 
       <div class="zone-detail-card">
@@ -3549,16 +3610,30 @@
         <div class="zone-precision">⚠️ <strong style="color:#fff">Attention :</strong> La comparaison n'est valable qu'entre pneus de la <strong style="color:#fff">même marque</strong>. Chaque fabricant a sa propre échelle de mesure.</div>
       </div>
 
-      <div class="formation-image-block" data-image="pneu-treadwear-comparaison.jpg">
-        <div class="image-placeholder">
-          <span class="image-icon">📷</span>
-          <p class="image-caption">Tableau visuel comparant des pneus avec différents indices Treadwear : 100 / 200 / 300 / 400</p>
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Lire l'indice Treadwear sur le flanc</p>
+        <div style="display:grid;grid-template-columns:1fr;gap:8px">
+          <img src="assets/images/pneus_dimensions_4.jpg" alt="Flanc de pneu marqué 245/40 R19 101Y Extra Load, avec les indices Treadwear 420, Traction A et Temperature A inscrits juste au-dessus" loading="lazy">
         </div>
+        <p class="image-caption">Sur ce pneu, l'indice Treadwear (420) est inscrit juste à côté des indices Traction et Temperature (tous deux notés A, la meilleure note) — les 3 informations sont toujours regroupées au même endroit sur le flanc.</p>
       </div>
 
       <div class="bloc-regle-or">
         <p class="regle-titre">💬 Le mot de Pascal — Les marques de pneus</p>
         <p class="regle-texte">"Michelin, Bridgestone, Continental, Goodyear, Pirelli… Pour les pneus, la marque compte VRAIMENT — c'est la grande exception par rapport aux liquides.<br><br>Voici pourquoi : les pneus haut de gamme ont des distances de freinage sur sol mouillé significativement plus courtes que les pneus bas de gamme. Sur autoroute à 130 km/h, quelques mètres de freinage peuvent faire la différence entre un accident et rien.<br><br>⚠️ Les pneus à éviter absolument : certaines marques chinoises très bon marché (Linglong, Wanli, Westlake) sont très mal notées par les organismes de tests européens indépendants. Très peu fiables sur route mouillée.<br><br>La règle de Pascal :<br>→ Budget serré : choisissez une marque intermédiaire reconnue (Hankook, Falken, Kleber, Fulda) plutôt qu'un pneu inconnu très bon marché<br>→ Ne regardez pas que le prix : regardez l'étiquette énergie européenne — freinage mouillé minimum B<br>→ Les 4 pneus identiques = stabilité garantie"</p>
+      </div>
+
+      <div class="zone-section-titre">L'étiquette européenne du pneu</div>
+
+      <p class="zone-detail-explication">Depuis 2012, tout pneu neuf vendu en Europe porte une étiquette obligatoire, comme celle de l'électroménager. Elle résume 3 informations en un coup d'œil : la consommation de carburant (résistance au roulement), l'adhérence sur route mouillée (distance de freinage), et le niveau sonore en décibels. Chaque critère est noté de A (meilleur) à F ou G (moins bon). Comme le rappelle Pascal juste au-dessus : viser au minimum un B en adhérence pluie fait une vraie différence en sécurité.</p>
+
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Lire l'étiquette européenne du pneu</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+          <img src="assets/images/pneus_etiquette_europeenne_1.jpg" alt="Schéma des distances de freinage sur sol mouillé, classement A à F" loading="lazy">
+          <img src="assets/images/pneus_etiquette_europeenne_2.jpg" alt="Étiquette européenne complète du pneu : consommation de carburant, adhérence pluie, niveau sonore en dB" loading="lazy">
+        </div>
+        <p class="image-caption">L'étiquette européenne du pneu résume trois informations clés : la consommation de carburant, l'adhérence sur route mouillée, et le niveau sonore — plus la lettre est proche de A, meilleure est la performance.</p>
       </div>
 
       <!-- ── Bloc 5 : Symboles spéciaux ── -->
@@ -3581,6 +3656,17 @@
           <span class="image-icon">📷</span>
           <p class="image-caption">Planche visuelle des symboles pneu : M+S, flocon 3PMSF, XL, Run Flat, Tubeless, TWI — avec explication de chacun</p>
         </div>
+      </div>
+
+      <div class="formation-galerie-photos">
+        <p class="galerie-titre">Types de pneus</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <img src="assets/images/pneus_types_1.jpg" alt="Quatre pneus aux sculptures différentes alignés côte à côte, pour comparer visuellement leurs motifs" loading="lazy">
+          <img src="assets/images/pneus_types_2.jpg" alt="Comparaison flanc à flanc : pneu été (sculptures fines) à gauche, pneu 4 saisons (sculptures plus ouvertes) à droite" loading="lazy">
+          <img src="assets/images/pneus_types_3.jpg" alt="Infographie « Types de pneus » : spécial été, toutes les saisons, hiver, tout-terrain, avec la sculpture caractéristique de chacun" loading="lazy">
+          <img src="assets/images/pneus_types_4.jpg" alt="Autre repère visuel des 4 types de pneus (été, toutes saisons, hiver, tous-terrains) avec la sculpture associée à chacun" loading="lazy">
+        </div>
+        <p class="image-caption">Tous les pneus ne se ressemblent pas : chacun est pensé pour un usage précis, la route, la pluie, ou le tout-terrain.</p>
       </div>
 
       <!-- ── Bloc 6 : 5 réflexes ── -->
@@ -3608,70 +3694,6 @@
       <div class="bloc-regle-or">
         <p class="regle-titre">💬 Conseil Pascal</p>
         <p class="regle-texte">"Un contrôle des pneus, c'est 2 minutes. Un pneu qui lâche sur route, c'est une tout autre histoire."</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Dimensions des pneus</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <img src="assets/images/pneus_dimensions_1.jpg" alt="Flanc de pneu n°1 — inscription de taille en gros plan" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_dimensions_2.jpg" alt="Flanc de pneu n°2 — inscription de taille en gros plan" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_dimensions_3.jpg" alt="Flanc de pneu n°3 — inscription de taille en gros plan" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_dimensions_4.jpg" alt="Flanc de pneu n°4 — inscription de taille en gros plan" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">Chaque pneu porte ses dimensions inscrites sur le flanc — repère-les avant tout achat, elles doivent toujours correspondre à celles indiquées par ton constructeur.</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Étiquette de pression</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <img src="assets/images/pneus_etiquette_1.jpg" alt="Étiquette de pression sur le montant de la portière conducteur" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_etiquette_2.jpg" alt="Étiquette de pression à l'intérieur de la trappe à carburant" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_etiquette_3.jpg" alt="Tableau des pressions recommandées dans le carnet constructeur" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_etiquette_4.jpg" alt="Gros plan sur les valeurs de pression avant/arrière recommandées" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">La pression recommandée n'est jamais à deviner : elle est toujours indiquée sur ta voiture, sur la portière ou la trappe à carburant, ou dans le carnet constructeur.</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Manomètre — comment faire la pression</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <img src="assets/images/pneus_manometre_1.jpg" alt="Valve de gonflage sur une roue de voiture" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_manometre_2.jpg" alt="Manomètre de pression appliqué sur la valve" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_manometre_3.jpg" alt="Lecture de la pression affichée sur le manomètre" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_manometre_4.jpg" alt="Compresseur en train de gonfler un pneu" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">Une fois la valeur repérée, branche le manomètre sur la valve, lis le cadran, et ajuste doucement avec le compresseur jusqu'au bon niveau.</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Types de pneus</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <img src="assets/images/pneus_types_1.jpg" alt="Pneu n°1 — exemple de type selon l'usage" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_types_2.jpg" alt="Pneu n°2 — exemple de type selon l'usage" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_types_3.jpg" alt="Pneu n°3 — exemple de type selon l'usage" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_types_4.jpg" alt="Pneu n°4 — exemple de type selon l'usage" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">Tous les pneus ne se ressemblent pas : chacun est pensé pour un usage précis, la route, la pluie, ou le tout-terrain.</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Usure des pneus</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <img src="assets/images/pneus_usure_1.jpg" alt="Pneu neuf avec sculptures profondes" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_usure_2.jpg" alt="Pneu à usure modérée, témoin encore visible" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_usure_3.jpg" alt="Pneu usé proche du témoin d'usure" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_usure_4.jpg" alt="Pneu à l'état critique, témoin d'usure affleurant" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">L'usure d'un pneu se voit à l'œil nu : plus la bande de roulement se rapproche du témoin d'usure, plus il est temps d'y penser.</p>
-      </div>
-
-      <div class="formation-image-block">
-        <p style="color:#fff;font-weight:700;font-size:13px;margin:0 0 12px">Lire l'étiquette européenne du pneu</p>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
-          <img src="assets/images/pneus_etiquette_europeenne_1.jpg" alt="Schéma des distances de freinage sur sol mouillé, classement A à F" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-          <img src="assets/images/pneus_etiquette_europeenne_2.jpg" alt="Étiquette européenne complète du pneu : consommation de carburant, adhérence pluie, niveau sonore en dB" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px" loading="lazy">
-        </div>
-        <p class="image-caption">L'étiquette européenne du pneu résume trois informations clés : la consommation de carburant, l'adhérence sur route mouillée, et le niveau sonore — plus la lettre est proche de A, meilleure est la performance.</p>
       </div>
 
       <div class="formation-video-block">

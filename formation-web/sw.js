@@ -21,7 +21,7 @@
 // IMPORTANT — à chaque mise à jour notable de index.html ou optin.html,
 // changer CACHE_VERSION ci-dessous (ex. 'mab-formation-v2') pour que les
 // anciens caches soient nettoyés à l'activation.
-const CACHE_VERSION = "mab-formation-v1";
+const CACHE_VERSION = "mab-formation-v2";
 
 const APP_SHELL = ["./", "./index.html", "./optin.html"];
 
@@ -116,14 +116,22 @@ function reseauPrioritaireAvecRepliCache(request) {
 // Images / fiches PDF : servir depuis le cache si déjà vues, sinon aller
 // les chercher sur le réseau et les mettre en cache pour la prochaine
 // visite hors-ligne — jamais tout précaché d'un coup.
+//
+// Important : on ne met en cache que les réponses réussies (response.ok).
+// Une image pas encore déployée au moment de la requête (404) ou une
+// erreur réseau passagère ne doit jamais être mise en cache — sinon
+// cet échec reste servi indéfiniment, même une fois l'image bien en
+// ligne (c'est ce qui est arrivé pour la galerie Manomètre).
 function cacheAvecRemplissageALaVolee(request) {
   return caches.match(request).then(function (reponseCache) {
     if (reponseCache) return reponseCache;
     return fetch(request).then(function (reponseReseau) {
-      var copie = reponseReseau.clone();
-      caches.open(CACHE_VERSION).then(function (cache) {
-        cache.put(request, copie);
-      });
+      if (reponseReseau && reponseReseau.ok) {
+        var copie = reponseReseau.clone();
+        caches.open(CACHE_VERSION).then(function (cache) {
+          cache.put(request, copie);
+        });
+      }
       return reponseReseau;
     });
   });

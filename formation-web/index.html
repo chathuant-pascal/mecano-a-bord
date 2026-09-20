@@ -1886,6 +1886,8 @@
     .sommaire-item-info { flex: 1; display: flex; flex-direction: column; gap: 3px; }
     .sommaire-item-label { font-size: 14px; font-weight: 600; color: var(--texte-principal); }
     .sommaire-item.verrouille .sommaire-item-label { color: var(--texte-discret); }
+    .sommaire-item-resume { font-size: 12px; color: var(--texte-secondaire); }
+    .sommaire-item.verrouille .sommaire-item-resume { color: var(--texte-discret); }
     .sommaire-item-sub { font-size: 12px; color: var(--texte-discret); }
     .sommaire-item-statut { flex-shrink: 0; font-size: 18px; margin-left: auto; }
     .sommaire-bonus-groupe {
@@ -2240,8 +2242,8 @@
     <a href="#module3"    onclick="afficherSection('module3');    fermerMenu()">Module 3 — Lire tes pneus comme un pro</a>
     <a href="#module4"    onclick="afficherSection('module4');    fermerMenu()">Module 4 — Comprendre sous le capot</a>
     <a href="#module5"    onclick="afficherSection('module5');    fermerMenu()">Module 5 — Éviter les grosses galères</a>
-    <a href="#module6"    onclick="afficherSection('module6');    fermerMenu()">Module 6 — Parler au garagiste</a>
-    <a href="#module7"   onclick="afficherSection('module7');   fermerMenu()">Module 7 — Dictionnaire du Garagiste</a>
+    <a href="#module6"    onclick="afficherSection('module6');    fermerMenu()">Module 6 — Parler au garagiste sans se faire avoir</a>
+    <a href="#module7"   onclick="afficherSection('module7');   fermerMenu()">Module 7 — Le Dictionnaire du Garagiste</a>
     <a href="#bonus"     onclick="afficherSection('bonus');     fermerMenu()">Bonus</a>
   </div>
 
@@ -7179,7 +7181,7 @@
         id:        'module3',
         label:     'Module 3 — Sécurité routière',
         titre:     'Lire tes pneus comme un pro',
-        sousTitre: 'Dimensions, usure, et changer une roue',
+        sousTitre: 'Pression, dimensions, usure, changer une roue',
         prerequis: 'module2',
         section:   'module3'
       },
@@ -9121,7 +9123,6 @@
 
       // ── VIDÉO DE BIENVENUE ───────────────────────────────────────
       c += '<div style="margin:0 0 24px">';
-      c += '<h2 style="color:var(--rouge-principal);font-size:18px;font-weight:800;margin:0 0 14px;text-align:center">🎬 Bienvenue dans Ta Voiture Sans Galère !</h2>';
       c += '<iframe width="100%" height="400" src="https://www.youtube.com/embed/dPgsVOJGnv8" title="Pascal accueille l\'élève, le félicite de son acquisition et présente la transformation promise." frameborder="0" allowfullscreen style="display:block;border-radius:10px"></iframe>';
       c += '<div style="background:var(--fond-cartes);border-left:4px solid var(--rouge-principal);border-radius:0 10px 10px 0;padding:18px 20px;margin-top:14px">';
       c += '<p style="color:var(--texte-secondaire);font-size:14px;line-height:1.75;margin:0 0 14px">Félicitations ! Tu viens de faire le premier pas vers une relation sereine avec ta voiture.<br>Dans cette courte vidéo, Pascal te présente ce qui t\'attend et la transformation que tu vas vivre.</p>';
@@ -9191,10 +9192,12 @@
         var accessible = toutFini || item.prerequis === null || debloques.indexOf(item.prerequis) !== -1;
         var statut     = done ? 'termine' : (accessible ? 'accessible' : 'verrouille');
         var onclick    = accessible ? ' onclick="afficherSection(\'' + item.id + '\')"' : '';
+        var modInfo    = modulesData.filter(function(m) { return m.id === item.id; })[0];
         c += '<div class="sommaire-item ' + statut + '"' + onclick + '>';
         c += '<span class="sommaire-item-emoji">' + item.emoji + '</span>';
         c += '<div class="sommaire-item-info">';
         c += '<span class="sommaire-item-label">' + item.label + '</span>';
+        if (modInfo) c += '<span class="sommaire-item-resume">' + modInfo.sousTitre + '</span>';
         if (!done && !accessible) c += '<span class="sommaire-item-sub">' + sousTitres[item.id] + '</span>';
         if (done) c += '<span class="sommaire-item-sub" style="color:var(--succes)">✅ Complété</span>';
         c += '</div>';
@@ -9227,13 +9230,13 @@
       if (bonusDebloque) {
         var bonusTitres = [
           '📅 #1 PDF Entretien 12 mois',
-          '💬 #2 Groupe privé WhatsApp',
+          '💬 #2 Groupe privé Discord',
           '✅ #3 Checklist Entretien Simple',
           '🧰 #4 Kit de Survie Voiture',
-          '🚗 #5 Fiche Remorquage & Crochet',
+          '🚗 #5 Remorquage & Crochet de Remorquage',
           '🧘 #6 Drive Zen — Sécurité &amp; Réflexes, Pas de Panique',
           '🌿 #7 Rouler Malin — Éco-conduite',
-          '⚙️ #8 Boîte Automatique BVA',
+          '⚙️ #8 Bien Utiliser sa Boîte Automatique (BVA)',
           '📋 #9 Documents Officiels — Vente &amp; Carte Grise'
         ];
         c += '<div class="sommaire-bonus-detail">';

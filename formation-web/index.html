@@ -2203,9 +2203,93 @@
     }
     #footer-site a:hover { color: var(--rouge-principal); }
     #footer-site .footer-sep { margin: 0 10px; color: var(--bordures); }
+
+    /* Verrou d'accès — code de licence requis si le site est ouvert hors de l'app */
+    #mab-gate-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--fond-principal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #mab-gate-overlay.masque { display: none; }
+    .mab-gate-carte {
+      max-width: 380px;
+      width: 100%;
+      background: var(--fond-cartes);
+      border: 1px solid var(--bordures);
+      border-radius: 14px;
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .mab-gate-carte img { height: 48px; margin-bottom: 16px; }
+    .mab-gate-carte h1 { font-size: 19px; margin-bottom: 8px; color: var(--texte-principal); }
+    .mab-gate-carte p { color: var(--texte-secondaire); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+    #mab-gate-code {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid var(--bordures);
+      border-radius: 8px;
+      color: #fff;
+      padding: 12px 14px;
+      font-family: var(--police);
+      font-size: 15px;
+      text-align: center;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      outline: none;
+      margin-bottom: 14px;
+    }
+    #mab-gate-code:focus { border-color: var(--rouge-principal); }
+    #mab-gate-btn {
+      width: 100%;
+      background: var(--rouge-principal);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px;
+      font-family: var(--police);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #mab-gate-btn:disabled { opacity: 0.6; cursor: default; }
+    #mab-gate-erreur {
+      color: #ff6b6b;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+    #mab-gate-achat {
+      display: block;
+      margin-top: 18px;
+      color: var(--texte-discret);
+      font-size: 13px;
+      text-decoration: none;
+    }
+    #mab-gate-achat:hover { color: var(--rouge-principal); }
   </style>
 </head>
 <body>
+
+  <!-- ============================================================
+       VERROU D'ACCÈS — code de licence requis si le site est ouvert
+       hors de l'app (masqué automatiquement si le code vient de l'app)
+  ============================================================ -->
+  <div id="mab-gate-overlay">
+    <div class="mab-gate-carte">
+      <img src="assets/images/logo.webp" alt="Mécano à Bord" loading="lazy">
+      <h1>Accès réservé</h1>
+      <p id="mab-gate-texte">Entre ton code de licence pour accéder à la formation.</p>
+      <input type="text" id="mab-gate-code" placeholder="MAB-XXXX-XXXX-XXXX" maxlength="19" autocomplete="off" onkeypress="if(event.key==='Enter') mabVerifierEtDebloquer()">
+      <button id="mab-gate-btn" onclick="mabVerifierEtDebloquer()">Débloquer l'accès</button>
+      <p id="mab-gate-erreur"></p>
+      <a id="mab-gate-achat" href="https://mecanoabord.fr" target="_blank">Pas encore de licence ? Découvrir la formation →</a>
+    </div>
+  </div>
 
   <!-- FILIGRANE GLOBAL — visible sur toutes les sections -->
   <img class="filigrane-global"
@@ -9636,6 +9720,125 @@
         navigator.serviceWorker.register("sw.js").catch(function () {});
       });
     }
+  </script>
+
+  <!-- ============================================================
+       VERROU D'ACCÈS — vérification du code de licence (Firebase)
+       Code deja verifie une fois memorise dans ce navigateur
+       (localStorage) : jamais revérifié aux visites suivantes.
+  ============================================================ -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_tFidQ6zLtOlYF1gUGsaMVN7z7sau6_E",
+      authDomain: "mecano-a-bord.firebaseapp.com",
+      projectId: "mecano-a-bord",
+      storageBucket: "mecano-a-bord.firebasestorage.app",
+      messagingSenderId: "752455145864",
+      appId: "1:752455145864:web:c720b684180bbd169a823d"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+
+    const FORMAT_CODE   = /^MAB-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+    const CLE_STOCKAGE  = 'mab-licence-verifiee';
+
+    function normaliserCode(brut) {
+      return (brut || '').trim().toUpperCase();
+    }
+
+    function accesDejaValide() {
+      try {
+        var brut = localStorage.getItem(CLE_STOCKAGE);
+        if (!brut) return false;
+        var data = JSON.parse(brut);
+        return !!(data && FORMAT_CODE.test(data.code || ''));
+      } catch (e) { return false; }
+    }
+
+    function memoriserAcces(code) {
+      try {
+        localStorage.setItem(CLE_STOCKAGE, JSON.stringify({ code: code, date: Date.now() }));
+      } catch (e) {}
+    }
+
+    function debloquerAcces() {
+      var overlay = document.getElementById('mab-gate-overlay');
+      if (overlay) overlay.classList.add('masque');
+    }
+
+    async function verifierCode(code) {
+      if (!FORMAT_CODE.test(code)) {
+        return { ok: false, message: 'Ce code ne respecte pas le format attendu (MAB-XXXX-XXXX-XXXX).' };
+      }
+      try {
+        await signInAnonymously(auth);
+        var ref  = doc(db, 'licenses', code);
+        var snap = await getDoc(ref);
+        if (!snap.exists()) {
+          return { ok: false, message: 'Ce code de licence est introuvable.' };
+        }
+        var data = snap.data();
+        if (data.status !== 'active') {
+          return { ok: false, message: "Cette licence n'est plus active. Contacte-nous : mecanoabord@gmail.com" };
+        }
+        return { ok: true };
+      } catch (e) {
+        return { ok: false, message: 'Connexion impossible. Vérifie ta connexion internet et réessaie.' };
+      }
+    }
+
+    window.mabVerifierEtDebloquer = async function () {
+      var input  = document.getElementById('mab-gate-code');
+      var btn    = document.getElementById('mab-gate-btn');
+      var erreur = document.getElementById('mab-gate-erreur');
+      var code   = normaliserCode(input.value);
+
+      erreur.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Vérification...';
+
+      var resultat = await verifierCode(code);
+
+      btn.disabled = false;
+      btn.textContent = "Débloquer l'accès";
+
+      if (resultat.ok) {
+        memoriserAcces(code);
+        debloquerAcces();
+      } else {
+        erreur.textContent = resultat.message;
+        erreur.style.display = 'block';
+      }
+    };
+
+    async function verifierAccesAuChargement() {
+      // Déjà vérifié dans ce navigateur — jamais redemandé.
+      if (accesDejaValide()) {
+        debloquerAcces();
+        return;
+      }
+      // Code transmis silencieusement par l'app (utilisateur déjà licencié).
+      var correspond = (window.location.hash || '').match(/licence=([^&]+)/);
+      if (correspond) {
+        var codeApp = normaliserCode(decodeURIComponent(correspond[1]));
+        var resultat = await verifierCode(codeApp);
+        if (resultat.ok) {
+          memoriserAcces(codeApp);
+          debloquerAcces();
+          return;
+        }
+        // Code invalide transmis par l'app (cas rare) : bascule sur la saisie manuelle.
+      }
+      // Sinon : le verrou reste affiché, en attente d'une saisie manuelle.
+    }
+
+    verifierAccesAuChargement();
   </script>
 
 </body>

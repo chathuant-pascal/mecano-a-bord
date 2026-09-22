@@ -2186,6 +2186,23 @@
       border-radius: 4px;
       color: #444;
     }
+
+    /* Pied de page — visible sur tous les écrans (hors sections) */
+    #footer-site {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 20px 16px 28px;
+      font-size: 13px;
+      color: var(--texte-discret);
+      border-top: 1px solid var(--bordures);
+    }
+    #footer-site a {
+      color: var(--texte-discret);
+      text-decoration: none;
+    }
+    #footer-site a:hover { color: var(--rouge-principal); }
+    #footer-site .footer-sep { margin: 0 10px; color: var(--bordures); }
   </style>
 </head>
 <body>
@@ -4654,6 +4671,75 @@
 
     </div>
   </section>
+
+  <!-- ============================================================
+       SECTION — INFORMATIONS LÉGALES (Mentions légales & Confidentialité)
+  ============================================================ -->
+  <section id="mentions-legales" class="section-page">
+    <div class="module-wrapper">
+
+      <div class="module-page-header">
+        <span class="badge-module">📄 Informations légales</span>
+        <h1>Mentions légales &amp; Confidentialité</h1>
+      </div>
+
+      <h2 class="lecon-titre">Éditeur</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        Pascal Chathuant — Guadeloupe (971), France<br>
+        Contact : mecanoabord@gmail.com<br>
+        [SIRET : à compléter]
+      </p>
+
+      <h2 class="lecon-titre">Hébergement</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        Ce site est hébergé par GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis), à l'adresse mecanoabord.fr.
+      </p>
+
+      <h2 class="lecon-titre">Objet du site</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        « La Méthode Sans Stress Auto » est un site de formation en ligne à l'entretien automobile, à visée éducative. Il ne remplace pas l'intervention d'un professionnel qualifié.
+      </p>
+
+      <h2 class="lecon-titre">Propriété intellectuelle</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        L'ensemble des contenus (textes, vidéos, images, code) est protégé par le droit d'auteur (art. L111-1 et suivants du Code de la propriété intellectuelle). Toute reproduction sans autorisation écrite est interdite.
+      </p>
+
+      <h2 class="lecon-titre">Politique de confidentialité</h2>
+      <ul class="liste-simple">
+        <li><span class="puce">▶</span> <span>Votre progression dans la formation est enregistrée uniquement sur votre appareil (stockage local du navigateur) — rien n'est envoyé à un serveur par ce site.</span></li>
+        <li><span class="puce">▶</span> <span>Les vidéos intégrées sont hébergées par YouTube (Google) : leur lecture peut déposer des cookies gérés par Google, selon sa propre politique de confidentialité.</span></li>
+        <li><span class="puce">▶</span> <span>Si vous envoyez un témoignage, celui-ci s'ouvre dans votre propre messagerie et part directement à mecanoabord@gmail.com — nous ne le recevons pas automatiquement, rien n'est stocké sur un serveur.</span></li>
+        <li><span class="puce">▶</span> <span>Droits RGPD (accès, rectification, suppression) : contactez mecanoabord@gmail.com. Vous pouvez aussi effacer votre progression à tout moment en vidant les données de ce site dans votre navigateur.</span></li>
+      </ul>
+
+      <h2 class="lecon-titre">Droit applicable</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        Droit français. En cas de litige, solution amiable recherchée via mecanoabord@gmail.com, à défaut tribunaux français compétents.
+      </p>
+
+      <h2 class="lecon-titre">Mise à jour</h2>
+      <p style="color:var(--texte-secondaire);line-height:1.7">
+        Version en vigueur : septembre 2026 — Pascal Chathuant.
+      </p>
+
+      <div style="text-align:center;padding:28px 0 40px">
+        <button onclick="afficherSection('sommaire')" style="background:transparent;border:2px solid var(--bordures);color:var(--texte-secondaire);border-radius:8px;padding:12px 28px;font-family:var(--police);font-size:14px;cursor:pointer">
+          ← Retour au Sommaire
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PIED DE PAGE — hors sections, visible en bas de chaque écran
+  ============================================================ -->
+  <footer id="footer-site">
+    <a href="#mentions-legales" onclick="afficherSection('mentions-legales')">Mentions légales &amp; Confidentialité</a>
+    <span class="footer-sep">·</span>
+    <a href="mailto:mecanoabord@gmail.com">Aide &amp; Contact</a>
+  </footer>
 
 
 

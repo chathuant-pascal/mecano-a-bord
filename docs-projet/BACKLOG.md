@@ -44,6 +44,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | B14 | Licences Android (flutter doctor --android-licenses) | Fait | 2026-02-26 |
 | B15 | Lancement et tests sur téléphone physique (Android) | Fait | 2026-02-26 — SM A137F ; **référence terrain** : Samsung **SM-A137F**, Android **14** (voir NOTES §5b) ; **2026-04-09** — build **1.0.0+13** (TTS surveillance / OBD réel, sondage 4 s, écran OBD connexion) + **`flutter install`** sur **R58T92HCDAX** ; **2026-04-08** — build **1.0.0+12** ; **2026-04-05** — build **1.0.0+11** (version Réglages + PID **010C**) ; **2026-03-29** — build **1.0.0+9** ; **2026-03-28** — builds **1.0.0+2** à **1.0.0+7** ; **2026-03-23** — APK + checklist mentions légales |
 | B16 | Tests manuels par l’utilisateur | En cours | Démarrage 2026-02-26 |
+| B17 | Accès communauté Discord après Module 6 | En cours | **2026-09-01** — bonus « Groupe privé Discord » de `formation-web/index.html` : prérequis `module3` → `module6` ; bandeau natif **« Rejoindre la communauté »** sur l'accueil (position 2, sous « La méthode sans stress auto »), visible uniquement si Module 6 validé **et** URL d'invitation Discord valide publiée dans Remote Config (`discord_invite_url`, cf. §6/B53) ; masqué sinon (jamais grisé) ; latch local `formation_module6_done` posé par le pont `MABFormation` (`module_completed:module6` ou `formation_done`) ; icône générique `Icons.groups_rounded` dorée (pas le logo Discord — marque déposée) ; ouverture via `url_launcher` en application externe ; **reste** : créer le serveur Discord, publier l'URL dans Remote Config, valider sur SM-A137F |
 
 ---
 
@@ -86,6 +87,7 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | B50 | Surveillance arrière-plan (Foreground Service / Background Task) | À faire | Référence monitoring_background_service |
 | B51 | Gestion licence (Firebase) | En cours | **2026-07-30** — projet Firebase `mecano-a-bord` créé (Spark, Firestore Montréal `northamerica-northeast1`) ; app Android enregistrée ; Auth anonyme activée (nettoyage auto désactivé) ; règles Firestore `licenses/` déployées (liaison par `request.auth.uid`) ; `license_service.dart` + `mab_auth_service.dart` + 11 tests unitaires ; **reste à faire** : écran de saisie du code, appel au démarrage/mise à jour, création manuelle des codes de test |
 | B52 | Envoi du code de licence par SMS (alternative à l'email) | Reporté | **2026-07-30** — email retenu comme canal V1 (infra déjà en place : Gmail pro + Systeme.io) ; SMS nécessiterait un prestataire payant (ex: Twilio) non intégré au projet ; à ne construire que si un besoin réel se présente (système déjà neutre vis-à-vis du canal d'envoi, aucune adaptation requise côté vérification) |
+| B53 | Clé Remote Config texte `discord_invite_url` | En cours | **2026-09-01** — 13ᵉ paramètre Remote Config, **type String** (les 12 autres sont booléens), valeur de repli `""`. `RemoteFeatureFlags` étendu pour lire des chaînes (`_readString`, getter `discordInviteUrl`, `kFeatureStringDefaultsMap`). Pilote le bandeau communauté (B17) : vide/absente/illisible/non-HTTPS/hôte non Discord ⇒ bandeau masqué. Sert aussi de kill switch (vider + publier). **Reste** : créer le paramètre dans la Console Firebase et y coller l'invitation permanente. Voir `REMOTE_CONFIG.md`. |
 
 ---
 
@@ -106,6 +108,9 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 | B62 | Assets onboarding (images) | À faire | Optionnel ; icônes utilisées pour l’instant |
 | B62b | Logo sur splash (visuel actuel : icône ; optionnel : logo.png dans assets/images/) | Fait | 2026-02-26 |
 | B63 | Dossier complet pour développeuse (Inès) | À faire | Selon CONTEXTE v6 |
+| B64 | Mot interdit « panne » dans `formation-web/index.html` | Fait | **2026-09-01** — repéré pendant le chantier B17 (bonus « Checklist Entretien Simple »). Règle 2 CLAUDE.md. **2026-09-22** — corrigé pendant un audit lecture seule des 9 bonus : « panne » remplacé par « problème détecté » (Bonus 3), et une occurrence supplémentaire de « danger » trouvée et corrigée (Bonus 4, non repérée en 2026-09-01) + 2 occurrences de « dangereux » dans le même esprit. Commit `0def5c2` (`mecano-a-bord`). |
+| B65 | Mentions légales, confidentialité et contact sur `formation-web/index.html` | Fait | **2026-09-22** — signalé par Pascal : le site étant accessible par URL publique indépendante (GitHub Pages), pas seulement affiché dans la WebView de l'app, il lui fallait ses propres informations légales (LCEN). Nouvelle section `#mentions-legales` + pied de page persistant (`#footer-site`) avec liens Mentions légales/Confidentialité et Aide & Contact (mailto). SIRET toujours « à compléter » (même lacune que côté app). Commit `b3dd2fb`. |
+| B66 | Verrou d'accès par code de licence sur `formation-web/index.html` | Fait | **2026-09-22** — le site étant public, n'importe qui pouvait accéder gratuitement à toute la formation sans code de licence. Écran de verrou (`#mab-gate-overlay`) + vérification lecture seule Firestore `licenses/{code}` (Auth anonyme, nouvelle app Firebase Web dédiée) + code transmis silencieusement par l'app via fragment `#licence=...` (jamais `?query`, anti-fuite Referer) sur les deux écrans qui ouvrent la formation (`formation_webview_screen.dart` onboarding + `formation_web_launch_screen.dart` bouton accueil — bug trouvé et corrigé en testant sur le SM-A137F, ce second écran avait été oublié au premier passage). **Validé avec un code actif réel par Pascal sur le SM-A137F.** Commits `3d0c4f6` (`mecano-a-bord`), `5492ae0` + `8db374e` (`mecano-a-bord-app`). |
 
 ---
 
@@ -127,4 +132,4 @@ Légende des statuts : **À faire** | **En cours** | **Fait** | **Reporté**
 
 ---
 
-*Dernière mise à jour backlog : 2026-08-02 — kill switch Remote Config (MODULE 6+) fait, voir REMOTE_CONFIG.md et EVOLUTION.md. Mettre à jour statuts et dates à chaque avancement.*
+*Dernière mise à jour backlog : 2026-09-22 — verrou d'accès par code de licence sur formation-web (B66), mentions légales/confidentialité formation-web (B65), correctif mots interdits (B64, ferme). Voir EVOLUTION.md.*

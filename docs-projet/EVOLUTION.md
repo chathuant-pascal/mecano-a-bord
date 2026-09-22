@@ -6,6 +6,55 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-09-22 — Verrou d'accès par code de licence sur formation-web
+
+- **Contexte** : `formation-web/index.html` est une URL publique (GitHub Pages), accessible directement par n'importe qui sans passer par l'app ni par un code de licence — risque réel pour le lancement de la bêta payante (formation gratuite pour quiconque a le lien).
+- **`formation-web/index.html`** : nouvel écran de verrou (`#mab-gate-overlay`, plein écran, au-dessus de tout le reste) qui bloque le contenu tant qu'un code `MAB-XXXX-XXXX-XXXX` valide n'est pas confirmé. Vérification en **lecture seule** contre Firestore `licenses/{code}` (Auth anonyme Firebase Web, nouvelle app Web dédiée dans le projet `mecano-a-bord` — pas la clé Android), sans jamais toucher `deviceId` : aucune interférence avec le lien appareil déjà géré côté app. Une fois vérifié, mémorisé dans `localStorage` (`mab-licence-verifiee`) — plus jamais redemandé sur ce navigateur, y compris hors ligne (compatible avec le Service Worker existant).
+- **Deux chemins d'entrée** : (1) code transmis silencieusement par l'app via le fragment `#licence=...` de l'URL — jamais un `?query`, pour éviter toute fuite via l'en-tête `Referer` — aucune saisie demandée à un utilisateur déjà licencié ; (2) saisie manuelle pour un visiteur arrivant directement par l'URL publique (recherche, lien partagé).
+- **`lib/screens/formation_webview_screen.dart`** (app) : `_loadFormationPage()` récupère le code déjà validé (`LicenseService.instance.getCachedCode()`) et l'ajoute en fragment à l'URL chargée dans la WebView interne (utilisée pendant l'onboarding, avant `formation_done`).
+- **Bug trouvé et corrigé en testant sur le SM-A137F** : un **second** écran, `lib/screens/formation_web_launch_screen.dart` (bouton **« Méthode sans stress auto »** sur l'accueil, route `/systeme-io`, utilisé après l'onboarding) ouvre la formation dans le **navigateur externe** (`url_launcher`, `LaunchMode.externalApplication`) et n'avait pas été repéré au premier passage — il chargeait l'URL sans le fragment de licence, donc Chrome affichait systématiquement l'écran « Accès réservé » même pour un utilisateur déjà licencié. Même correctif appliqué : code transmis en fragment avant l'ouverture externe.
+- **Config Firebase Web** ajoutée (projet `mecano-a-bord`, app Web dédiée créée dans la Console Firebase — `apiKey`/`authDomain`/`appId` propres, distincts de la clé Android déjà restreinte à cette plateforme).
+- **Testé** : format de code invalide (erreur immédiate, aucun appel réseau), code bien formaté mais inexistant (Firestore répond « introuvable » — confirme Auth anonyme + lecture Firestore + règles de sécurité en conditions réelles), code invalide transmis par fragment (repli correct sur la saisie manuelle), mémorisation `localStorage` (visite suivante non re-vérifiée). **Validé avec un vrai code actif sur le SM-A137F par Pascal** — fonctionne depuis l'onboarding et depuis le bouton accueil après correctif.
+- **Limite connue, assumée** : ce n'est pas un verrou parfait (code copiable/partageable comme n'importe quel système par code) — l'objectif est de bloquer l'accès « par hasard » (moteur de recherche, lien partagé sans réfléchir), pas une DRM inviolable.
+- **Commits** : `mecano-a-bord` (formation-web) `3d0c4f6` ; `mecano-a-bord-app` `5492ae0` (WebView onboarding) + `8db374e` (bouton accueil).
+
+---
+
+## 2026-09-22 — Mentions légales, confidentialité et contact sur formation-web
+
+- **Contexte** : Pascal a remarqué que « La Méthode Sans Stress Auto » (`formation-web/index.html`) n'avait ni mentions légales, ni politique de confidentialité, ni contact — contrairement à l'app. Or ce site est accessible par une URL publique indépendante (GitHub Pages), pas seulement affiché dans la WebView de l'app : au regard de la LCEN, il lui faut ses propres informations légales accessibles, même si l'éditeur (Pascal Chathuant) est le même que celui de l'app.
+- **`formation-web/index.html`** : nouvelle section `#mentions-legales` (Éditeur, Hébergement, Objet du site, Propriété intellectuelle, Politique de confidentialité, Droit applicable, Mise à jour) + pied de page persistant (`#footer-site`, hors du système de sections donc visible sur tous les écrans) avec liens **« Mentions légales & Confidentialité »** et **« Aide & Contact »** (`mailto:mecanoabord@gmail.com`).
+- Contenu adapté du texte déjà existant côté app (`mab_legal_mentions_body.dart` / `privacy_policy_screen.dart`) mais spécifique à la réalité de ce site : progression stockée uniquement en local (`localStorage`, rien envoyé à un serveur par ce site), cookies déposés par les vidéos YouTube intégrées (`youtube.com/embed`, pas `-nocookie`), formulaire témoignage envoyé uniquement via `mailto:` (aucune collecte serveur).
+- SIRET toujours marqué « à compléter » (même lacune connue que côté app).
+- **Commit** : `mecano-a-bord` `b3dd2fb`.
+
+---
+
+## 2026-09-22 — Audit des 9 bonus + correctifs mots interdits + tableau Module 6.1 mobile
+
+- **Module 6.1** (« Les 10 questions au garagiste ») : colonne de numérotation supprimée du tableau — débordait des bordures en vue mobile réduite, forçant un défilement horizontal. Numérotation implicite conservée par l'ordre des lignes. Vérifié en vue mobile (375 px) : tableau tient désormais dans ses bordures. Commit `d7cbfce`.
+- **Audit lecture seule des 9 bonus** (`bonusData`) : résumé de contenu + éléments suspects par bonus, remis à Pascal pour validation avant toute correction. Principaux constats retenus : deux images d'en-tête consécutives redondantes sur l'écran d'accueil des bonus, un fichier image au nom brut non nettoyé (`ChatGPT Image 9 mars 2026...`), un commentaire de code obsolète (`BONUS 5 — DICTIONNAIRE INTERACTIF`, reste d'un ancien schéma de numérotation — le vrai bonus #5 est « Remorquage »), incohérence entre le hardcode du lien Discord (bonus #2, prérequis Module 7) et le mécanisme Remote Config `discord_invite_url` (prérequis Module 6) décrit dans B17/B53.
+- **Mots interdits (Règle 2 CLAUDE.md)** corrigés dans les bonus 3 et 4 : « panne » (Bonus 3, tableau grandes échéances — **ferme B64**), « danger » (Bonus 4, tableau numéros d'urgence — nouvelle occurrence, non trackée avant cet audit), et deux occurrences de « dangereux » (Bonus 3) traitées dans le même esprit que la règle bien que non listées littéralement. Commit `0def5c2`.
+
+---
+
+## 2026-09-01 — Accès communauté Discord débloqué après le Module 6
+
+- **Contexte** : donner accès au serveur Discord « Mécano à Bord — Communauté » **seulement** une fois le parcours de formation terminé (Module 6), cohérent avec le principe « formation avant l'outil » déjà appliqué ailleurs. Deux points d'entrée : le bonus existant dans la formation web + un nouveau bandeau natif sur l'accueil.
+- **`formation-web/index.html`** : bonus « Groupe privé Discord » (`bonusData`, `num: 2`) — prérequis `module3` → **`module6`**. Une seule ligne. Aucun autre bonus ne dépend de celui-ci (l'ordre d'affichage suit l'ordre du tableau, `prerequis` ne fait que basculer disponible/bloqué) et la section « Bonus » est déjà entièrement derrière `module6` (`estSectionDebloquee('bonus')`) — le changement ne fait qu'aligner le badge de la carte. Le lien du bouton reste `href="#"` en attendant la création du serveur.
+- **`lib/config/mab_features.dart`** : nouvelle constante `kDiscordInviteUrlDefault = ''` + clé `kRemoteConfigKeyDiscordInviteUrl = 'discord_invite_url'` + `kFeatureStringDefaultsMap`. C'est la **13ᵉ clé Remote Config**, la **première de type String** (les 12 autres restent booléennes).
+- **`lib/services/remote_feature_flags.dart`** : support des valeurs texte — `getStringValue` injectable (comme `getBoolValue`), `_defaultGetString` → `FirebaseRemoteConfig.getString`, helper `_readString` (une valeur distante vide compte comme repli), getter `discordInviteUrl`. `setDefaults(...)` reçoit désormais la fusion des maps booléenne + texte. Repli hors-ligne : chaîne vide ⇒ bouton masqué (jamais de lien cassé).
+- **`lib/utils/discord_invite.dart`** (nouveau) : `parseDiscordInvite()` — fonction pure qui n'accepte qu'une invitation Discord en HTTPS (`discord.gg/<code>` ou `discord.com|discordapp.com/invite/<code>`), rejette tout le reste (URL Remote Config = saisie humaine, jamais de confiance). `communityBandVisible({module6Completed, rawInviteUrl})` — décision d'affichage testable sans widget.
+- **`lib/services/formation_progress_service.dart`** (nouveau) : latch local `formation_module6_done`. L'app n'avait **aucun** signal local de complétion du Module 6 (la progression détaillée vit dans le localStorage de la WebView + Firestore en écriture seule). Posé quand le pont `MABFormation` relaie `module_completed:module6`, **ou** quand `formation_done` passe à `true` (élève déjà 100 %). `isModule6Completed()` renvoie `true` si l'un des deux est vrai — couvre les élèves ayant terminé avant l'ajout du latch.
+- **`lib/screens/formation_webview_screen.dart`** : `_handleProgressEvent` pose le latch sur `module_completed:module6` ; la branche `done` le pose aussi. Clé `formation_done` centralisée dans `FormationProgress`.
+- **`lib/screens/home_screen.dart`** : bandeau **« Rejoindre la communauté »** en **position 2** (juste sous « La méthode sans stress auto »), réutilise `_buildHomeBand` (design system). Absent (pas grisé) tant que `communityBandVisible(...)` est faux. Clic → `url_launcher` en application externe ; échec ⇒ SnackBar avec action « Réessayer ». Icône générique `Icons.groups_rounded` dorée — **pas** le logo Discord (marque déposée, règles d'usage strictes). Numéros des bandeaux suivants décalés en commentaire (3→8).
+- **Pas de 13ᵉ flag booléen** : vider `discord_invite_url` dans Remote Config et publier suffit à masquer le bouton partout (kill switch de fait).
+- **`REMOTE_CONFIG.md`** : section dédiée à la clé texte `discord_invite_url` (procédure, comportement, génération d'une invitation permanente).
+- **Repéré au passage, non corrigé** (règle « ne pas mélanger les chantiers ») : mot interdit « panne » dans `formation-web/index.html` (~ligne 7736, bonus Checklist Entretien) — noté **B64** au backlog pour un commit séparé.
+- **Tests** : `test/discord_invite_test.dart` (nouveau, 15) + `test/formation_progress_service_test.dart` (nouveau, 6) + `test/remote_feature_flags_test.dart` (+3, support String) — **suite complète : 248/248 verts**, `flutter analyze` : aucun nouvel avertissement. **Non vérifié visuellement** (pas d'émulateur dans l'environnement) : rendu du bandeau sur l'accueil, ouverture effective de Discord, bascule du badge dans la formation web — à valider par Pascal sur le Samsung SM-A137F. **Rien n'est commité.**
+
+---
+
 ## 2026-08-02 — Kill switch à distance : Firebase Remote Config pour les feature flags
 
 - **Contexte** : audit infrastructure post-lancement du 2026-08-02 — lacune identifiée : `lib/config/mab_features.dart` ne contenait que des constantes `const bool` compilées en dur, sans moyen de désactiver une fonctionnalité après publication sans recompiler/republier sur les stores (délai de review Apple/Google).

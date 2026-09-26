@@ -6,6 +6,32 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-09-25 — Correctif : licence bloquée indéfiniment hors ligne (bug présent depuis le module initial)
+
+- **Contexte** : pendant le test avion du Lot 2 (audit pré-lancement), Pascal a signalé un spinner de vérification de licence bloqué indéfiniment (« Vérification de ta licence... »), sans message d'erreur ni plantage, en relançant l'app hors ligne alors qu'une licence était déjà validée.
+- **Diagnostic** (voir `AUDIT_PRELANCEMENT` pour le détail complet, logs `adb logcat` à l'appui) : `LicenseService.verify()` faisait `await docRef.get()` puis, si la licence était déjà liée à cet appareil, `await docRef.update({...})` pour rafraîchir `lastCheckedAt`/les infos appareil. Hors ligne, `.get()` peut réussir en étant servi par le cache local (comportement par défaut du SDK), mais le `Future` d'une écriture Firestore (`update`) ne se termine qu'à la confirmation du serveur — jamais, sans réseau, et sans délai côté client par défaut. `verify()` restait donc bloqué indéfiniment. **Confirmé présent depuis le commit initial du module licence (`db18b6c`)** — pas une régression des Lots 1/2.
+- **Correction** (`lib/services/license_service.dart`) :
+  - Une lecture servie par le cache (`snapshot.metadata.isFromCache`) est désormais traitée comme hors ligne : aucune écriture tentée, et la date locale de dernière validation n'est jamais renouvelée dans ce cas (sinon le délai de grâce ne expirerait jamais et une révocation ne serait jamais détectée hors ligne).
+  - Licence déjà liée à l'appareil (lecture confirmée par le serveur) : l'écriture de suivi part désormais en arrière-plan (`unawaited` + `catchError` vers `MabCrashReporter`), sans jamais bloquer l'accès.
+  - Première activation (liaison `deviceId`, protection anti-partage) : toujours attendue, mais avec un délai maximal de 10 s — au-delà, nouveau résultat dédié `LicenseActivationPending` (message rassurant, pas d'accès tant que la confirmation n'a pas réussi).
+  - Filet de sécurité global : `verify()` entier plafonné à 12 s (volontairement > 10 s pour laisser le délai plus précis se déclencher en premier) — plus aucun blocage futur ne peut immobiliser l'écran indéfiniment.
+  - Nouvelle indirection `LicenseFirestoreGateway`/`LicenseSnapshot` entre `LicenseService` et Firestore, pour pouvoir simuler en test une lecture cache, une lecture en échec, ou une écriture qui ne se termine jamais.
+- **Tests** : 5 nouveaux (groupe 8, `test/license_service_test.dart`) couvrant exactement ces scénarios ; 280 → 285 tests, tous verts.
+- **Commit** : `mecano-a-bord-app` (à committer après validation terrain de Pascal — voir Lot 2 ci-dessous, commit séparé pour la relecture d'Inès).
+
+---
+
+## 2026-09-25 — Lot 2 (audit pré-lancement) : persistance Firestore explicite, délai de grâce licence 30 jours, service de connectivité
+
+- **Contexte** : suite de l'audit pré-lancement (robustesse hors ligne / réseau faible, couverture inégale en Guadeloupe).
+- **Persistance Firestore explicite** (`main.dart`, juste après `Firebase.initializeApp()`) : `Settings(persistenceEnabled: true, cacheSizeBytes: 40 Mo)` — reprend le défaut actuel du SDK mais le rend explicite, pour ne plus dépendre d'une valeur implicite qui pourrait changer avec une future version. Détail et justification : `NOTES_INTENTION_TECHNIQUES.md` §5c.
+- **Délai de grâce licence hors ligne : 7 → 30 jours** (`LicenseService.offlineGraceDuration`) — 7 jours jugé trop court face à la couverture réseau inégale en Guadeloupe. Nouveau message rassurant si le délai est dépassé (validé par Pascal, sans mot interdit). Confirmé par test : la date de dernière vérification avance à chaque succès en ligne, pas seulement à la première activation.
+- **Service de connectivité** (`lib/services/mab_connectivity_service.dart`, `connectivity_plus`) : état réseau courant + flux des changements (`reseau_disponible` / `aucun_reseau` / `inconnu`), avec avertissement explicite documenté dans le fichier — reflète uniquement la radio du téléphone, jamais si internet répond réellement. Aucune modification d'interface dans ce lot. Réutilisé comme clé de contexte non identifiante (`reseau`) dans `MabCrashReporter`.
+- **Tests** : 264 → 280 (avant le correctif licence ci-dessus) : +11 connectivité, +4 licence (délai de grâce + mise à jour du cache), +1 wording validé.
+- **Commit** : `mecano-a-bord-app` (à committer après validation terrain de Pascal).
+
+---
+
 ## 2026-09-22 — Verrou d'accès par code de licence sur formation-web
 
 - **Contexte** : `formation-web/index.html` est une URL publique (GitHub Pages), accessible directement par n'importe qui sans passer par l'app ni par un code de licence — risque réel pour le lancement de la bêta payante (formation gratuite pour quiconque a le lien).

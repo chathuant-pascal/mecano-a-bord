@@ -89,6 +89,17 @@ Décisions d’architecture et choix techniques, pour affiner la réflexion et a
 
 ---
 
+## 5c. Firebase — persistance Firestore et connectivité (Lot 2, 2026-09-24)
+
+| Décision | Détail |
+|----------|--------|
+| **Persistance Firestore explicite** | `FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true, cacheSizeBytes: 40 * 1024 * 1024)` posé dans `main.dart` juste après `Firebase.initializeApp()`, avant tout autre service (Crashlytics, Performance, Remote Config, Auth). Auparavant implicite (valeurs par défaut du SDK `cloud_firestore`) — rendu explicite pour ne plus dépendre d'un défaut qui pourrait changer avec une future version du SDK sans que personne ne s'en aperçoive (constat de l'audit pré-lancement). |
+| **Taille de cache : 40 Mo** | Reprend la valeur par défaut actuelle du SDK (documentée par `cloud_firestore_platform_interface`), jugée largement suffisante : l'app n'écrit dans Firestore que quelques documents légers (licence, événements de formation, futurs retours utilisateur du Lot 3) — pas de synchronisation de gros volumes de données. |
+| **Délai de grâce licence : 7 → 30 jours** | `LicenseService.offlineGraceDuration` porté de 7 à 30 jours (`lib/services/license_service.dart`) : la couverture réseau inégale en Guadeloupe rendait 7 jours trop court pour un utilisateur payant isolé plusieurs jours consécutifs. Comparaison stricte (`<`) : le 30e jour pile est déjà considéré comme expiré, pas seulement le 31e (voir tests `license_service_test.dart`, groupe 6). La date de dernière vérification (`mab_license_last_valid_at`) avance à chaque vérification en ligne réussie, pas seulement à la première activation (confirmé par test, groupe 7). |
+| **Service de connectivité** | `lib/services/mab_connectivity_service.dart` (`connectivity_plus`) : état réseau courant + flux des changements, réutilisé comme contexte non identifiant dans `MabCrashReporter` (clé `reseau`) et prévu pour le champ `reseauAuMoment` des retours utilisateur (Lot 3). **Limite documentée dans le fichier** : reflète uniquement si le téléphone est rattaché à un réseau Wi-Fi/mobile (radio du téléphone), jamais si internet répond réellement derrière — noms d'état choisis en conséquence (`reseau_disponible` / `aucun_reseau` / `inconnu`, jamais "en_ligne"/"hors_ligne"). |
+
+---
+
 ## 6. Documentation et processus
 
 | Décision | Détail |

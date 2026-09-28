@@ -6,6 +6,20 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-09-27 — Chantier « Accès aux tutoriels vidéo »
+
+- **Contexte** : 5 tutoriels vidéo en préparation (boîtier, surveillance, alerte, carnet d'entretien, boîte à gants), hébergés en YouTube non répertorié. Le seul accès existant était un bouton générique « Voir les tutoriels » (`help_contact_screen.dart`) ouvrant toute la chaîne via une URL probablement incorrecte (`youtube.com/mecanoabord` sans `@`, alors que le handle réel est `@mecanoabord`).
+- **Conception validée par Pascal** (audit puis design proposé avant tout code, voir échanges) : écran `TutorialsScreen` dédié (5 cartes miniature/titre/durée/« Vu »), carte permanente « Bien démarrer » sur l'accueil (jamais fermable ; grande carte avec progression tant que les 5 ne sont pas vus, puis ligne compacte « Revoir les tutoriels », toujours au même endroit), proposition en bottom sheet au tout premier lancement après activation de licence (uniquement si la vidéo 1 est publiée), 5 liens contextuels « Voir comment faire » répartis sur les écrans concernés, et redirection du bouton Aide & contact.
+- **Nouveaux fichiers** : `lib/services/tutorial_catalog.dart` (catalogue statique des 5 tutoriels), `lib/services/tutorial_progress_service.dart` (avancement local SharedPreferences, calqué sur `FormationProgress`), `lib/services/tutorial_visibility.dart` (règles de visibilité pures testables), `lib/services/tutorial_launcher.dart` (ouverture vidéo centralisée : vérification réseau + marquage « vu »), `lib/screens/tutorials_screen.dart`, `lib/widgets/mab_tutorial_link.dart` (lien réutilisé sur les 5 écrans), `lib/widgets/mab_tutorial_prompt_sheet.dart` (bottom sheet premier lancement, style `MabFeedbackSheet`).
+- **Fichiers modifiés** : `mab_features.dart` / `remote_feature_flags.dart` (11 nouvelles clés Remote Config), `home_screen.dart` (carte « Bien démarrer », rafraîchie au retour dans l'app via `WidgetsBindingObserver`), `license_code_entry_screen.dart` (déclenchement de la proposition premier lancement), `help_contact_screen.dart` (redirection + repli sur l'URL canonique de chaîne si `feature_tutoriels` est coupée), `obd_scan_screen.dart`, `surveillance_only_screen.dart` (2 liens, uniquement hors surveillance active), `glovebox_screen.dart` (onglets Carnet et Documents), `main.dart` (route `/tutoriels`), `pubspec.yaml`.
+- **Miniatures** : 5 captures fournies par Pascal, recompressées (Pillow, WebP qualité 85, redimensionnées à 480 px de large, format vertical conservé) : ~2,0–2,4 Mo → 58–94 Ko chacune. `Image.asset` avec `errorBuilder` → icône de repli si un fichier venait à manquer.
+- **Lecture vidéo** : ouverture externe (YouTube/navigateur, `url_launcher`), pas de lecteur intégré — cohérent avec le périmètre V1 strict et évite d'ajouter une dépendance WebView supplémentaire alors que le module WebView existant est encore « à ré-auditer » (Module 4). Message clair si aucun réseau détecté, jamais de tentative d'ouverture dans ce cas.
+- **Tests** : 326 → 350 (+24 : `tutorial_progress_service_test.dart`, `tutorial_visibility_test.dart`, extensions de `remote_feature_flags_test.dart`).
+- **Non vérifié visuellement** (pas d'émulateur/téléphone dans l'environnement d'exécution) : rendu réel des 5 cartes, de la carte d'accueil (grande puis compacte) et du bottom sheet premier lancement sur le SM-A137F de Pascal ; comportement réel d'ouverture YouTube depuis le téléphone.
+- **Commit** : `mecano-a-bord-app` `7ce6315` ; `mecano-a-bord` (ce commit).
+
+---
+
 ## 2026-09-26 — Lot 3 (audit pré-lancement) : formulaires de retour utilisateur, confidentialité et mentions légales
 
 - **Contexte** : suite de l'audit pré-lancement (partie C : conception d'un formulaire de retour utilisateur).

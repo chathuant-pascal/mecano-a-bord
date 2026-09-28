@@ -7424,6 +7424,12 @@
         ? 'Bravo ! Le module suivant est débloqué. On te conseille quand même de recommencer ce quiz pour bien assimiler la leçon.'
         : 'Tu as ' + score + ' bonne(s) réponse(s) sur ' + tot + '. Relis le contenu et recommence — tu y es presque !';
 
+      // Formulaire de retour natif (Lot 3) : envoyé une fois le score déjà
+      // affiché ci-dessus. Une version de l'app sans ce lot ignore ce
+      // message silencieusement (voir _handleProgressEvent côté Flutter) —
+      // aucun risque à publier cette page avant la mise à jour de l'app.
+      envoyerEvenementFormation('quiz_feedback:' + qz.idModule);
+
       // Débloquer le module suivant si le score minimum est atteint
       var btnSuivantModule = document.getElementById(qz.btnSuivantId);
       if (debloque) {

@@ -6,6 +6,20 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-09-26 — Lot 3 (audit pré-lancement) : formulaires de retour utilisateur, confidentialité et mentions légales
+
+- **Contexte** : suite de l'audit pré-lancement (partie C : conception d'un formulaire de retour utilisateur).
+- **`FeedbackService`** (`lib/services/feedback_service.dart`) : envoi non bloquant (même principe que la leçon du correctif licence hors ligne — jamais d'`await` sur l'écriture Firestore côté utilisateur) vers une nouvelle collection Firestore `feedback` ; texte libre masqué avant envoi.
+- **Masquage des données sensibles partagé** : extraction de `lib/utils/mab_sensitive_data.dart` (licence, e-mail, VIN, plaques FR, téléphones, URL à paramètres), désormais utilisé à la fois par `MabCrashReporter` (Lot 1) et `FeedbackService` — une seule implémentation à maintenir, comportement inchangé côté Crashlytics (17 tests existants toujours verts).
+- **`FeedbackPromptPolicy`** : anti-sollicitation — jamais plus d'une fois par module de formation, et pour l'OBD seulement après un arrêt manuel d'au moins 10 minutes avec au moins 7 jours depuis la dernière demande.
+- **`MabFeedbackSheet`** : bottom sheet branché sur 3 points d'entrée (fin de module de formation, fin de session de surveillance OBD, bouton permanent dans Réglages), avec variante de message hors ligne (envoi en attente plutôt que ton d'erreur).
+- **Règles Firestore** : nouvelle règle `feedback` (`allow create` uniquement, validation des champs — type, note 1-5, tailles) déployée manuellement dans la Console Firebase et vérifiée contre le fichier local (`firestore.rules`).
+- **Politique de confidentialité et mentions légales** (`privacy_policy_screen.dart`, `mab_legal_mentions_body.dart`) : nouvelle section « Tes retours », section « Stockage des données » généralisée à trois cas (analytics, formation, retours) avec un seul paragraphe d'hébergement (Google/Firebase, Canada/Montréal ; données techniques éventuellement traitées aux États-Unis), bloc « Hébergement » des mentions légales mis à jour avec l'adresse GitHub (formation web) en plus de Google (app) — adresses vérifiées auprès des pages officielles de confidentialité de chaque société.
+- **Tests** : 285 → 326.
+- **Commit** : `mecano-a-bord-app` (à committer séparément du chantier tutoriels, sur la branche `chantier-tutoriels-video`, sans mélange — voir échanges).
+
+---
+
 ## 2026-09-25 — Correctif : licence bloquée indéfiniment hors ligne (bug présent depuis le module initial)
 
 - **Contexte** : pendant le test avion du Lot 2 (audit pré-lancement), Pascal a signalé un spinner de vérification de licence bloqué indéfiniment (« Vérification de ta licence... »), sans message d'erreur ni plantage, en relançant l'app hors ligne alors qu'une licence était déjà validée.

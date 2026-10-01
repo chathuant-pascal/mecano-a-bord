@@ -6,6 +6,17 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-09-30 — Tutoriels : visuel de la carte d'accueil
+
+- **Contexte** : Pascal a fourni un visuel « TUTORIELS » (SUV, téléphone en mode conduite, boîtier OBD) pour la carte « Bien démarrer » de l'accueil, qui n'affichait jusqu'ici qu'une icône (drapeau, puis lecture en version compacte).
+- **Image** : original PNG 1254 × 1254 (~2 Mo) converti en `assets/images/tutoriels/tutoriels_accueil.webp` (512 px, WebP qualité 85, ~50 Ko). Dossier déjà déclaré dans `pubspec.yaml`, aucune modification. L'original haute définition est rangé, nom inchangé, dans `docs-projet/visuels-sources/` (hors `assets/images/`, sinon embarqué dans l'app pour rien) ; recherche préalable : aucun fichier ne le référençait.
+- **`home_screen.dart`** : le visuel remplace l'icône sur les deux états de la carte (grande carte avec progression, coins arrondis ; ligne compacte « Revoir les tutoriels », même rendu 80 × 80 que les autres bandeaux). Nouvelle méthode `_buildTutorielsVisuel` : si le fichier manque, l'ancienne icône s'affiche à la place.
+- **Tests** : 350 → 350 (changement visuel uniquement) ; `flutter analyze` : aucune nouvelle remarque.
+- **Non vérifié visuellement** : rendu réel sur le SM-A137F (à contrôler par Pascal en même temps que les 5 tutoriels) ; iPhone non testable avant iOS-SETUP (WebP pris en charge nativement par Flutter sur les deux systèmes).
+- **Commit** : à faire séparément sur la branche `chantier-tutoriels-video`, après accord de Pascal.
+
+---
+
 ## 2026-09-27 — Chantier « Accès aux tutoriels vidéo »
 
 - **Contexte** : 5 tutoriels vidéo en préparation (boîtier, surveillance, alerte, carnet d'entretien, boîte à gants), hébergés en YouTube non répertorié. Le seul accès existant était un bouton générique « Voir les tutoriels » (`help_contact_screen.dart`) ouvrant toute la chaîne via une URL probablement incorrecte (`youtube.com/mecanoabord` sans `@`, alors que le handle réel est `@mecanoabord`).

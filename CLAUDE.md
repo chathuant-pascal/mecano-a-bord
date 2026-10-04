@@ -453,25 +453,31 @@ DÉJÀ COMMITÉ ET POUSSÉ (vérifié le 04/10/2026 — ne plus les lister ici) 
   validés par Pascal sur le SM-A137F le 04/10/2026.
   Règles Firestore du Lot 3 : vérifiées identiques à celles publiées.
 
-RESTE À RÉGULARISER (rangement Git en cours, 04/10/2026) :
-- Dépôt principal : branche chantier-tutoriels-video non poussée
-  (901c6f7, 34a3cfc, 58ef183 + commits du rangement).
-- Mot interdit « panne sèche » : index.html ligne 2957 (commit séparé).
-- Fichiers temporaires à supprimer : formation-web/fix_partie2.ps1 (déjà
-  appliqué), formation-web/tmp_commit_6071.txt (copie aux accents abîmés).
-- Stash du 29/04 (stash@{0}) : périmé, à jeter (décision Pascal).
-- Image inutilisée « lire tes pneus comme un pro 2.png » : à déplacer dans
-  docs-projet/visuels-sources/ (hors suivi Git).
-- Branche backup-avant-reorganisation : CONSERVÉE (décision Pascal) ;
-  son contenu est déjà entièrement dans main.
-- Branche chantier-tutoriels-video du dépôt app : conservée sur GitHub
-  pour l'instant (décision Pascal).
+RANGEMENT GIT TERMINÉ LE 04/10/2026 (dépôt principal) :
+- Mot interdit « panne sèche » (index.html ligne 2957) : corrigé, 439f7eb.
+- fix_partie2.ps1 et tmp_commit_6071.txt : supprimés (jamais suivis).
+- Stash du 29/04 : sauvegardé puis effacé. Sauvegarde complète, vérifiée
+  identique au stash (images comprises) :
+  docs-projet/archives/stash_2026-04-29_complet.patch (23 Mo) ; version
+  texte seule : stash_2026-04-29.patch. Les deux sont HORS suivi Git
+  (.gitignore : docs-projet/archives/*.patch) — uniquement en local
+  (OneDrive). Pour la réappliquer : partir du commit 6f6c4fa.
+- « lire tes pneus comme un pro 2.png » : déplacée dans
+  docs-projet/visuels-sources/, hors suivi Git (.gitignore), 5e4df45.
+- Dernière étape : pousser la branche chantier-tutoriels-video du dépôt
+  principal puis la fusionner dans main (vérifier avec
+  `git log origin/main..` qu'il ne reste rien).
+
+CONSERVÉ VOLONTAIREMENT (décisions Pascal) :
+- Branche backup-avant-reorganisation (dépôt principal) : son contenu est
+  déjà entièrement dans main.
+- Branche chantier-tutoriels-video du dépôt app, sur GitHub, pour
+  l'instant.
 ```
 
 ### 🟡 Formation web (formation-web/index.html — RÈGLE 7 UTF-8)
 
 ```
-- Mot interdit « panne » (« panne sèche ») ligne 2957 (commit séparé).
 - Paragraphe à ajouter : vérifier seul ses ampoules (feux, clignotants,
   feux stop) en s'aidant de la tombée de la nuit.
 - Photos réelles encore manquantes : PHOTO_A_REMPLACER_<liquide>.jpg

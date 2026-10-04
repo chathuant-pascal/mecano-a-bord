@@ -17,6 +17,12 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 - **Backlog** : ajout de B68 (masquage des numéros avec indicatif international) et B69 (taille de police en dur, `mab_feedback_sheet.dart:284`), priorité haute avant la bêta, non corrigés.
 - **CLAUDE.md, autres passages corrigés** : les 3 `Log.d()` de `MainActivity.kt` sont déjà protégés par `BuildConfig.DEBUG` (retirés des bloquants) ; `BLUETOOTH_SCAN` et `ACCESS_FINE_LOCATION` sont déjà absents du manifeste et devront être remis avec les bons flags dans le chantier OBD-BLE ; section Formation web nettoyée (Module Pneus, doublons vidéo du Module 2, coquille `bloc-regre-or` : déjà faits) ; « panne sèche » localisé ligne 2957.
 - **Archives** : `REFERENTIEL_FONCTIONNEL_INES.html` (avril 2026, périmé) déplacé et renommé en `docs-projet/archives/REFERENTIEL_FONCTIONNEL_INES_2026-04_obsolete.html`.
+- **Fin du rangement (dépôt principal)** :
+  - « panne sèche » (index.html ligne 2957, tableau de l'ordinateur de bord) remplacé par « avant de tomber à court de carburant » (Règle 2) ; une seule ligne modifiée, UTF-8 sans BOM conservé (Règle 7). Commit `439f7eb`. Plus aucun mot interdit dans les textes visibles (`zone-danger-bloc` est un nom de classe CSS, non affiché).
+  - Fichiers temporaires supprimés (jamais suivis) : `formation-web/fix_partie2.ps1` (déjà appliqué), `formation-web/tmp_commit_6071.txt` (copie aux accents abîmés).
+  - Stash du 29/04 : exporté puis effacé. Le premier export (`git stash show -p`) ne contenait pas les 12 images (logo, écrans de démarrage iOS et web) → second export complet avec `--binary` (`stash_2026-04-29_complet.patch`, 23 Mo), **vérifié identique au stash** (réappliqué sur `6f6c4fa` dans un index temporaire : même arbre `b6b0901`). Les deux fichiers restent en local, hors suivi Git.
+  - Image inutilisée « lire tes pneus comme un pro 2.png » déplacée dans `docs-projet/visuels-sources/` ; `.gitignore` : ce fichier précis (le dossier contient déjà un visuel suivi) + `docs-projet/archives/*.patch`. Commit `5e4df45`.
+  - Conservés volontairement : branche `backup-avant-reorganisation` ; branche `chantier-tutoriels-video` du dépôt app sur GitHub.
 
 ---
 

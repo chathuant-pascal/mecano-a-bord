@@ -6,6 +6,20 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-04 — Rangement Git (partie 1) et validation du Lot 3 + tutoriels sur le Samsung
+
+- **Inventaire** : le projet compte **deux dépôts Git** — `mecano-a-bord` (docs + formation-web, racine) et `mecano-a-bord-app` (application Flutter, dossier `mecano_a_bord/`, exclu du premier). La liste « travail non commité » de CLAUDE.md V5 était périmée : presque tous les chantiers cités étaient déjà commités et poussés. Section remplacée dans CLAUDE.md par un état Git à jour (deux dépôts, déjà poussé / reste à régulariser).
+- **`flutter analyze`** : 2 avertissements corrigés (variable `_protocolDetectionDeviceName` jamais lue dans `obd_scan_screen.dart`, import inutile `cloud_firestore` dans `test/consent_service_test.dart`). Aucun changement visible. Commit `5d1aec3` (`mecano-a-bord-app`). Restent 44 remarques de niveau « info », non traitées.
+- **Règles Firestore du Lot 3** : règles publiées lues directement depuis Firebase et comparées au fichier `firestore.rules` du commit `939ba73` — **identiques** (y compris `rules_version = '2'` et le bloc `match /feedback`). Publication du 26/09 confirmée par Pascal dans la console.
+- **Tests sur le SM-A137F (par Pascal)** : version release installée par-dessus l'existante (`adb install -r`, données et licence conservées). Validés : retour en ligne et hors ligne, masquage téléphone/plaque dans Firestore, demande d'avis en fin de module, carte « Bien démarrer » avec visuel, écran des tutoriels (5 cartes « Bientôt disponible », aucune URL encore publiée dans Remote Config), politique de confidentialité (section 13). Non testé : retour en fin de surveillance OBD (10 min de conduite) ; iPhone (Firebase iOS absent).
+- **Push** : `mecano-a-bord-app` — branche `chantier-tutoriels-video` poussée, puis fusionnée en ligne droite dans `main` et poussée (`1b20d28..5d1aec3`). Branche conservée sur GitHub.
+- **Tests** : 350 → 350.
+- **Backlog** : ajout de B68 (masquage des numéros avec indicatif international) et B69 (taille de police en dur, `mab_feedback_sheet.dart:284`), priorité haute avant la bêta, non corrigés.
+- **CLAUDE.md, autres passages corrigés** : les 3 `Log.d()` de `MainActivity.kt` sont déjà protégés par `BuildConfig.DEBUG` (retirés des bloquants) ; `BLUETOOTH_SCAN` et `ACCESS_FINE_LOCATION` sont déjà absents du manifeste et devront être remis avec les bons flags dans le chantier OBD-BLE ; section Formation web nettoyée (Module Pneus, doublons vidéo du Module 2, coquille `bloc-regre-or` : déjà faits) ; « panne sèche » localisé ligne 2957.
+- **Archives** : `REFERENTIEL_FONCTIONNEL_INES.html` (avril 2026, périmé) déplacé et renommé en `docs-projet/archives/REFERENTIEL_FONCTIONNEL_INES_2026-04_obsolete.html`.
+
+---
+
 ## 2026-09-30 — Tutoriels : visuel de la carte d'accueil
 
 - **Contexte** : Pascal a fourni un visuel « TUTORIELS » (SUV, téléphone en mode conduite, boîtier OBD) pour la carte « Bien démarrer » de l'accueil, qui n'affichait jusqu'ici qu'une icône (drapeau, puis lecture en version compacte).

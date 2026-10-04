@@ -1,2 +1,8 @@
 # Code de l'application mobile — déplacé vers le dépôt privé chathuant-pascal/mecano-a-bord-app
 mecano_a_bord/
+
+# Visuel source non utilisé par la formation (conservé en local uniquement)
+docs-projet/visuels-sources/lire tes pneus comme un pro 2.png
+
+# Sauvegardes locales de stash Git (archives, jamais versionnées)
+docs-projet/archives/*.patch

@@ -1,6 +1,6 @@
 # CLAUDE.md — Mémoire Permanente Claude Code
 # Projet : Mécano à Bord — Écosystème Complet
-# Dernière mise à jour : 30/09/2026 — Version 5.0
+# Dernière mise à jour : 11/10/2026 — Version 5.1
 # © Mécano à Bord — Pascal Chathuant — Guadeloupe
 # ================================================================
 # ⚠️ CE FICHIER EST LA MÉMOIRE PERMANENTE DE CLAUDE CODE
@@ -355,7 +355,27 @@ Chantier « CONFORMITÉ » — prompt en 6 parties préparé par Claude (chat),
 à lancer par Pascal. Décisions déjà prises :
 - E-mail client UNIQUE : mecanoabord@gmail.com (remplace contact@mecanoabord.fr
   partout : help_contact_screen.dart, privacy_policy_screen.dart,
-  mab_legal_mentions_body.dart…)
+  mab_legal_mentions_body.dart…) — confirmé par Pascal le 11/10/2026 et
+  utilisé dans les CGV ; les 3 fichiers Dart affichent encore contact@.
+- CGV RÉDIGÉES le 11/10/2026 (version définitive, en relecture par Pascal) :
+  docs-projet/juridique/CGV_MECANO_A_BORD.md + CGV_SYSTEMEIO.txt (texte à
+  coller dans Systeme.io, généré depuis le .md — toujours modifier le .md
+  d'abord). Décisions : produit présenté comme entièrement prêt, Android ET
+  iPhone sans réserve (iOS terminé avant toute mise en vente) ; AUCUNE
+  mention de bêta ; aucun prix chiffré (prix = page de vente au jour de la
+  commande ; répartition boîtier / numérique sur la page de vente et dans
+  la confirmation de commande) ; clause générale « offres promotionnelles
+  et prix de lancement » (art. 6) ; PAS de prix barré au lancement, seulement
+  « prix de lancement » (art. L. 112-1-1 : prix de référence = plus bas prix
+  des 30 jours précédents) ; garantie commerciale 14 jours (art. 13, plus de
+  « satisfait ou remboursé ») = remboursement intégral si demande sous 14 j
+  après réception du boîtier + aucun module commencé À PARTIR DU MODULE 1
+  (Module 0 exclu) vérifié via formation_events + boîtier retourné complet,
+  retour à la charge du client ; licence désactivée après remboursement.
+  Éléments entre crochets et points ouverts : BACKLOG B71 à B76.
+- Politique de confidentialité (app + formation web) : ajouter le NOUVEL
+  USAGE des données de progression (vérifier la garantie commerciale) —
+  BLOQUANT avant mise en vente (B72).
 - Éditeur : Pascal Chathuant, Entrepreneur individuel (EI) — Nom commercial
   Mécano à Bord — L'Anse des Îles, section Cluny, 97115 Sainte-Rose,
   Guadeloupe, France — Tél. +590 690 55 80 77 — Directeur de la
@@ -560,16 +580,25 @@ Actions), dashboard React hébergé sur Vercel — rien commencé.
   packaging, paiement unique par Pascal avec expédition directe à chaque
   client, transmission des adresses, colis neutres, douanes, garantie,
   CGV fournisseur. Agents européens : SL Elements GmbH (Allemagne),
-  info@vgate.pl (Pologne). Piste Amazon abandonnée (ruptures).
+  info@vgate.pl (Pologne).
+- Logistique (décision du 11/10/2026) : le boîtier est stocké et expédié par
+  Amazon (service d'expédition multicanal) depuis un entrepôt en France
+  métropolitaine. Le client n'a aucun contrat ni contact avec Amazon : il
+  reste client de Mécano à Bord uniquement. Remplace l'ancienne mention
+  « piste Amazon abandonnée (ruptures) » et l'expédition directe Vgate →
+  client. Couverture des zones NON confirmée (France métropolitaine, UE,
+  DOM, hors UE) → CGV : liste des zones desservies modifiable (B75).
   → Si besoin pour OBD-BLE : demander à Vgate la documentation BLE (UUID)
   de l'iCar Pro BLE 4.0 (demande neutre — RÈGLE 10).
-- CGV Systeme.io (hors dépôt) : 14 jours satisfait ou remboursé sur toute
-  l'offre ; 297 € = 40 € boîtier + 257 € numérique ; retours à la charge du
-  client ; médiateur de la consommation à choisir ; formulation « accès sans
-  limite de durée, pour toute la durée d'exploitation du service » plutôt
-  que « à vie » ; informations de compatibilité AVANT paiement ; zone et
-  délais de livraison selon la réponse de Vgate.
-- Bêta payante : 100 € au lieu de 297 €, groupes WhatsApp de 10 max, 6 mois.
+- CGV : rédigées le 11/10/2026, voir PRIORITÉ 1 (le « satisfait ou
+  remboursé » est remplacé par la garantie commerciale 14 jours sous
+  conditions). Prix public prévu : 297 € (répartition à afficher sur la page
+  de vente) ; retours à la charge du client ; médiateur de la consommation
+  à choisir ; « accès sans limite de durée, pour toute la durée
+  d'exploitation du service » plutôt que « à vie » ; compatibilité AVANT
+  paiement.
+- Offre de lancement : ses conditions (prix, durée, places) figurent
+  UNIQUEMENT sur la page de vente, jamais dans les CGV, sans prix barré.
 - Dépôt de marque INPI (classes 9 et 41) + e-Soleau : différé.
 - ⚠️ Keystore + key.properties (mots de passe en clair) dans un dossier
   OneDrive synchronisé : décision de Pascal attendue (exclure de la synchro
@@ -624,7 +653,7 @@ OBD → visibles mais bloqués (jamais masqués).
 
 ```
 Mecano A Bord/
-├── CLAUDE.md                          ← CE FICHIER (V5.0)
+├── CLAUDE.md                          ← CE FICHIER (V5.1)
 ├── REMOTE_CONFIG.md                   ← kill switch
 ├── AUDIT_PRELANCEMENT_2026-07-28.md   ← audit le plus récent
 ├── AUDIT_MECANO_A_BORD_V1.md          ← historique (avril)
@@ -697,6 +726,6 @@ leur demander.
 
 ---
 
-*Fin du fichier CLAUDE.md — Version 5.0 — 30/09/2026*
+*Fin du fichier CLAUDE.md — Version 5.1 — 11/10/2026*
 *© Mécano à Bord — Pascal Chathuant — Guadeloupe*
 *Ce fichier est la mémoire permanente de Claude Code.*

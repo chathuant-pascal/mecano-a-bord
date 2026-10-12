@@ -6,6 +6,21 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-11 — Conditions générales de vente (CGV) et décisions commerciales
+
+- **CGV rédigées** (version définitive, en relecture par Pascal) : nouveau dossier `docs-projet/juridique/` avec `CGV_MECANO_A_BORD.md` (référence, 23 articles + formulaire de rétractation + encadrés obligatoires sur les garanties) et `CGV_SYSTEMEIO.txt` (même texte, sans mise en forme, à coller dans Systeme.io ; généré depuis le .md). Comparées aux mentions légales et aux politiques de confidentialité existantes : les écarts relevés (e-mail, données d'achat, nouvel usage des données de progression…) sont reportés dans B72.
+- **Décisions de Pascal** :
+  - **Logistique** : le boîtier est stocké et expédié par **Amazon (expédition multicanal)** depuis un entrepôt en France métropolitaine ; le client reste client de Mécano à Bord uniquement. La couverture (France métropolitaine, UE, DOM, hors UE) n'est pas confirmée → les CGV renvoient à une **liste des zones desservies** modifiable, publiée sur la page de vente.
+  - **CGV définitives** pour un produit entièrement prêt : Android ET iPhone sans réserve (la compatibilité iPhone sera terminée avant toute mise en vente), **aucune mention de bêta**, aucun prix chiffré (prix et répartition boîtier / numérique sur la page de vente et dans la confirmation de commande), clause générale sur les offres promotionnelles et le prix de lancement, **pas de prix barré** au lancement.
+  - **Garantie 14 jours** : le « satisfait ou remboursé » est remplacé par une garantie commerciale de remboursement intégral, valable si la demande arrive dans les 14 jours suivant la réception du boîtier, si **aucun module n'a été commencé à partir du Module 1** (le Module 0 d'introduction est exclu ; vérification transparente via `formation_events`) et si le boîtier est retourné complet, frais de retour à la charge du client. Code de licence désactivé après remboursement. Tableau comparatif rétractation / garantie commerciale / garantie légale (art. 14.4).
+  - **E-mail client unique** confirmé : `mecanoabord@gmail.com` (utilisé partout dans les CGV ; l'app affiche encore `contact@mecanoabord.fr` dans 3 fichiers, à corriger dans le chantier « CONFORMITÉ »).
+- **Constats** : la licence est liée à **un seul téléphone** (UID anonyme), pas à un compte → CGV « un code = un téléphone à la fois, transfert gratuit sur demande ». Le suivi `module_started` n'est enregistré que depuis l'app (pas depuis un navigateur ni hors connexion).
+- **Backlog** : nouvelle section 10 « Juridique et vente », B71 à B76 (dont B72 **bloquant avant mise en vente** : annoncer dans la politique de confidentialité le nouvel usage des données de progression).
+- **CLAUDE.md** : version 5.1 (PRIORITÉ 1 et section Commercial mises à jour).
+- **Code de l'app** : non modifié. **Tests** : non concernés (documents uniquement).
+
+---
+
 ## 2026-10-04 — Rangement Git (partie 1) et validation du Lot 3 + tutoriels sur le Samsung
 
 - **Inventaire** : le projet compte **deux dépôts Git** — `mecano-a-bord` (docs + formation-web, racine) et `mecano-a-bord-app` (application Flutter, dossier `mecano_a_bord/`, exclu du premier). La liste « travail non commité » de CLAUDE.md V5 était périmée : presque tous les chantiers cités étaient déjà commités et poussés. Section remplacée dans CLAUDE.md par un état Git à jour (deux dépôts, déjà poussé / reste à régulariser).

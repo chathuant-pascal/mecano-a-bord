@@ -1,0 +1,467 @@
+<!-- NOTE-PASCAL-DEBUT -->
+> Texte définitif, à publier une fois les éléments entre crochets `[...]` complétés.
+> Relecture par un professionnel du droit recommandée avant la mise en vente.
+<!-- NOTE-PASCAL-FIN -->
+
+# Conditions Générales de Vente — Mécano à Bord
+
+Version en vigueur au [DATE D'ENTRÉE EN VIGUEUR]
+
+## Vendeur
+
+Les présentes conditions générales de vente (ci-après « CGV ») sont proposées par :
+
+- **Pascal Chathuant, Entrepreneur individuel (EI)** — régime de la micro-entreprise
+- Nom commercial : **Mécano à Bord**
+- Adresse : L'Anse des Îles, section Cluny, 97115 Sainte-Rose, Guadeloupe, France
+- SIREN : 531 007 128 — SIRET : [SIRET]
+- [MENTION TVA]
+- E-mail (service client) : mecanoabord@gmail.com
+- Téléphone : +590 690 55 80 77
+- Site de vente : mecanoabord.systeme.io — Formation : mecanoabord.fr
+
+Ci-après « Mécano à Bord » ou « nous ».
+
+---
+
+## Article 1 — Objet et champ d'application
+
+1.1. Les présentes CGV s'appliquent à toute commande de l'offre Mécano à Bord passée en ligne par un consommateur, c'est-à-dire une personne physique majeure agissant à des fins qui n'entrent pas dans le cadre de son activité professionnelle (ci-après « vous » ou « le Client »).
+
+1.2. Elles définissent vos droits et les nôtres. Vous devez les lire et les accepter avant de payer, en cochant la case prévue à cet effet sur la page de commande. Les CGV applicables sont celles en vigueur au jour de votre commande.
+
+1.3. L'utilisation de l'application est également encadrée par les Mentions légales et Conditions d'utilisation consultables dans l'application (Réglages). En cas de contradiction, les présentes CGV prévalent pour tout ce qui concerne la vente.
+
+---
+
+## Article 2 — Définitions
+
+- **Offre** : l'ensemble vendu en une seule commande, décrit à l'article 3.
+- **Boîtier** : le boîtier de diagnostic OBD Bluetooth livré avec l'Offre.
+- **Application** : l'application mobile Mécano à Bord.
+- **Formation** : la formation en ligne « La Méthode Sans Stress Auto », accessible sur mecanoabord.fr.
+- **Contenus numériques** : l'Application et la Formation, fournis sans support matériel.
+- **Code de licence** : le code personnel au format MAB-XXXX-XXXX-XXXX qui donne accès aux Contenus numériques.
+- **Prestataire logistique** : la société qui stocke et expédie le Boîtier pour le compte de Mécano à Bord.
+
+---
+
+## Article 3 — Description de l'Offre
+
+3.1. L'Offre est un ensemble unique comprenant :
+
+1. **un accès à la Formation** en ligne « La Méthode Sans Stress Auto » ;
+2. **un accès à l'Application** Mécano à Bord (accompagnement à l'entretien et surveillance du moteur pendant la conduite, carnet d'entretien, boîte à gants numérique, assistant) ;
+3. **un Boîtier** OBD Bluetooth, livré à l'adresse que vous indiquez.
+
+3.2. Les caractéristiques essentielles de l'Offre sont présentées sur la page de vente avant la commande. Les photos et visuels sont indicatifs ; le Boîtier livré peut différer légèrement en apparence (couleur, logo, emballage) sans que ses fonctions soient modifiées.
+
+3.3. **Assistant IA.** L'assistant intégré peut fonctionner avec un service d'intelligence artificielle tiers (par exemple ChatGPT, Claude ou Gemini) au moyen de votre propre clé personnelle. Ce service tiers n'est pas inclus dans le prix de l'Offre ; il est soumis aux conditions et éventuels tarifs de son éditeur.
+
+---
+
+## Article 4 — Compatibilité : à vérifier avant d'acheter
+
+Avant de commander, vérifiez que votre téléphone et votre véhicule sont compatibles. Ces informations figurent aussi sur la page de vente.
+
+- **Téléphone** : smartphone Android 9 ou plus récent, ou iPhone équipé d'iOS [VERSION MINIMALE D'IOS] ou plus récent, avec Bluetooth.
+- **Véhicule** : véhicule équipé d'une prise de diagnostic OBD2. En Europe, en règle générale : véhicules essence mis en circulation à partir de 2001 et diesel à partir de 2004 ; aux États-Unis, à partir de 1996.
+- **Véhicules 100 % électriques** : la surveillance du moteur n'est pas disponible.
+- **Connexion internet** : nécessaire pour activer votre Code de licence et pour suivre la Formation.
+- Le Boîtier fourni est le seul garanti compatible avec l'Application. Un autre boîtier compatible ELM327 peut fonctionner, sans garantie de notre part.
+
+Mécano à Bord ne remplace pas un professionnel de l'automobile (voir article 17).
+
+---
+
+## Article 5 — Prix
+
+5.1. Le prix de l'Offre est **celui affiché sur la page de vente au jour de votre commande** [MENTION TVA]. Il est payable en une seule fois.
+
+5.2. **Répartition du prix.** Le prix de l'Offre se répartit entre une part correspondant au Boîtier et une part correspondant aux Contenus numériques. Cette répartition est indiquée sur la page de vente et rappelée dans l'e-mail de confirmation de commande. Elle sert notamment au calcul du remboursement en cas de rétractation (article 12).
+
+5.3. Frais de livraison du Boîtier : [FRAIS DE LIVRAISON — « inclus dans le prix » ou « selon la zone »], tels qu'indiqués dans la liste des zones desservies (article 11.2). Le montant total à payer est indiqué clairement avant la validation de la commande.
+
+5.4. Une baisse ou une hausse ultérieure du prix, y compris à l'occasion d'une offre promotionnelle (article 6), n'a aucun effet sur une commande déjà passée.
+
+5.5. Les éventuels frais de douane, taxes d'importation ou octroi de mer applicables à certaines zones de livraison sont [À PRÉCISER : à la charge du Client / pris en charge par Mécano à Bord] ; ils sont indiqués pour chaque zone dans la liste des zones desservies (article 11.2) et vous sont signalés avant la commande.
+
+---
+
+## Article 6 — Offres promotionnelles et prix de lancement
+
+6.1. Mécano à Bord peut proposer ponctuellement des offres promotionnelles, notamment un prix de lancement, valables pour une durée limitée et, le cas échéant, pour un nombre limité de commandes.
+
+6.2. Le prix, la durée de validité, le nombre éventuel de places et les conditions de chaque offre promotionnelle sont indiqués clairement sur la page de vente, avant la commande.
+
+6.3. Une offre promotionnelle s'applique uniquement aux commandes passées pendant sa durée de validité et, le cas échéant, dans la limite des places annoncées. Sauf mention contraire sur la page de vente, les offres promotionnelles ne sont pas cumulables entre elles.
+
+6.4. Sauf mention contraire expresse sur la page de vente, une commande passée à un prix promotionnel donne droit à la même Offre et aux mêmes droits qu'une commande au prix normal : contenu de l'Offre, durée d'accès, droit de rétractation, garantie commerciale et garanties légales.
+
+6.5. Lorsqu'une réduction de prix est annoncée, le prix de référence indiqué est le prix le plus bas pratiqué par Mécano à Bord au cours des 30 jours précédant l'application de la réduction (article L. 112-1-1 du Code de la consommation).
+
+---
+
+## Article 7 — Commande
+
+7.1. La commande se passe en ligne sur la page de vente Mécano à Bord (plateforme Systeme.io). Vous :
+
+1. renseignez vos coordonnées (nom, prénom, adresse e-mail, adresse de livraison, téléphone) ;
+2. vérifiez le récapitulatif (contenu, prix total, frais éventuels) et pouvez corriger vos informations ;
+3. cochez la case d'acceptation des présentes CGV ;
+4. cochez, si vous le souhaitez, la case d'accès immédiat aux Contenus numériques (article 12.4) ;
+5. validez en cliquant sur le bouton « Commander avec obligation de paiement » (ou formule équivalente sans ambiguïté), puis payez.
+
+7.2. Le contrat est conclu dès la confirmation du paiement. Vous recevez alors par e-mail une confirmation de commande qui reprend les présentes CGV, le récapitulatif de la commande et, le cas échéant, la confirmation de votre accord pour l'accès immédiat et de votre renonciation au droit de rétractation pour les Contenus numériques.
+
+7.3. Mécano à Bord peut refuser une commande en cas de litige antérieur de paiement avec le Client ou de commande manifestement anormale.
+
+---
+
+## Article 8 — Paiement
+
+8.1. Le paiement est exigible immédiatement, en une seule fois, au moment de la commande, par [MOYENS DE PAIEMENT — ex. carte bancaire, PayPal] via les prestataires de paiement sécurisés proposés par Systeme.io.
+
+8.2. Mécano à Bord n'a jamais accès à vos coordonnées bancaires complètes.
+
+8.3. En cas de refus ou d'annulation du paiement, la commande est annulée et aucun accès ni envoi n'a lieu.
+
+8.4. Un justificatif de paiement vous est adressé par e-mail.
+
+---
+
+## Article 9 — Accès aux Contenus numériques (Code de licence)
+
+9.1. Après le paiement, vous recevez par e-mail votre **Code de licence** personnel (MAB-XXXX-XXXX-XXXX), au plus tard [DÉLAI — ex. 24 heures], sauf si vous avez choisi de ne pas bénéficier de l'accès immédiat (article 12.4).
+
+9.2. Vous installez l'Application gratuitement depuis Google Play (Android) ou l'App Store (iPhone), puis vous saisissez votre Code de licence. Il donne accès à l'Application et à la Formation.
+
+9.3. **Un Code de licence = une personne = un téléphone à la fois.** Le Code de licence est personnel et rattaché à l'adresse e-mail utilisée lors de la commande. Il s'active sur un seul téléphone à la fois. **En cas de changement, de perte ou de réinitialisation de votre téléphone, il vous suffit de nous écrire** : nous transférons gratuitement votre accès sur votre nouveau téléphone, dans un délai raisonnable.
+
+9.4. Le Code de licence ne doit être ni partagé, ni revendu, ni publié. En cas d'utilisation frauduleuse manifeste (partage public, revente), Mécano à Bord peut suspendre le Code de licence après vous avoir prévenu(e) par e-mail et invité(e) à vous expliquer dans un délai de 15 jours.
+
+9.5. Si vous ne recevez pas votre Code de licence, vérifiez vos courriers indésirables puis écrivez à mecanoabord@gmail.com.
+
+---
+
+## Article 10 — Durée de l'accès : ce que signifie « accès sans limite de durée »
+
+10.1. L'Offre est payée **une seule fois**. Il n'y a **aucun abonnement**, aucun renouvellement et aucun paiement supplémentaire pour continuer à utiliser l'Application et la Formation.
+
+10.2. Votre accès est accordé **sans limite de durée, pour toute la durée d'exploitation du service Mécano à Bord**, c'est-à-dire tant que Mécano à Bord (ou toute personne qui lui succéderait) continue de diffuser l'Application et la Formation. Les termes « à vie » ou « accès illimité » éventuellement utilisés dans nos supports commerciaux ont exactement ce sens : ils désignent la durée de vie du service, et non la vie du Client ni celle de son véhicule.
+
+10.3. **Engagement de durée minimale.** Mécano à Bord s'engage à maintenir le service pendant au moins [DURÉE MINIMALE D'EXPLOITATION — ex. 5 ans] à compter de votre commande.
+
+10.4. **Si le service devait s'arrêter**, Mécano à Bord s'engage à :
+- vous prévenir par e-mail au moins [PRÉAVIS — ex. 6 mois] à l'avance ;
+- vous permettre, avant l'arrêt, de récupérer les données que vous avez saisies (carnet d'entretien, documents de la boîte à gants), qui sont enregistrées sur votre téléphone ;
+- si l'arrêt intervient avant la fin de la durée minimale de l'article 10.3 : [MODALITÉ À DÉCIDER — ex. remboursement de la part numérique au prorata de la durée restante].
+
+10.5. Le Boîtier vous appartient définitivement dès la livraison, quelle que soit la durée du service.
+
+---
+
+## Article 11 — Livraison du Boîtier
+
+11.1. **Qui livre ?** Le Boîtier est stocké et expédié pour le compte de Mécano à Bord par un Prestataire logistique, depuis un entrepôt situé en France métropolitaine. Votre seul interlocuteur et cocontractant est Mécano à Bord : vous n'avez aucun contrat avec le Prestataire logistique et n'avez pas à le contacter. Pour toute question, écrivez à mecanoabord@gmail.com.
+
+11.2. **Zones de livraison.**
+- Le Boîtier est livré uniquement dans les zones figurant sur la **liste des zones desservies**, publiée sur la page de vente et consultable avant toute commande : [ZONES DE LIVRAISON — emplacement de la liste, ex. « rubrique Livraison de la page de vente »].
+- Cette liste peut évoluer (ajout ou retrait de zones). **La liste applicable à votre commande est celle en vigueur au jour où vous commandez** ; une modification ultérieure n'a aucun effet sur une commande déjà passée.
+- Pour chaque zone, la liste précise les frais de livraison éventuels, le délai de livraison indicatif et, le cas échéant, les frais de douane, taxes ou octroi de mer susceptibles de s'appliquer.
+- Si votre adresse de livraison ne figure pas dans une zone desservie, la commande ne peut pas être validée. Vous pouvez nous écrire à mecanoabord@gmail.com pour savoir si une livraison vers votre zone est prévue.
+
+11.3. **Délais** : le Boîtier est expédié sous [DÉLAI D'EXPÉDITION] à compter de la confirmation du paiement ; le délai de livraison indicatif dépend de la zone et figure dans la liste des zones desservies (article 11.2). En tout état de cause, le Boîtier vous est livré au plus tard **30 jours** après la commande.
+
+11.4. **Suivi** : un numéro de suivi du colis vous est communiqué par e-mail dès l'expédition.
+
+11.5. **Retard** : si le Boîtier n'est pas livré dans le délai prévu, vous pouvez nous demander par e-mail de le livrer dans un délai supplémentaire raisonnable. À défaut de livraison dans ce nouveau délai, vous pouvez annuler la commande et être remboursé(e) dans les 14 jours (articles L. 216-6 et L. 216-7 du Code de la consommation).
+
+11.6. **Colis perdu** : tant que vous n'avez pas reçu le Boîtier, les risques sont à la charge de Mécano à Bord (article L. 216-4 du Code de la consommation). Si le colis est perdu, nous vous envoyons un nouveau Boîtier sans frais, ou vous remboursons si vous le préférez.
+
+11.7. **Colis endommagé** : si le colis arrive abîmé, nous vous conseillons de le signaler au livreur au moment de la remise et de prendre une photo. Dans tous les cas, prévenez-nous à mecanoabord@gmail.com : un Boîtier endommagé à la livraison est remplacé sans frais. L'absence de réserve au livreur ne vous prive pas de vos droits.
+
+11.8. **Adresse erronée** : si le colis nous revient parce que l'adresse fournie est incomplète ou inexacte, un nouvel envoi peut vous être facturé au prix coûtant [MONTANT ou « au tarif d'expédition en vigueur »], après accord de votre part.
+
+---
+
+## Article 12 — Droit de rétractation (14 jours)
+
+12.1. **Principe.** Conformément aux articles L. 221-18 et suivants du Code de la consommation, vous disposez d'un délai de **14 jours** pour vous rétracter, sans avoir à donner de motif.
+
+12.2. **Point de départ.** L'Offre comprenant la livraison d'un bien, le délai court à compter du jour où **vous recevez le Boîtier** (ou où une personne que vous avez désignée le reçoit). Si le délai expire un samedi, un dimanche ou un jour férié, il est prolongé jusqu'au premier jour ouvrable suivant.
+
+12.3. **Le Boîtier.** Votre droit de rétractation s'applique toujours au Boîtier.
+
+12.4. **Les Contenus numériques : l'accès immédiat.** Les Contenus numériques sont fournis sans support matériel. La loi (article L. 221-28, 13° du Code de la consommation) prévoit que le droit de rétractation ne peut plus être exercé pour ces contenus lorsque leur fourniture a commencé **après votre accord préalable exprès et votre renoncement exprès** à votre droit de rétractation.
+
+Au moment de la commande, deux choix s'offrent à vous :
+
+- **Vous voulez accéder tout de suite à l'Application et à la Formation** : vous cochez la case « Je demande l'accès immédiat aux contenus numériques (application et formation) et je reconnais perdre mon droit de rétractation pour ces contenus dès l'activation de mon code de licence ». Votre accord vous est confirmé dans l'e-mail de confirmation de commande. Votre droit de rétractation **légal** ne porte plus alors que sur le Boîtier. *(Si aucun module de la Formation, à partir du Module 1, n'a été commencé, vous pouvez aussi demander le remboursement intégral de l'Offre au titre de la garantie commerciale de l'article 13.)*
+- **Vous ne cochez pas cette case** : votre droit de rétractation porte sur toute l'Offre, et votre Code de licence vous est envoyé **à la fin du délai de rétractation** de 14 jours.
+
+12.5. **Comment vous rétracter ?** Avant la fin du délai, envoyez-nous une déclaration claire de votre décision :
+- par e-mail à **mecanoabord@gmail.com** ;
+- ou par courrier à l'adresse indiquée en tête des présentes CGV.
+
+Vous pouvez utiliser le formulaire de l'Annexe 1, sans obligation. Nous accusons réception de votre demande par e-mail.
+
+12.6. **Retour du Boîtier.**
+- Après réception de votre demande, nous vous transmettons par e-mail l'**adresse de retour** (entrepôt du Prestataire logistique) [et, si disponible, une étiquette de retour].
+- Vous renvoyez le Boîtier au plus tard **14 jours** après nous avoir informé(e) de votre décision.
+- **Les frais de retour sont à votre charge.** À titre indicatif, un envoi de petit colis depuis la France métropolitaine coûte environ [MONTANT INDICATIF] ; depuis l'Outre-mer ou l'étranger, il peut être plus élevé.
+- Le Boîtier doit être renvoyé complet (boîtier et accessoires éventuels), de préférence dans son emballage. Nous vous conseillons un envoi avec suivi : la preuve de l'envoi vous incombe.
+- Votre responsabilité n'est engagée qu'en cas de dépréciation du Boîtier résultant de manipulations autres que celles nécessaires pour vérifier sa nature, ses caractéristiques et son bon fonctionnement (article L. 221-23). Brancher le Boîtier sur votre véhicule pour l'essayer est une manipulation normale.
+
+12.7. **Remboursement.** Mécano à Bord vous rembourse **dans les 14 jours** suivant la réception de votre demande de rétractation, en utilisant le même moyen de paiement que pour la commande (sauf accord de votre part pour un autre moyen, sans frais pour vous). Nous pouvons différer le remboursement jusqu'à la réception du Boîtier ou jusqu'à ce que vous nous fournissiez une preuve de son expédition, la date retenue étant celle du premier de ces faits.
+
+Le montant remboursé est :
+- **si votre rétractation porte sur toute l'Offre** (vous n'aviez pas demandé l'accès immédiat) : la totalité du prix payé, frais de livraison standard inclus ;
+- **si vous aviez demandé l'accès immédiat et renoncé à la rétractation pour les Contenus numériques** : la part du prix correspondant au Boîtier, telle qu'indiquée sur la page de vente et dans votre confirmation de commande (article 5.2), ainsi que les frais de livraison initiaux éventuellement payés. Un remboursement intégral de l'Offre reste possible aux conditions de la garantie commerciale (article 13).
+
+12.8. Après remboursement de la part numérique, le Code de licence est désactivé.
+
+---
+
+## Article 13 — Garantie commerciale de remboursement intégral (14 jours)
+
+13.1. **Ce que c'est.** En plus de vos droits légaux, Mécano à Bord vous accorde une garantie commerciale : **le remboursement intégral de l'Offre (Boîtier et Contenus numériques)**, sans avoir à donner de motif, lorsque **les trois conditions suivantes sont toutes réunies** :
+
+1. **Délai** : votre demande nous parvient dans les **14 jours suivant la réception du Boîtier** ;
+2. **Formation non commencée** : **aucun module de la Formation, à partir du Module 1, n'a été commencé** au moment de votre demande ;
+3. **Retour complet** : vous nous retournez le **Boîtier complet** (boîtier et accessoires éventuels, de préférence dans son emballage) selon la procédure de l'article 12.6, **les frais de retour restant à votre charge**.
+
+13.2. **Ce qu'est un « module commencé ».** Un module de la Formation est considéré comme commencé dès que sa page a été ouverte pour la première fois. **Le Module 0 (introduction) n'est pas pris en compte** : vous pouvez le consulter librement sans perdre le bénéfice de cette garantie. Seule l'ouverture d'un module à partir du Module 1 fait perdre la garantie. L'utilisation de l'Application en dehors de la Formation (surveillance du véhicule, carnet d'entretien, boîte à gants) n'empêche pas de bénéficier de cette garantie.
+
+13.3. **Comment nous vérifions, en toute transparence.** Pour vérifier la condition n° 2, Mécano à Bord consulte uniquement les données de suivi de progression dans la Formation associées à votre Code de licence (modules ouverts et terminés, avec leur date), décrites dans notre Politique de confidentialité (article 19). Aucune autre donnée n'est consultée à cette fin.
+- Si nous refusons la garantie pour ce motif, nous vous indiquons le ou les modules concernés et leur date d'ouverture, et vous communiquons sur simple demande les données sur lesquelles repose notre décision.
+- Si aucune donnée de progression n'a été enregistrée pour votre Code de licence, la condition n° 2 est considérée comme remplie.
+
+13.4. **Comment faire ?** Écrivez à mecanoabord@gmail.com en indiquant « Garantie 14 jours » et l'adresse e-mail utilisée lors de votre commande. Nous vous confirmons par e-mail si les conditions sont réunies et vous transmettons l'adresse de retour du Boîtier.
+
+13.5. **Remboursement.** Il est effectué dans les **14 jours** suivant la réception du Boîtier en retour (ou de la preuve de son expédition), par le même moyen de paiement que pour la commande. Il comprend **la totalité des sommes payées** (prix de l'Offre et frais de livraison initiaux éventuels), à l'exception des frais de retour.
+
+13.6. **Désactivation du Code de licence.** Après le remboursement, votre Code de licence est désactivé : l'accès à l'Application et à la Formation prend fin.
+
+13.7. **Ce qu'elle n'est pas.** Cette garantie est un engagement volontaire de Mécano à Bord. Elle ne remplace ni le droit de rétractation (article 12) ni les garanties légales (article 14), qui s'appliquent intégralement et indépendamment d'elle. Si les conditions de la garantie commerciale ne sont pas réunies, vous conservez votre droit de rétractation sur le Boîtier (et sur toute l'Offre si vous n'avez pas demandé l'accès immédiat, article 12.4), ainsi que vos garanties légales.
+
+---
+
+## Article 14 — Garanties légales
+
+### 14.1. Ce qui est garanti
+
+Indépendamment de toute garantie commerciale, Mécano à Bord est tenu :
+- de la **garantie légale de conformité** pour le Boîtier (articles L. 217-1 à L. 217-32 du Code de la consommation) ;
+- de la **garantie légale de conformité** pour les Contenus numériques (articles L. 224-25-1 et suivants du Code de la consommation) ;
+- de la **garantie des vices cachés** (articles 1641 à 1649 du Code civil).
+
+Les informations obligatoires sur ces garanties figurent dans l'**Annexe 2**, qui fait partie intégrante des présentes CGV.
+
+### 14.2. En pratique, pour le Boîtier
+
+- Si le Boîtier présente un défaut de conformité (il ne fonctionne pas, ne se connecte pas, ne correspond pas à sa description…), écrivez à mecanoabord@gmail.com en décrivant le problème (une photo ou une courte vidéo nous aide, sans être obligatoire).
+- Nous vous proposons d'abord une aide pour vérifier qu'il ne s'agit pas d'un simple problème de réglage. Ce diagnostic ne retarde pas vos droits.
+- Si le défaut est confirmé, le Boîtier est **réparé ou remplacé sans aucuns frais pour vous**, dans un délai de 30 jours. **Les frais de retour du Boîtier défectueux sont à la charge de Mécano à Bord** : nous vous transmettons une étiquette de retour prépayée ou vous remboursons vos frais d'envoi sur justificatif.
+- Mécano à Bord peut, à sa seule discrétion, **vous envoyer un Boîtier de remplacement sans vous demander de renvoyer l'ancien**.
+
+### 14.3. En pratique, pour les Contenus numériques
+
+Si l'Application ou la Formation ne fonctionne pas conformément à sa description, contactez-nous : nous procédons à la mise en conformité (correction, mise à jour) dans un délai raisonnable et sans frais. À défaut, vous disposez des droits rappelés à l'Annexe 2 (réduction du prix ou résolution du contrat).
+
+Mécano à Bord fournit les mises à jour nécessaires au maintien de la conformité des Contenus numériques pendant toute la durée de leur fourniture (article 10). Si vous n'installez pas une mise à jour qui vous a été proposée et signalée comme nécessaire, nous ne sommes pas responsables d'un défaut qui résulterait uniquement de cette absence de mise à jour.
+
+### 14.4. Rétractation, garantie commerciale, garantie légale : trois cas distincts
+
+| | Rétractation (art. 12) | Garantie commerciale 14 jours (art. 13) | Garantie légale pour défaut (art. 14) |
+|---|---|---|---|
+| Nature | Droit prévu par la loi | Engagement volontaire de Mécano à Bord | Droit prévu par la loi |
+| Délai | 14 jours après réception du Boîtier | 14 jours après réception du Boîtier | 2 ans (Boîtier) / toute la durée de fourniture (Contenus numériques) |
+| Motif à donner | Aucun | Aucun | Un défaut du produit |
+| Conditions | Aucune | Aucun module de la Formation commencé à partir du Module 1 + Boîtier retourné complet | Défaut de conformité ou vice caché |
+| Ce qui est remboursé | Le Boîtier (ou toute l'Offre si vous n'avez pas demandé l'accès immédiat) | La totalité des sommes payées | Réparation ou remplacement en priorité ; remboursement dans les cas prévus par la loi |
+| Frais de retour | À votre charge | À votre charge | À la charge de Mécano à Bord |
+| Code de licence | Désactivé si la part numérique est remboursée | Désactivé | Conservé (sauf résolution du contrat) |
+
+---
+
+## Article 15 — Service client
+
+15.1. Le service client est assuré **uniquement par Mécano à Bord**, par e-mail à **mecanoabord@gmail.com**. Nous répondons en principe sous [DÉLAI DE RÉPONSE — ex. 2 jours ouvrés].
+
+15.2. Pour toute question, réclamation, demande de rétractation, de remboursement ou de garantie, adressez-vous à Mécano à Bord et non au Prestataire logistique, à la plateforme de vente ou aux magasins d'applications (Google Play, App Store).
+
+15.3. L'Application comporte également un formulaire de retour (Réglages) pour signaler un problème.
+
+---
+
+## Article 16 — Disponibilité, mises à jour et évolution du service
+
+16.1. Mécano à Bord met tout en œuvre pour que l'Application et la Formation soient accessibles en permanence. L'accès peut toutefois être interrompu temporairement pour maintenance, mise à jour, ou en raison d'une indisponibilité des services techniques utilisés (hébergement, réseau, magasins d'applications).
+
+16.2. **Suspension temporaire d'une fonction.** Pour protéger les utilisateurs, Mécano à Bord peut suspendre temporairement à distance une fonction de l'Application (par exemple si un problème est détecté), le temps de la corriger. Cette suspension est limitée au temps nécessaire.
+
+16.3. **Mises à jour.** L'Application et la Formation évoluent (corrections, améliorations, nouveaux contenus). Les mises à jour sont incluses dans le prix, sans frais. Une évolution ne peut pas supprimer ni dégrader durablement les fonctions essentielles décrites à l'article 3 et sur la page de vente au jour de votre commande. Si une modification devait avoir un impact négatif plus que mineur sur votre usage, vous en seriez informé(e) à l'avance et disposeriez des droits prévus à l'article L. 224-25-25 du Code de la consommation.
+
+16.4. Le fonctionnement de l'Application suppose que votre téléphone reste compatible (article 4). Les évolutions des systèmes Android et iOS peuvent, à long terme, rendre un ancien téléphone incompatible ; nous vous en informerions alors.
+
+---
+
+## Article 17 — Utilisation et responsabilité
+
+17.1. **Ce que fait Mécano à Bord.** L'Application surveille certaines informations de votre véhicule et vous accompagne dans son entretien. Elle fournit des informations **indicatives et pédagogiques**. Elle **ne remplace pas** un professionnel de l'automobile, un diagnostic réalisé par un garagiste, l'entretien prévu par le constructeur, ni les contrôles techniques obligatoires.
+
+17.2. **Vos engagements.** Vous vous engagez à :
+- ne pas manipuler votre téléphone en conduisant et à rester attentif(ve) à la route en toutes circonstances ;
+- installer le Boîtier et utiliser l'Application conformément aux indications fournies ;
+- faire vérifier votre véhicule par un professionnel en cas de doute ou d'alerte.
+
+17.3. **Responsabilité de Mécano à Bord.** Mécano à Bord est responsable de la bonne exécution du contrat conformément à la loi. Sa responsabilité ne peut pas être engagée lorsque le dommage résulte :
+- d'une utilisation non conforme aux présentes CGV ou aux indications fournies ;
+- de votre fait ou de celui d'un tiers ;
+- d'un cas de force majeure ;
+- d'un problème mécanique du véhicule existant indépendamment de l'utilisation de l'Offre ;
+- d'un service tiers que vous avez choisi d'utiliser (par exemple un assistant d'intelligence artificielle tiers).
+
+17.4. Aucune clause des présentes CGV ne limite vos droits de consommateur ni la responsabilité de Mécano à Bord au-delà de ce que la loi autorise.
+
+---
+
+## Article 18 — Propriété intellectuelle
+
+L'Application, la Formation et leurs contenus (textes, vidéos, images, logos, code) sont protégés par le droit d'auteur (articles L. 111-1 et suivants du Code de la propriété intellectuelle). Votre achat vous donne un droit d'utilisation **personnel, non exclusif et non transférable**, pour un usage privé. Toute reproduction, diffusion, revente ou mise à disposition de tiers est interdite sans autorisation écrite de Mécano à Bord.
+
+---
+
+## Article 19 — Données personnelles
+
+19.1. Les données nécessaires à votre commande (nom, prénom, adresse e-mail, adresse de livraison, téléphone, informations de paiement) sont traitées par Mécano à Bord pour gérer la commande, la livraison, le Code de licence, le service client et nos obligations comptables.
+
+19.2. Elles sont transmises uniquement aux prestataires nécessaires à l'exécution de la commande : la plateforme de vente et de paiement (Systeme.io et ses prestataires de paiement) et le Prestataire logistique (nom, adresse et téléphone de livraison uniquement).
+
+19.3. Le détail des données collectées, des finalités, des durées de conservation, des hébergeurs et de vos droits (accès, rectification, effacement, limitation, opposition, portabilité, réclamation auprès de la CNIL) figure dans notre **Politique de confidentialité**, accessible dans l'Application (Réglages) et sur mecanoabord.fr. Pour exercer vos droits : mecanoabord@gmail.com.
+
+19.4. Les données de progression dans la Formation associées à votre Code de licence peuvent être consultées par Mécano à Bord dans le seul but de vérifier qu'aucun module, à partir du Module 1, n'a été commencé (garantie commerciale, articles 13.2 et 13.3). Cette utilisation est décrite dans la Politique de confidentialité.
+
+---
+
+## Article 20 — Archivage et preuve
+
+Le contrat étant d'un montant supérieur à 120 €, Mécano à Bord conserve l'écrit qui le constate pendant **10 ans** à compter de la livraison du Boîtier et vous en garantit l'accès à tout moment, sur simple demande à mecanoabord@gmail.com (articles L. 213-1 et D. 213-1 du Code de la consommation). L'e-mail de confirmation de commande vous est également adressé sur support durable.
+
+---
+
+## Article 21 — Réclamations et médiation
+
+21.1. Pour toute réclamation, contactez d'abord le service client (article 15). Nous recherchons toujours une solution amiable.
+
+21.2. **Médiation de la consommation.** Si votre réclamation écrite n'a pas abouti, vous pouvez recourir gratuitement au médiateur de la consommation dont relève Mécano à Bord :
+
+[MÉDIATEUR — nom, adresse postale, site internet]
+
+Vous devez avoir tenté de résoudre le litige directement avec nous par une réclamation écrite au préalable, et saisir le médiateur dans un délai d'un an à compter de cette réclamation (articles L. 611-1 et suivants et L. 612-1 du Code de la consommation).
+
+---
+
+## Article 22 — Droit applicable, langue et juridiction
+
+22.1. Les présentes CGV sont rédigées en **langue française**, qui fait foi.
+
+22.2. Elles sont soumises au **droit français**. Si vous résidez dans un autre pays, vous conservez le bénéfice des dispositions impératives protectrices des consommateurs de votre pays de résidence.
+
+22.3. À défaut d'accord amiable ou de médiation, vous pouvez saisir, à votre choix, la juridiction du lieu où vous demeuriez au moment de la conclusion du contrat ou de la survenance du fait dommageable, ou toute autre juridiction compétente selon la loi (article R. 631-3 du Code de la consommation).
+
+---
+
+## Article 23 — Modification des CGV
+
+Mécano à Bord peut modifier les présentes CGV. Les CGV applicables à votre commande sont celles acceptées le jour de celle-ci ; une modification ultérieure ne s'applique pas à votre commande, sauf si elle vous est plus favorable.
+
+---
+
+## Annexe 1 — Formulaire type de rétractation
+
+*(Veuillez compléter et renvoyer le présent formulaire uniquement si vous souhaitez vous rétracter du contrat.)*
+
+À l'attention de :
+Pascal Chathuant EI — Mécano à Bord
+L'Anse des Îles, section Cluny, 97115 Sainte-Rose, Guadeloupe, France
+E-mail : mecanoabord@gmail.com
+
+Je/nous (*) vous notifie/notifions (*) par la présente ma/notre (*) rétractation du contrat portant sur la vente du bien (*) / pour la fourniture du contenu numérique (*) ci-dessous :
+
+- Offre Mécano à Bord — commandée le (*) / reçue le (*) : ………………………
+- Adresse e-mail utilisée lors de la commande : ………………………
+- Nom du (des) consommateur(s) : ………………………
+- Adresse du (des) consommateur(s) : ………………………
+- Signature du (des) consommateur(s) (uniquement en cas de notification du présent formulaire sur papier) : ………………………
+- Date : ………………………
+
+(*) Rayez la mention inutile.
+
+---
+
+## Annexe 2 — Informations obligatoires sur les garanties légales
+
+<!-- NOTE-PASCAL-DEBUT -->
+> ⚠️ **Note pour Pascal / le relecteur** : le contenu de ces encadrés est imposé par le décret n° 2022-946 du 29 juin 2022 (annexes à l'article D. 211-2 du Code de la consommation). Le texte ci-dessous reprend fidèlement leur contenu, mais **il doit être comparé mot pour mot au texte officiel sur Légifrance avant publication**. Un troisième encadré officiel existe pour les « biens comportant des éléments numériques » : le relecteur dira s'il est plus adapté au Boîtier.
+<!-- NOTE-PASCAL-FIN -->
+
+### A. Garantie légale de conformité — Boîtier (bien)
+
+Le consommateur dispose d'un délai de deux ans à compter de la délivrance du bien pour obtenir la mise en œuvre de la garantie légale de conformité en cas d'apparition d'un défaut de conformité. Durant ce délai, le consommateur n'est tenu d'établir que l'existence du défaut de conformité et non la date d'apparition de celui-ci.
+
+Lorsque le contrat de vente du bien prévoit la fourniture d'un contenu numérique ou d'un service numérique de manière continue pendant une durée supérieure à deux ans, la garantie légale est applicable à ce contenu numérique ou ce service numérique tout au long de la période de fourniture prévue. Durant ce délai, le consommateur n'est tenu d'établir que l'existence du défaut de conformité affectant le contenu numérique ou le service numérique et non la date d'apparition de celui-ci.
+
+La garantie légale de conformité emporte obligation pour le professionnel, le cas échéant, de fournir toutes les mises à jour nécessaires au maintien de la conformité du bien.
+
+La garantie légale de conformité donne au consommateur droit à la réparation ou au remplacement du bien dans un délai de trente jours suivant sa demande, sans frais et sans inconvénient majeur pour lui.
+
+Si le bien est réparé dans le cadre de la garantie légale de conformité, le consommateur bénéficie d'une extension de six mois de la garantie initiale.
+
+Si le consommateur demande la réparation du bien, mais que le vendeur impose le remplacement, la garantie légale de conformité est renouvelée pour une période de deux ans à compter de la date de remplacement du bien.
+
+Le consommateur peut obtenir une réduction du prix d'achat en conservant le bien ou mettre fin au contrat en se faisant rembourser intégralement contre restitution du bien, si :
+1° Le professionnel refuse de réparer ou de remplacer le bien ;
+2° La réparation ou le remplacement du bien intervient après un délai de trente jours ;
+3° La réparation ou le remplacement du bien occasionne un inconvénient majeur pour le consommateur, notamment lorsque le consommateur supporte définitivement les frais de reprise ou d'enlèvement du bien non conforme, ou s'il supporte les frais d'installation du bien réparé ou de remplacement ;
+4° La non-conformité du bien persiste en dépit de la tentative de mise en conformité du vendeur restée infructueuse.
+
+Le consommateur a également droit à une réduction du prix du bien ou à la résolution du contrat lorsque le défaut de conformité est si grave qu'il justifie que la réduction du prix ou la résolution du contrat soit immédiate. Le consommateur n'est alors pas tenu de demander la réparation ou le remplacement du bien au préalable.
+
+Le consommateur n'a pas droit à la résolution de la vente si le défaut de conformité est mineur.
+
+Toute période d'immobilisation du bien en vue de sa réparation ou de son remplacement suspend la garantie qui restait à courir jusqu'à la délivrance du bien remis en état.
+
+Les droits mentionnés ci-dessus résultent de l'application des articles L. 217-1 à L. 217-32 du code de la consommation.
+
+Le vendeur qui fait obstacle de mauvaise foi à la mise en œuvre de la garantie légale de conformité encourt une amende civile d'un montant maximal de 300 000 euros, qui peut être porté jusqu'à 10 % du chiffre d'affaires moyen annuel (article L. 241-5 du code de la consommation).
+
+Le consommateur bénéficie également de la garantie légale des vices cachés en application des articles 1641 à 1649 du code civil, pendant une durée de deux ans à compter de la découverte du défaut. Cette garantie donne droit à une réduction de prix si le bien est conservé ou à un remboursement intégral contre restitution du bien.
+
+### B. Garantie légale de conformité — Contenus numériques (Application et Formation)
+
+Le consommateur dispose d'un délai de deux ans à compter de la fourniture du contenu numérique ou du service numérique pour obtenir la mise en œuvre de la garantie légale de conformité en cas d'apparition d'un défaut de conformité ; lorsque le contrat prévoit une fourniture continue du contenu ou du service numérique, la garantie s'applique pendant toute la durée de fourniture prévue. Durant ce délai, le consommateur n'est tenu d'établir que l'existence du défaut de conformité et non la date d'apparition de celui-ci.
+
+La garantie légale de conformité emporte obligation pour le professionnel de fournir toutes les mises à jour nécessaires au maintien de la conformité du contenu numérique ou du service numérique.
+
+La garantie légale de conformité donne au consommateur droit à la mise en conformité du contenu numérique ou du service numérique sans retard injustifié suivant sa demande, sans frais et sans inconvénient majeur pour lui.
+
+Le consommateur peut obtenir une réduction du prix en conservant le contenu numérique ou le service numérique, ou il peut mettre fin au contrat en se faisant rembourser intégralement contre renoncement au contenu numérique ou au service numérique, si :
+1° Le professionnel refuse de mettre le contenu numérique ou le service numérique en conformité ;
+2° La mise en conformité du contenu numérique ou du service numérique est retardée de manière injustifiée ;
+3° La mise en conformité du contenu numérique ou du service numérique ne peut intervenir sans frais imposés au consommateur ;
+4° La mise en conformité du contenu numérique ou du service numérique occasionne un inconvénient majeur pour le consommateur ;
+5° La non-conformité du contenu numérique ou du service numérique persiste en dépit de la tentative de mise en conformité du professionnel restée infructueuse.
+
+Le consommateur a également droit à une réduction du prix ou à la résolution du contrat lorsque le défaut de conformité est si grave qu'il justifie que la réduction du prix ou la résolution du contrat soit immédiate. Le consommateur n'est alors pas tenu de demander la mise en conformité du contenu numérique ou du service numérique au préalable.
+
+Le consommateur n'a pas droit à la résolution du contrat si le défaut de conformité est mineur.
+
+Les droits mentionnés ci-dessus résultent de l'application des articles L. 224-25-1 à L. 224-25-31 du code de la consommation.
+
+Le professionnel qui fait obstacle de mauvaise foi à la mise en œuvre de la garantie légale de conformité encourt une amende civile d'un montant maximal de 300 000 euros, qui peut être porté jusqu'à 10 % du chiffre d'affaires moyen annuel (article L. 242-18-1 du code de la consommation).
+
+---
+
+*Pascal Chathuant EI — Mécano à Bord — CGV version [NUMÉRO DE VERSION] du [DATE D'ENTRÉE EN VIGUEUR]*

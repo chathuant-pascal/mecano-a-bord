@@ -6,6 +6,65 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-04 — Rangement Git (partie 1) et validation du Lot 3 + tutoriels sur le Samsung
+
+- **Inventaire** : le projet compte **deux dépôts Git** — `mecano-a-bord` (docs + formation-web, racine) et `mecano-a-bord-app` (application Flutter, dossier `mecano_a_bord/`, exclu du premier). La liste « travail non commité » de CLAUDE.md V5 était périmée : presque tous les chantiers cités étaient déjà commités et poussés. Section remplacée dans CLAUDE.md par un état Git à jour (deux dépôts, déjà poussé / reste à régulariser).
+- **`flutter analyze`** : 2 avertissements corrigés (variable `_protocolDetectionDeviceName` jamais lue dans `obd_scan_screen.dart`, import inutile `cloud_firestore` dans `test/consent_service_test.dart`). Aucun changement visible. Commit `5d1aec3` (`mecano-a-bord-app`). Restent 44 remarques de niveau « info », non traitées.
+- **Règles Firestore du Lot 3** : règles publiées lues directement depuis Firebase et comparées au fichier `firestore.rules` du commit `939ba73` — **identiques** (y compris `rules_version = '2'` et le bloc `match /feedback`). Publication du 26/09 confirmée par Pascal dans la console.
+- **Tests sur le SM-A137F (par Pascal)** : version release installée par-dessus l'existante (`adb install -r`, données et licence conservées). Validés : retour en ligne et hors ligne, masquage téléphone/plaque dans Firestore, demande d'avis en fin de module, carte « Bien démarrer » avec visuel, écran des tutoriels (5 cartes « Bientôt disponible », aucune URL encore publiée dans Remote Config), politique de confidentialité (section 13). Non testé : retour en fin de surveillance OBD (10 min de conduite) ; iPhone (Firebase iOS absent).
+- **Push** : `mecano-a-bord-app` — branche `chantier-tutoriels-video` poussée, puis fusionnée en ligne droite dans `main` et poussée (`1b20d28..5d1aec3`). Branche conservée sur GitHub.
+- **Tests** : 350 → 350.
+- **Backlog** : ajout de B68 (masquage des numéros avec indicatif international) et B69 (taille de police en dur, `mab_feedback_sheet.dart:284`), priorité haute avant la bêta, non corrigés.
+- **CLAUDE.md, autres passages corrigés** : les 3 `Log.d()` de `MainActivity.kt` sont déjà protégés par `BuildConfig.DEBUG` (retirés des bloquants) ; `BLUETOOTH_SCAN` et `ACCESS_FINE_LOCATION` sont déjà absents du manifeste et devront être remis avec les bons flags dans le chantier OBD-BLE ; section Formation web nettoyée (Module Pneus, doublons vidéo du Module 2, coquille `bloc-regre-or` : déjà faits) ; « panne sèche » localisé ligne 2957.
+- **Archives** : `REFERENTIEL_FONCTIONNEL_INES.html` (avril 2026, périmé) déplacé et renommé en `docs-projet/archives/REFERENTIEL_FONCTIONNEL_INES_2026-04_obsolete.html`.
+- **Fin du rangement (dépôt principal)** :
+  - « panne sèche » (index.html ligne 2957, tableau de l'ordinateur de bord) remplacé par « avant de tomber à court de carburant » (Règle 2) ; une seule ligne modifiée, UTF-8 sans BOM conservé (Règle 7). Commit `439f7eb`. Plus aucun mot interdit dans les textes visibles (`zone-danger-bloc` est un nom de classe CSS, non affiché).
+  - Fichiers temporaires supprimés (jamais suivis) : `formation-web/fix_partie2.ps1` (déjà appliqué), `formation-web/tmp_commit_6071.txt` (copie aux accents abîmés).
+  - Stash du 29/04 : exporté puis effacé. Le premier export (`git stash show -p`) ne contenait pas les 12 images (logo, écrans de démarrage iOS et web) → second export complet avec `--binary` (`stash_2026-04-29_complet.patch`, 23 Mo), **vérifié identique au stash** (réappliqué sur `6f6c4fa` dans un index temporaire : même arbre `b6b0901`). Les deux fichiers restent en local, hors suivi Git.
+  - Image inutilisée « lire tes pneus comme un pro 2.png » déplacée dans `docs-projet/visuels-sources/` ; `.gitignore` : ce fichier précis (le dossier contient déjà un visuel suivi) + `docs-projet/archives/*.patch`. Commit `5e4df45`.
+  - Conservés volontairement : branche `backup-avant-reorganisation` ; branche `chantier-tutoriels-video` du dépôt app sur GitHub.
+
+---
+
+## 2026-09-30 — Tutoriels : visuel de la carte d'accueil
+
+- **Contexte** : Pascal a fourni un visuel « TUTORIELS » (SUV, téléphone en mode conduite, boîtier OBD) pour la carte « Bien démarrer » de l'accueil, qui n'affichait jusqu'ici qu'une icône (drapeau, puis lecture en version compacte).
+- **Image** : original PNG 1254 × 1254 (~2 Mo) converti en `assets/images/tutoriels/tutoriels_accueil.webp` (512 px, WebP qualité 85, ~50 Ko). Dossier déjà déclaré dans `pubspec.yaml`, aucune modification. L'original haute définition est rangé, nom inchangé, dans `docs-projet/visuels-sources/` (hors `assets/images/`, sinon embarqué dans l'app pour rien) ; recherche préalable : aucun fichier ne le référençait.
+- **`home_screen.dart`** : le visuel remplace l'icône sur les deux états de la carte (grande carte avec progression, coins arrondis ; ligne compacte « Revoir les tutoriels », même rendu 80 × 80 que les autres bandeaux). Nouvelle méthode `_buildTutorielsVisuel` : si le fichier manque, l'ancienne icône s'affiche à la place.
+- **Tests** : 350 → 350 (changement visuel uniquement) ; `flutter analyze` : aucune nouvelle remarque.
+- **Non vérifié visuellement** : rendu réel sur le SM-A137F (à contrôler par Pascal en même temps que les 5 tutoriels) ; iPhone non testable avant iOS-SETUP (WebP pris en charge nativement par Flutter sur les deux systèmes).
+- **Commit** : à faire séparément sur la branche `chantier-tutoriels-video`, après accord de Pascal.
+
+---
+
+## 2026-09-27 — Chantier « Accès aux tutoriels vidéo »
+
+- **Contexte** : 5 tutoriels vidéo en préparation (boîtier, surveillance, alerte, carnet d'entretien, boîte à gants), hébergés en YouTube non répertorié. Le seul accès existant était un bouton générique « Voir les tutoriels » (`help_contact_screen.dart`) ouvrant toute la chaîne via une URL probablement incorrecte (`youtube.com/mecanoabord` sans `@`, alors que le handle réel est `@mecanoabord`).
+- **Conception validée par Pascal** (audit puis design proposé avant tout code, voir échanges) : écran `TutorialsScreen` dédié (5 cartes miniature/titre/durée/« Vu »), carte permanente « Bien démarrer » sur l'accueil (jamais fermable ; grande carte avec progression tant que les 5 ne sont pas vus, puis ligne compacte « Revoir les tutoriels », toujours au même endroit), proposition en bottom sheet au tout premier lancement après activation de licence (uniquement si la vidéo 1 est publiée), 5 liens contextuels « Voir comment faire » répartis sur les écrans concernés, et redirection du bouton Aide & contact.
+- **Nouveaux fichiers** : `lib/services/tutorial_catalog.dart` (catalogue statique des 5 tutoriels), `lib/services/tutorial_progress_service.dart` (avancement local SharedPreferences, calqué sur `FormationProgress`), `lib/services/tutorial_visibility.dart` (règles de visibilité pures testables), `lib/services/tutorial_launcher.dart` (ouverture vidéo centralisée : vérification réseau + marquage « vu »), `lib/screens/tutorials_screen.dart`, `lib/widgets/mab_tutorial_link.dart` (lien réutilisé sur les 5 écrans), `lib/widgets/mab_tutorial_prompt_sheet.dart` (bottom sheet premier lancement, style `MabFeedbackSheet`).
+- **Fichiers modifiés** : `mab_features.dart` / `remote_feature_flags.dart` (11 nouvelles clés Remote Config), `home_screen.dart` (carte « Bien démarrer », rafraîchie au retour dans l'app via `WidgetsBindingObserver`), `license_code_entry_screen.dart` (déclenchement de la proposition premier lancement), `help_contact_screen.dart` (redirection + repli sur l'URL canonique de chaîne si `feature_tutoriels` est coupée), `obd_scan_screen.dart`, `surveillance_only_screen.dart` (2 liens, uniquement hors surveillance active), `glovebox_screen.dart` (onglets Carnet et Documents), `main.dart` (route `/tutoriels`), `pubspec.yaml`.
+- **Miniatures** : 5 captures fournies par Pascal, recompressées (Pillow, WebP qualité 85, redimensionnées à 480 px de large, format vertical conservé) : ~2,0–2,4 Mo → 58–94 Ko chacune. `Image.asset` avec `errorBuilder` → icône de repli si un fichier venait à manquer.
+- **Lecture vidéo** : ouverture externe (YouTube/navigateur, `url_launcher`), pas de lecteur intégré — cohérent avec le périmètre V1 strict et évite d'ajouter une dépendance WebView supplémentaire alors que le module WebView existant est encore « à ré-auditer » (Module 4). Message clair si aucun réseau détecté, jamais de tentative d'ouverture dans ce cas.
+- **Tests** : 326 → 350 (+24 : `tutorial_progress_service_test.dart`, `tutorial_visibility_test.dart`, extensions de `remote_feature_flags_test.dart`).
+- **Non vérifié visuellement** (pas d'émulateur/téléphone dans l'environnement d'exécution) : rendu réel des 5 cartes, de la carte d'accueil (grande puis compacte) et du bottom sheet premier lancement sur le SM-A137F de Pascal ; comportement réel d'ouverture YouTube depuis le téléphone.
+- **Commit** : `mecano-a-bord-app` `7ce6315` ; `mecano-a-bord` (ce commit).
+
+---
+
+## 2026-09-26 — Lot 3 (audit pré-lancement) : formulaires de retour utilisateur, confidentialité et mentions légales
+
+- **Contexte** : suite de l'audit pré-lancement (partie C : conception d'un formulaire de retour utilisateur).
+- **`FeedbackService`** (`lib/services/feedback_service.dart`) : envoi non bloquant (même principe que la leçon du correctif licence hors ligne — jamais d'`await` sur l'écriture Firestore côté utilisateur) vers une nouvelle collection Firestore `feedback` ; texte libre masqué avant envoi.
+- **Masquage des données sensibles partagé** : extraction de `lib/utils/mab_sensitive_data.dart` (licence, e-mail, VIN, plaques FR, téléphones, URL à paramètres), désormais utilisé à la fois par `MabCrashReporter` (Lot 1) et `FeedbackService` — une seule implémentation à maintenir, comportement inchangé côté Crashlytics (17 tests existants toujours verts).
+- **`FeedbackPromptPolicy`** : anti-sollicitation — jamais plus d'une fois par module de formation, et pour l'OBD seulement après un arrêt manuel d'au moins 10 minutes avec au moins 7 jours depuis la dernière demande.
+- **`MabFeedbackSheet`** : bottom sheet branché sur 3 points d'entrée (fin de module de formation, fin de session de surveillance OBD, bouton permanent dans Réglages), avec variante de message hors ligne (envoi en attente plutôt que ton d'erreur).
+- **Règles Firestore** : nouvelle règle `feedback` (`allow create` uniquement, validation des champs — type, note 1-5, tailles) déployée manuellement dans la Console Firebase et vérifiée contre le fichier local (`firestore.rules`).
+- **Politique de confidentialité et mentions légales** (`privacy_policy_screen.dart`, `mab_legal_mentions_body.dart`) : nouvelle section « Tes retours », section « Stockage des données » généralisée à trois cas (analytics, formation, retours) avec un seul paragraphe d'hébergement (Google/Firebase, Canada/Montréal ; données techniques éventuellement traitées aux États-Unis), bloc « Hébergement » des mentions légales mis à jour avec l'adresse GitHub (formation web) en plus de Google (app) — adresses vérifiées auprès des pages officielles de confidentialité de chaque société.
+- **Tests** : 285 → 326.
+- **Commit** : `mecano-a-bord-app` (à committer séparément du chantier tutoriels, sur la branche `chantier-tutoriels-video`, sans mélange — voir échanges).
+
+---
+
 ## 2026-09-25 — Correctif : licence bloquée indéfiniment hors ligne (bug présent depuis le module initial)
 
 - **Contexte** : pendant le test avion du Lot 2 (audit pré-lancement), Pascal a signalé un spinner de vérification de licence bloqué indéfiniment (« Vérification de ta licence... »), sans message d'erreur ni plantage, en relançant l'app hors ligne alors qu'une licence était déjà validée.

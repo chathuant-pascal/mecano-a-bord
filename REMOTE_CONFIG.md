@@ -10,7 +10,7 @@ Le code correspondant est dans :
 
 ## Liste des clés Remote Config
 
-À créer dans le projet Firebase `mecano-a-bord` (Firebase Console → Remote Config), toutes de type **Boolean** :
+À créer dans le projet Firebase `mecano-a-bord` (Firebase Console → Remote Config), de type **Boolean** (une clé texte s'ajoute plus bas) :
 
 | Clé Remote Config | Fonctionnalité couverte | Valeur par défaut (repli) |
 |---|---|---|
@@ -26,8 +26,50 @@ Le code correspondant est dans :
 | `feature_sante_vehicule` | Onglet Santé véhicule (Boîte à gants) | `true` |
 | `feature_mise_a_jour` | Vérification de mise à jour au démarrage de l'accueil | `true` |
 | `feature_rappels_admin` | **Réservé — aucune fonctionnalité correspondante n'est implémentée à ce jour.** Ce flag n'a actuellement aucun effet dans l'app. | `true` |
+| `feature_tutoriels` | Clé maîtresse des tutoriels vidéo (écran Tutoriels, carte d'accueil « Bien démarrer », tous les liens « Voir comment faire », proposition au premier lancement). Coupée : le bouton Aide & contact ouvre directement la chaîne YouTube au lieu de l'écran Tutoriels. | `true` |
 
 Si une clé n'existe pas encore dans la console Firebase (avant sa première création), l'app utilise automatiquement la valeur de repli codée dans `mab_features.dart` — aucun risque à ajouter les clés progressivement.
+
+---
+
+## Clé Remote Config de type texte (String)
+
+| Clé Remote Config | Type | Rôle | Valeur par défaut (repli) |
+|---|---|---|---|
+| `discord_invite_url` | **String** | URL d'invitation du serveur Discord « Mécano à Bord — Communauté ». Pilote l'affichage du bouton **« Rejoindre la communauté »** sur l'accueil. | `""` (chaîne vide) |
+
+Comportement :
+
+- Le bouton n'apparaît sur l'accueil **que si** l'élève a validé le **Module 6** de la formation **ET** que `discord_invite_url` contient une invitation Discord valide (`https://discord.gg/…` ou `https://discord.com/invite/…`).
+- Valeur vide, absente, illisible, non-HTTPS, ou hôte autre que Discord ⇒ bouton **totalement masqué** (jamais de lien cassé). C'est aussi le **kill switch** : vider la valeur et publier fait disparaître le bouton chez tout le monde (délai de propagation habituel, voir plus bas).
+- Pour publier l'URL : **Remote Config → Ajouter un paramètre → nom `discord_invite_url` → type `String` → coller l'URL d'invitation permanente du serveur → Publier les modifications.**
+- Générer une invitation **permanente** dans Discord (Paramètres du salon → Inviter → « Modifier le lien d'invitation » → Expiration : *Jamais*, Nombre max d'utilisations : *Illimité*).
+
+---
+
+## Tutoriels vidéo — clés URL et durée (String)
+
+10 clés, une paire (URL + durée) par tutoriel. Aucune n'est un flag on/off — c'est `feature_tutoriels` (tableau ci-dessus) qui coupe toute la fonctionnalité.
+
+| Clé Remote Config | Tutoriel | Valeur par défaut |
+|---|---|---|
+| `tutoriel_boitier_url` | 1. Brancher ton boîtier | `""` |
+| `tutoriel_boitier_duree` | 1. Brancher ton boîtier | `""` |
+| `tutoriel_surveillance_url` | 2. Surveiller ta voiture en roulant | `""` |
+| `tutoriel_surveillance_duree` | 2. Surveiller ta voiture en roulant | `""` |
+| `tutoriel_alerte_url` | 3. Quand l'app t'alerte | `""` |
+| `tutoriel_alerte_duree` | 3. Quand l'app t'alerte | `""` |
+| `tutoriel_entretien_url` | 4. Ton carnet d'entretien et tes rappels | `""` |
+| `tutoriel_entretien_duree` | 4. Ton carnet d'entretien et tes rappels | `""` |
+| `tutoriel_glovebox_url` | 5. Ta boîte à gants | `""` |
+| `tutoriel_glovebox_duree` | 5. Ta boîte à gants | `""` |
+
+Comportement :
+
+- `tutoriel_xxx_url` vide ⇒ la carte du tutoriel correspondant affiche **« Bientôt disponible »** dans l'écran Tutoriels et le lien contextuel « Voir comment faire » associé reste **masqué** ailleurs dans l'app (jamais de lien mort).
+- `tutoriel_xxx_duree` vide ⇒ aucune durée affichée sur la carte (le champ est purement indicatif, ex. `"1 min 30"`).
+- La proposition au premier lancement (juste après l'activation de la licence) ne s'affiche que si `tutoriel_boitier_url` est renseignée — sinon rien, la carte d'accueil « Bien démarrer » prend le relais seule.
+- Vidéos hébergées en **YouTube non répertorié** ; l'app les ouvre dans YouTube/le navigateur externe (pas de lecteur intégré) via `url_launcher` — mêmes principes que `discord_invite_url` ci-dessus (aucune tentative sans réseau détecté, message clair à la place).
 
 ---
 

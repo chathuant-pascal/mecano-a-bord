@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mécano à Bord — Référentiel Fonctionnel Complet</title>
+  <style>
+    :root {
+      --rouge: #CC0000;
+      --noir: #111111;
+      --noir2: #1a1a1a;
+      --carte: #242424;
+      --blanc: #FFFFFF;
+      --gris: #AAAAAA;
+      --gris2: #666666;
+      --bordure: #333333;
+      --vert: #4CAF50;
+      --orange: #FF9800;
+      --or: #C9A84C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Inter, system-ui, sans-serif;
+      background: var(--noir);
+      color: var(--blanc);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #1a0000 0%, #2a0000 50%, #1a0000 100%);
+      border-bottom: 3px solid var(--rouge);
+      padding: 40px 48px 32px;
+      text-align: center;
+    }
+    header .logo-badge {
+      display: inline-block;
+      background: var(--rouge);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--blanc);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header h1 span { color: var(--rouge); }
+    header .subtitle {
+      color: var(--gris);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    header .meta {
+      color: var(--gris2);
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ── LÉGENDE ── */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-ok    { background: rgba(76,175,80,0.2);  color: var(--vert);   border: 1px solid rgba(76,175,80,0.4); }
+    .badge-warn  { background: rgba(255,152,0,0.2);  color: var(--orange); border: 1px solid rgba(255,152,0,0.4); }
+    .badge-no    { background: rgba(150,150,150,0.15); color: #aaa;        border: 1px solid #444; }
+    .badge-crit  { background: rgba(204,0,0,0.2);    color: #ff6666;       border: 1px solid rgba(204,0,0,0.4); }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      border-left: 4px solid var(--rouge);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+    .toc h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--rouge);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+    .toc ol {
+      padding-left: 20px;
+      columns: 2;
+      column-gap: 32px;
+    }
+    .toc li {
+      margin-bottom: 6px;
+    }
+    .toc a {
+      color: var(--or);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .toc a:hover { text-decoration: underline; color: var(--blanc); }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 56px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--rouge);
+      margin-bottom: 28px;
+    }
+    .section-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--rouge);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--blanc);
+    }
+    .section-file {
+      font-size: 0.78rem;
+      color: var(--gris2);
+      font-family: 'Courier New', monospace;
+      background: rgba(255,255,255,0.06);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--or);
+      margin: 28px 0 14px;
+      padding-left: 12px;
+      border-left: 3px solid var(--or);
+    }
+    h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gris);
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    p {
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    /* ── FEATURE LIST ── */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: #ccc;
+      font-size: 0.93rem;
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list .icon { flex-shrink: 0; width: 22px; text-align: center; font-size: 1rem; }
+
+    /* ── TABLES ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 10px;
+      border: 1px solid var(--bordure);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead tr {
+      background: rgba(204,0,0,0.25);
+    }
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--blanc);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--bordure);
+    }
+    tbody tr:nth-child(even) {
+      background: rgba(255,255,255,0.03);
+    }
+    tbody tr:hover {
+      background: rgba(204,0,0,0.08);
+    }
+    tbody td {
+      padding: 10px 16px;
+      color: #ccc;
+      vertical-align: top;
+    }
+    tbody td code {
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--or);
+    }
+    tbody td strong { color: var(--blanc); }
+
+    /* ── CODE BLOCKS ── */
+    pre {
+      background: #0d0d0d;
+      border: 1px solid var(--bordure);
+      border-left: 3px solid var(--rouge);
+      border-radius: 8px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 0.83rem;
+      line-height: 1.6;
+      color: #b8c4d0;
+    }
+    code {
+      font-family: 'Courier New', Consolas, monospace;
+    }
+    pre code { color: inherit; background: none; padding: 0; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .card-rouge { border-left: 4px solid var(--rouge); }
+    .card-or    { border-left: 4px solid var(--or); }
+    .card-vert  { border-left: 4px solid var(--vert); }
+    .card-warn  { border-left: 4px solid var(--orange); background: rgba(255,152,0,0.06); }
+    .card-crit  { border-left: 4px solid #ff4444; background: rgba(204,0,0,0.08); }
+
+    .card h4 {
+      color: var(--blanc);
+      font-size: 0.95rem;
+      margin: 0 0 10px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-weight: 600;
+      margin: 2px;
+    }
+    .tag-rouge { background: rgba(204,0,0,0.25); color: #ff8080; border: 1px solid rgba(204,0,0,0.4); }
+    .tag-vert  { background: rgba(76,175,80,0.2); color: #7dda7f; border: 1px solid rgba(76,175,80,0.3); }
+    .tag-or    { background: rgba(201,168,76,0.2); color: var(--or); border: 1px solid rgba(201,168,76,0.3); }
+    .tag-gris  { background: rgba(150,150,150,0.15); color: #999; border: 1px solid #444; }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .flow-step {
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      color: #ccc;
+    }
+    .flow-arrow {
+      color: var(--rouge);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* ── GRID ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .toc ol { columns: 1; }
+      header { padding: 28px 20px 20px; }
+      header h1 { font-size: 1.5rem; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--gris2);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--bordure);
+      margin-top: 60px;
+    }
+    footer strong { color: var(--rouge); }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #000; }
+      header { background: #fff; border-bottom: 2px solid #CC0000; }
+      header h1, header .subtitle { color: #000; }
+      pre { background: #f5f5f5; color: #333; border-color: #ccc; }
+      .card { background: #f9f9f9; border-color: #ddd; }
+      table { border-color: #ddd; }
+      tbody tr:nth-child(even) { background: #f9f9f9; }
+      a { color: #CC0000; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-badge">Mécano à Bord</div>
+  <h1>Référentiel <span>Fonctionnel</span> Complet</h1>
+  <p class="subtitle">Document destiné à la développeuse Inès — Application Flutter</p>
+  <p class="meta">Version 1.0 — Avril 2026 &nbsp;|&nbsp; © Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; mecanoabord@gmail.com</p>
+</header>
+
+<div class="container">
+
+  <!-- LÉGENDE -->
+  <div class="legend">
+    <div class="legend-item"><span class="badge badge-ok">✅ Fonctionnel</span> Existant et opérationnel</div>
+    <div class="legend-item"><span class="badge badge-warn">⚠️ Partiel</span> Présent mais incomplet</div>
+    <div class="legend-item"><span class="badge badge-no">🚫 Absent</span> À implémenter</div>
+    <div class="legend-item"><span class="badge badge-crit">🚨 Bloquant</span> Priorité absolue</div>
+  </div>
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <h2>Table des matières</h2>
+    <ol>
+      <li><a href="#s1">Architecture générale</a></li>
+      <li><a href="#s2">Accès et démarrage</a></li>
+      <li><a href="#s3">Profil véhicule</a></li>
+      <li><a href="#s4">Boîte à gants</a></li>
+      <li><a href="#s5">Diagnostic et connexion OBD</a></li>
+      <li><a href="#s6">Écran d'accueil</a></li>
+      <li><a href="#s7">Assistant IA</a></li>
+      <li><a href="#s8">Formation WebView</a></li>
+      <li><a href="#s9">Paramètres</a></li>
+      <li><a href="#s10">Système de licence</a></li>
+      <li><a href="#s11">Services transversaux</a></li>
+      <li><a href="#s12">Contraintes et accessibilité</a></li>
+      <li><a href="#s13">Bugs connus</a></li>
+      <li><a href="#s14">Tableau récapitulatif missions</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 1 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s1">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div>
+        <div class="section-title">Architecture générale</div>
+        <div class="section-file">lib/main.dart — pubspec.yaml</div>
+      </div>
+    </div>
+
+    <h3>Stack technique</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Élément</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>Framework</td><td><strong>Flutter</strong> (SDK ≥3.0.0 &lt;4.0.0)</td></tr>
+          <tr><td>Langage</td><td>Dart</td></tr>
+          <tr><td>Version actuelle</td><td>1.0.0+14</td></tr>
+          <tr><td>Platform principale</td><td>Android (Google Play Store)</td></tr>
+          <tr><td>Platform secondaire</td><td>iOS — laissée de côté (nécessite Mac ou Codemagic)</td></tr>
+          <tr><td><strong>Package name actuel</strong></td><td><code>com.example.mecano_a_bord</code> <span class="badge badge-crit">⚠️ À changer avant publication</span></td></tr>
+          <tr><td>Téléphone test Pascal</td><td>Samsung SM-A137F — Android 14</td></tr>
+          <tr><td>Téléphone test Inès</td><td>Samsung A36</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Structure des fichiers clés</h3>
+    <pre><code>mecano_a_bord/
+├── lib/
+│   ├── main.dart                           ← Point d'entrée, routing, SplashRouting
+│   ├── formation_url.dart                  ← Constante kFormationUrl (1 ligne à changer)
+│   ├── theme/
+│   │   └── mab_theme.dart                  ← Charte MAB (couleurs, dimensions, styles)
+│   ├── screens/
+│   │   ├── onboarding_screen.dart          ← Onboarding 2 phases
+│   │   ├── home_screen.dart                ← Accueil (7 bandeaux)
+│   │   ├── glovebox_screen.dart            ← Boîte à gants (5 onglets)
+│   │   ├── glovebox_profile_screen.dart    ← Profil véhicule (création/édition)
+│   │   ├── obd_scan_screen.dart            ← Connexion OBD + diagnostic
+│   │   ├── surveillance_only_screen.dart   ← Mode conduite (surveillance temps réel)
+│   │   ├── ai_chat_screen.dart             ← Assistant IA (chat)
+│   │   ├── settings_screen.dart            ← Réglages (4 sections)
+│   │   ├── add_maintenance_screen.dart     ← Ajouter/modifier entrée carnet
+│   │   ├── formation_webview_screen.dart   ← Formation post-onboarding (WebView)
+│   │   ├── formation_web_launch_screen.dart← Accès formation depuis accueil
+│   │   ├── diagnostic_guide_screen.dart    ← Guide "que taper dans l'IA ?"
+│   │   ├── privacy_policy_screen.dart      ← Politique de confidentialité
+│   │   ├── legal_mentions_screen.dart      ← Mentions légales
+│   │   └── help_contact_screen.dart        ← Aide & Contact
+│   ├── data/
+│   │   ├── mab_database.dart               ← SQLite (sqflite) — 9 tables
+│   │   ├── mab_repository.dart             ← Modèles domaine + accès données
+│   │   ├── demo_data.dart                  ← Données fictives mode démo
+│   │   ├── chat_message.dart               ← Modèle message IA
+│   │   └── moteur_symptomes_knowledge.dart ← Base de connaissances mode gratuit
+│   └── services/
+│       ├── ai_conversation_service.dart    ← IA (10 providers, quota, system prompt)
+│       ├── tts_service.dart                ← Coach vocal (flutter_tts)
+│       ├── bluetooth_obd_service.dart      ← Connexion Bluetooth OBD
+│       ├── live_monitoring_service.dart    ← Surveillance temps réel (PIDs)
+│       ├── surveillance_auto_coordinator.dart
+│       ├── vehicle_health_service.dart     ← Créé par Cursor 05/04/2026
+│       ├── vehicle_reference_service.dart  ← Créé par Cursor 05/04/2026
+│       └── app_reset_service.dart          ← Réinitialisation complète
+└── android/
+    └── app/src/main/kotlin/.../MainActivity.kt  ← Modifié 05/04 (fix RPM)</code></pre>
+
+    <h3>Persistance des données</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mécanisme</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SQLite</strong> (sqflite)</td><td>Profils véhicule, carnet entretien, documents, OBD historique, santé véhicule</td></tr>
+          <tr><td><strong>SharedPreferences</strong></td><td>Flags booléens (onboarding_done, formation_done), compteur IA gratuit, préférences vocales, mode surveillance</td></tr>
+          <tr><td><strong>FlutterSecureStorage</strong></td><td>Clés API IA — une clé par fournisseur : <code>api_key_chatgpt</code>, <code>api_key_claude</code>…</td></tr>
+          <tr><td><strong>Fichiers locaux</strong> (path_provider)</td><td>Photos reçus / documents Boîte à gants</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tables SQLite (9 tables)</h3>
+    <pre><code>vehicle_profiles           ← Profils véhicule (max 2)
+diagnostic_entries         ← Historique diagnostics OBD
+maintenance_entries        ← Carnet d'entretien
+documents                  ← Documents Boîte à gants
+alerts                     ← Alertes générées
+vehicle_reference_values   ← Valeurs de référence par modèle
+vehicle_learned_values     ← Valeurs apprises par usage
+vehicle_health_alert_history ← Historique santé véhicule</code></pre>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 2 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s2">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div>
+        <div class="section-title">Accès et démarrage</div>
+        <div class="section-file">lib/main.dart — lib/screens/onboarding_screen.dart</div>
+      </div>
+    </div>
+
+    <h3>Splash Screen (SplashRouting)</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Logo MAB centré + spinner doré sur fond noir</li>
+      <li><span class="icon">✅</span> Lecture SharedPreferences : clé <code>onboarding_done</code></li>
+      <li><span class="icon">✅</span> Si <code>false</code> → redirige vers <code>OnboardingScreen</code></li>
+      <li><span class="icon">✅</span> Si <code>true</code> → redirige vers <code>HomeScreen</code></li>
+    </ul>
+
+    <h3>Onboarding — Phase 1 : Acceptation des conditions</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Image <code>assets/images/onboarding_page1.png</code> (hauteur 200px)</li>
+      <li><span class="icon">✅</span> Titre "Bienvenue"</li>
+      <li><span class="icon">✅</span> Texte d'acceptation des conditions d'utilisation</li>
+      <li><span class="icon">✅</span> Lien "Voir les mentions légales complètes →" → route <code>/legal-mentions</code></li>
+      <li><span class="icon">✅</span> Bouton "J'accepte et je commence" → passe à la Phase 2</li>
+      <li><span class="icon">⚠️</span> Pas de case à cocher (consentement implicite par clic)</li>
+    </ul>
+
+    <h3>Onboarding — Phase 2 : Carrousel 5 pages</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Page</th><th>Image</th><th>Titre affiché</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><code>logo.png</code></td><td>Non</td><td>Présentation de l'application</td></tr>
+          <tr><td>2</td><td><code>obd.png</code></td><td>Non</td><td>Explication du boîtier OBD</td></tr>
+          <tr><td>3</td><td><code>boite_a_gant.png</code></td><td><strong>"Votre Boîte à gants numérique"</strong></td><td>Documents numériques</td></tr>
+          <tr><td>4</td><td><code>suv_images.png</code></td><td>Non</td><td>Créer un profil véhicule</td></tr>
+          <tr><td>5</td><td><code>systeme_io.png</code></td><td>Non</td><td>Accès Système.io (hauteur 320px)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Bouton "Passer" en haut à droite (masqué sur la dernière page)</li>
+      <li><span class="icon">✅</span> Indicateurs de page animés (point rouge actif, gris inactif)</li>
+      <li><span class="icon">✅</span> Bouton "Suivant" / "Terminer" sur la dernière page</li>
+    </ul>
+
+    <h3>Fin de l'onboarding</h3>
+    <div class="flow">
+      <div class="flow-step">SharedPreferences<br><code>onboarding_done = true</code></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Navigation vers<br><code>FormationWebViewScreen</code></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 3 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s3">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div>
+        <div class="section-title">Profil véhicule</div>
+        <div class="section-file">lib/screens/glovebox_profile_screen.dart — lib/data/mab_repository.dart</div>
+      </div>
+    </div>
+
+    <h3>Champs du profil</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Champ</th><th>Type</th><th>Obligatoire</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Marque (<code>brand</code>)</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td></td></tr>
+          <tr><td>Modèle (<code>model</code>)</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td></td></tr>
+          <tr><td>Motorisation</td><td>String</td><td>Non</td><td>Ex. "1.6 TDI 110ch"</td></tr>
+          <tr><td>Année (<code>year</code>)</td><td>int</td><td><span class="badge badge-crit">Oui</span></td><td></td></tr>
+          <tr><td>Immatriculation</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td>Format AA-000-AA</td></tr>
+          <tr><td>VIN</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td>Exactement <strong>17 caractères</strong></td></tr>
+          <tr><td>Carburant (<code>fuelType</code>)</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td></td></tr>
+          <tr><td>Boîte de vitesses (<code>gearboxType</code>)</td><td>String</td><td><span class="badge badge-crit">Oui</span></td><td>Manuelle / Automatique / etc.</td></tr>
+          <tr><td>Kilométrage (<code>mileage</code>)</td><td>int</td><td><span class="badge badge-crit">Oui</span></td><td></td></tr>
+          <tr><td>Couleur</td><td>String</td><td>Non</td><td></td></tr>
+          <tr><td>Notes</td><td>String</td><td>Non</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card-rouge">
+      <h4>⚙️ Règle <code>isComplete</code></h4>
+      <p>Un profil est <strong>complet</strong> si et seulement si :</p>
+      <pre><code>mileage > 0 && gearboxType.isNotEmpty && vin.length == 17</code></pre>
+      <p style="margin-top:8px; color: #ffaaaa;">Si le profil est incomplet → l'assistant IA est bloqué (sauf si ouvert depuis l'écran OBD).</p>
+    </div>
+
+    <h3>Lookup automatique par immatriculation</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> API : <code>https://particulier.api.gouv.fr/api/v2/immatriculation?immatriculation=PLATE</code></li>
+      <li><span class="icon">✅</span> Pré-remplit marque, modèle, année, carburant depuis la plaque</li>
+      <li><span class="icon">⚠️</span> API externe gratuite (État français) — peut être indisponible</li>
+      <li><span class="icon">✅</span> Maximum <strong>2 profils véhicule</strong> par application</li>
+      <li><span class="icon">✅</span> Sélection du véhicule actif dans les Réglages</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 4 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s4">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div>
+        <div class="section-title">Boîte à gants</div>
+        <div class="section-file">lib/screens/glovebox_screen.dart</div>
+      </div>
+    </div>
+
+    <h3>5 onglets</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Index</th><th>Nom</th><th>Contenu</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td><strong>Profil</strong></td><td>Résumé du profil véhicule actif + bouton éditer</td></tr>
+          <tr><td>1</td><td><strong>Documents</strong></td><td>Carte grise, assurance, CT, Crit'Air… numérisés</td></tr>
+          <tr><td>2</td><td><strong>Carnet</strong></td><td>Carnet d'entretien (28 types, 6 catégories)</td></tr>
+          <tr><td>3</td><td><strong>Historique</strong></td><td>Historique des diagnostics OBD</td></tr>
+          <tr><td>4</td><td><strong>Santé</strong></td><td>Bilan santé véhicule (visible aussi en mode démo)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Onglet Documents</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Stockage local des photos / PDF</li>
+      <li><span class="icon">✅</span> Ouverture du document avec l'application système (MIME type mémorisé)</li>
+      <li><span class="icon">✅</span> Date d'expiration optionnelle</li>
+      <li><span class="icon">🚫</span> Pas de synchronisation cloud</li>
+    </ul>
+
+    <h3>Onglet Carnet d'entretien</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> 28 types d'opération — 6 catégories visuelles</li>
+      <li><span class="icon">✅</span> Champs : type, date, kilométrage, prochain service (km + date), notes, garage, coût, photo de reçu</li>
+      <li><span class="icon">✅</span> Édition entrée existante (route <code>/add-maintenance</code> avec <code>editEntryId</code>)</li>
+      <li><span class="icon">✅</span> Rappels visibles sur l'écran d'accueil si maintenance en retard</li>
+    </ul>
+
+    <h3>Onglet Historique OBD</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Liste des diagnostics passés (table <code>diagnostic_entries</code>)</li>
+      <li><span class="icon">✅</span> Par diagnostic : date, kilométrage, MIL on/off, DTC mémorisés/en attente/permanents, niveau d'urgence, résumé global</li>
+    </ul>
+
+    <h3>Onglet Santé</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Bilan santé basé sur <code>vehicle_health_service.dart</code></li>
+      <li><span class="icon">✅</span> Historique des alertes graduées (<code>vehicle_health_alert_history</code>)</li>
+      <li><span class="icon">✅</span> Visible en mode démo</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 5 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s5">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div>
+        <div class="section-title">Diagnostic et connexion OBD</div>
+        <div class="section-file">lib/screens/obd_scan_screen.dart — lib/services/bluetooth_obd_service.dart</div>
+      </div>
+    </div>
+
+    <h3>Connexion Bluetooth</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Bluetooth classique SPP (Serial Port Profile)</li>
+      <li><span class="icon">✅</span> Compatible dongle iCar Pro Vgate</li>
+      <li><span class="icon">✅</span> Liste des appareils Bluetooth appairés</li>
+      <li><span class="icon">✅</span> Connexion automatique au dernier appareil connu (paramètre <code>autoStartDiagnostic</code>)</li>
+      <li><span class="icon">✅</span> Animation pulse + timer avec compte à rebours</li>
+      <li><span class="icon">✅</span> Détection automatique du protocole OBD</li>
+      <li><span class="icon">✅</span> Mémorisation adresse du dernier dongle</li>
+      <li><span class="icon">🚫</span> Bluetooth LE (BLE) non supporté — prévu V2</li>
+    </ul>
+
+    <h3>Diagnostic complet</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Lecture MIL (témoin Check Engine)</li>
+      <li><span class="icon">✅</span> DTC mémorisés, en attente, permanents</li>
+      <li><span class="icon">✅</span> Niveau d'urgence calculé (vert / orange / rouge)</li>
+      <li><span class="icon">✅</span> Résumé global en français</li>
+      <li><span class="icon">✅</span> Effacement codes défaut + dialogue pédagogique post-effacement</li>
+      <li><span class="icon">✅</span> Sauvegarde automatique dans <code>diagnostic_entries</code></li>
+      <li><span class="icon">✅</span> Mode démo (données fictives depuis <code>demo_data.dart</code>)</li>
+    </ul>
+
+    <h3>PIDs en temps réel actifs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>PID</th><th>Donnée</th><th>État</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>0105</code></td><td>Température liquide refroidissement (°C)</td><td><span class="badge badge-ok">✅ Actif</span></td><td></td></tr>
+          <tr><td><code>0142</code></td><td>Tension batterie (V)</td><td><span class="badge badge-ok">✅ Actif</span></td><td></td></tr>
+          <tr><td><code>010B</code></td><td>Pression collecteur d'admission (kPa)</td><td><span class="badge badge-ok">✅ Actif</span></td><td></td></tr>
+          <tr><td><code>010C</code></td><td>Régime moteur RPM</td><td><span class="badge badge-ok">✅ Corrigé 05/04</span></td><td>Formule : <code>((A*256)+B)/4.0</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>PIDs réservés V2 (non implémentés)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>PID</th><th>Donnée</th></tr></thead>
+        <tbody>
+          <tr><td><code>0111</code></td><td>Position papillon (Coach Conducteur V2)</td></tr>
+          <tr><td><code>015E</code></td><td>Débit carburant — consommation réelle</td></tr>
+          <tr><td><code>010D</code></td><td>Vitesse véhicule</td></tr>
+          <tr><td><code>0104</code></td><td>Charge moteur — détection préventive</td></tr>
+          <tr><td><code>012F</code></td><td>Niveau carburant</td></tr>
+          <tr><td><code>010F</code></td><td>Température air admission (intercooler)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Mode Conduite (Surveillance temps réel)</h3>
+    <p>Fichier : <code>lib/screens/surveillance_only_screen.dart</code> — Route : <code>/surveillance-only</code></p>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Surveillance temps réel des 4 PIDs actifs</li>
+      <li><span class="icon">✅</span> Alertes vocales TTS si seuil dépassé</li>
+      <li><span class="icon">✅</span> Mode AUTO / MANUEL (configurable dans Réglages)</li>
+      <li><span class="icon">✅</span> Délai d'arrêt automatique configurable</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 6 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s6">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div>
+        <div class="section-title">Écran d'accueil</div>
+        <div class="section-file">lib/screens/home_screen.dart</div>
+      </div>
+    </div>
+
+    <h3>Bandeaux (7 permanents + alertes conditionnelles)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Ordre</th><th>Bandeau</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Méthode sans stress</strong> (Systeme.io)</td><td>→ <code>/systeme-io</code></td></tr>
+          <tr><td>2</td><td><strong>Boîte à gants</strong></td><td>→ <code>/glovebox</code></td></tr>
+          <tr><td>3</td><td><strong>Statut OBD</strong></td><td>→ <code>/obd-scan</code></td></tr>
+          <tr><td>4</td><td><strong>Alertes maintenance</strong> <em>(si en retard)</em></td><td>→ <code>/add-maintenance</code></td></tr>
+          <tr><td>5</td><td><strong>Diagnostic</strong></td><td>→ <code>/obd-scan?autoStartDiagnostic=true</code></td></tr>
+          <tr><td>6</td><td><strong>Mode Conduite</strong></td><td>→ <code>/surveillance-only</code></td></tr>
+          <tr><td>7</td><td><strong>Mode Démo</strong></td><td>Active / désactive le mode démo</td></tr>
+          <tr><td>8</td><td><strong>Poser une question IA</strong></td><td>→ <code>/ai-chat</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Navigation inférieure (Bottom NavBar)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Index</th><th>Label</th><th>Destination</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>Accueil</td><td>home</td></tr>
+          <tr><td>1</td><td>OBD</td><td><code>/obd-scan</code></td></tr>
+          <tr><td>2</td><td>Boîte à gants</td><td><code>/glovebox</code></td></tr>
+          <tr><td>3</td><td>IA</td><td><code>/ai-chat</code></td></tr>
+          <tr><td>4</td><td>Réglages</td><td><code>/settings</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 7 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s7">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div>
+        <div class="section-title">Assistant IA</div>
+        <div class="section-file">lib/screens/ai_chat_screen.dart — lib/services/ai_conversation_service.dart</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-vert">
+        <h4>Mode Gratuit</h4>
+        <ul class="feature-list">
+          <li><span class="icon">✅</span> 5 questions par jour</li>
+          <li><span class="icon">✅</span> Remise à zéro à minuit</li>
+          <li><span class="icon">✅</span> Réponses locales (base mots-clés symptômes)</li>
+          <li><span class="icon">✅</span> Bandeau quota affiché</li>
+        </ul>
+      </div>
+      <div class="card card-or">
+        <h4>Mode Personnel</h4>
+        <ul class="feature-list">
+          <li><span class="icon">✅</span> Clé API utilisateur</li>
+          <li><span class="icon">✅</span> Questions illimitées</li>
+          <li><span class="icon">✅</span> Bandeau vert "Assistant connecté"</li>
+          <li><span class="icon">✅</span> Appel API réel vers le provider sélectionné</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>10 fournisseurs IA supportés</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Enum</th><th>Label affiché</th><th>Clé secure storage</th><th>Couleur fallback</th></tr></thead>
+        <tbody>
+          <tr><td><code>claude</code></td><td>Claude (Anthropic)</td><td><code>api_key_claude</code></td><td><span style="color:#CC785C">■</span> #CC785C</td></tr>
+          <tr><td><code>chatgpt</code></td><td>ChatGPT (OpenAI)</td><td><code>api_key_chatgpt</code></td><td><span style="color:#10A37F">■</span> #10A37F</td></tr>
+          <tr><td><code>gemini</code></td><td>Gemini (Google)</td><td><code>api_key_gemini</code></td><td><span style="color:#4285F4">■</span> #4285F4</td></tr>
+          <tr><td><code>mistral</code></td><td>Mistral</td><td><code>api_key_mistral</code></td><td><span style="color:#FF7000">■</span> #FF7000</td></tr>
+          <tr><td><code>qwen</code></td><td>Qwen</td><td><code>api_key_qwen</code></td><td><span style="color:#6B4DE6">■</span> #6B4DE6</td></tr>
+          <tr><td><code>perplexity</code></td><td>Perplexity</td><td><code>api_key_perplexity</code></td><td><span style="color:#20808D">■</span> #20808D</td></tr>
+          <tr><td><code>grok</code></td><td>Grok (xAI)</td><td><code>api_key_grok</code></td><td><span style="color:#1DA1F2">■</span> #1DA1F2</td></tr>
+          <tr><td><code>copilot</code></td><td>Copilot (Microsoft)</td><td><code>api_key_copilot</code></td><td><span style="color:#0078D4">■</span> #0078D4</td></tr>
+          <tr><td><code>meta_ai</code></td><td>Meta AI</td><td><code>api_key_meta_ai</code></td><td><span style="color:#0668E1">■</span> #0668E1</td></tr>
+          <tr><td><code>deepseek</code></td><td>DeepSeek</td><td><code>api_key_deepseek</code></td><td><span style="color:#4D6BFE">■</span> #4D6BFE</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>System Prompt (hardcodé)</h3>
+    <pre><code>Tu es l'assistant de l'application Mécano à Bord.
+Tu aides les conducteurs à comprendre leur véhicule en langage simple et rassurant.
+Règles absolues :
+- Ne jamais utiliser les mots : panne, danger, défaillance, risque grave, erreur fatale
+- Toujours être calme, bienveillant, accessible
+- Réponses courtes (3-5 phrases maximum)
+- Si tu ne sais pas, dis-le honnêtement
+- Tu n'es pas mécanicien et ne remplaces pas un professionnel</code></pre>
+
+    <h3>Interface chat</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Messages "flottants" (texte sans bulle) sur fond filigrane <code>iamecanoabord.png</code></li>
+      <li><span class="icon">✅</span> Indicateur de saisie (3 points animés)</li>
+      <li><span class="icon">✅</span> Dictée vocale STT (speech_to_text, locale fr_FR, mode confirmation)</li>
+      <li><span class="icon">✅</span> Bouton micro : rouge + fond teinté si écoute active</li>
+      <li><span class="icon">✅</span> Lien "Je ne sais pas quoi taper" → route <code>/diagnostic-guide</code></li>
+      <li><span class="icon">✅</span> Message d'accueil dynamique (mentionne le véhicule si profil complet)</li>
+    </ul>
+
+    <h3>Conditions de blocage</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Comportement</th></tr></thead>
+        <tbody>
+          <tr><td>Profil véhicule incomplet</td><td>Bannière orange + message centré + bouton "Compléter mon profil" → <code>/glovebox</code></td></tr>
+          <tr><td>Ouverture depuis OBD (<code>initialQuestion</code>)</td><td>Input actif même si profil incomplet</td></tr>
+          <tr><td>Quota gratuit épuisé</td><td>Input désactivé, hint "Quota atteint pour aujourd'hui"</td></tr>
+          <tr><td>Mode démo actif</td><td>Bannière démo affichée, pas de blocage de contenu</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 8 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s8">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div>
+        <div class="section-title">Formation WebView</div>
+        <div class="section-file">lib/screens/formation_webview_screen.dart — lib/formation_url.dart</div>
+      </div>
+    </div>
+
+    <h3>Écran post-onboarding</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Propriété</th><th>Valeur</th></tr></thead>
+        <tbody>
+          <tr><td>URL actuelle</td><td><code>https://chathuant-pascal.github.io/mecano-a-bord/formation-web/index.html</code></td></tr>
+          <tr><td>URL finale prévue</td><td><code>https://mecanoabord.fr/formation</code></td></tr>
+          <tr><td>Fichier à modifier</td><td><code>lib/formation_url.dart</code> — 1 seule ligne</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> WebView plein écran (JavaScript unrestricted)</li>
+      <li><span class="icon">✅</span> Canal JS <code>MABFormation</code> — reçoit <code>'done'</code>, <code>'1'</code>, ou <code>'true'</code></li>
+      <li><span class="icon">✅</span> À la réception → <code>formation_done = true</code> dans SharedPreferences</li>
+      <li><span class="icon">✅</span> Polling toutes les 2 secondes (fallback si JS bridge échoue)</li>
+      <li><span class="icon">✅</span> Vérification supplémentaire à <code>AppLifecycleState.resumed</code></li>
+      <li><span class="icon">✅</span> Navigation vers <code>HomeScreen</code> dès que <code>formation_done = true</code></li>
+      <li><span class="icon">✅</span> Flag <code>_navigated</code> empêche double navigation</li>
+    </ul>
+
+    <div class="card card-crit">
+      <h4>🚫 Verrouillage de l'app jusqu'à fin de formation — NON IMPLÉMENTÉ</h4>
+      <p>À implémenter quand la formation sera hébergée sur <code>mecanoabord.fr</code></p>
+      <p style="margin-top:8px; color:#ffaaaa;"><strong>Comportement prévu :</strong> À la 1ère ouverture (onboarding_done=true) → seule la formation est accessible. Toutes les autres fonctions verrouillées avec le message "Cette fonction sera disponible une fois ta formation Mécano à Bord complétée." Déblocage automatique quand formation_done=true.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 9 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s9">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <div>
+        <div class="section-title">Paramètres</div>
+        <div class="section-file">lib/screens/settings_screen.dart</div>
+      </div>
+    </div>
+
+    <h3>Section 1 — Coach Vocal</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Choix voix féminine / masculine</li>
+      <li><span class="icon">✅</span> Clé SharedPreferences : <code>mab_voice_gender</code> (<code>female</code> ou <code>male</code>)</li>
+      <li><span class="icon">✅</span> Toggle alertes vocales activées / désactivées</li>
+      <li><span class="icon">✅</span> Service : <code>tts_service.dart</code> (flutter_tts)</li>
+    </ul>
+
+    <h3>Section 2 — Assistant IA</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Accordéon : 10 fournisseurs IA (un seul panneau ouvert à la fois)</li>
+      <li><span class="icon">✅</span> Pour chaque provider : logo PNG officiel + fallback cercle coloré, champ saisie clé API, bouton Sauvegarder/Effacer, indicateur "Clé enregistrée ✓"</li>
+      <li><span class="icon">✅</span> Mode gratuit : quota restant affiché</li>
+      <li><span class="icon">✅</span> Gestion du véhicule actif</li>
+    </ul>
+
+    <h3>Section 3 — Surveillance</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Mode AUTO / MANUEL</li>
+      <li><span class="icon">✅</span> Délai d'arrêt automatique configurable</li>
+      <li><span class="icon">✅</span> Widget dédié : <code>surveillance_settings_body.dart</code></li>
+      <li><span class="icon">✅</span> Scroll automatique si ouvert via <code>initialSection: 'surveillance'</code></li>
+    </ul>
+
+    <h3>Section 4 — Application</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Liens : Mentions légales, Politique de confidentialité, Aide & Contact</li>
+      <li><span class="icon">✅</span> Numéro de version dynamique (PackageInfo.fromPlatform)</li>
+      <li><span class="icon">✅</span> Réinitialisation complète (<code>app_reset_service.dart</code>)</li>
+      <li><span class="icon">⚠️</span> SIRET absent dans les mentions légales — en attente Pascal</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 10 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s10">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div>
+        <div class="section-title">Système de licence</div>
+        <div class="section-file">À implémenter</div>
+      </div>
+    </div>
+
+    <div class="card card-warn">
+      <h4>⚠️ État actuel : aucun système de licence implémenté</h4>
+      <p>Le mode démo est accessible librement sans code. L'app ne peut pas être publiée sans clé de signature.</p>
+    </div>
+
+    <h3>Mission 1 — Clé de signature Release</h3>
+    <div class="card card-crit">
+      <h4>🚨 BLOQUANT — Nécessaire pour publication Play Store</h4>
+      <ol style="color:#ccc; padding-left:20px; line-height:2;">
+        <li>Générer un keystore <code>.jks</code> avec <code>keytool</code></li>
+        <li>Configurer <code>android/app/build.gradle.kts</code></li>
+        <li>Compiler : <code>flutter build apk --release</code></li>
+        <li>Tester sur Samsung SM-A137F</li>
+        <li><strong>Sauvegarder le keystore : Google Drive + copie locale</strong></li>
+      </ol>
+      <p style="margin-top:12px; color:#ff6666;">⚠️ JAMAIS dans GitHub — Si perdu, l'app ne peut plus être mise à jour</p>
+    </div>
+
+    <h3>Mission 2 — Système de licence Firebase</h3>
+    <ul class="feature-list">
+      <li><span class="icon">🚫</span> Packages : <code>firebase_core</code>, <code>cloud_firestore</code>, <code>device_info_plus</code></li>
+      <li><span class="icon">🚫</span> Collection Firestore <code>licences</code> : <code>{ code, valide, appareils: [id1, id2] }</code></li>
+      <li><span class="icon">🚫</span> Écran activation code au 1er démarrage</li>
+      <li><span class="icon">🚫</span> Format : <code>MAB-XXXX-XXXX-XXXX</code></li>
+      <li><span class="icon">🚫</span> Maximum 2 appareils par licence</li>
+      <li><span class="icon">✅</span> Mode démo reste accessible sans code</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 11 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s11">
+    <div class="section-header">
+      <div class="section-number">11</div>
+      <div>
+        <div class="section-title">Services transversaux</div>
+      </div>
+    </div>
+
+    <h3>Coach Vocal (TtsService)</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Singleton : <code>TtsService.instance</code> — initialisé dans <code>main()</code> avant <code>runApp()</code></li>
+      <li><span class="icon">✅</span> Voix féminine / masculine (fr_FR)</li>
+      <li><span class="icon">✅</span> Alertes vocales OBD (seuils température, batterie, RPM)</li>
+      <li><span class="icon">✅</span> Annonce connexion OBD (ne se répète pas pendant la session — <code>_obdReadyAnnounced</code>)</li>
+      <li><span class="icon">✅</span> Bug TTS fantôme corrigé le 09/04/2026</li>
+    </ul>
+
+    <h3>Surveillance Auto Coordinator</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Singleton : <code>SurveillanceAutoCoordinator.instance</code></li>
+      <li><span class="icon">✅</span> Attaché dans <code>main()</code> : gère le démarrage/arrêt selon le cycle de vie de l'app</li>
+    </ul>
+
+    <h3>Mode Démo</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Données fictives complètes dans <code>demo_data.dart</code></li>
+      <li><span class="icon">✅</span> Bannière orange <code>MabDemoBanner</code> sur tous les écrans concernés</li>
+      <li><span class="icon">✅</span> Activé / désactivé depuis l'accueil</li>
+      <li><span class="icon">✅</span> Diagnostic OBD simulé, onglet Santé visible</li>
+    </ul>
+
+    <h3>App Reset Service</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Supprime toutes les SharedPreferences</li>
+      <li><span class="icon">✅</span> Supprime les données SQLite</li>
+      <li><span class="icon">✅</span> Supprime les fichiers locaux (documents)</li>
+      <li><span class="icon">✅</span> Efface les clés sécurisées (FlutterSecureStorage)</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 12 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s12">
+    <div class="section-header">
+      <div class="section-number">12</div>
+      <div>
+        <div class="section-title">Contraintes globales et accessibilité</div>
+        <div class="section-file">lib/theme/mab_theme.dart</div>
+      </div>
+    </div>
+
+    <h3>Charte visuelle (MabTheme)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Élément</th><th>Valeur</th><th>Aperçu</th></tr></thead>
+        <tbody>
+          <tr><td>Couleur principale</td><td><code>#CC0000</code></td><td><span style="display:inline-block;width:20px;height:20px;background:#CC0000;border-radius:4px;"></span></td></tr>
+          <tr><td>Fond principal</td><td><code>MabColors.noir</code></td><td><span style="display:inline-block;width:20px;height:20px;background:#111;border:1px solid #555;border-radius:4px;"></span></td></tr>
+          <tr><td>Texte principal</td><td>Blanc</td><td><span style="display:inline-block;width:20px;height:20px;background:#fff;border-radius:4px;"></span></td></tr>
+          <tr><td>Doré</td><td><code>MabColors.grisDore</code> (~#C9A84C)</td><td><span style="display:inline-block;width:20px;height:20px;background:#C9A84C;border-radius:4px;"></span></td></tr>
+          <tr><td>Alerte rouge</td><td><code>MabColors.diagnosticRouge</code></td><td><span style="display:inline-block;width:20px;height:20px;background:#f44336;border-radius:4px;"></span></td></tr>
+          <tr><td>Alerte orange</td><td><code>MabColors.diagnosticOrange</code></td><td><span style="display:inline-block;width:20px;height:20px;background:#FF9800;border-radius:4px;"></span></td></tr>
+          <tr><td>Alerte verte</td><td><code>MabColors.diagnosticVert</code></td><td><span style="display:inline-block;width:20px;height:20px;background:#4CAF50;border-radius:4px;"></span></td></tr>
+          <tr><td><strong>Zone tactile minimale</strong></td><td><code>MabDimensions.zoneTactileMin = 48 dp</code></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Accessibilité (EAA 2025)</h3>
+    <ul class="feature-list">
+      <li><span class="icon">✅</span> Zones tactiles ≥ 48 dp sur tous les boutons interactifs</li>
+      <li><span class="icon">✅</span> <code>Semantics()</code> wrapper sur les boutons critiques (micro, envoi, acceptation)</li>
+      <li><span class="icon">✅</span> Labels Semantics en français</li>
+      <li><span class="icon">✅</span> <code>SingleChildScrollView</code> sur toutes les pages longues</li>
+    </ul>
+
+    <h3>Permissions requises</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Permission</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>BLUETOOTH</code> + <code>BLUETOOTH_CONNECT</code> + <code>BLUETOOTH_SCAN</code></td><td>Connexion dongle OBD</td></tr>
+          <tr><td><code>MICROPHONE</code></td><td>Dictée vocale (speech_to_text)</td></tr>
+          <tr><td><code>READ_EXTERNAL_STORAGE</code> (selon Android)</td><td>Ajout documents Boîte à gants</td></tr>
+          <tr><td><code>INTERNET</code></td><td>API immatriculation + Appels IA + Formation WebView</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Routage complet (Named Routes)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Route</th><th>Écran</th><th>Paramètres</th></tr></thead>
+        <tbody>
+          <tr><td><code>/glovebox-profile</code></td><td>GloveboxProfileScreen</td><td><code>routeArguments</code></td></tr>
+          <tr><td><code>/obd-scan</code></td><td>ObdScanScreen</td><td><code>autoStartDiagnostic: bool</code></td></tr>
+          <tr><td><code>/surveillance-only</code></td><td>SurveillanceOnlyScreen</td><td>aucun</td></tr>
+          <tr><td><code>/glovebox</code></td><td>GloveboxScreen</td><td><code>initialTab: String</code></td></tr>
+          <tr><td><code>/add-maintenance</code></td><td>AddMaintenanceScreen</td><td><code>editEntryId: int?</code></td></tr>
+          <tr><td><code>/ai-chat</code></td><td>AiChatScreen</td><td><code>initialQuestion: String?</code></td></tr>
+          <tr><td><code>/settings</code></td><td>SettingsScreen</td><td><code>initialSection: String?</code></td></tr>
+          <tr><td><code>/privacy-policy</code></td><td>PrivacyPolicyScreen</td><td>aucun</td></tr>
+          <tr><td><code>/legal-mentions</code></td><td>LegalMentionsScreen</td><td>aucun</td></tr>
+          <tr><td><code>/help-contact</code></td><td>HelpContactScreen</td><td>aucun</td></tr>
+          <tr><td><code>/diagnostic-guide</code></td><td>DiagnosticGuideScreen</td><td>aucun</td></tr>
+          <tr><td><code>/systeme-io</code></td><td>FormationWebLaunchScreen</td><td>aucun</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 13 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s13">
+    <div class="section-header">
+      <div class="section-number">13</div>
+      <div>
+        <div class="section-title">Bugs connus et limitations</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Sévérité</th><th>Description</th><th>État</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><span class="badge badge-crit">🚨 Bloquant</span></td>
+            <td>Pas de clé de signature Release → APK non publiable sur Play Store</td>
+            <td><span class="tag tag-rouge">En attente Inès</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><span class="badge badge-crit">🚨 Bloquant</span></td>
+            <td>Package name <code>com.example.mecano_a_bord</code> → à changer avant publication</td>
+            <td><span class="tag tag-rouge">En attente</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><span class="badge badge-warn">⚠️ Moyen</span></td>
+            <td>PID 010C (RPM) : formule corrigée dans MainActivity.kt le 05/04/2026</td>
+            <td><span class="tag tag-vert">✅ Résolu Android</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><span class="badge badge-warn">⚠️ Moyen</span></td>
+            <td>TTS "fantôme" (annonces vocales non souhaitées)</td>
+            <td><span class="tag tag-vert">✅ Résolu 09/04/2026</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><span class="badge badge-warn">⚠️ Moyen</span></td>
+            <td>Clignotement icône dongle OBD dans la status bar</td>
+            <td><span class="tag tag-vert">✅ Résolu 09/04/2026</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><span class="badge badge-warn">⚠️ Moyen</span></td>
+            <td>Bouton diagnostic ne répondait pas</td>
+            <td><span class="tag tag-vert">✅ Résolu 09/04/2026</span></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><span class="badge badge-warn">⚠️ Moyen</span></td>
+            <td>SIRET absent dans les mentions légales</td>
+            <td><span class="tag tag-or">En attente Pascal</span></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><span class="badge badge-no">ℹ️ Info</span></td>
+            <td>iOS non supporté (nécessite Mac ou Codemagic)</td>
+            <td><span class="tag tag-gris">Décision stratégique</span></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><span class="badge badge-no">ℹ️ Info</span></td>
+            <td>Bluetooth LE (BLE) non supporté — seulement Classic SPP</td>
+            <td><span class="tag tag-gris">V2</span></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><span class="badge badge-no">ℹ️ Info</span></td>
+            <td>Pas de synchronisation cloud des données</td>
+            <td><span class="tag tag-gris">V2/V3</span></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><span class="badge badge-ok">✅ Résolu</span></td>
+            <td>Ancienne clé API unique <code>mab_ai_api_key</code> → migration vers <code>api_key_*</code></td>
+            <td><span class="tag tag-vert">Migration en place</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SECTION 14 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section id="s14">
+    <div class="section-header">
+      <div class="section-number">14</div>
+      <div>
+        <div class="section-title">Tableau récapitulatif des missions</div>
+      </div>
+    </div>
+
+    <h3>Missions Inès — Ordre de priorité</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Mission</th><th>Priorité</th><th>Statut</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Générer keystore Release + configurer build.gradle.kts</strong></td>
+            <td><span class="badge badge-crit">🚨 BLOQUANT</span></td>
+            <td><span class="tag tag-rouge">⏳ En attente</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Compiler APK Release + tester Samsung SM-A137F</strong></td>
+            <td><span class="badge badge-crit">🚨 BLOQUANT</span></td>
+            <td><span class="tag tag-rouge">⏳ Après mission 1</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Implémenter système de licence Firebase</td>
+            <td><span class="badge badge-warn">🔴 Haute</span></td>
+            <td><span class="tag tag-or">⏳ Après mission 2</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Changer le package name (<code>com.example</code> → <code>fr.mecanoabord.app</code>)</td>
+            <td><span class="badge badge-warn">🔴 Haute</span></td>
+            <td><span class="tag tag-or">⏳ Avant publication</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Implémenter verrouillage app jusqu'à fin de formation</td>
+            <td><span class="badge badge-no">🟡 Moyenne</span></td>
+            <td><span class="tag tag-gris">⏳ Quand formation sur mecanoabord.fr</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Ce qui NE doit PAS être touché</h3>
+    <div class="card card-rouge">
+      <ul class="feature-list">
+        <li><span class="icon">✅</span> La logique OBD et les PIDs (validés et fonctionnels sur Samsung SM-A137F)</li>
+        <li><span class="icon">✅</span> La charte graphique MAB (couleurs, dimensions, styles dans <code>mab_theme.dart</code>)</li>
+        <li><span class="icon">✅</span> Le système de base de données SQLite (9 tables)</li>
+        <li><span class="icon">✅</span> La logique de quota IA (5 questions/jour)</li>
+        <li><span class="icon">✅</span> Le canal JS <code>MABFormation</code> (WebView ↔ app)</li>
+        <li><span class="icon">✅</span> Les corrections RPM dans <code>MainActivity.kt</code> (formule <code>((A*256)+B)/4.0</code>)</li>
+        <li><span class="icon">✅</span> Les corrections TTS du 09/04/2026</li>
+      </ul>
+    </div>
+
+    <h3>Flux applicatif complet</h3>
+    <pre><code>1ÈRE OUVERTURE :
+Splash → onboarding_done=false → OnboardingScreen (Phase 1 : acceptation)
+       → Phase 2 : carrousel 5 pages
+       → FormationWebViewScreen (GitHub Pages)
+       → [Utilisateur complète la formation] → formation_done=true
+       → HomeScreen
+
+OUVERTURES SUIVANTES :
+Splash → onboarding_done=true → HomeScreen
+
+DEPUIS HOMESCREEN :
+→ Boîte à gants      : /glovebox (5 onglets)
+→ Profil véhicule    : /glovebox-profile
+→ Diagnostic rapide  : /obd-scan?autoStartDiagnostic=true
+→ Mode Conduite      : /surveillance-only
+→ Assistant IA       : /ai-chat
+→ Formation          : /systeme-io
+→ Réglages           : /settings</code></pre>
+  </section>
+
+  <!-- ANNEXE -->
+  <section>
+    <div class="section-header">
+      <div class="section-number" style="background:var(--or); color:#000;">A</div>
+      <div>
+        <div class="section-title">Annexe — Comptes et accès</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Compte / URL</th></tr></thead>
+        <tbody>
+          <tr><td>GitHub</td><td><code>chathuant-pascal/mecano-a-bord</code></td></tr>
+          <tr><td>GitHub Pages (actuel)</td><td><code>https://chathuant-pascal.github.io/mecano-a-bord/formation-web/index.html</code></td></tr>
+          <tr><td>OVH (domaines)</td><td>karucards@gmail.com — mecanoabord.fr + mecanoabord.com</td></tr>
+          <tr><td>Gmail pro</td><td>mecanoabord@gmail.com</td></tr>
+          <tr><td>Systeme.io</td><td>mecanoabord@gmail.com</td></tr>
+          <tr><td>Workspace Pascal</td><td><code>C:\Users\karuc\OneDrive\Bureau\Mecano A Bord\</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>Référentiel Fonctionnel Complet — <strong>Mécano à Bord v1.0.0+14</strong></p>
+  <p style="margin-top:6px;">Généré le 14 avril 2026 &nbsp;|&nbsp; © Pascal Chathuant — Guadeloupe &nbsp;|&nbsp; mecanoabord@gmail.com</p>
+  <p style="margin-top:6px; color:#444;">Ce document est confidentiel — usage interne développement uniquement</p>
+</footer>
+
+</body>
+</html>

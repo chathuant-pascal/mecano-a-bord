@@ -625,6 +625,37 @@ OBD → visibles mais bloqués (jamais masqués).
 
 ---
 
+## 📄 TEXTES JURIDIQUES — PROCÉDURE (depuis le 11/10/2026)
+
+```
+Un texte maître UNIQUE par document (vouvoiement, doit correspondre
+EXACTEMENT au code et à l'offre). Ne jamais modifier un affichage à la main.
+- docs-projet/juridique/POLITIQUE_CONFIDENTIALITE.md
+    → écran app (privacy_policy_screen.dart) + page publique confidentialite.html
+- docs-projet/juridique/CGV_MECANO_A_BORD.md
+    → page publique cgv.html + CGV_SYSTEMEIO.txt (à coller dans Systeme.io)
+Pages publiques à la racine du dépôt principal (GitHub Pages, hors verrou
+de licence) : https://chathuant-pascal.github.io/mecano-a-bord/confidentialite.html
+et /cgv.html — ce sont les adresses à donner à Google Play et à l'App Store
+(puis https://mecanoabord.fr/... quand le domaine sera branché ; GitHub
+redirige alors automatiquement les anciennes adresses).
+
+Après chaque modification d'un texte maître (depuis la racine) :
+1. Mettre à jour sa date (« Dernière mise à jour » / « Version en vigueur »)
+2. python docs-projet/juridique/outils/generer_ecran_confidentialite.py  (politique)
+   python docs-projet/juridique/outils/generer_pages_publiques.py        (les deux)
+   python docs-projet/juridique/outils/generer_cgv_systemeio.py          (CGV)
+3. python docs-projet/juridique/outils/verifier_textes_juridiques.py
+   → chaque ligne doit finir par « OK »
+4. Si l'écran a changé : dans mecano_a_bord/, flutter analyze + flutter test
+5. Commits séparés : dépôt principal (textes, pages) + dépôt app (écran)
+Détails : docs-projet/juridique/outils/README.md.
+Toute NOUVELLE utilisation de données s'ajoute à la politique AVANT
+d'être codée (règle RGPD de Pascal).
+```
+
+---
+
 ## 🔍 PRÉCISIONS TECHNIQUES
 
 ```

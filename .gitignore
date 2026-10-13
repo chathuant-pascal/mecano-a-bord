@@ -6,3 +6,6 @@ docs-projet/visuels-sources/lire tes pneus comme un pro 2.png
 
 # Sauvegardes locales de stash Git (archives, jamais versionnées)
 docs-projet/archives/*.patch
+
+# Cache Python des scripts docs-projet/juridique/outils/
+__pycache__/

@@ -6,6 +6,18 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-12 — Politique de confidentialité (B72) et pages juridiques publiques
+
+- **Texte maître unique** : `docs-projet/juridique/POLITIQUE_CONFIDENTIALITE.md` (13 sections, vouvoiement), rédigé d'après un audit du code. Corrige les affirmations fausses de l'ancienne version (base locale « chiffrée », autorisations localisation/stockage, « rien n'est envoyé à un serveur » sur la formation web, effacement « en désinstallant ») et décrit enfin : données de licence, données d'achat (Systeme.io, Amazon), rapports Crashlytics/Performance (intérêt légitime), assistant IA, recherche par plaque, saisie vocale, Google Fonts, bases légales, durées, destinataires, transferts (Canada, États-Unis, Chine selon l'IA choisie), droits et CNIL. **Nouvel usage annoncé** : vérification de la garantie commerciale 14 jours (Module 0 exclu). Autorisations décrites **au lancement** (BLE, Android + iPhone) → vérification obligatoire avant publication (B78, étape 9 de `PLAN_OBD_BLE.md`).
+- **App** (dépôt `mecano-a-bord-app`, branche `chantier-confidentialite`, non poussée) : `e123d41` — le VIN n'est plus envoyé à l'assistant IA (minimisation, décision de Pascal ; 3 tests) ; `94e1a51` — écran de politique **généré** depuis le texte maître (titre au style `titreSection`, Règle 3) + 8 tests de widget. **Tests : 350 → 361.** `flutter analyze` : 0 erreur, 0 avertissement (44 « info » inchangées). Le correctif 010B (2 fichiers) est mis de côté dans le stash du dépôt app.
+- **Pages publiques** (racine du dépôt principal, hors verrou de licence) : `confidentialite.html` et `cgv.html`, générées depuis les textes maîtres — adresses à déclarer à Google Play et à l'App Store. `CGV_SYSTEMEIO.txt` est désormais aussi généré par script (le tableau comparatif devient une liste).
+- **Outils** (`docs-projet/juridique/outils/`) : 3 scripts de génération + `verifier_textes_juridiques.py` (contrôle mot pour mot des 4 affichages : écran 2 608 mots, `confidentialite.html` 2 608, `cgv.html` 6 396, texte Systeme.io 6 241 + 31 cases du tableau). Le vérificateur détecte bien un écart volontaire (« 14 » → « 15 jours »). Procédure dans CLAUDE.md et `outils/README.md`.
+- **Formation web** (`formation-web/index.html`) : section « Politique de confidentialité » remplacée par un résumé en 5 points + lien vers la page publique (UTF-8 sans BOM et fins de ligne CRLF conservés, Règle 7).
+- **Vérifié** : rendu des pages et de la section de la formation dans le navigateur intégré (ordinateur et largeur téléphone : pas de défilement horizontal, tableau défilant dans son cadre, liens ≥ 48 px). **Non vérifié** : rendu sur le Samsung (écran de l'app, formation intégrée → B79), iPhone (avant iOS-SETUP), pages en ligne (avant publication).
+- **Backlog** : B77 (recherche par plaque — API Particulier sans jeton, bloquant avant lancement), B78 (autorisations ↔ politique, bloquant avant publication), B79 (vérifications sur le Samsung).
+
+---
+
 ## 2026-10-11 — Conditions générales de vente (CGV) et décisions commerciales
 
 - **CGV rédigées** (version définitive, en relecture par Pascal) : nouveau dossier `docs-projet/juridique/` avec `CGV_MECANO_A_BORD.md` (référence, 23 articles + formulaire de rétractation + encadrés obligatoires sur les garanties) et `CGV_SYSTEMEIO.txt` (même texte, sans mise en forme, à coller dans Systeme.io ; généré depuis le .md). Comparées aux mentions légales et aux politiques de confidentialité existantes : les écarts relevés (e-mail, données d'achat, nouvel usage des données de progression…) sont reportés dans B72.

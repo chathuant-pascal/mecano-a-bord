@@ -128,6 +128,7 @@ ARTICLE 10 — DURÉE DE L'ACCÈS : CE QUE SIGNIFIE « ACCÈS SANS LIMITE DE DUR
 10.3. Engagement de durée minimale. Mécano à Bord s'engage à maintenir le service pendant au moins [DURÉE MINIMALE D'EXPLOITATION — ex. 5 ans] à compter de votre commande.
 
 10.4. Si le service devait s'arrêter, Mécano à Bord s'engage à :
+
 • vous prévenir par e-mail au moins [PRÉAVIS — ex. 6 mois] à l'avance ;
 • vous permettre, avant l'arrêt, de récupérer les données que vous avez saisies (carnet d'entretien, documents de la boîte à gants), qui sont enregistrées sur votre téléphone ;
 • si l'arrêt intervient avant la fin de la durée minimale de l'article 10.3 : [MODALITÉ À DÉCIDER — ex. remboursement de la part numérique au prorata de la durée restante].
@@ -139,6 +140,7 @@ ARTICLE 11 — LIVRAISON DU BOÎTIER
 11.1. Qui livre ? Le Boîtier est stocké et expédié pour le compte de Mécano à Bord par un Prestataire logistique, depuis un entrepôt situé en France métropolitaine. Votre seul interlocuteur et cocontractant est Mécano à Bord : vous n'avez aucun contrat avec le Prestataire logistique et n'avez pas à le contacter. Pour toute question, écrivez à mecanoabord@gmail.com.
 
 11.2. Zones de livraison.
+
 • Le Boîtier est livré uniquement dans les zones figurant sur la liste des zones desservies, publiée sur la page de vente et consultable avant toute commande : [ZONES DE LIVRAISON — emplacement de la liste, ex. « rubrique Livraison de la page de vente »].
 • Cette liste peut évoluer (ajout ou retrait de zones). La liste applicable à votre commande est celle en vigueur au jour où vous commandez ; une modification ultérieure n'a aucun effet sur une commande déjà passée.
 • Pour chaque zone, la liste précise les frais de livraison éventuels, le délai de livraison indicatif et, le cas échéant, les frais de douane, taxes ou octroi de mer susceptibles de s'appliquer.
@@ -172,12 +174,14 @@ Au moment de la commande, deux choix s'offrent à vous :
 • Vous ne cochez pas cette case : votre droit de rétractation porte sur toute l'Offre, et votre Code de licence vous est envoyé à la fin du délai de rétractation de 14 jours.
 
 12.5. Comment vous rétracter ? Avant la fin du délai, envoyez-nous une déclaration claire de votre décision :
+
 • par e-mail à mecanoabord@gmail.com ;
 • ou par courrier à l'adresse indiquée en tête des présentes CGV.
 
 Vous pouvez utiliser le formulaire de l'Annexe 1, sans obligation. Nous accusons réception de votre demande par e-mail.
 
 12.6. Retour du Boîtier.
+
 • Après réception de votre demande, nous vous transmettons par e-mail l'adresse de retour (entrepôt du Prestataire logistique) [et, si disponible, une étiquette de retour].
 • Vous renvoyez le Boîtier au plus tard 14 jours après nous avoir informé(e) de votre décision.
 • Les frais de retour sont à votre charge. À titre indicatif, un envoi de petit colis depuis la France métropolitaine coûte environ [MONTANT INDICATIF] ; depuis l'Outre-mer ou l'étranger, il peut être plus élevé.
@@ -187,6 +191,7 @@ Vous pouvez utiliser le formulaire de l'Annexe 1, sans obligation. Nous accusons
 12.7. Remboursement. Mécano à Bord vous rembourse dans les 14 jours suivant la réception de votre demande de rétractation, en utilisant le même moyen de paiement que pour la commande (sauf accord de votre part pour un autre moyen, sans frais pour vous). Nous pouvons différer le remboursement jusqu'à la réception du Boîtier ou jusqu'à ce que vous nous fournissiez une preuve de son expédition, la date retenue étant celle du premier de ces faits.
 
 Le montant remboursé est :
+
 • si votre rétractation porte sur toute l'Offre (vous n'aviez pas demandé l'accès immédiat) : la totalité du prix payé, frais de livraison standard inclus ;
 • si vous aviez demandé l'accès immédiat et renoncé à la rétractation pour les Contenus numériques : la part du prix correspondant au Boîtier, telle qu'indiquée sur la page de vente et dans votre confirmation de commande (article 5.2), ainsi que les frais de livraison initiaux éventuellement payés. Un remboursement intégral de l'Offre reste possible aux conditions de la garantie commerciale (article 13).
 
@@ -203,6 +208,7 @@ ARTICLE 13 — GARANTIE COMMERCIALE DE REMBOURSEMENT INTÉGRAL (14 JOURS)
 13.2. Ce qu'est un « module commencé ». Un module de la Formation est considéré comme commencé dès que sa page a été ouverte pour la première fois. Le Module 0 (introduction) n'est pas pris en compte : vous pouvez le consulter librement sans perdre le bénéfice de cette garantie. Seule l'ouverture d'un module à partir du Module 1 fait perdre la garantie. L'utilisation de l'Application en dehors de la Formation (surveillance du véhicule, carnet d'entretien, boîte à gants) n'empêche pas de bénéficier de cette garantie.
 
 13.3. Comment nous vérifions, en toute transparence. Pour vérifier la condition n° 2, Mécano à Bord consulte uniquement les données de suivi de progression dans la Formation associées à votre Code de licence (modules ouverts et terminés, avec leur date), décrites dans notre Politique de confidentialité (article 19). Aucune autre donnée n'est consultée à cette fin.
+
 • Si nous refusons la garantie pour ce motif, nous vous indiquons le ou les modules concernés et leur date d'ouverture, et vous communiquons sur simple demande les données sur lesquelles repose notre décision.
 • Si aucune donnée de progression n'a été enregistrée pour votre Code de licence, la condition n° 2 est considérée comme remplie.
 
@@ -219,6 +225,7 @@ ARTICLE 14 — GARANTIES LÉGALES
 14.1. Ce qui est garanti
 
 Indépendamment de toute garantie commerciale, Mécano à Bord est tenu :
+
 • de la garantie légale de conformité pour le Boîtier (articles L. 217-1 à L. 217-32 du Code de la consommation) ;
 • de la garantie légale de conformité pour les Contenus numériques (articles L. 224-25-1 et suivants du Code de la consommation) ;
 • de la garantie des vices cachés (articles 1641 à 1649 du Code civil).
@@ -240,10 +247,9 @@ Mécano à Bord fournit les mises à jour nécessaires au maintien de la conform
 
 14.4. Rétractation, garantie commerciale, garantie légale : trois cas distincts
 
-Récapitulatif :
-• Rétractation (article 12) : droit prévu par la loi. 14 jours après réception du Boîtier. Aucun motif, aucune condition. Remboursement du Boîtier (ou de toute l'Offre si vous n'avez pas demandé l'accès immédiat). Frais de retour à votre charge. Code de licence désactivé si la part numérique est remboursée.
-• Garantie commerciale 14 jours (article 13) : engagement volontaire de Mécano à Bord. 14 jours après réception du Boîtier. Aucun motif, mais aucun module de la Formation ne doit avoir été commencé à partir du Module 1 (le Module 0 d'introduction ne compte pas) et le Boîtier doit être retourné complet. Remboursement de la totalité des sommes payées. Frais de retour à votre charge. Code de licence désactivé.
-• Garantie légale pour défaut (article 14) : droit prévu par la loi. 2 ans pour le Boîtier, toute la durée de fourniture pour les Contenus numériques. En cas de défaut de conformité ou de vice caché. Réparation ou remplacement en priorité, remboursement dans les cas prévus par la loi. Frais de retour à la charge de Mécano à Bord. Code de licence conservé (sauf résolution du contrat).
+• Rétractation (art. 12) — Nature : Droit prévu par la loi ; Délai : 14 jours après réception du Boîtier ; Motif à donner : Aucun ; Conditions : Aucune ; Ce qui est remboursé : Le Boîtier (ou toute l'Offre si vous n'avez pas demandé l'accès immédiat) ; Frais de retour : À votre charge ; Code de licence : Désactivé si la part numérique est remboursée.
+• Garantie commerciale 14 jours (art. 13) — Nature : Engagement volontaire de Mécano à Bord ; Délai : 14 jours après réception du Boîtier ; Motif à donner : Aucun ; Conditions : Aucun module de la Formation commencé à partir du Module 1 + Boîtier retourné complet ; Ce qui est remboursé : La totalité des sommes payées ; Frais de retour : À votre charge ; Code de licence : Désactivé.
+• Garantie légale pour défaut (art. 14) — Nature : Droit prévu par la loi ; Délai : 2 ans (Boîtier) / toute la durée de fourniture (Contenus numériques) ; Motif à donner : Un défaut du produit ; Conditions : Défaut de conformité ou vice caché ; Ce qui est remboursé : Réparation ou remplacement en priorité ; remboursement dans les cas prévus par la loi ; Frais de retour : À la charge de Mécano à Bord ; Code de licence : Conservé (sauf résolution du contrat).
 
 ARTICLE 15 — SERVICE CLIENT
 
@@ -268,11 +274,13 @@ ARTICLE 17 — UTILISATION ET RESPONSABILITÉ
 17.1. Ce que fait Mécano à Bord. L'Application surveille certaines informations de votre véhicule et vous accompagne dans son entretien. Elle fournit des informations indicatives et pédagogiques. Elle ne remplace pas un professionnel de l'automobile, un diagnostic réalisé par un garagiste, l'entretien prévu par le constructeur, ni les contrôles techniques obligatoires.
 
 17.2. Vos engagements. Vous vous engagez à :
+
 • ne pas manipuler votre téléphone en conduisant et à rester attentif(ve) à la route en toutes circonstances ;
 • installer le Boîtier et utiliser l'Application conformément aux indications fournies ;
 • faire vérifier votre véhicule par un professionnel en cas de doute ou d'alerte.
 
 17.3. Responsabilité de Mécano à Bord. Mécano à Bord est responsable de la bonne exécution du contrat conformément à la loi. Sa responsabilité ne peut pas être engagée lorsque le dommage résulte :
+
 • d'une utilisation non conforme aux présentes CGV ou aux indications fournies ;
 • de votre fait ou de celui d'un tiers ;
 • d'un cas de force majeure ;

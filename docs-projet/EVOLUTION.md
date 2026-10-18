@@ -6,6 +6,22 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-18 — Correctif `formation_events` (B85, lot B4 du plan de pilotage) : la formation s'ouvre dans l'app depuis l'accueil (Android)
+
+- **Constat** : le bouton d'accueil « La méthode sans stress auto » ouvrait le navigateur externe (`formation_web_launch_screen.dart`) → aucun événement `formation_events` ; seule la WebView du premier lancement les enregistrait.
+- **Piège évité** : la WebView renvoyait vers l'accueil dès que `formation_done` était vrai (vérification toutes les 2 s) — un client ayant fini la formation l'aurait vue se refermer seule. Nouveau mode `openedFromHome` : ouverte depuis l'accueil, elle ne se referme jamais seule (seule la barre d'avancement reste mise à jour) ; premier lancement inchangé.
+- **iPhone** : la formation reste ouverte dans le navigateur, **figé dans le code** (`shouldOpenFormationInApp`), règle Apple 3.1.1 (voir B84) ; jamais piloté à distance (règles 2.5.2 et 2.5.19). Écart volontaire à la RÈGLE 0, documenté.
+- **Écran d'erreur** : bouton de secours « Ouvrir dans le navigateur » (couleurs neutres `grisDore` / `grisContour`) ; la progression n'est pas enregistrée dans ce cas (B74).
+- **Titre** de l'écran fixe : « La méthode sans stress auto » (règle de nommage, voir CLAUDE.md).
+- `formation_web_launch_screen.dart` supprimé ; logique d'ouverture regroupée dans `lib/utils/formation_opening.dart` ; try/catch ajouté sur la lecture des préférences.
+- **Tests** : 350 → 360 (branche partie de `main`) ; `flutter analyze` : 0 erreur, 44 remarques antérieures (B80).
+- **Samsung SM-A137F (Pascal, 18/10)** : 5 points validés — formation dans l'app avec le bon titre, reste ouverte (formation déjà finie), flèche retour vers l'accueil, événement présent dans `formation_events`, écran d'erreur avec les deux boutons. Installé depuis une branche d'essai **locale** `essai-local-samsung` (010B + B4, 385 tests), jamais poussée (verrou : hook `pre-push` local).
+- **Non vérifié** : iPhone (avant iOS-SETUP).
+- **Commits** : `d8bd08f` (`mecano-a-bord-app`, branche `correctif-formation-events`, travail en cours poussé). Commit final après revue.
+- **Carte des branches** : nouveau document `docs-projet/CARTE_DES_BRANCHES.md` (toutes les branches ouvertes des deux dépôts, leur contenu, leur état et ce qu'elles attendent).
+
+---
+
 ## 2026-10-04 — Rangement Git (partie 1) et validation du Lot 3 + tutoriels sur le Samsung
 
 - **Inventaire** : le projet compte **deux dépôts Git** — `mecano-a-bord` (docs + formation-web, racine) et `mecano-a-bord-app` (application Flutter, dossier `mecano_a_bord/`, exclu du premier). La liste « travail non commité » de CLAUDE.md V5 était périmée : presque tous les chantiers cités étaient déjà commités et poussés. Section remplacée dans CLAUDE.md par un état Git à jour (deux dépôts, déjà poussé / reste à régulariser).

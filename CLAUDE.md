@@ -669,7 +669,7 @@ Discord      : « Mécano à Bord — Communauté » — https://discord.gg/SA5q
 ```
 Positionnement : Mécano à Bord n'est pas un outil de diagnostic OBD classique.
 C'est un parcours de transformation pour débutants anxieux (formation « La
-Méthode Sans Stress Auto » / « Ta Voiture Sans Galère ») qui débloque ensuite
+méthode sans stress auto ») qui débloque ensuite
 un compagnon de conduite : SURVEILLANCE DU MOTEUR PENDANT QU'ON ROULE
 (argument de vente n°1, aucun concurrent ne le fait), plus carnet d'entretien,
 boîte à gants, assistant IA.
@@ -678,6 +678,11 @@ Cible : tous les pays francophones — Android ET iPhone (RÈGLE 0).
 Principe fondateur de Pascal : les débutants ne lisent pas les notices et
 veulent que tout soit fait pour eux → zéro friction, zéro choix technique à
 leur demander.
+RÈGLE DE NOMMAGE (18/10/2026) : le nom officiel de la formation est
+« La méthode sans stress auto » (bouton de l'accueil, titre de l'écran de
+la formation dans l'app, textes commerciaux). « Ta Voiture Sans Galère » est
+un titre À L'INTÉRIEUR de la formation : jamais le nom d'un écran ni du
+produit.
 ```
 
 ---

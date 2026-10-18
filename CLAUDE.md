@@ -355,7 +355,11 @@ Chantier « CONFORMITÉ » — prompt en 6 parties préparé par Claude (chat),
 à lancer par Pascal. Décisions déjà prises :
 - E-mail client UNIQUE : mecanoabord@gmail.com (remplace contact@mecanoabord.fr
   partout : help_contact_screen.dart, privacy_policy_screen.dart,
-  mab_legal_mentions_body.dart…)
+  mab_legal_mentions_body.dart…) — ✅ FAIT dans l'app le 18/10/2026
+  (correctif-email-contact, constante unique kEmailClient dans
+  lib/config/mab_contact.dart, test anti-retour). Redirections OVH
+  contact@mecanoabord.fr et contact@mecanoabord.com → mecanoabord@gmail.com
+  en place depuis le 18/10 (avant : aucune boîte, e-mails de l'app perdus).
 - Éditeur : Pascal Chathuant, Entrepreneur individuel (EI) — Nom commercial
   Mécano à Bord — L'Anse des Îles, section Cluny, 97115 Sainte-Rose,
   Guadeloupe, France — Tél. +590 690 55 80 77 — Directeur de la

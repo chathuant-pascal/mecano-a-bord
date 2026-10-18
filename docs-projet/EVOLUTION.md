@@ -6,6 +6,17 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-18 — Correctif e-mail : adresse client unique mecanoabord@gmail.com dans l'app
+
+- **Constat** : l'app affichait `contact@mecanoabord.fr` (Aide & Contact — adresse et bouton e-mail —, Mentions légales à 2 endroits, ancienne Politique de confidentialité). **Cette boîte n'existait pas : les e-mails envoyés depuis l'app n'arrivaient nulle part.**
+- **En attendant le correctif (Pascal, 18/10)** : redirections OVH `contact@mecanoabord.fr` → `mecanoabord@gmail.com` et `contact@mecanoabord.com` → `mecanoabord@gmail.com`, testées.
+- **Correctif** (branche `correctif-email-contact`, depuis `main`) : constante unique `kEmailClient` (`lib/config/mab_contact.dart`) utilisée par les 3 écrans ; test anti-retour (`test/email_contact_test.dart` : plus aucune trace de `contact@` ni de `karucards@` dans `lib/`, adresse écrite en dur à un seul endroit) + contre-épreuve. Tests 360 → 365 ; `flutter analyze` : 0 erreur (44 remarques, B80). Commit `e76b481`, **fusionné dans `main` le 18/10** (`--no-ff`, commit de fusion `668709b`, 365 tests sur `main`) et poussé ; branche supprimée (local et GitHub) après vérification.
+- **Vérifié par Pascal sur le SM-A137F** (version d'essai locale 010B + B4 + e-mail, 390 tests) : Aide & Contact, bouton e-mail vers `mecanoabord@gmail.com`, Mentions légales (2 endroits), Politique section 12 — 4/4 OK.
+- **À la fusion future de `chantier-confidentialite`** : conflit attendu sur `privacy_policy_screen.dart` (garder la version de la confidentialité), puis adapter le générateur de l'écran pour qu'il utilise `kEmailClient` (sinon 2 tests échouent). Noté dans la carte des branches.
+- **Non vérifié** : iPhone (Dart pur, à voir en vrai après iOS-SETUP).
+
+---
+
 ## 2026-10-18 — Tableau de bord : étape A3 (étiquette admin) validée en vrai ; redirections e-mail OVH
 
 - **Scripts** (`mecano_a_bord/outils-admin/`, branche `tableau-de-bord-socle`) : `poser-admin.js` (liste fermée des 2 comptes, compte Google vérifié exigé, confirmation « oui », relecture), `retirer-admin.js` (n'importe quel e-mail, sessions coupées), `lister-admins.js` (lecture seule, alerte en clair pour tout compte hors liste) ; `firebase-admin` 14.5.0 ; **31 tests** sur l'émulateur d'authentification (projet démo) + contre-épreuves ; `MODE_EMPLOI.md` pour Cloud Shell. Commits `ce7d8da`, `1f16f7a`, `7c742ae`.

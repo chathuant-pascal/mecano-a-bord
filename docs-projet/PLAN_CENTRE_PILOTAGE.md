@@ -1,6 +1,6 @@
 # Plan du centre de pilotage — Phase 3 : tableau de bord socle
 
-**Mis à jour le 18/10/2026 — PLAN validé dans ses grandes lignes, aucun code écrit.**
+**Mis à jour le 18/10/2026 (soir) — A0, A1 et A2 FAITS** (branche app `tableau-de-bord-socle`, dernier commit `2fa2815`) ; reste A3 et A4.
 Chaque étape reste à valider par Pascal avant d'être commencée.
 
 **Compatibilité :** le tableau de bord est un **site Flutter Web** (usage principal sur
@@ -44,6 +44,16 @@ Décisions complémentaires du 18/10/2026 :
    parallèle) → socle A0 à A4.
 10. **B54** (`licenses_private`) : à faire **avant l'ouverture de la bêta** à de vrais
     clients.
+11. **Fiche incident** (maquette) : gravité `bloquante` / `majeure` / `mineure` ; statut `nouveau` /
+    `qualifie` / `en_cours` / `resolu` / `clos` (n'importe lequel, sans ordre imposé) ; `clos`
+    seulement avec un `bilan` non vide ; champs PRA facultatifs (`scenarioPra`,
+    `utilisateursTouches`, `actionsMenees`, `bilan`) ; `creeLe` figé, suppression interdite.
+12. **Mode guide** : bouton dans l'en-tête, activé à chaque ouverture, explications sous chaque
+    indicateur (composant `Explication` réutilisable).
+13. **Accueil** : « À regarder en premier » (vert/orange/rouge, liens vers les onglets), « Ta
+    routine de 2 minutes, chaque matin » (4 étapes fixes), cartes résumé.
+14. **YouTube = premier branchement de données, juste après A4** (lot Y1), car il ne dépend pas
+    du SIRET.
 
 ---
 
@@ -163,9 +173,9 @@ commit par étape après ton accord**.
 
 | # | Étape | Qui | Comment on vérifie | Durée |
 |---|---|---|---|---|
-| A0 | **Prérequis.** ① Terminer ou mettre de côté le correctif 010B (dépôt app sur la branche `correctif-010b` avec 2 fichiers modifiés — ne rien mélanger) ; nouvelle branche `chantier-pilotage`. ② Installer Firebase CLI (`npm install -g firebase-tools`, outil officiel Google) et Java 21 (nécessaire à l'émulateur Firestore) — à valider par Pascal avant installation. ③ `firebase login`, liaison du projet (`.firebaserc` est vide aujourd'hui). ④ Console Firebase (Pascal) : activer la connexion **Google** dans Authentication ; créer le 2e site Hosting (ex. `mab-pilotage`, nom à vérifier) ; enregistrer l'app Web « Pilotage ». ⑤ Alerte de budget sur le forfait Blaze. | Pascal + Claude | `firebase projects:list` affiche mecano-a-bord ; la connexion Google apparaît active | ½ jour |
-| A1 | **Règles + tests** (section 4), testées sur l'émulateur, puis publiées. | Claude | Tests de règles verts ; publication `firebase deploy --only firestore:rules` | 1 jour |
-| A2 | **Squelette Flutter Web** : écran de connexion Google, 7 onglets : **Accueil** (cartes résumé vides), **Utilisateurs**, **Technique**, **Incidents** (texte « Bientôt disponible » en attendant leurs lots), **Projet**, **Stock** (« À brancher : Amazon Seller Central ») et **Marketing** (« À brancher : Systeme.io ») grisés, écran **« Accès refusé »** (avec l'explication de la reconnexion), bouton Déconnexion, mise en page large sur PC et en colonne sur téléphone, zones tactiles 48 dp. Design system copié + test de synchronisation. | Claude | Tests widget — normal : admin → onglets ; erreur : non-admin → accès refusé, échec réseau → message + Réessayer ; limite : étiquette absente (jeton pas encore rafraîchi), e-mail non vérifié | 1,5 jour |
+| A0 | ✅ **FAIT le 18/10/2026** (site `mab-pilotage`, app Web « Pilotage », `.firebaserc`, émulateur ; commit `e893f0b`) — **Prérequis.** ① Terminer ou mettre de côté le correctif 010B (dépôt app sur la branche `correctif-010b` avec 2 fichiers modifiés — ne rien mélanger) ; nouvelle branche `chantier-pilotage`. ② Installer Firebase CLI (`npm install -g firebase-tools`, outil officiel Google) et Java 21 (nécessaire à l'émulateur Firestore) — à valider par Pascal avant installation. ③ `firebase login`, liaison du projet (`.firebaserc` est vide aujourd'hui). ④ Console Firebase (Pascal) : activer la connexion **Google** dans Authentication ; créer le 2e site Hosting (ex. `mab-pilotage`, nom à vérifier) ; enregistrer l'app Web « Pilotage ». ⑤ Alerte de budget sur le forfait Blaze. | Pascal + Claude | `firebase projects:list` affiche mecano-a-bord ; la connexion Google apparaît active | ½ jour |
+| A1 | ✅ **FAIT le 18/10/2026** (33 tests émulateur, règles publiées le 18/10 ; commit `8470498`) — **Règles + tests** (section 4), testées sur l'émulateur, puis publiées. | Claude | Tests de règles verts ; publication `firebase deploy --only firestore:rules` | 1 jour |
+| A2 | ✅ **FAIT le 18/10/2026** (50 tests, aperçu local validé par Pascal ; commits `abce1c1` à `2fa2815`) — **Squelette Flutter Web** : écran de connexion Google, 7 onglets : **Accueil** (cartes résumé vides), **Utilisateurs**, **Technique**, **Incidents** (texte « Bientôt disponible » en attendant leurs lots), **Projet**, **Stock** (« À brancher : Amazon Seller Central ») et **Marketing** (« À brancher : Systeme.io ») grisés, écran **« Accès refusé »** (avec l'explication de la reconnexion), bouton Déconnexion, mise en page large sur PC et en colonne sur téléphone, zones tactiles 48 dp. Design system copié + test de synchronisation. | Claude | Tests widget — normal : admin → onglets ; erreur : non-admin → accès refusé, échec réseau → message + Réessayer ; limite : étiquette absente (jeton pas encore rafraîchi), e-mail non vérifié | 1,5 jour |
 | A3 | **Script étiquette admin** (section 3) + mode d'emploi pas à pas pour Cloud Shell. | Claude écrit, **Pascal lance** | Le script refuse un 3e e-mail ; après reconnexion, les 2 comptes voient les onglets | ½ jour |
 | A4 | **Mise en ligne** : d'abord sur un canal d'aperçu temporaire (`hosting:channel:deploy`, expire seul), puis sur le site pilotage. Toujours `--only hosting:pilotage`. | Claude + Pascal | Test sur PC, sur le SM-A137F, sur un iPhone si disponible ; un 3e compte Google voit « Accès refusé » | ½ jour |
 
@@ -184,6 +194,9 @@ donnée exposée. ≈ 4 jours.
 | B5b | **Onglet Accueil** : cartes résumé remplies (licences actives, incidents ouverts, derniers retours, état des interrupteurs). | B1 (puis B3, B5 pour les cartes correspondantes) | ½ jour |
 | B6 | **Onglet Projet** (grisé dans le socle) : saisie manuelle (tâches, blocages, jalons) dans `pilotage_projet` (règles admin à ajouter, mêmes tests). | A | 1 jour |
 | B7 | **App Check** pour le site pilotage (reCAPTCHA Enterprise via `firebase_app_check` — à vérifier sur pub.dev avant ajout). | A ; **obligatoire avant** que App Check soit rendu obligatoire sur Firestore | ½ jour |
+| Y1 | **YouTube** (premier branchement de données, juste après A4 — ne dépend pas du SIRET). Avant tout code, présenter à Pascal : ① le compte Google propriétaire de la chaîne @mecanoabord et l'autorisation OAuth nécessaire (⚠️ en mode « test », l'autorisation expire au bout de 7 jours) ; ② la Cloud Function quotidienne et sa protection anti-boucle ; ③ la vérification préalable du plafond Cloud Functions (50 $) sur `mecano-a-bord`. | A4 | à estimer |
+| X1 | **Bouton « Exporter pour Claude »** sur l'Accueil (après les onglets remplis) : génère un résumé texte **anonyme** à copier — chiffres clés, incidents ouverts, derniers retours, état des interrupteurs. **Jamais** de nom, d'e-mail, de plaque ni de code de licence (masquage testé : cas normal, erreur, limite). Aucun envoi : Pascal copie-colle lui-même. | Onglets B1-B5 remplis | ½ jour |
+| X2 | 💡 **Idée après la bêta** : bouton « Demander conseil » qui interroge Claude via l'API Anthropic, depuis une Cloud Function. À étudier avant tout code : nouvel envoi de données à un prestataire, donc **politique de confidentialité d'abord** (règle RGPD) ; clé d'API rangée dans Secret Manager, jamais dans le code ; coût par question ; même filtre d'anonymat que X1. | Bêta + X1 | à estimer |
 
 Total bloc B ≈ 10 jours. Plus tard, hors de ce plan : chiffres Crashlytics/Performance dans
 le site (export BigQuery = nouveau lieu de stockage → politique de confidentialité

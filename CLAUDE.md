@@ -479,6 +479,12 @@ jour À CHAQUE création, fusion ou suppression de branche.
 Supprimées le 18/10/2026 (entièrement contenues dans main, vérifié) :
 chantier-tutoriels-video (les deux dépôts), formation-publique.
 
+⚠️ RÈGLES FIRESTORE (règle de Pascal, 18/10/2026) : ne JAMAIS publier les
+règles Firestore depuis main (dépôt app) tant que tableau-de-bord-socle
+n'est pas fusionnée — le firestore.rules de main ne contient pas les règles
+du tableau de bord (pilotage/*, pilotage_incidents/*) et une publication
+les effacerait. Toujours `firebase deploy --only firestore:rules`.
+
 ### 🟡 Formation web (formation-web/index.html — RÈGLE 7 UTF-8)
 
 ```

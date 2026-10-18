@@ -464,16 +464,20 @@ RANGEMENT GIT TERMINÉ LE 04/10/2026 (dépôt principal) :
   (OneDrive). Pour la réappliquer : partir du commit 6f6c4fa.
 - « lire tes pneus comme un pro 2.png » : déplacée dans
   docs-projet/visuels-sources/, hors suivi Git (.gitignore), 5e4df45.
-- Dernière étape : pousser la branche chantier-tutoriels-video du dépôt
-  principal puis la fusionner dans main (vérifier avec
-  `git log origin/main..` qu'il ne reste rien).
+- Branche chantier-tutoriels-video du dépôt principal : fusionnée dans
+  main, puis supprimée le 18/10/2026.
 
 CONSERVÉ VOLONTAIREMENT (décisions Pascal) :
 - Branche backup-avant-reorganisation (dépôt principal) : son contenu est
   déjà entièrement dans main.
-- Branche chantier-tutoriels-video du dépôt app, sur GitHub, pour
-  l'instant.
 ```
+
+CARTE DES BRANCHES (règle de Pascal, 18/10/2026) :
+docs-projet/CARTE_DES_BRANCHES.md liste toutes les branches ouvertes des
+deux dépôts (contenu, état, ce qu'elles attendent). Claude Code la met à
+jour À CHAQUE création, fusion ou suppression de branche.
+Supprimées le 18/10/2026 (entièrement contenues dans main, vérifié) :
+chantier-tutoriels-video (les deux dépôts), formation-publique.
 
 ### 🟡 Formation web (formation-web/index.html — RÈGLE 7 UTF-8)
 

@@ -17,7 +17,7 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 - **Tests** : 350 → 360 (branche partie de `main`) ; `flutter analyze` : 0 erreur, 44 remarques antérieures (B80).
 - **Samsung SM-A137F (Pascal, 18/10)** : 5 points validés — formation dans l'app avec le bon titre, reste ouverte (formation déjà finie), flèche retour vers l'accueil, événement présent dans `formation_events`, écran d'erreur avec les deux boutons. Installé depuis une branche d'essai **locale** `essai-local-samsung` (010B + B4, 385 tests), jamais poussée (verrou : hook `pre-push` local).
 - **Non vérifié** : iPhone (avant iOS-SETUP).
-- **Commits** : `d8bd08f` (`mecano-a-bord-app`, branche `correctif-formation-events`, travail en cours poussé). Commit final après revue.
+- **Commits** : `d8bd08f` (`mecano-a-bord-app`), fusionné dans `main` après revue (`--no-ff`, commit de fusion `2c28bf5`, 360 tests sur `main`) et poussé ; branche `correctif-formation-events` supprimée (en local et sur GitHub, après vérification qu'elle était entièrement dans `main`).
 - **Carte des branches** : nouveau document `docs-projet/CARTE_DES_BRANCHES.md` (toutes les branches ouvertes des deux dépôts, leur contenu, leur état et ce qu'elles attendent).
 
 ---

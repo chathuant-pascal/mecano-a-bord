@@ -6,6 +6,19 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-18 — Tableau de bord (centre de pilotage) : étapes A0, A1 et A2
+
+- **Branche** `tableau-de-bord-socle` (dépôt app), créée depuis `main` `2c28bf5`. Plan : `docs-projet/PLAN_CENTRE_PILOTAGE.md` (branche `chantier-pilotage`).
+- **A0** : site Firebase Hosting `mab-pilotage` (https://mab-pilotage.web.app, vide) et app Web « Pilotage » créés au CLI ; connexion Google déjà active ; alerte de budget déjà en place depuis le 27/09 (10 $/mois). Firebase CLI 15.34.0 installé ; outil Firebase de Claude réparé (version figée + `MCP_TIMEOUT` 120 s). Commit `e893f0b` (`.firebaserc`, émulateur).
+- **A1** : règles Firestore `pilotage/*` (lecture admin, aucune écriture) et `pilotage_incidents/*` (fiche de la maquette, clos seulement avec un bilan, suppression interdite) ; 33 tests sur l'émulateur (projet démo) + contre-épreuve. **Publiées le 18/10** (`--only firestore:rules`) après vérification que les règles en ligne étaient celles de départ ; relues après : 0 ligne retirée, 62 ajoutées. Commit `8470498`. Règle : ne jamais publier depuis `main` avant la fusion.
+- **A2** : site Flutter Web `mecano_a_bord/pilotage/` (mêmes bibliothèques Firebase que l'app, exclu de l'analyse de l'app) ; design system copié + test de synchronisation ; logique d'accès (`evaluerAcces` = `estAdmin()`) ; écrans connexion Google / accès refusé / erreur (tutoiement) ; tableau de bord aux 7 onglets (menu latéral sur PC, hamburger sur téléphone ; Projet, Stock, Marketing grisés), **mode guide** (activé à chaque ouverture), **Accueil** de la maquette (« À regarder en premier », routine de 2 minutes en 4 étapes, 4 cartes résumé). Aperçu local verrouillé au mode debug (testé ; absent du site publié, vérifié sur une compilation réelle). Commits `abce1c1`, `42539e8`, `13724a8`, `ad89d65`, `2fa2815`.
+- **Tests** : pilotage 0 → 50 ; règles 33 ; app inchangée (360, APK release compilé).
+- **Vu par Pascal** : aperçu local sur PC et téléphone, « tout fonctionne ».
+- **Non vérifié** : vraie connexion Google, rendu sur un vrai téléphone et sur iPhone (étape A4).
+- **Docs** : configuration « pilotage-apercu » ajoutée à `.claude/launch.json` ; B80 précisé (copie du design system).
+
+---
+
 ## 2026-10-18 — Correctif `formation_events` (B85, lot B4 du plan de pilotage) : la formation s'ouvre dans l'app depuis l'accueil (Android)
 
 - **Constat** : le bouton d'accueil « La méthode sans stress auto » ouvrait le navigateur externe (`formation_web_launch_screen.dart`) → aucun événement `formation_events` ; seule la WebView du premier lancement les enregistrait.

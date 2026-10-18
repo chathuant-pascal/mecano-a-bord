@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8791", "--directory", "formation-web"],
       "port": 8791
+    },
+    {
+      "name": "pilotage-apercu",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "cd /d mecano_a_bord\\pilotage && flutter run -d web-server --web-port 8792 -t lib/main_apercu.dart"],
+      "port": 8792
     }
   ]
 }

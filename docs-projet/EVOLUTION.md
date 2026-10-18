@@ -6,6 +6,18 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-18 — Tableau de bord : étape A3 (étiquette admin) validée en vrai ; redirections e-mail OVH
+
+- **Scripts** (`mecano_a_bord/outils-admin/`, branche `tableau-de-bord-socle`) : `poser-admin.js` (liste fermée des 2 comptes, compte Google vérifié exigé, confirmation « oui », relecture), `retirer-admin.js` (n'importe quel e-mail, sessions coupées), `lister-admins.js` (lecture seule, alerte en clair pour tout compte hors liste) ; `firebase-admin` 14.5.0 ; **31 tests** sur l'émulateur d'authentification (projet démo) + contre-épreuves ; `MODE_EMPLOI.md` pour Cloud Shell. Commits `ce7d8da`, `1f16f7a`, `7c742ae`.
+- **Première vraie connexion Google** sur le site lancé en local (`main.dart`, sans contournement) avec les 2 comptes : « Accès non autorisé » comme prévu, comptes créés dans Firebase.
+- **Validé en vrai par Pascal dans Cloud Shell** (compte mecanoabord@gmail.com) : Node v24, `npm ci` OK (0 vulnérabilité ; 2 scripts d'installation bloqués par npm, sans effet) ; `--verifier` puis pose sur karucards@gmail.com et mecanoabord@gmail.com : « C'est fait » pour les deux ; sur le site local, « Vérifier à nouveau » : **le tableau de bord s'est ouvert immédiatement**.
+- **Rôles IAM vérifiés par Pascal** : les 2 comptes sont **Propriétaires** du projet `mecano-a-bord` (non vérifiable depuis le PC : pas de `gcloud`).
+- **E-mails clients** : deux redirections OVH mises en place et testées par Pascal — `contact@mecanoabord.fr` → `mecanoabord@gmail.com` et `contact@mecanoabord.com` → `mecanoabord@gmail.com`. **Avant, aucune boîte n'existait : les e-mails envoyés depuis l'app (écran Aide & Contact) n'arrivaient nulle part.** La correction de l'app (adresse `mecanoabord@gmail.com` partout) suit, branche `correctif-email-contact`.
+- **Backlog** : B86 (ce que le dépôt principal public expose, avant la bêta). `.claude/launch.json` : configuration « pilotage-local » (vrai site en local, port 8793).
+- **Non vérifié** : site en ligne, vrai téléphone, iPhone (étape A4).
+
+---
+
 ## 2026-10-18 — Tableau de bord (centre de pilotage) : étapes A0, A1 et A2
 
 - **Branche** `tableau-de-bord-socle` (dépôt app), créée depuis `main` `2c28bf5`. Plan : `docs-projet/PLAN_CENTRE_PILOTAGE.md` (branche `chantier-pilotage`).

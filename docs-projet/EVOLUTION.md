@@ -6,6 +6,18 @@ Format : **AAAA-MM-JJ — Titre** puis résumé court (quoi, impact éventuel).
 
 ---
 
+## 2026-10-18 — B88 : générateur de codes de licence (avant A4, décision de Pascal)
+
+- **Constat** : aucun générateur n'existait ; les codes `MAB-XXXX-XXXX-XXXX` étaient tapés à la main dans la console Firebase (seul le format était vérifié, dans l'app et la formation web). Combiné à B54 (e-mail lisible par qui connaît le code), un code « logique » pouvait être deviné.
+- **Ordre changé par Pascal** : B88 passe avant A4. A4 mis à l'abri : commit de sauvegarde `896f30c` « WIP A4 — non validé » sur `tableau-de-bord-socle`, envoyé sur GitHub après vérification qu'aucune automatisation n'existe sur le dépôt (0 workflow, 0 webhook, 0 déploiement) ; adresse d'essai toujours en ligne jusqu'au 25/10.
+- **Générateur** (branche `generateur-licences`, depuis `main`) : `crypto.randomInt` (générateur cryptographique), **32 caractères** sans 0/O/1/I (compatibles avec l'app et la formation : `[A-Z0-9]`), 32¹² ≈ 1,15 × 10¹⁸ combinaisons ; module réutilisable sans réécriture par la future fonction serveur (B89 → B90 Systeme.io, B91 lot, B92 unité).
+- **Script** `outils-licences/creer-licence.js` (Cloud Shell, lancé par Pascal) : création **atomique** (jamais d'écrasement, licences existantes intactes), lots de 1 à 100, `--lot "NOM"` (ex. `VGATE-2026-01`), `--essai` sans écriture, confirmation « oui ». Licence créée : `code`, `status: active`, `deviceId: null`, `creeLe`, `creePar`, `lot` facultatif — **aucun e-mail dans Firebase** (décision de Pascal). Les 2 licences existantes (Pascal, Inès) ne sont pas touchées.
+- **Tests** : 12 purs + 11 sur l'émulateur Firestore (projet démo), dont l'activation d'une licence du script par l'app **avec les vraies règles** (champ `lot` ignoré) ; contre-épreuve (« 0 » ajouté au jeu de caractères → échec). Commit `35eaed4`.
+- **Backlog** : B88 (en cours) ; lots futurs B89 (fonction serveur commune, le tableau de bord n'écrit jamais directement dans `licenses` ; forfait Blaze déjà actif), B90 (vente Systeme.io automatique, seul le numéro de commande dans `licenses_private`), B91 (lot depuis le tableau de bord, export des cartes), B92 (à l'unité).
+- **Non fait** : aucun lancement sur la vraie base (premier essai par Pascal, `--essai` d'abord) ; aucun déploiement.
+
+---
+
 ## 2026-10-18 — Correctif e-mail : adresse client unique mecanoabord@gmail.com dans l'app
 
 - **Constat** : l'app affichait `contact@mecanoabord.fr` (Aide & Contact — adresse et bouton e-mail —, Mentions légales à 2 endroits, ancienne Politique de confidentialité). **Cette boîte n'existait pas : les e-mails envoyés depuis l'app n'arrivaient nulle part.**
